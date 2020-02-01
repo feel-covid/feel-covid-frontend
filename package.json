@@ -18,7 +18,7 @@
   "scripts": {
     "start": "concurrently \"npm run start:react\" \"npm run start:storybook\"",
     "start:react": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "set \"GENERATE_SOURCEMAP=false\" && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start:storybook": "start-storybook -p 9009 -s public",
@@ -29,14 +29,10 @@
   },
   "browserslist": {
     "production": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 chrome version"
     ],
     "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 chrome version"
     ]
   },
   "devDependencies": {
