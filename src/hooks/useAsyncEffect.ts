@@ -1,7 +1,10 @@
 import { useEffect } from 'react';
 import { PlainFunction } from '../types/interfaces';
 
-const useAsyncEffect = (effect: PlainFunction, inputs: Array<any>) => {
+/**
+ * @description Modified useEffect that allows async functions.
+ */
+const useAsyncEffect = (effect: PlainFunction, inputs: Array<any>): void => {
 	useEffect(() => {
 		effect();
 	}, inputs);
