@@ -1,4 +1,2 @@
-build
-node_modules
-.storybook
-preInstallScript.js
+/src/serviceWorker.ts
+/src/types/definitions
