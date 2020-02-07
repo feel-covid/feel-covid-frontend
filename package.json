@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fullhuman/postcss-purgecss": "^2.0.6",
     "@reach/router": "^1.2.1",
     "date-fns": "^2.9.0",
     "i18next": "^19.1.0",
@@ -14,11 +15,14 @@
     "react-i18next": "^11.3.1",
     "react-scripts": "3.3.1",
     "styled-components": "^5.0.0",
+    "tailwindcss": "^1.2.0",
     "typescript": "~3.7.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "set \"GENERATE_SOURCEMAP=false\" && react-scripts build",
+    "build:css": "postcss src/tailwind.css -o src/tailwind.output.css --env production",
+    "watch:css": "postcss src/tailwind.css -o src/tailwind.output.css -w",
+    "start": "concurrently \"npm run watch:css\" \"react-scripts start\"",
+    "build": "npm run build:css && set \"GENERATE_SOURCEMAP=false\" && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start:storybook": "start-storybook -p 9009 -s public",
@@ -37,7 +41,9 @@
     }
   },
   "lint-staged": {
-    ".{ts,tsx}": ["yarn lint"]
+    ".{ts,tsx}": [
+      "yarn lint"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -67,6 +73,7 @@
     "@types/styled-components": "^4.4.2",
     "@typescript-eslint/eslint-plugin": "^2.19.0",
     "@typescript-eslint/parser": "^2.19.0",
+    "autoprefixer": "^9.7.4",
     "awesome-typescript-loader": "^5.2.1",
     "concurrently": "^5.1.0",
     "eslint": "6.8.0",
@@ -77,9 +84,11 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.18.3",
     "husky": "^4.2.1",
+    "postcss-cli": "^7.1.0",
     "prettier": "^1.19.1",
     "prettier-eslint": "^9.0.1",
     "prettier-eslint-cli": "^5.0.0",
-    "react-docgen-typescript-loader": "^3.6.0"
+    "react-docgen-typescript-loader": "^3.6.0",
+    "serve": "^11.3.0"
   }
 }
