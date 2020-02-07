@@ -33,8 +33,11 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint"
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    ".{ts,tsx}": ["yarn lint", "git add"]
   },
   "eslintConfig": {
     "extends": "react-app"
