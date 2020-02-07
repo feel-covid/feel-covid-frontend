@@ -37,7 +37,7 @@
     }
   },
   "lint-staged": {
-    ".{ts,tsx}": ["yarn lint", "git add"]
+    ".{ts,tsx}": ["yarn lint"]
   },
   "eslintConfig": {
     "extends": "react-app"

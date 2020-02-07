@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import Router from './Router';
 
-interface IProps {}
+interface Props {}
 
-const App: React.FC<IProps> = () => {
+const App: React.FC<Props> = () => {
 	return (
 		<S.Container>
 			<button
