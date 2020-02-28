@@ -29,7 +29,8 @@
     "build-storybook": "build-storybook -s public",
     "lint": "eslint src/**/*.{ts,tsx}",
     "lint:fix": "prettier-eslint src/**/*.{ts,tsx} --write",
-    "preinstall": "node ./preInstallScript.js"
+    "preinstall": "node ./preInstallScript.js",
+    "build:analyze": "cross-env ANALYZE=true craco build"
   },
   "engines": {
     "node": ">= 12.10.0",
@@ -57,6 +58,7 @@
     ]
   },
   "devDependencies": {
+    "@craco/craco": "^5.6.3",
     "@storybook/addon-actions": "^5.3.9",
     "@storybook/addon-info": "^5.3.9",
     "@storybook/addon-links": "^5.3.9",
@@ -76,6 +78,7 @@
     "autoprefixer": "^9.7.4",
     "awesome-typescript-loader": "^5.2.1",
     "concurrently": "^5.1.0",
+    "cross-env": "^7.0.0",
     "eslint": "6.8.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-node": "^4.0.0",
@@ -89,6 +92,7 @@
     "prettier-eslint": "^9.0.1",
     "prettier-eslint-cli": "^5.0.0",
     "react-docgen-typescript-loader": "^3.6.0",
-    "serve": "^11.3.0"
+    "serve": "^11.3.0",
+    "webpack-bundle-analyzer": "^3.6.0"
   }
 }
