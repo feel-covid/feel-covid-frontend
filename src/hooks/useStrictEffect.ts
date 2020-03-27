@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { PlainFunction } from '../types/interfaces';
+import { PlainFunction } from '../@types/interfaces';
 
 /**
  * @description Modified useEffect that only runs when the dependencies change and not on initial render.

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { PlainFunction } from '../types/interfaces';
+import { PlainFunction } from '../@types/interfaces';
 
 /**
  * @description Modified useEffect that allows async functions.

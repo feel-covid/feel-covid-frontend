@@ -17,9 +17,10 @@ const App: React.FC<IProps> = () => {
 	);
 };
 
-const S: any = {};
-S.Container = styled.div`
-	display: flex;
-`;
+const S = {
+	Container: styled.div`
+		display: flex;
+	`
+};
 
 export default App;

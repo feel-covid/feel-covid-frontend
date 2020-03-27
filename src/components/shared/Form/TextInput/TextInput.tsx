@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 
 interface IProps {}
 
-const TextInput: React.FC<IProps> = (props) => {
+const TextInput: React.FC<IProps> = () => {
 	return <S.Input data-testid='TextInput' />;
 };
 
