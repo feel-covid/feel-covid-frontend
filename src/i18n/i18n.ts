@@ -6,18 +6,17 @@ i18n
 	.use(Backend)
 	.use(initReactI18next)
 	.init({
-		lng: 'en',
+		lng: 'he',
 		backend: {
 			loadPath: '/assets/i18n/{{ns}}/{{lng}}.json'
 		},
-		fallbackLng: 'en',
+		fallbackLng: 'he',
 		debug: process.env.NODE_ENV === 'development',
 		ns: ['translations'],
 		defaultNS: 'translations',
-		keySeparator: false,
+		keySeparator: '.',
 		interpolation: {
-			escapeValue: false,
-			formatSeparator: ','
+			escapeValue: false
 		},
 		react: {
 			wait: true,

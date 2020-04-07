@@ -1,4 +1,13 @@
 {
-  "hello.label": "你好",
-  "thankyou.label": "謝謝你"
+  "global": {
+    "confirmedCases": "סה\"כ חולים",
+    "activeCases": "חולים כרגע",
+    "increase": "עלייה",
+    "decrease": "ירידה",
+    "of": "של",
+    "infected": "נדבקים",
+    "as": "כ-",
+    "noChangeSinceLastUpdate": "אין שינוי מהעדכון האחרון"
+  }
 }
+

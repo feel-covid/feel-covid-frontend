@@ -18,6 +18,15 @@ const defaultTheme: DefaultTheme = {
 		s32: '3.2rem',
 		s44: '4.4rem',
 		s52: '5.2rem'
+	},
+	colors: {
+		white: 'white',
+		gray1: '#F4F4F4',
+		blue1: '#0f2644',
+		blue2: '#0d6fed',
+		red1: '#EE423A',
+		green1: '#53A653',
+		lightBlack1: 'rgba(0, 0, 0, .2)'
 	}
 };
 

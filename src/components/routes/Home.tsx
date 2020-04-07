@@ -5,11 +5,7 @@ import { RouteComponentProps } from '@reach/router';
 interface IProps extends RouteComponentProps {}
 
 const Home: React.FC<IProps> = () => {
-	return (
-		<S.Container className='text-blue-900 font-bold'>
-			Welcome to Home
-		</S.Container>
-	);
+	return <S.Container></S.Container>;
 };
 
 const S: any = {};

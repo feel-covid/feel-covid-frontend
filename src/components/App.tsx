@@ -1,31 +1,25 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import Router from './Router';
-import { useRequest } from '../hooks';
 import DataCard from './shared/DataCard/DataCard';
+import { useTranslation } from 'react-i18next';
+import { useCountryData } from '../hooks/useCountryData';
+import { PositiveFactorEnum } from '../@types/enums';
 
 interface IProps {}
 
 const App: React.FC<IProps> = () => {
-	const { loading, error, data } = useRequest(
-		{
-			route: '/country',
-			params: {
-				name: 'israel',
-				startDate: '2020-04-02',
-				endDate: JSON.stringify(new Date())
-			}
-		},
-		[]
-	);
-
-	if (loading) return <div>Loading...</div>;
+	const { t } = useTranslation();
+	const data = useCountryData();
 
 	return (
 		<S.Container>
-			<DataCard title={'Dead'} current={100} before={200} />
-			{loading}
-			<pre>{JSON.stringify(data || {}, null, 2)}</pre>
+			<DataCard
+				title={t('global.confirmedCases')}
+				current={100}
+				before={8018}
+				positiveFactor={PositiveFactorEnum.DECREASE}
+			/>
 			<Router />
 		</S.Container>
 	);

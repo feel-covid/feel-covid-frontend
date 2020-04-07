@@ -20,7 +20,3 @@ export interface ITheme {
 export interface IChildren {
 	children?: React.ReactNode;
 }
-
-export interface IFunctionChildren<T> {
-	children(params: T): React.ReactNode;
-}

@@ -19,9 +19,20 @@ export interface IFontSizes {
 	s52: string;
 }
 
+export interface IColors {
+	white: string;
+	gray1: string;
+	blue1: string;
+	blue2: string;
+	red1: string;
+	green1: string;
+	lightBlack1: string;
+}
+
 declare module 'styled-components' {
 	// eslint-disable-next-line @typescript-eslint/interface-name-prefix
 	export interface DefaultTheme {
 		fontSizes: IFontSizes;
+		colors: IColors;
 	}
 }
