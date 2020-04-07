@@ -1,6 +1,6 @@
 {
   "global": {
-    "confirmedCases": "סה\"כ חולים",
+    "confirmedCases": "סה\"כ נדבקים",
     "activeCases": "חולים כרגע",
     "increase": "עלייה",
     "decrease": "ירידה",

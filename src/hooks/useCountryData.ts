@@ -1,7 +1,10 @@
 import { useContext } from 'react';
-import { CountryDataContext } from '../components/providers/CountryDataProvider';
+import {
+	CountryDataContext,
+	ICountryDataContext
+} from '../components/providers/CountryDataProvider/context';
 
-export const useCountryData = () => {
+export const useCountryData = (): ICountryDataContext => {
 	const data = useContext(CountryDataContext);
 
 	return data;

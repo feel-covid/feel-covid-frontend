@@ -1,8 +1,7 @@
 import React from 'react';
-import { IChildren } from '../../@types/interfaces';
-import { useRequest } from '../../hooks';
-
-export const CountryDataContext = React.createContext({});
+import { IChildren } from '../../../@types/interfaces';
+import { useRequest } from '../../../hooks';
+import { CountryDataContext, ICountryDataContext } from './context';
 
 interface IProps extends IChildren {}
 
@@ -17,13 +16,16 @@ export const CountryDataProvider: React.FC<IProps> = ({ children }) => {
 				name: 'israel',
 				startDate: JSON.stringify(oneWeekAgo),
 				endDate: JSON.stringify(new Date())
-			}
+			},
+			initialDataValue: []
 		},
 		[]
 	);
 
 	return (
-		<CountryDataContext.Provider value={data}>
+		<CountryDataContext.Provider
+			value={(data as unknown) as ICountryDataContext}
+		>
 			{children}
 		</CountryDataContext.Provider>
 	);

@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import i18n from './i18n';
 import { ThemeProvider } from 'styled-components';
 import { defaultTheme } from './themes';
-import { CountryDataProvider } from './components/providers/CountryDataProvider';
+import { CountryDataProvider } from './components/providers/CountryDataProvider/CountryDataProvider';
 
 ReactDOM.render(
 	<I18nextProvider i18n={i18n}>

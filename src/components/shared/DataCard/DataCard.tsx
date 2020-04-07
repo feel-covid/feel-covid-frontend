@@ -46,6 +46,7 @@ const S = {
 		transition: 0.3s;
 		padding: 2.3rem;
 		border-radius: 0.4rem;
+		margin: 1rem;
 
 		&:hover {
 			transform: translateY(-0.3rem);
