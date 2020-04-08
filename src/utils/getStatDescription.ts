@@ -4,7 +4,7 @@ import i18n from '../i18n/i18n';
 interface IParams {
 	before: number;
 	current: number;
-	context: string;
+	context?: string;
 }
 
 export const getStatDescription = ({ before, current, context }: IParams) => {
@@ -21,7 +21,7 @@ export const getStatDescription = ({ before, current, context }: IParams) => {
 			const asTranslation = i18n.t('global.as');
 
 			/* prettier-ignore */
-			description = `${prefixTranslation} ${ofTranslation} ${Math.abs(actualDiff)} ${context}, ${asTranslation}${percentDiff}%`;
+			description = `${prefixTranslation} ${ofTranslation} ${Math.abs(actualDiff)}, ${asTranslation}${percentDiff}%`;
 		}
 	}
 

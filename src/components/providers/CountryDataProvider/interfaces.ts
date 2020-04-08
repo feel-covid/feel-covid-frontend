@@ -1,9 +1,9 @@
-interface ICase {
+export interface ICase {
 	cases: number;
 	intubated?: number;
 }
 
-interface ITreatment {
+export interface ITreatment {
 	home: number;
 	hotel: number;
 	hospital: number;
@@ -21,4 +21,15 @@ export interface ICountry {
 	treatment: ITreatment;
 	recovered: number;
 	date: string;
+}
+
+export interface INormalizedCountryData {
+	total: number;
+	active: number;
+	deceased: number;
+	recovered: number;
+	treatment: ITreatment;
+	mid: number;
+	light: number;
+	severe: ICase;
 }

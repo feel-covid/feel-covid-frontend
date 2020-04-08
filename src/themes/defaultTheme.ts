@@ -22,6 +22,7 @@ const defaultTheme: DefaultTheme = {
 	colors: {
 		white: 'white',
 		gray1: '#F4F4F4',
+		gray2: '#F4F6FA',
 		blue1: '#0f2644',
 		blue2: '#0d6fed',
 		red1: '#EE423A',

@@ -1,5 +1,6 @@
 export enum IconsEnum {
-	Arrow = 'icon-arrow'
+	Arrow = 'icon-arrow',
+	QuestionMark = 'icon-question-mark'
 }
 
 export enum PositiveFactorEnum {

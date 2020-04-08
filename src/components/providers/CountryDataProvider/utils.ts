@@ -1,6 +1,13 @@
-import { ICountry } from '../components/providers/CountryDataProvider/interfaces';
+import {
+	ICase,
+	ICountry,
+	INormalizedCountryData,
+	ITreatment
+} from './interfaces';
 
-export const normalizeCountryData = (country: ICountry) => {
+export const normalizeCountryData = (
+	country: ICountry
+): INormalizedCountryData => {
 	const { deceased, recovered, mid, light, severe, treatment } = country;
 
 	return {

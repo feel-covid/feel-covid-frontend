@@ -1,7 +1,8 @@
 import React from 'react';
 import { IChildren } from '../../../@types/interfaces';
 import { useRequest } from '../../../hooks';
-import { CountryDataContext, ICountryDataContext } from './context';
+import { CountryDataContext } from './context';
+import { normalizeCountryData } from './utils';
 
 interface IProps extends IChildren {}
 
@@ -9,7 +10,7 @@ export const CountryDataProvider: React.FC<IProps> = ({ children }) => {
 	const oneWeekAgo = new Date();
 	oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
 
-	const data = useRequest(
+	const res = useRequest(
 		{
 			route: '/country',
 			params: {
@@ -22,9 +23,14 @@ export const CountryDataProvider: React.FC<IProps> = ({ children }) => {
 		[]
 	);
 
+	if (res.loading) return null;
+
 	return (
 		<CountryDataContext.Provider
-			value={(data as unknown) as ICountryDataContext}
+			value={{
+				...res,
+				normalizedData: res.data.map(normalizeCountryData)
+			}}
 		>
 			{children}
 		</CountryDataContext.Provider>

@@ -11,9 +11,15 @@ html {
     font-size: 62.5%;
 }
 
+@media (max-width: 768px) {
+    html {
+        font-size: 54%;
+    }
+}
+
 body {
     height: 100%;
-    background: #F4F4F4;
+    background: #F3F5F9;
     font-size: 1.6rem;
     font-family: 'Open Sans Hebrew', sans-serif;
 }
