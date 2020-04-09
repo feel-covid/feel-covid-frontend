@@ -11,7 +11,7 @@ i18n
 			loadPath: '/assets/i18n/{{ns}}/{{lng}}.json'
 		},
 		fallbackLng: 'he',
-		debug: process.env.NODE_ENV === 'development',
+		debug: false,
 		ns: ['translations'],
 		defaultNS: 'translations',
 		keySeparator: '.',

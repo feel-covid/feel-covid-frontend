@@ -58,7 +58,9 @@ const S = {
 		display: flex;
 		align-items: center;
 		color: ${({ trend, theme, positiveFactor }) =>
-			trend === 0 ? theme.colors.blue2 : getTrendColor(positiveFactor, trend)};
+			trend === 0 || positiveFactor === PositiveFactorEnum.NONE
+				? theme.colors.blue2
+				: getTrendColor(positiveFactor, trend)};
 	`,
 	CurrentText: styled(CustomText)`
 		margin: 0.4rem 0 0.6rem 0;

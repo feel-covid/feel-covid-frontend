@@ -28,5 +28,9 @@ export const HeaderFilter: React.FC<IProps> = (props) => {
 const S = {
 	Container: styled.div`
 		display: flex;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
 	`
 };

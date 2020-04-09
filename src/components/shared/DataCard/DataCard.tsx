@@ -46,11 +46,7 @@ const S = {
 		padding: 2.3rem;
 		border-radius: 0.4rem;
 		margin: 0.45rem 1rem;
-		flex: 1 0;
-
-		@media (max-width: 1024px) {
-			width: 100%;
-		}
+		flex: 1;
 	`
 };
 

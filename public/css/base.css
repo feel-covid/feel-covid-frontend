@@ -29,3 +29,7 @@ button,
 input {
     font-family: inherit;
 }
+
+.recharts-surface {
+    overflow: visible;
+}

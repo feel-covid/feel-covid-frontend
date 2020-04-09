@@ -28,6 +28,8 @@ export interface IColors {
 	red1: string;
 	green1: string;
 	lightBlack1: string;
+	orange1: string;
+	orange2: string;
 }
 
 declare module 'styled-components' {

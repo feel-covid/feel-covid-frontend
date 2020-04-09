@@ -32,4 +32,5 @@ export interface INormalizedCountryData {
 	mid: number;
 	light: number;
 	severe: ICase;
+	date: string;
 }

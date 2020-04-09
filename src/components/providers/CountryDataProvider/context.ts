@@ -6,11 +6,13 @@ export interface ICountryDataContext {
 	error: typeof Error | null;
 	data: Array<ICountry>;
 	normalizedData: Array<INormalizedCountryData>;
+	normalizedChartData: Array<INormalizedCountryData>;
 }
 
 export const CountryDataContext = React.createContext<ICountryDataContext>({
 	loading: true,
 	data: [],
 	error: null,
-	normalizedData: []
+	normalizedData: [],
+	normalizedChartData: []
 });

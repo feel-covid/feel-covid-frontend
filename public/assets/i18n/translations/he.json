@@ -2,7 +2,7 @@
 	"header": {
 		"title": "תמונת מצב",
 		"headerFilter": {
-			"displayingComparison": "מציג השוואה בין",
+			"displayingComparison": "מגמת שינוי בין",
 			"andBetween": "לבין"
 		}
 	},
@@ -21,7 +21,8 @@
 			"severeCondition": "במצב קשה",
 			"intubated": "מונשמים",
 			"recovered": "החלימו",
-			"deceased": "נפטרים"
+			"deceased": "נפטרים",
+			"numOfCases": "מס' חולים"
 		},
 		"treatment": {
 			"hospital": "בבתי חולים",

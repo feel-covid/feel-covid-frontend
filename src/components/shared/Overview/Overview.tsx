@@ -4,6 +4,7 @@ import { PositiveFactorEnum } from '../../../@types/enums';
 import DataCard from '../DataCard/DataCard';
 import get from 'lodash/get';
 import { useCountryData } from '../../../hooks/useCountryData';
+import { IStyle } from '../../../@types/interfaces';
 
 interface ICard {
 	title: string;
@@ -11,17 +12,17 @@ interface ICard {
 	positiveFactor: PositiveFactorEnum;
 }
 
-interface IProps {
+interface IProps extends IStyle {
 	cards: Array<ICard>;
 }
 
 export const Overview: React.FC<IProps> = (props) => {
-	const { cards } = props;
+	const { cards, className } = props;
 	const { loading, normalizedData, error } = useCountryData();
 	const [prevUpdate, currentUpdate] = normalizedData.slice(-2);
 
 	return (
-		<S.Container>
+		<S.Container className={className}>
 			{cards.map((card, index) => {
 				const { title, path, positiveFactor } = card;
 				return (

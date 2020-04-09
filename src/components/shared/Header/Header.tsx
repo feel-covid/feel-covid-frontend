@@ -15,8 +15,8 @@ export const Header: React.FC<IProps> = (props) => {
 	const [prevUpdate, currentUpdate] = normalizedData.slice(-2);
 	return (
 		<S.Header>
-			<HeaderFilter />
 			<S.Title text={t('header.title')!} />
+			<HeaderFilter />
 			<S.ConfirmedCasesContainer>
 				<S.ConfirmedCasesText text={`${t('global.cases.confirmedCases')}:`} />
 				<S.CasesAmount
@@ -39,7 +39,7 @@ const S = {
 		box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.2);
 		position: sticky;
 		top: 0;
-		z-index: 1;
+		z-index: 100;
 	`,
 	Title: styled(CustomText)`
 		font-weight: bold;

@@ -5,5 +5,6 @@ export enum IconsEnum {
 
 export enum PositiveFactorEnum {
 	INCREASE = 1,
-	DECREASE = -1
+	DECREASE = -1,
+	NONE = 'NONE'
 }
