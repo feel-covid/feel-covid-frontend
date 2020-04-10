@@ -1,12 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import styled, { useTheme } from 'styled-components/macro';
+import { useTheme } from 'styled-components/macro';
 import { useCountryData } from '../../../../hooks/useCountryData';
 import {
 	Area,
 	AreaChart,
-	Bar,
-	ResponsiveContainer,
 	Tooltip,
 	XAxis
 } from 'recharts';

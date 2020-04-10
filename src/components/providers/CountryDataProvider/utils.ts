@@ -54,7 +54,7 @@ export const normalize24HoursDiff = (
 
 	const dateValues = Object.values(countryDataObjectByDate);
 
-	let acc: Array<INormalized24HoursDiff> = [];
+	const acc: Array<INormalized24HoursDiff> = [];
 
 	for (let i = dateValues.length - 1; i > 0; i--) {
 		const currentDay = dateValues[i][0];

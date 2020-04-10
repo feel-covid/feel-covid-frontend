@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import styled, { useTheme } from 'styled-components/macro';
-import { Area, AreaChart, Bar, Tooltip, XAxis } from 'recharts';
+import { useTheme } from 'styled-components/macro';
+import { Area, AreaChart, Tooltip, XAxis } from 'recharts';
 import { useCountryData } from '../../../../hooks/useCountryData';
 import { formatChartDate } from '../../../../utils/formatChartDate';
 import { he } from 'date-fns/locale';
