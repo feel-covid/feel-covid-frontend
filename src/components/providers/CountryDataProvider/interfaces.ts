@@ -35,6 +35,10 @@ export interface INormalizedCountryData {
 	date: string;
 }
 
-export interface INormalized24HoursDiff extends INormalizedCountryData {
+export interface INormalized24HoursDiff {
 	compareDate: string;
+	total: number;
+	deceased: number;
+	recovered: number;
+	date: string;
 }

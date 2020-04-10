@@ -38,11 +38,12 @@ const S = {
 	ChartsContainer: styled.div`
 		display: grid;
 		grid-template-columns: repeat(auto-fit, 33%);
-		padding: 3rem 1rem;
+		padding: 3rem 1rem 5rem 1rem;
 		width: 100%;
 
 		${media.tablet`
 			grid-template-columns: 1fr;
+			padding: 3rem 1rem;
 		`}
 	`
 };

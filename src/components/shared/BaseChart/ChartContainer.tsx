@@ -14,7 +14,7 @@ export const ChartContainer: React.FC<IProps> = (props) => {
 			<S.ChartTitle text={props.title} />
 			<S.OuterChartContainer>
 				<S.InnerChartContainer>
-					<ResponsiveContainer debounce={100}>
+					<ResponsiveContainer debounce={200}>
 						{props.children}
 					</ResponsiveContainer>
 				</S.InnerChartContainer>
@@ -27,8 +27,23 @@ const S = {
 	Container: styled.div`
 		position: relative;
 
-		${media.phone`
-			margin: 2rem 0;
+		.recharts-surface {
+			overflow: visible;
+		}
+
+		.recharts-default-legend {
+			direction: rtl;
+		}
+
+		.recharts-legend-item-text {
+			margin-right: 0.5rem;
+			transform: translateY(0.12rem);
+			display: inline-block;
+			color: white;
+		}
+
+		${media.tablet`
+			margin: 2rem 0 3rem 0;
 		`}
 	`,
 	OuterChartContainer: styled.div`
@@ -47,8 +62,10 @@ const S = {
 		padding: 0 2.5rem;
 	`,
 	ChartTitle: styled(CustomText)`
-		position: absolute;
-		right: 2.5rem;
+		text-align: center;
+		width: 100%;
+		display: inline-block;
+		font-weight: bold;
 		direction: rtl;
 	`
 };

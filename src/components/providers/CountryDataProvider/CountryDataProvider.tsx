@@ -12,7 +12,7 @@ interface IProps extends IChildren {}
 
 export const CountryDataProvider: React.FC<IProps> = ({ children }) => {
 	const oneWeekAgo = new Date();
-	oneWeekAgo.setDate(oneWeekAgo.getDate() - 8);
+	oneWeekAgo.setDate(oneWeekAgo.getDate() - 9);
 
 	const res = useRequest(
 		{

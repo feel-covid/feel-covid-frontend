@@ -1,13 +1,16 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'styled-components/macro';
-import { Area, AreaChart, Tooltip, XAxis } from 'recharts';
+import { Area, AreaChart, Legend, Tooltip, XAxis } from 'recharts';
 import { useCountryData } from '../../../../hooks/useCountryData';
 import { formatChartDate } from '../../../../utils/formatChartDate';
 import { he } from 'date-fns/locale';
 import { chartTooltipStyle } from '../../BaseChart/styles';
 import { CustomizedXAxisTick } from '../../BaseChart/CustomizedXAxisTick';
-import { xAxisDefaultProps } from '../../BaseChart/defaults';
+import {
+	legendDefaultProps,
+	xAxisDefaultProps
+} from '../../BaseChart/defaults';
 import { ChartContainer } from '../../BaseChart/ChartContainer';
 
 interface IProps {}
@@ -20,6 +23,8 @@ export const TreatmentTypeChart: React.FC<IProps> = (props) => {
 	return (
 		<ChartContainer title={t('charts.treatmentType.title')}>
 			<AreaChart data={normalizedChartData}>
+				<Legend {...(legendDefaultProps as any)} />
+
 				<Area
 					name={t('global.treatment.home') as any}
 					type='monotone'

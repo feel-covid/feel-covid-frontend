@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components/macro';
 import CustomText from '../CustomText/CustomText';
 import { getStatDescription } from '../../../utils/getStatDescription';
@@ -29,7 +29,7 @@ const DataCard: React.FC<IProps> = (props) => {
 				fontSize='s32'
 				iconSize='1.5rem'
 			/>
-			<CustomText size='s14' text={description} />
+			<CustomText size='s14' text={description} color='gray2' />
 		</S.Container>
 	);
 };
@@ -37,12 +37,11 @@ const DataCard: React.FC<IProps> = (props) => {
 const S = {
 	Container: styled.div`
 		display: flex;
-		background: ${({ theme }) => theme.colors.white};
+		background: ${({ theme }) => theme.colors.darkBlue2};
 		box-shadow: ${({ theme }) => `0 0 .6rem ${theme.colors.lightBlack1}`};
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
-
 		padding: 2.3rem;
 		border-radius: 0.4rem;
 		margin: 0.45rem 1rem;

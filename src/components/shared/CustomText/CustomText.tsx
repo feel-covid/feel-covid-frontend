@@ -24,7 +24,7 @@ const CustomText: React.FC<IProps> = (props) => {
 
 CustomText.defaultProps = {
 	size: 's16',
-	color: 'blue1'
+	color: 'white'
 };
 
 const S: any = {

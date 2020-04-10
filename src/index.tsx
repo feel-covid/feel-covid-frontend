@@ -7,12 +7,15 @@ import i18n from './i18n';
 import { ThemeProvider } from 'styled-components';
 import { defaultTheme } from './themes';
 import { CountryDataProvider } from './components/providers/CountryDataProvider/CountryDataProvider';
+import { StatsFilterProvider } from './components/providers/StatsFilterProvider/StatsFilterProvider';
 
 ReactDOM.render(
 	<I18nextProvider i18n={i18n}>
 		<ThemeProvider theme={defaultTheme}>
 			<CountryDataProvider>
-				<App />
+				<StatsFilterProvider>
+					<App />
+				</StatsFilterProvider>
 			</CountryDataProvider>
 		</ThemeProvider>
 	</I18nextProvider>,

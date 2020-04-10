@@ -11,5 +11,6 @@ const S = {
 	Container: styled.div`
 		margin: auto;
 		width: 100%;
+		max-width: 192rem;
 	`
 };

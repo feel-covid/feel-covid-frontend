@@ -2,18 +2,17 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'styled-components/macro';
 import { useCountryData } from '../../../../hooks/useCountryData';
-import {
-	Area,
-	AreaChart,
-	Tooltip,
-	XAxis
-} from 'recharts';
+import { Area, AreaChart, BarChart, Legend, Tooltip, XAxis } from 'recharts';
 import { formatChartDate } from '../../../../utils/formatChartDate';
 import he from 'date-fns/locale/he';
 import { chartTooltipStyle } from '../../BaseChart/styles';
 import { CustomizedXAxisTick } from '../../BaseChart/CustomizedXAxisTick';
-import { xAxisDefaultProps } from '../../BaseChart/defaults';
+import {
+	legendDefaultProps,
+	xAxisDefaultProps
+} from '../../BaseChart/defaults';
 import { ChartContainer } from '../../BaseChart/ChartContainer';
+import { CustomizedLegend } from '../../BaseChart/CustomizedLegend';
 
 interface IProps {}
 
@@ -24,7 +23,9 @@ export const CasesChart: React.FC<IProps> = (props) => {
 
 	return (
 		<ChartContainer title={t('charts.casesChart.title')}>
-			<AreaChart data={normalizedChartData}>
+			<AreaChart data={normalizedChartData} syncId='daily'>
+				<Legend {...(legendDefaultProps as any)} />
+
 				<Area
 					name={t('global.cases.lightCondition') as any}
 					type='monotone'

@@ -6,6 +6,7 @@ import { chartTooltipStyle } from '../../BaseChart/styles';
 import CustomText from '../../CustomText/CustomText';
 import { format } from 'date-fns';
 import i18n from '../../../../i18n/i18n';
+import { DateFormatsEnum } from '../../../../@types/enums';
 
 interface IProps {
 	active?: boolean;
@@ -39,7 +40,7 @@ export const CustomizedDailyDiffTooltip: React.FC<IProps> = (props) => {
 	} = props.payload![0];
 
 	const dateFormatConfig: [string, object] = [
-		'MMM dd בשעה HH:mm',
+		DateFormatsEnum.PART_MONTH_NAME_WITH_DAY_AND_TIME,
 		{ locale: he }
 	];
 
@@ -70,7 +71,9 @@ const S = {
 		background: white;
 		padding: 1rem;
 	`,
-	DateCompare: styled(CustomText)``,
+	DateCompare: styled(CustomText)`
+		color: black;
+	`,
 	Description: styled(CustomText)`
 		margin-top: 0.4rem;
 	`

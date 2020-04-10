@@ -13,15 +13,23 @@ html {
 
 @media (max-width: 768px) {
     html {
-        font-size: 54%;
+        font-size: 55.5%;
     }
 }
 
 body {
     height: 100%;
-    background: #F3F5F9;
+    background: #1C2135;
     font-size: 1.6rem;
     font-family: 'Open Sans Hebrew', sans-serif;
+    overflow: hidden;
+    padding-right: 17px;
+}
+
+@media (pointer:coarse) {
+   body {
+       padding-right: 0;
+   }
 }
 
 a,
@@ -30,6 +38,86 @@ input {
     font-family: inherit;
 }
 
-.recharts-surface {
-    overflow: visible;
+.loader-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: white;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    visibility: visible;
+    transition: .5s;
 }
+
+.loader-container.loaded {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.spinner {
+    position: relative;
+    top: -10px;
+    width: 50px;
+    height: 40px;
+    text-align: center;
+    font-size: 10px;
+    visibility: visible;
+    opacity: 1;
+    transition: .3s;
+}
+
+.spinner.loaded {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.spinner > div {
+    background-color: #0d6fed;
+    height: 100%;
+    width: 6px;
+    display: inline-block;
+
+    -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+    animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+    0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
+    20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes sk-stretchdelay {
+    0%, 40%, 100% {
+        transform: scaleY(0.4);
+        -webkit-transform: scaleY(0.4);
+    }  20% {
+           transform: scaleY(1.0);
+           -webkit-transform: scaleY(1.0);
+       }
+}
+

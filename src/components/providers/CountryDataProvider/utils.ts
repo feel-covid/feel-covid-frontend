@@ -64,21 +64,8 @@ export const normalize24HoursDiff = (
 			recovered: currentDay.recovered - prevDay.recovered,
 			total: currentDay.total - prevDay.total,
 			date: currentDay.date,
-			severe: {
-				intubated: currentDay.severe.intubated! - prevDay.severe.intubated!,
-				cases: currentDay.severe.cases - prevDay.severe.cases
-			},
-			light: currentDay.light - prevDay.light,
-			mid: currentDay.mid - prevDay.mid,
-			active: currentDay.active - prevDay.active,
 			compareDate: prevDay.date,
-			deceased: currentDay.deceased - prevDay.deceased,
-			treatment: {
-				home: currentDay.treatment.home - prevDay.treatment.home,
-				hotel: currentDay.treatment.hotel - prevDay.treatment.hotel,
-				hospital: currentDay.treatment.hospital - prevDay.treatment.hospital,
-				undecided: currentDay.treatment.undecided - prevDay.treatment.undecided
-			}
+			deceased: currentDay.deceased - prevDay.deceased
 		});
 	}
 

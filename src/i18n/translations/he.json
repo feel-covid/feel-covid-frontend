@@ -3,7 +3,7 @@
 		"header": {
 			"title": "תמונת מצב",
 			"headerFilter": {
-				"displayingComparison": "מגמת שינוי בין",
+				"displayingComparison": "השוואה בין",
 				"andBetween": "לבין"
 			}
 		},
@@ -37,13 +37,13 @@
 				"title": "מגמת חולים, מחלימים ונפטרים"
 			},
 			"casesChart": {
-				"title": "מגמת רמות קושי"
+				"title": "מגמת מצב החולים"
 			},
 			"dailyDiffChart": {
-				"title": "מגמת נדבקים, מחלימים ונפטרים לכל 24 ש'",
-				"deceased": "מס' נפטרים",
-				"total": "מס' נדבקים",
-				"recovered": "מס' מחלימים"
+				"title": "מגמה יומית של נדבקים, מחלימים ונפטרים",
+				"deceased": "נפטרים",
+				"total": "נדבקים",
+				"recovered": "מחלימים"
 			},
 			"treatmentType": {
 				"title": "מגמת אופי הטיפול בחולים"

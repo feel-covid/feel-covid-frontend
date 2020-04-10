@@ -24,7 +24,7 @@ export const Footer: React.FC<IProps> = (props) => {
 const S = {
 	Container: styled.div`
 		text-align: center;
-		font-size: 1.3rem;
+		font-size: 1.2rem;
 		color: ${({ theme }) => theme.colors.gray3};
 		padding: 3.5rem 0 1.5rem 0;
 	`,

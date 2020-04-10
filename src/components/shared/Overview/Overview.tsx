@@ -3,8 +3,8 @@ import styled from 'styled-components/macro';
 import { PositiveFactorEnum } from '../../../@types/enums';
 import DataCard from '../DataCard/DataCard';
 import get from 'lodash/get';
-import { useCountryData } from '../../../hooks/useCountryData';
 import { IStyle } from '../../../@types/interfaces';
+import { useStatsFilterContext } from '../../../hooks/useStatsFilterContext';
 
 interface ICard {
 	title: string;
@@ -18,8 +18,7 @@ interface IProps extends IStyle {
 
 export const Overview: React.FC<IProps> = (props) => {
 	const { cards, className } = props;
-	const { loading, normalizedData, error } = useCountryData();
-	const [prevUpdate, currentUpdate] = normalizedData.slice(-2);
+	const { baseDate, prevDate, countriesByDate } = useStatsFilterContext();
 
 	return (
 		<S.Container className={className}>
@@ -29,8 +28,8 @@ export const Overview: React.FC<IProps> = (props) => {
 					<DataCard
 						key={index}
 						title={title}
-						current={get(currentUpdate, path)}
-						before={get(prevUpdate, path)}
+						current={get(countriesByDate[baseDate], path)}
+						before={get(countriesByDate[prevDate], path)}
 						positiveFactor={positiveFactor}
 					/>
 				);
