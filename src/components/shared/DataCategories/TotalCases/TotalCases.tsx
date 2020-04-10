@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import styled from 'styled-components/macro';
 import { PositiveFactorEnum } from '../../../../@types/enums';
 import { Overview } from '../../Overview/Overview';
+import media from '../../../../themes/media';
 
 interface IProps {}
 
@@ -11,6 +12,11 @@ export const TotalCases: React.FC<IProps> = (props) => {
 
 	const categories = useMemo(() => {
 		return [
+			{
+				title: t('global.cases.confirmedCases'),
+				path: 'total',
+				positiveFactor: PositiveFactorEnum.DECREASE
+			},
 			{
 				title: t('global.cases.currently'),
 				path: 'active',
@@ -63,19 +69,19 @@ const S = {
 		width: 100%;
 	`,
 	Overview: styled(Overview)`
-		grid-template-columns: repeat(7, 1fr);
+		grid-template-columns: repeat(8, 1fr);
 		display: grid;
 		width: 100%;
 
-		@media (max-width: 1280px) {
-			grid-template-columns: repeat(4, 1fr);
-			justify-content: stretch;
-			grid-auto-flow: dense;
-		}
+		${media.smallDesktop`
+				grid-template-columns: repeat(4, 1fr);
+				justify-content: stretch;
+				grid-auto-flow: dense;
+		`};
 
-		@media (max-width: 768px) {
-			grid-template-columns: repeat(2, 1fr);
-			grid-auto-rows: auto;
-		}
+		${media.tablet`
+				grid-template-columns: repeat(2, 1fr);
+				grid-auto-rows: auto;
+		`};
 	`
 };

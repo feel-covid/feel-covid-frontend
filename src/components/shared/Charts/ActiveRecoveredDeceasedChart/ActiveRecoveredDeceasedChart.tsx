@@ -1,23 +1,11 @@
-import React, { PureComponent, useCallback } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import styled, { useTheme } from 'styled-components/macro';
+import { useTheme } from 'styled-components/macro';
 import { useCountryData } from '../../../../hooks/useCountryData';
-import {
-	Area,
-	AreaChart,
-	ComposedChart,
-	Line,
-	LineChart,
-	ResponsiveContainer,
-	Tooltip,
-	XAxis as RechartsXAxis,
-	XAxis
-} from 'recharts';
-import format from 'date-fns/format';
+import { Area, AreaChart, Tooltip, XAxis } from 'recharts';
 import he from 'date-fns/locale/he';
 import { CustomizedXAxisTick } from '../../BaseChart/CustomizedXAxisTick';
 import { formatChartDate } from '../../../../utils/formatChartDate';
-import { CustomizedTooltip } from '../../BaseChart/CustomizedTooltip';
 import { chartTooltipStyle } from '../../BaseChart/styles';
 import { xAxisDefaultProps } from '../../BaseChart/defaults';
 import { ChartContainer } from '../../BaseChart/ChartContainer';
@@ -39,6 +27,7 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 					stroke={theme.colors.blue2}
 					fill={theme.colors.blue2}
 					strokeWidth={3}
+					isAnimationActive={false}
 				/>
 
 				<Area
@@ -47,6 +36,7 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 					dataKey='recovered'
 					fill={theme.colors.green1}
 					stroke={theme.colors.green1}
+					isAnimationActive={false}
 				/>
 
 				<Area
@@ -55,6 +45,7 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 					dataKey='deceased'
 					fill={theme.colors.red1}
 					stroke={theme.colors.red1}
+					isAnimationActive={false}
 				/>
 
 				<Tooltip

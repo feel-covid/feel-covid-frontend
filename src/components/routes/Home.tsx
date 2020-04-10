@@ -6,7 +6,9 @@ import { TotalCases } from '../shared/DataCategories/TotalCases/TotalCases';
 import { Treatment } from '../shared/DataCategories/Treatment/Treatment';
 import { ActiveRecoveredDeceasedChart } from '../shared/Charts/ActiveRecoveredDeceasedChart/ActiveRecoveredDeceasedChart';
 import { CasesChart } from '../shared/Charts/CasesChart/CasesChart';
-import { DailyInfectedChart } from '../shared/Charts/DailyInfectedChart/DailyInfectedChart';
+import { DailyDiffChart } from '../shared/Charts/DailyDiffChart/DailyDiffChart';
+import media from '../../themes/media';
+import { Footer } from '../shared/Footer/Footer';
 
 interface IProps extends RouteComponentProps {}
 
@@ -16,12 +18,13 @@ const Home: React.FC<IProps> = () => {
 			<S.Container>
 				<TotalCases />
 				<S.ChartsContainer>
-					<DailyInfectedChart />
+					<DailyDiffChart />
 					<ActiveRecoveredDeceasedChart />
 					<CasesChart />
 				</S.ChartsContainer>
 				<Treatment />
 			</S.Container>
+			<Footer />
 		</PaddingContainer>
 	);
 };
@@ -31,14 +34,16 @@ const S = {
 		display: flex;
 		width: 100%;
 		flex-direction: column;
-		padding-bottom: 20rem;
 	`,
 	ChartsContainer: styled.div`
-		height: 40vh;
 		display: grid;
 		grid-template-columns: repeat(auto-fit, 33%);
-		padding: 0 1rem;
+		padding: 3rem 1rem;
 		width: 100%;
+
+		${media.tablet`
+			grid-template-columns: 1fr;
+		`}
 	`
 };
 

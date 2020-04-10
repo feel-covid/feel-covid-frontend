@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled, { useTheme } from 'styled-components/macro';
-import { Area, AreaChart, Tooltip, XAxis } from 'recharts';
+import { Area, AreaChart, Bar, Tooltip, XAxis } from 'recharts';
 import { useCountryData } from '../../../../hooks/useCountryData';
 import { formatChartDate } from '../../../../utils/formatChartDate';
 import { he } from 'date-fns/locale';
@@ -27,6 +27,7 @@ export const TreatmentTypeChart: React.FC<IProps> = (props) => {
 					fill={theme.colors.green1}
 					stroke={theme.colors.green1}
 					strokeWidth={3}
+					isAnimationActive={false}
 				/>
 
 				<Area
@@ -36,6 +37,7 @@ export const TreatmentTypeChart: React.FC<IProps> = (props) => {
 					fill={theme.colors.blue2}
 					stroke={theme.colors.blue2}
 					strokeWidth={3}
+					isAnimationActive={false}
 				/>
 
 				<Area
@@ -45,6 +47,7 @@ export const TreatmentTypeChart: React.FC<IProps> = (props) => {
 					fill={theme.colors.orange2}
 					stroke={theme.colors.orange2}
 					strokeWidth={3}
+					isAnimationActive={false}
 				/>
 
 				<Tooltip

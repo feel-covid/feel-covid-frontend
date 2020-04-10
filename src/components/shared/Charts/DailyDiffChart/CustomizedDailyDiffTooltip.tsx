@@ -1,0 +1,77 @@
+import React from 'react';
+import styled from 'styled-components/macro';
+import { DynamicObject } from '../../../../@types/interfaces';
+import { he } from 'date-fns/locale';
+import { chartTooltipStyle } from '../../BaseChart/styles';
+import CustomText from '../../CustomText/CustomText';
+import { format } from 'date-fns';
+import i18n from '../../../../i18n/i18n';
+
+interface IProps {
+	active?: boolean;
+	payload?: Array<{
+		color: string;
+		dataKey: string;
+		value: number;
+		payload: {
+			date: string;
+			compareDate: string;
+		};
+	}>;
+}
+
+export const CustomizedDailyDiffTooltip: React.FC<IProps> = (props) => {
+	if (!props.active) return null;
+
+	const uniqueValues = props.payload!.reduce((acc, currentPayload) => {
+		const { dataKey, color, value } = currentPayload;
+
+		acc[dataKey] = {
+			color,
+			value
+		};
+
+		return acc;
+	}, {} as DynamicObject<{ color: string; value: number }>);
+
+	const {
+		payload: { date, compareDate }
+	} = props.payload![0];
+
+	const dateFormatConfig: [string, object] = [
+		'MMM dd בשעה HH:mm',
+		{ locale: he }
+	];
+
+	return (
+		<S.Container style={chartTooltipStyle as any}>
+			<S.DateCompare
+				text={`${format(new Date(compareDate), ...dateFormatConfig)} - ${format(
+					new Date(date),
+					...dateFormatConfig
+				)}`}
+			/>
+
+			{Object.entries(uniqueValues).map(([key, { value, color }]) => (
+				<S.Description
+					key={key}
+					color={color as any}
+					text={`${i18n.t(`charts.dailyDiffChart.${key}`)}: ${value}`}
+				/>
+			))}
+		</S.Container>
+	);
+};
+
+const S = {
+	Container: styled.div`
+		display: flex;
+		flex-direction: column;
+		background: white;
+		padding: 1rem;
+	`,
+	DateCompare: styled(CustomText)``,
+	Description: styled(CustomText)`
+		margin-top: 0.4rem;
+	`
+};

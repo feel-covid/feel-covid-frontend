@@ -23,6 +23,7 @@ const defaultTheme: DefaultTheme = {
 		white: 'white',
 		gray1: '#F4F4F4',
 		gray2: '#F4F6FA',
+		gray3: '#A9A9B0',
 		blue1: '#0f2644',
 		blue2: '#0d6fed',
 		red1: '#EE423A',

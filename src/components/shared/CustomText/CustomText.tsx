@@ -7,7 +7,7 @@ interface IProps extends IStyle {
 	text: string | number;
 	center?: boolean;
 	size?: keyof IFontSizes;
-	color?: keyof IColors;
+	color?: keyof IColors | string;
 	percent?: boolean;
 }
 
@@ -33,7 +33,8 @@ const S: any = {
 			theme.fontSizes[size!]};
 		text-align: ${({ center }: Partial<IProps>) =>
 			center ? 'center' : 'initial'};
-		color: ${({ color, theme }) => theme.colors[color!]};
+		color: ${({ color, theme }) =>
+			theme.colors[color! as keyof IColors] ?? color};
 	`
 };
 

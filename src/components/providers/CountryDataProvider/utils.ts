@@ -5,7 +5,6 @@ import {
 } from './interfaces';
 import { endOfDay } from 'date-fns';
 import { DynamicObject } from '../../../@types/interfaces';
-import { findClosestInRangeOf24h } from '../../../utils/findClosestInRangeOf24H';
 
 export const normalizeCountryData = (
 	country: ICountry
@@ -55,41 +54,30 @@ export const normalize24HoursDiff = (
 
 	const dateValues = Object.values(countryDataObjectByDate);
 
-	let acc: INormalized24HoursDiff[] = [];
+	let acc: Array<INormalized24HoursDiff> = [];
 
 	for (let i = dateValues.length - 1; i > 0; i--) {
-		const currentDay = dateValues[i];
-		const prevDay = dateValues[i - 1];
-
-		const [currentStatIndex, prevStatIndex] = findClosestInRangeOf24h({
-			currentDay,
-			prevDay
-		});
-
-		const currentDayData = currentDay[currentStatIndex];
-		const prevDayData = prevDay[prevStatIndex];
+		const currentDay = dateValues[i][0];
+		const prevDay = dateValues[i - 1][0];
 
 		acc.push({
-			recovered: currentDayData.recovered - prevDayData.recovered,
-			total: currentDayData.total - prevDayData.total,
-			date: currentDayData.date,
+			recovered: currentDay.recovered - prevDay.recovered,
+			total: currentDay.total - prevDay.total,
+			date: currentDay.date,
 			severe: {
-				intubated:
-					currentDayData.severe.intubated! - prevDayData.severe.intubated!,
-				cases: currentDayData.severe.cases - prevDayData.severe.cases
+				intubated: currentDay.severe.intubated! - prevDay.severe.intubated!,
+				cases: currentDay.severe.cases - prevDay.severe.cases
 			},
-			light: currentDayData.light - prevDayData.light,
-			mid: currentDayData.mid - prevDayData.mid,
-			active: currentDayData.active - prevDayData.active,
-			compareDate: prevDayData.date,
-			deceased: currentDayData.deceased - prevDayData.deceased,
+			light: currentDay.light - prevDay.light,
+			mid: currentDay.mid - prevDay.mid,
+			active: currentDay.active - prevDay.active,
+			compareDate: prevDay.date,
+			deceased: currentDay.deceased - prevDay.deceased,
 			treatment: {
-				home: currentDayData.treatment.home - prevDayData.treatment.home,
-				hotel: currentDayData.treatment.hotel - prevDayData.treatment.hotel,
-				hospital:
-					currentDayData.treatment.hospital - prevDayData.treatment.hospital,
-				undecided:
-					currentDayData.treatment.undecided - prevDayData.treatment.undecided
+				home: currentDay.treatment.home - prevDay.treatment.home,
+				hotel: currentDay.treatment.hotel - prevDay.treatment.hotel,
+				hospital: currentDay.treatment.hospital - prevDay.treatment.hospital,
+				undecided: currentDay.treatment.undecided - prevDay.treatment.undecided
 			}
 		});
 	}

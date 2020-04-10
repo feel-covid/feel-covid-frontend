@@ -5,6 +5,7 @@ import { PositiveFactorEnum } from '../../../../@types/enums';
 import { Overview } from '../../Overview/Overview';
 
 import { TreatmentTypeChart } from '../../Charts/TreatmentTypeChart/TreatmentTypeChart';
+import media from '../../../../themes/media';
 
 interface IProps {}
 
@@ -49,6 +50,10 @@ const S = {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, 50%);
 		width: 100%;
+
+		${media.tablet`
+			grid-template-columns: 1fr;
+		`}
 	`,
 	Overview: styled(Overview)`
 		width: 100%;

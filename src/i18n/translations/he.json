@@ -1,0 +1,56 @@
+{
+	"translation": {
+		"header": {
+			"title": "תמונת מצב",
+			"headerFilter": {
+				"displayingComparison": "מגמת שינוי בין",
+				"andBetween": "לבין"
+			}
+		},
+		"global": {
+			"increase": "עלייה",
+			"decrease": "ירידה",
+			"of": "של",
+			"infected": "נדבקים",
+			"as": "כ-",
+			"noChangeSinceLastUpdate": "אין שינוי מהעדכון האחרון",
+			"cases": {
+				"confirmedCases": "סה\"כ נדבקים",
+				"currently": "חולים כעת",
+				"lightCondition": "במצב קל",
+				"midCondition": "במצב בינוני",
+				"severeCondition": "במצב קשה",
+				"intubated": "מונשמים",
+				"recovered": "החלימו",
+				"deceased": "נפטרים",
+				"numOfCases": "מס' חולים"
+			},
+			"treatment": {
+				"hospital": "בבתי חולים",
+				"home": "בבית",
+				"hotel": "בבתי מלון",
+				"undecided": "טרם הוחלט"
+			}
+		},
+		"charts": {
+			"activeRecoveredDeceased": {
+				"title": "מגמת חולים, מחלימים ונפטרים"
+			},
+			"casesChart": {
+				"title": "מגמת רמות קושי"
+			},
+			"dailyDiffChart": {
+				"title": "מגמת נדבקים, מחלימים ונפטרים לכל 24 ש'",
+				"deceased": "מס' נפטרים",
+				"total": "מס' נדבקים",
+				"recovered": "מס' מחלימים"
+			},
+			"treatmentType": {
+				"title": "מגמת אופי הטיפול בחולים"
+			}
+		},
+		"footer": {
+			"createdBy": "נבנה ע\"י"
+		}
+	}
+}

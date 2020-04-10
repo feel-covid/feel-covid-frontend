@@ -42,7 +42,7 @@ const S = {
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
-		transition: 0.3s;
+
 		padding: 2.3rem;
 		border-radius: 0.4rem;
 		margin: 0.45rem 1rem;

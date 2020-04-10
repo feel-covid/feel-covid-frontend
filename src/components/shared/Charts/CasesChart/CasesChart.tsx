@@ -2,7 +2,14 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled, { useTheme } from 'styled-components/macro';
 import { useCountryData } from '../../../../hooks/useCountryData';
-import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis } from 'recharts';
+import {
+	Area,
+	AreaChart,
+	Bar,
+	ResponsiveContainer,
+	Tooltip,
+	XAxis
+} from 'recharts';
 import { formatChartDate } from '../../../../utils/formatChartDate';
 import he from 'date-fns/locale/he';
 import { chartTooltipStyle } from '../../BaseChart/styles';
@@ -27,6 +34,7 @@ export const CasesChart: React.FC<IProps> = (props) => {
 					stroke={theme.colors.green1}
 					fill={theme.colors.green1}
 					strokeWidth={3}
+					isAnimationActive={false}
 				/>
 
 				<Area
@@ -35,6 +43,7 @@ export const CasesChart: React.FC<IProps> = (props) => {
 					dataKey='mid'
 					stroke={theme.colors.orange2}
 					fill={theme.colors.orange2}
+					isAnimationActive={false}
 				/>
 
 				<Area
@@ -43,6 +52,7 @@ export const CasesChart: React.FC<IProps> = (props) => {
 					dataKey='severe.cases'
 					stroke={theme.colors.orange1}
 					fill={theme.colors.orange1}
+					isAnimationActive={false}
 				/>
 
 				<Area
@@ -51,6 +61,7 @@ export const CasesChart: React.FC<IProps> = (props) => {
 					dataKey='severe.intubated'
 					stroke={theme.colors.red1}
 					fill={theme.colors.red1}
+					isAnimationActive={false}
 				/>
 
 				<Tooltip
