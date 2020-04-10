@@ -34,3 +34,7 @@ export interface INormalizedCountryData {
 	severe: ICase;
 	date: string;
 }
+
+export interface INormalized24HoursDiff extends INormalizedCountryData {
+	compareDate: string;
+}

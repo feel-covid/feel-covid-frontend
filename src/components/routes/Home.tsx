@@ -34,10 +34,9 @@ const S = {
 		padding-bottom: 20rem;
 	`,
 	ChartsContainer: styled.div`
-		height: 30rem;
+		height: 40vh;
 		display: grid;
 		grid-template-columns: repeat(auto-fit, 33%);
-		direction: ltr;
 		padding: 0 1rem;
 		width: 100%;
 	`

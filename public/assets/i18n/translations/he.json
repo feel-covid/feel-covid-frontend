@@ -30,5 +30,19 @@
 			"hotel": "בבתי מלון",
 			"undecided": "טרם הוחלט"
 		}
+	},
+	"charts": {
+		"activeRecoveredDeceased": {
+			"title": "מגמת חולים, מחלימים ונפטרים"
+		},
+		"casesChart": {
+			"title": "פילוג רמות קושי"
+		},
+		"dailyInfectedRecoveredChart": {
+			"title": "מגמת נדבקים ומחלימים לכל 24 ש'"
+		},
+		"treatmentType": {
+			"title": "מגמת אופי הטיפול בחולים"
+		}
 	}
 }

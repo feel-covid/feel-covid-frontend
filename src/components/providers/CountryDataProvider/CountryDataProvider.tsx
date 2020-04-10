@@ -2,7 +2,11 @@ import React from 'react';
 import { IChildren } from '../../../@types/interfaces';
 import { useRequest } from '../../../hooks';
 import { CountryDataContext } from './context';
-import { normalizeChartData, normalizeCountryData } from './utils';
+import {
+	normalize24HoursDiff,
+	normalizeChartData,
+	normalizeCountryData
+} from './utils';
 
 interface IProps extends IChildren {}
 
@@ -32,7 +36,8 @@ export const CountryDataProvider: React.FC<IProps> = ({ children }) => {
 			value={{
 				...res,
 				normalizedData,
-				normalizedChartData: normalizeChartData(normalizedData)
+				normalizedChartData: normalizeChartData(normalizedData),
+				normalized24HourDiff: normalize24HoursDiff(normalizedData)
 			}}
 		>
 			{children}

@@ -30,7 +30,7 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 	const theme = useTheme();
 
 	return (
-		<ChartContainer>
+		<ChartContainer title={t('charts.activeRecoveredDeceased.title')}>
 			<AreaChart data={normalizedChartData}>
 				<Area
 					name={t('global.cases.numOfCases') as any}

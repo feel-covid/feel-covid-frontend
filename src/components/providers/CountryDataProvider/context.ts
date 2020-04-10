@@ -1,5 +1,9 @@
 import React from 'react';
-import { ICountry, INormalizedCountryData } from './interfaces';
+import {
+	ICountry,
+	INormalized24HoursDiff,
+	INormalizedCountryData
+} from './interfaces';
 
 export interface ICountryDataContext {
 	loading: boolean;
@@ -7,6 +11,7 @@ export interface ICountryDataContext {
 	data: Array<ICountry>;
 	normalizedData: Array<INormalizedCountryData>;
 	normalizedChartData: Array<INormalizedCountryData>;
+	normalized24HourDiff: Array<INormalized24HoursDiff>;
 }
 
 export const CountryDataContext = React.createContext<ICountryDataContext>({
@@ -14,5 +19,6 @@ export const CountryDataContext = React.createContext<ICountryDataContext>({
 	data: [],
 	error: null,
 	normalizedData: [],
-	normalizedChartData: []
+	normalizedChartData: [],
+	normalized24HourDiff: []
 });

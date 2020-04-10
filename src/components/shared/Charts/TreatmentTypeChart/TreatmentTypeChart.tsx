@@ -18,7 +18,7 @@ export const TreatmentTypeChart: React.FC<IProps> = (props) => {
 	const theme = useTheme();
 
 	return (
-		<ChartContainer>
+		<ChartContainer title={t('charts.treatmentType.title')}>
 			<AreaChart data={normalizedChartData}>
 				<Area
 					name={t('global.treatment.home') as any}

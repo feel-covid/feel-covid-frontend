@@ -18,7 +18,7 @@ export const CasesChart: React.FC<IProps> = (props) => {
 	const theme = useTheme();
 
 	return (
-		<ChartContainer>
+		<ChartContainer title={t('charts.casesChart.title')}>
 			<AreaChart data={normalizedChartData}>
 				<Area
 					name={t('global.cases.lightCondition') as any}

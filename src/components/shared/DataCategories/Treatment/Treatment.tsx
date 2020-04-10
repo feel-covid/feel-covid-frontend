@@ -39,24 +39,23 @@ export const Treatment: React.FC<IProps> = (props) => {
 	return (
 		<S.Container>
 			<S.Overview cards={categories} />
-			<S.ChartContainer>
-				<TreatmentTypeChart />
-			</S.ChartContainer>
+			<TreatmentTypeChart />
 		</S.Container>
 	);
 };
 
 const S = {
 	Container: styled.div`
-		display: flex;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, 50%);
+		width: 100%;
 	`,
 	Overview: styled(Overview)`
-		width: 50%;
+		width: 100%;
 		grid-template-columns: repeat(2, 1fr);
 		display: grid;
 	`,
 	ChartContainer: styled.div`
-		width: 50%;
 		direction: ltr;
 	`
 };
