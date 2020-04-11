@@ -33,10 +33,6 @@
 		"preinstall": "node ./preInstallScript.js",
 		"build:analyze": "cross-env ANALYZE=true craco build"
 	},
-	"engines": {
-		"node": ">= 12.10.0",
-		"yarn": ">= 1.21.1"
-	},
 	"husky": {
 		"hooks": {
 			"pre-commit": "yarn lint"
