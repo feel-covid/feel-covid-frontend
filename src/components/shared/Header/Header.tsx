@@ -80,6 +80,7 @@ const S = {
 	SettingsContainer: styled.div`
 		display: none;
 		transform: translateY(0.2rem);
+		cursor: pointer;
 
 		${media.tablet`
 			display: initial;
@@ -89,6 +90,8 @@ const S = {
 		margin-right: 0.5rem;
 		pointer-events: none;
 		fill: ${({ theme }) => theme.colors.white};
+		width: 1.8rem;
+		height: 1.8rem;
 	`,
 	Filter: styled(HeaderFilter)`
 		position: absolute;
