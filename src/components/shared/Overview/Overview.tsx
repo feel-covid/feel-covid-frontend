@@ -43,5 +43,6 @@ const S = {
 		display: flex;
 		flex: 1;
 		flex-wrap: wrap;
+		grid-gap: 1rem;
 	`
 };

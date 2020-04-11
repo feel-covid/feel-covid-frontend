@@ -34,6 +34,7 @@ const S = {
 		display: flex;
 		width: 100%;
 		flex-direction: column;
+		padding: 0.8rem 1rem;
 	`,
 	ChartsContainer: styled.div`
 		display: grid;

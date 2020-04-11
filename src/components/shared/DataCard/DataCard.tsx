@@ -44,7 +44,7 @@ const S = {
 		flex-direction: column;
 		padding: 2.3rem;
 		border-radius: 0.4rem;
-		margin: 0.45rem 1rem;
+
 		flex: 1;
 	`
 };
