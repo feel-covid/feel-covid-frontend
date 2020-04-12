@@ -87,6 +87,7 @@ const S = {
 		display: none;
 		transform: translateY(0.2rem);
 		cursor: pointer;
+		-webkit-tap-highlight-color: transparent;
 
 		${media.tablet`
 			display: initial;

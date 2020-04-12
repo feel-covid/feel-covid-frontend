@@ -3,7 +3,7 @@
 		"header": {
 			"title": "תמונת מצב",
 			"headerFilter": {
-				"displayingComparison": "השוואה בין",
+				"displayingComparison": "מגמת שינוי בין",
 				"andBetween": "לבין"
 			}
 		},
