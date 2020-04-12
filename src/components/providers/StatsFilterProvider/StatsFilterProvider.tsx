@@ -30,9 +30,3 @@ export const StatsFilterProvider: React.FC<IProps> = (props) => {
 		</StatsFilterContext.Provider>
 	);
 };
-
-const S = {
-	Container: styled.div`
-		display: flex;
-	`
-};

@@ -69,6 +69,12 @@ input {
     opacity: 1;
     visibility: visible;
     transition: .5s;
+    flex-direction: column;
+}
+
+noscript {
+    color: white;
+    margin-top: 1rem;
 }
 
 .loader-container.loaded {

@@ -3,7 +3,7 @@
 		"header": {
 			"title": "תמונת מצב",
 			"headerFilter": {
-				"displayingComparison": "השוואה בין",
+				"displayingComparison": "מגמת שינוי בין",
 				"andBetween": "לבין"
 			}
 		},
@@ -51,6 +51,10 @@
 		},
 		"footer": {
 			"createdBy": "נבנה ע\"י"
+		},
+		"errorBoundary": {
+			"description": "אופס! התרחשה שגיאה. אנו מטפלים בבעיה.",
+			"eventId": "מזהה שגיאה"
 		}
 	}
 }

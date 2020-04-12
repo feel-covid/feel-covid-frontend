@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'styled-components/macro';
 import { useCountryData } from '../../../../hooks/useCountryData';
-import { Area, AreaChart, BarChart, Legend, Tooltip, XAxis } from 'recharts';
+import { Area, AreaChart, Legend, Tooltip, XAxis } from 'recharts';
 import { formatChartDate } from '../../../../utils/formatChartDate';
 import he from 'date-fns/locale/he';
 import { chartTooltipStyle } from '../../BaseChart/styles';
@@ -12,7 +12,6 @@ import {
 	xAxisDefaultProps
 } from '../../BaseChart/defaults';
 import { ChartContainer } from '../../BaseChart/ChartContainer';
-import { CustomizedLegend } from '../../BaseChart/CustomizedLegend';
 
 interface IProps {}
 
