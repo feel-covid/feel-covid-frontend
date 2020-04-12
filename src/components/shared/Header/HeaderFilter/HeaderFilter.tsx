@@ -6,9 +6,12 @@ import he from 'date-fns/locale/he';
 import { useStatsFilterContext } from '../../../../hooks/useStatsFilterContext';
 import { format } from 'date-fns';
 import { DateFormatsEnum } from '../../../../@types/enums';
-import { IStyle } from '../../../../@types/interfaces';
+import { IStyle, StateUpdaterFunction } from '../../../../@types/interfaces';
 
-interface IProps extends IStyle {}
+interface IProps extends IStyle {
+	setSubHeader: StateUpdaterFunction<boolean>;
+	isSubHeaderOpen: boolean;
+}
 
 export const HeaderFilter: React.FC<IProps> = (props) => {
 	const { t } = useTranslation();
@@ -16,13 +19,20 @@ export const HeaderFilter: React.FC<IProps> = (props) => {
 		baseDate,
 		prevDate,
 		countriesByDate,
-		setPrevDate,
-		setBaseDate
+		setPrevDate
 	} = useStatsFilterContext();
+	const { setSubHeader, isSubHeaderOpen } = props;
 
-	const handleChange = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
-		setPrevDate!(e.target.value);
-	}, []);
+	const handleChange = useCallback(
+		(e: ChangeEvent<HTMLSelectElement>) => {
+			setPrevDate!(e.target.value);
+
+			if (isSubHeaderOpen) {
+				setSubHeader(false);
+			}
+		},
+		[isSubHeaderOpen]
+	);
 
 	return (
 		<S.Container className={props.className}>

@@ -3,15 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useTheme } from 'styled-components/macro';
 import { useCountryData } from '../../../../hooks/useCountryData';
 import { ChartContainer } from '../../BaseChart/ChartContainer';
-import {
-	AreaChart,
-	Bar,
-	BarChart,
-	ComposedChart,
-	Legend,
-	Tooltip,
-	XAxis
-} from 'recharts';
+import { Bar, ComposedChart, Legend, Tooltip, XAxis } from 'recharts';
 import {
 	legendDefaultProps,
 	xAxisDefaultProps

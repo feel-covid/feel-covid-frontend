@@ -5,6 +5,7 @@ import {
 } from './interfaces';
 import { endOfDay } from 'date-fns';
 import { DynamicObject } from '../../../@types/interfaces';
+import { differenceInHours } from 'date-fns';
 
 export const normalizeCountryData = (
 	country: ICountry
@@ -59,6 +60,11 @@ export const normalize24HoursDiff = (
 	for (let i = dateValues.length - 1; i > 0; i--) {
 		const currentDay = dateValues[i][0];
 		const prevDay = dateValues[i - 1][0];
+
+		const isDateDiffInHoursSmallerThan20 =
+			differenceInHours(new Date(currentDay.date), new Date(prevDay.date)) < 20;
+
+		if (isDateDiffInHoursSmallerThan20) continue;
 
 		acc.push({
 			recovered: currentDay.recovered - prevDay.recovered,

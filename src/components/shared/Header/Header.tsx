@@ -31,7 +31,10 @@ export const Header: React.FC<IProps> = (props) => {
 						<S.CogIcon type={IconsEnum.Cog} />
 					</S.SettingsContainer>
 				</S.TitleContainer>
-				<S.Filter />
+				<S.Filter
+					isSubHeaderOpen={isSubHeaderOpen}
+					setSubHeader={setSubHeader}
+				/>
 				<S.ConfirmedCasesContainer>
 					<S.ConfirmedCasesText text={`${t('global.cases.confirmedCases')}:`} />
 					<S.CasesAmount
@@ -43,7 +46,10 @@ export const Header: React.FC<IProps> = (props) => {
 			</S.MainHeader>
 
 			<S.SubHeader isVisible={isSubHeaderOpen}>
-				<HeaderFilter />
+				<HeaderFilter
+					isSubHeaderOpen={isSubHeaderOpen}
+					setSubHeader={setSubHeader}
+				/>
 			</S.SubHeader>
 		</S.Container>
 	);
@@ -90,8 +96,10 @@ const S = {
 		margin-right: 0.5rem;
 		pointer-events: none;
 		fill: ${({ theme }) => theme.colors.white};
-		width: 1.8rem;
-		height: 1.8rem;
+		width: 1.6rem;
+		height: 1.6rem;
+		user-select: none;
+		outline: none;
 	`,
 	Filter: styled(HeaderFilter)`
 		position: absolute;
@@ -106,9 +114,15 @@ const S = {
 	ConfirmedCasesContainer: styled.div`
 		display: flex;
 		align-items: center;
+		font-weight: bold;
 	`,
 	CasesAmount: styled(CasesAmount)`
-		transform: translateY(0.1rem);
+		transform: translateY(0.05rem);
+		font-weight: bold;
+
+		${media.phone} {
+			transform: translateY(0.1rem);
+		}
 	`,
 	ConfirmedCasesText: styled(CustomText)`
 		margin-left: 0.8rem;
