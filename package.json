@@ -23,7 +23,7 @@
 		"build:css": "postcss src/tailwind.css -o src/tailwind.output.css --env production",
 		"watch:css": "postcss src/tailwind.css -o src/tailwind.output.css -w",
 		"start": "concurrently \"npm run watch:css\" \"react-scripts start\"",
-		"build": "npm run build:css && set \"GENERATE_SOURCEMAP=false\" && react-scripts build",
+		"build": "cross-env GENERATE_SOURCEMAP=false react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
 		"start:storybook": "start-storybook -p 9009 -s public",
