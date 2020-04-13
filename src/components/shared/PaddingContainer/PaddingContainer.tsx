@@ -12,5 +12,6 @@ const S = {
 		margin: auto;
 		width: 100%;
 		max-width: 192rem;
+		height: calc(100vh - 5.6rem);
 	`
 };

@@ -67,9 +67,11 @@ const sharedHeaderStyles = css`
 
 const S = {
 	Container: styled.header`
-		position: sticky;
+		position: fixed;
 		top: 0;
+		left: 0;
 		z-index: 100;
+		width: 100%;
 	`,
 	MainHeader: styled.div`
 		${sharedHeaderStyles};

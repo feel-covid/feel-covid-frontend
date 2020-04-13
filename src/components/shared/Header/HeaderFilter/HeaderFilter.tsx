@@ -7,6 +7,7 @@ import { useStatsFilterContext } from '../../../../hooks/useStatsFilterContext';
 import { format } from 'date-fns';
 import { DateFormatsEnum } from '../../../../@types/enums';
 import { IStyle, StateUpdaterFunction } from '../../../../@types/interfaces';
+import media from '../../../../themes/media';
 
 interface IProps extends IStyle {
 	setSubHeader: StateUpdaterFunction<boolean>;
@@ -61,6 +62,10 @@ const S = {
 		display: flex;
 		align-items: center;
 		color: white;
+
+		${media.phone`
+			font-size: 1.5rem;
+		`}
 
 		@media (max-width: 400px) {
 			flex-direction: column;

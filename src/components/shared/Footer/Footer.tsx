@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components/macro';
 import CustomText from '../CustomText/CustomText';
+import media from '../../../themes/media';
 
 interface IProps {}
 
@@ -26,7 +27,11 @@ const S = {
 		text-align: center;
 		font-size: 1.2rem;
 		color: ${({ theme }) => theme.colors.gray3};
-		padding: 3.5rem 0 1.5rem 0;
+		padding: 3rem 0 1.5rem 0;
+
+		${media.phone`
+				padding: 1.5rem 0;
+		`}
 	`,
 	CreatedBy: styled(CustomText)`
 		color: currentColor;

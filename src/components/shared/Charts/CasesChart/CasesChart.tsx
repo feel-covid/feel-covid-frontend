@@ -8,6 +8,7 @@ import he from 'date-fns/locale/he';
 import { chartTooltipStyle } from '../../BaseChart/styles';
 import { CustomizedXAxisTick } from '../../BaseChart/CustomizedXAxisTick';
 import {
+	animationDefaultProps,
 	legendDefaultProps,
 	xAxisDefaultProps
 } from '../../BaseChart/defaults';
@@ -32,7 +33,7 @@ export const CasesChart: React.FC<IProps> = (props) => {
 					stroke={theme.colors.green1}
 					fill={theme.colors.green1}
 					strokeWidth={3}
-					isAnimationActive={false}
+					{...animationDefaultProps}
 				/>
 
 				<Area
@@ -41,7 +42,7 @@ export const CasesChart: React.FC<IProps> = (props) => {
 					dataKey='mid'
 					stroke={theme.colors.orange2}
 					fill={theme.colors.orange2}
-					isAnimationActive={false}
+					{...animationDefaultProps}
 				/>
 
 				<Area
@@ -50,7 +51,7 @@ export const CasesChart: React.FC<IProps> = (props) => {
 					dataKey='severe.cases'
 					stroke={theme.colors.orange1}
 					fill={theme.colors.orange1}
-					isAnimationActive={false}
+					{...animationDefaultProps}
 				/>
 
 				<Area
@@ -59,7 +60,7 @@ export const CasesChart: React.FC<IProps> = (props) => {
 					dataKey='severe.intubated'
 					stroke={theme.colors.red1}
 					fill={theme.colors.red1}
-					isAnimationActive={false}
+					{...animationDefaultProps}
 				/>
 
 				<Tooltip

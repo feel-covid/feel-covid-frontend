@@ -8,6 +8,7 @@ import { he } from 'date-fns/locale';
 import { chartTooltipStyle } from '../../BaseChart/styles';
 import { CustomizedXAxisTick } from '../../BaseChart/CustomizedXAxisTick';
 import {
+	animationDefaultProps,
 	legendDefaultProps,
 	xAxisDefaultProps
 } from '../../BaseChart/defaults';
@@ -32,7 +33,7 @@ export const TreatmentTypeChart: React.FC<IProps> = (props) => {
 					fill={theme.colors.green1}
 					stroke={theme.colors.green1}
 					strokeWidth={3}
-					isAnimationActive={false}
+					{...animationDefaultProps}
 				/>
 
 				<Area
@@ -42,7 +43,7 @@ export const TreatmentTypeChart: React.FC<IProps> = (props) => {
 					fill={theme.colors.blue2}
 					stroke={theme.colors.blue2}
 					strokeWidth={3}
-					isAnimationActive={false}
+					{...animationDefaultProps}
 				/>
 
 				<Area
@@ -52,7 +53,7 @@ export const TreatmentTypeChart: React.FC<IProps> = (props) => {
 					fill={theme.colors.orange2}
 					stroke={theme.colors.orange2}
 					strokeWidth={3}
-					isAnimationActive={false}
+					{...animationDefaultProps}
 				/>
 
 				<Tooltip
