@@ -8,6 +8,7 @@ import { CustomizedXAxisTick } from '../../BaseChart/CustomizedXAxisTick';
 import { formatChartDate } from '../../../../utils/formatChartDate';
 import { chartTooltipStyle } from '../../BaseChart/styles';
 import {
+	animationDefaultProps,
 	legendDefaultProps,
 	xAxisDefaultProps
 } from '../../BaseChart/defaults';
@@ -32,7 +33,7 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 					stroke={theme.colors.blue2}
 					fill={theme.colors.blue2}
 					strokeWidth={3}
-					isAnimationActive={false}
+					{...animationDefaultProps}
 				/>
 
 				<Area
@@ -41,7 +42,7 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 					dataKey='recovered'
 					fill={theme.colors.green1}
 					stroke={theme.colors.green1}
-					isAnimationActive={false}
+					{...animationDefaultProps}
 				/>
 
 				<Area
@@ -50,7 +51,7 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 					dataKey='deceased'
 					fill={theme.colors.red1}
 					stroke={theme.colors.red1}
-					isAnimationActive={false}
+					{...animationDefaultProps}
 				/>
 
 				<Tooltip

@@ -14,3 +14,8 @@ export const legendDefaultProps = {
 		transform: 'translateY(1rem)'
 	}
 };
+
+export const animationDefaultProps = {
+	isAnimationActive: false,
+	animationBegin: 300
+};

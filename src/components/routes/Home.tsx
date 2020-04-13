@@ -35,6 +35,7 @@ const S = {
 		width: 100%;
 		flex-direction: column;
 		padding: 0.8rem 1rem;
+		margin-top: 5.6rem;
 	`,
 	ChartsContainer: styled.div`
 		display: grid;
