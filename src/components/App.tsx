@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import Router from './Router';
+import Router from './Routes';
 import { Header } from './shared/Header/Header';
 import { useHideSpinner } from '../hooks/setup/useHideSpinner';
 

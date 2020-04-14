@@ -51,6 +51,7 @@ const S = {
 		direction: ltr;
 		height: 40vh;
 		min-height: 25rem;
+		max-height: 38rem;
 		position: relative;
 	`,
 	InnerChartContainer: styled.div`

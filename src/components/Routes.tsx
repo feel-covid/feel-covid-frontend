@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 interface IProps {}
 
-const _Router: React.FC<IProps> = () => {
+const Routes: React.FC<IProps> = () => {
 	return (
 		<Router>
 			<Route exact path='/' component={Home} />
@@ -12,4 +12,4 @@ const _Router: React.FC<IProps> = () => {
 	);
 };
 
-export default _Router;
+export default Routes;
