@@ -23,7 +23,7 @@
 				"intubated": "מונשמים",
 				"recovered": "מחלימים",
 				"deceased": "נפטרים",
-				"numOfCases": "מס' חולים"
+				"numOfCases": "חולים כעת"
 			},
 			"treatment": {
 				"hospital": "בבתי חולים",

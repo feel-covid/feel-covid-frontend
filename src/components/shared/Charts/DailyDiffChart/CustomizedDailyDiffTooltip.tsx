@@ -24,16 +24,21 @@ interface IProps {
 export const CustomizedDailyDiffTooltip: React.FC<IProps> = (props) => {
 	if (!props.active) return null;
 
-	const uniqueValues = props.payload!.reduce((acc, currentPayload) => {
-		const { dataKey, color, value } = currentPayload;
+	const uniqueValues = props
+		.payload!.sort((a, b) => b.value - a.value)
+		.reduce((acc, currentPayload) => {
+			let { dataKey, color, value } = currentPayload;
+			const dashIndex = color.indexOf('-');
 
-		acc[dataKey] = {
-			color,
-			value
-		};
+			color = color.slice(dashIndex + 1, color.length - 1);
 
-		return acc;
-	}, {} as DynamicObject<{ color: string; value: number }>);
+			acc[dataKey] = {
+				color,
+				value
+			};
+
+			return acc;
+		}, {} as DynamicObject<{ color: string; value: number }>);
 
 	const {
 		payload: { date, compareDate }

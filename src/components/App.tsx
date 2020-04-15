@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components/macro';
 import Router from './Routes';
 import { Header } from './shared/Header/Header';
@@ -8,6 +8,12 @@ interface IProps {}
 
 const App: React.FC<IProps> = () => {
 	useHideSpinner();
+
+	useEffect(() => {
+		if (process.env.NODE_ENV === 'development') {
+			document.title = 'Dev - Feel';
+		}
+	}, []);
 
 	return (
 		<S.Container>
