@@ -1,6 +1,3 @@
-import { Legend } from 'recharts';
-import React from 'react';
-
 export const xAxisDefaultProps = {
 	dataKey: 'date',
 	interval: 0,
@@ -19,3 +16,5 @@ export const animationDefaultProps = {
 	isAnimationActive: false,
 	animationBegin: 300
 };
+
+export const tooltipItemSorter = (item: any): number => -item.value;

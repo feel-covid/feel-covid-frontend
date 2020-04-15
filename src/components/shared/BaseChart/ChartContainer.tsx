@@ -22,7 +22,7 @@ export const ChartContainer: React.FC<IProps> = (props) => {
 		</S.Container>
 	);
 };
-
+// prettier-ignore
 const S = {
 	Container: styled.div`
 		position: relative;
@@ -42,9 +42,13 @@ const S = {
 			color: white;
 		}
 
+		.recharts-tooltip-wrapper {
+			font-weight: bold;
+		}
+
 		${media.tablet`
 			margin: 2rem 0 3rem 0;
-		`}
+		`};
 	`,
 	OuterChartContainer: styled.div`
 		width: 100%;

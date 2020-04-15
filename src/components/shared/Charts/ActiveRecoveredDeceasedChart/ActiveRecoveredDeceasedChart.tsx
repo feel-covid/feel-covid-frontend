@@ -10,9 +10,11 @@ import { chartTooltipStyle } from '../../BaseChart/styles';
 import {
 	animationDefaultProps,
 	legendDefaultProps,
+	tooltipItemSorter,
 	xAxisDefaultProps
 } from '../../BaseChart/defaults';
 import { ChartContainer } from '../../BaseChart/ChartContainer';
+import { Gradients } from '../../BaseChart/Gradients';
 
 interface IProps {}
 
@@ -20,19 +22,28 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 	const { t } = useTranslation();
 	const { normalizedChartData } = useCountryData();
 	const theme = useTheme();
+	const gradientsId = 'ActiveRecoveredDeceased';
 
 	return (
 		<ChartContainer title={t('charts.activeRecoveredDeceased.title')}>
 			<AreaChart data={normalizedChartData} syncId='daily'>
 				<Legend {...(legendDefaultProps as any)} />
 
+				<defs>
+					<Gradients
+						colors={['blue2', 'green1', 'red1']}
+						idPrefix={gradientsId}
+					/>
+				</defs>
+
 				<Area
 					name={t('global.cases.numOfCases') as any}
 					type='monotone'
 					dataKey='active'
 					stroke={theme.colors.blue2}
-					fill={theme.colors.blue2}
+					fill={`url(#${gradientsId}blue2)`}
 					strokeWidth={3}
+					fillOpacity={1}
 					{...animationDefaultProps}
 				/>
 
@@ -40,8 +51,10 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 					name={t('global.cases.recovered') as any}
 					type='linear'
 					dataKey='recovered'
-					fill={theme.colors.green1}
+					fill={`url(#${gradientsId}green1)`}
 					stroke={theme.colors.green1}
+					strokeWidth={3}
+					fillOpacity={1}
 					{...animationDefaultProps}
 				/>
 
@@ -49,7 +62,9 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 					name={t('global.cases.deceased') as any}
 					type='monotone'
 					dataKey='deceased'
-					fill={theme.colors.red1}
+					fill={`url(#${gradientsId}red1)`}
+					strokeWidth={3}
+					fillOpacity={1}
 					stroke={theme.colors.red1}
 					{...animationDefaultProps}
 				/>
@@ -59,6 +74,7 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 						formatChartDate(date as string, { locale: he })
 					}
 					contentStyle={chartTooltipStyle}
+					itemSorter={tooltipItemSorter}
 				/>
 
 				<XAxis tick={<CustomizedXAxisTick />} {...xAxisDefaultProps} />

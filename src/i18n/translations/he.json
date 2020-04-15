@@ -23,7 +23,7 @@
 				"intubated": "מונשמים",
 				"recovered": "מחלימים",
 				"deceased": "נפטרים",
-				"numOfCases": "מס' חולים"
+				"numOfCases": "חולים פעילים"
 			},
 			"treatment": {
 				"hospital": "בבתי חולים",
@@ -34,7 +34,7 @@
 		},
 		"charts": {
 			"activeRecoveredDeceased": {
-				"title": "מגמת חולים, מחלימים ונפטרים"
+				"title": "מגמת חולים פעילים, מחלימים ונפטרים"
 			},
 			"casesChart": {
 				"title": "מגמת מצב החולים"
