@@ -27,7 +27,8 @@ export const CustomizedDailyDiffTooltip: React.FC<IProps> = (props) => {
 	const uniqueValues = props
 		.payload!.sort((a, b) => b.value - a.value)
 		.reduce((acc, currentPayload) => {
-			let { dataKey, color, value } = currentPayload;
+			const { dataKey, value } = currentPayload;
+			let { color } = currentPayload;
 			const dashIndex = color.indexOf('-');
 
 			color = color.slice(dashIndex + 1, color.length - 1);
