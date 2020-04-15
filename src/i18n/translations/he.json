@@ -34,7 +34,7 @@
 		},
 		"charts": {
 			"activeRecoveredDeceased": {
-				"title": "מגמת חולים, מחלימים ונפטרים"
+				"title": "מגמת חולים פעילים, מחלימים ונפטרים"
 			},
 			"casesChart": {
 				"title": "מגמת מצב החולים"
