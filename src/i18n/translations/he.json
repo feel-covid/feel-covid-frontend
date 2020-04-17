@@ -30,7 +30,8 @@
 				"home": "בבית",
 				"hotel": "בבתי מלון",
 				"undecided": "טרם הוחלט"
-			}
+			},
+			"privacyPolicy": "מדיניות פרטיות"
 		},
 		"charts": {
 			"activeRecoveredDeceased": {
@@ -50,7 +51,14 @@
 			}
 		},
 		"footer": {
-			"createdBy": "נבנה ע\"י"
+			"createdBy": "נבנה ע\"י",
+			"privacyPolicy": {
+				"weAreUsing": "אנו משתמשים ב-",
+				"googleAnalytics": "Google Analytics",
+				"forBasicInfo": "על מנת לנטר מידע בסיסי (מספר כניסות) ו-",
+				"sentry": "Sentry",
+				"forErrorLogging": "על מנת לנטר שגיאות"
+			}
 		},
 		"errorBoundary": {
 			"description": "אופס! התרחשה שגיאה. אנו מטפלים בבעיה.",

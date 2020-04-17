@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
 import { IColors, IFontSizes } from '../../../@types/declarations/styled';
 import { IStyle, ITheme } from '../../../@types/interfaces';
 
@@ -9,12 +9,18 @@ interface IProps extends IStyle {
 	size?: keyof IFontSizes;
 	color?: keyof IColors | string;
 	percent?: boolean;
+	link?: boolean;
+	href?: string;
 }
 
 const CustomText: React.FC<IProps> = (props) => {
-	const { text, className, percent, ...rest } = props;
+	const { link, href, text, className, percent, ...rest } = props;
 
-	return (
+	return link ? (
+		<S.Link rel='noopener noreferrer' href={href} target='_blank' {...rest}>
+			{text}
+		</S.Link>
+	) : (
 		<S.Text className={className} {...rest}>
 			{text}
 			{percent && '%'}
@@ -27,14 +33,21 @@ CustomText.defaultProps = {
 	color: 'white'
 };
 
+const sharedTextStyles = css`
+	font-size: ${({ size, theme }: ITheme & Partial<IProps>) =>
+		theme.fontSizes[size!]};
+	text-align: ${({ center }: Partial<IProps>) =>
+		center ? 'center' : 'initial'};
+	color: ${({ color, theme }) =>
+		theme.colors[color! as keyof IColors] ?? color};
+`;
+
 const S: any = {
 	Text: styled.span`
-		font-size: ${({ size, theme }: ITheme & Partial<IProps>) =>
-			theme.fontSizes[size!]};
-		text-align: ${({ center }: Partial<IProps>) =>
-			center ? 'center' : 'initial'};
-		color: ${({ color, theme }) =>
-			theme.colors[color! as keyof IColors] ?? color};
+		${sharedTextStyles};
+	`,
+	Link: styled.a`
+		${sharedTextStyles};
 	`
 };
 
