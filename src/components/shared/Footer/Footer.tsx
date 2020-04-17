@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import styled from 'styled-components/macro';
 import CustomText from '../CustomText/CustomText';
 import media from '../../../themes/media';
+import { Tooltip } from '../Tooltip/Tooltip';
+import { PrivacyPolicyContent } from './PrivacyPolicyContent';
 
 interface IProps {}
 
@@ -10,14 +12,25 @@ export const Footer: React.FC<IProps> = (props) => {
 	const { t } = useTranslation();
 	return (
 		<S.Container>
-			<S.CreatedBy text={t('footer.createdBy') as string} />{' '}
-			<S.WebsiteLink
-				target='_blank'
-				href='https://sasonbraha.com/'
-				rel='noopener noreferrer'
-			>
-				Sason Braha
-			</S.WebsiteLink>
+			<S.Tooltip content={() => <PrivacyPolicyContent />}>
+				<S.Link
+					target='_blank'
+					href='#'
+					rel='noopener noreferrer'
+					onClick={(e) => e.preventDefault()}
+				>
+					{t('global.privacyPolicy')}
+				</S.Link>
+				<S.Divider>|</S.Divider>
+				<S.CreatedBy text={t('footer.createdBy') as string} />{' '}
+				<S.Link
+					target='_blank'
+					href='https://sasonbraha.com/'
+					rel='noopener noreferrer'
+				>
+					Sason Braha
+				</S.Link>
+			</S.Tooltip>
 		</S.Container>
 	);
 };
@@ -37,7 +50,14 @@ const S = {
 		color: currentColor;
 		font-size: inherit;
 	`,
-	WebsiteLink: styled.a`
+	Link: styled.a`
 		color: currentColor;
+	`,
+	Divider: styled.span`
+		display: inline-block;
+		margin: 0 0.5rem;
+	`,
+	Tooltip: styled(Tooltip)`
+		bottom: 2rem;
 	`
 };
