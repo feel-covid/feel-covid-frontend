@@ -3,18 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { useTheme } from 'styled-components/macro';
 import { useCountryData } from '../../../../hooks/useCountryData';
 import { ChartContainer } from '../../BaseChart/ChartContainer';
-import {
-	Area,
-	Bar,
-	ComposedChart,
-	Legend,
-	Line,
-	Tooltip,
-	XAxis
-} from 'recharts';
+import { Bar, ComposedChart, Legend, Tooltip, XAxis } from 'recharts';
 import {
 	animationDefaultProps,
 	legendDefaultProps,
+	tooltipDefaultProps,
 	xAxisDefaultProps
 } from '../../BaseChart/defaults';
 import { CustomizedXAxisTick } from '../../BaseChart/CustomizedXAxisTick';
@@ -87,7 +80,10 @@ export const DailyDiffChart: React.FC<IProps> = (props) => {
 					{...animationDefaultProps}
 				/>
 
-				<Tooltip content={<CustomizedDailyDiffTooltip />} />
+				<Tooltip
+					content={<CustomizedDailyDiffTooltip />}
+					{...(tooltipDefaultProps as any)}
+				/>
 
 				<XAxis {...xAxisDefaultProps} tick={<CustomizedXAxisTick />} />
 			</ComposedChart>

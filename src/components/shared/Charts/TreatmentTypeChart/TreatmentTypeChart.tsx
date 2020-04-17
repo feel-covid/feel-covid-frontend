@@ -1,16 +1,15 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'styled-components/macro';
-import { Area, AreaChart, Bar, Legend, Tooltip, XAxis } from 'recharts';
+import { Area, AreaChart, Legend, Tooltip, XAxis } from 'recharts';
 import { useCountryData } from '../../../../hooks/useCountryData';
 import { formatChartDate } from '../../../../utils/formatChartDate';
 import { he } from 'date-fns/locale';
-import { chartTooltipStyle } from '../../BaseChart/styles';
 import { CustomizedXAxisTick } from '../../BaseChart/CustomizedXAxisTick';
 import {
 	animationDefaultProps,
 	legendDefaultProps,
-	tooltipItemSorter,
+	tooltipDefaultProps,
 	xAxisDefaultProps
 } from '../../BaseChart/defaults';
 import { ChartContainer } from '../../BaseChart/ChartContainer';
@@ -70,8 +69,7 @@ export const TreatmentTypeChart: React.FC<IProps> = (props) => {
 					labelFormatter={(date) =>
 						formatChartDate(date as string, { locale: he })
 					}
-					contentStyle={chartTooltipStyle}
-					itemSorter={tooltipItemSorter}
+					{...(tooltipDefaultProps as any)}
 				/>
 
 				<XAxis {...xAxisDefaultProps} tick={<CustomizedXAxisTick />} />

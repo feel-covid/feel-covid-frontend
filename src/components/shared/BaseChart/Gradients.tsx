@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { useTheme } from 'styled-components/macro';
 import { IColors } from '../../../@types/declarations/styled';
 
