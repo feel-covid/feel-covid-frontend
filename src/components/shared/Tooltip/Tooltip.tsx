@@ -1,15 +1,17 @@
-import React, { JSXElementConstructor } from 'react';
+import React, { JSXElementConstructor, CSSProperties } from 'react';
 import styled from 'styled-components/macro';
 import { IStyle } from '../../../@types/interfaces';
 
 interface IProps extends IStyle {
 	content: JSXElementConstructor<any> | string;
+	containerStyle?: CSSProperties;
 }
 
 export const Tooltip: React.FC<IProps> = (props) => {
-	const { children, content: Content, className } = props;
+	const { children, content: Content, className, containerStyle } = props;
 	return (
-		<S.Container>
+		// eslint-disable-next-line @typescript-eslint/no-empty-function
+		<S.Container style={containerStyle} onClick={() => {}}>
 			{children}
 			<STooltip className={className}>
 				{typeof Content === 'string' ? Content : <Content />}
@@ -34,8 +36,8 @@ const STooltip = styled.div`
 
 const S = {
 	Container: styled.div`
-		position: relative;
 		display: inline-block;
+		position: relative;
 
 		&:hover ${STooltip} {
 			opacity: 1;

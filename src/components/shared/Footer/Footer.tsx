@@ -12,7 +12,12 @@ export const Footer: React.FC<IProps> = (props) => {
 	const { t } = useTranslation();
 	return (
 		<S.Container>
-			<S.Tooltip content={() => <PrivacyPolicyContent />}>
+			<S.Tooltip
+				containerStyle={{
+					position: 'initial'
+				}}
+				content={() => <PrivacyPolicyContent />}
+			>
 				<S.Link
 					target='_blank'
 					href='#'
@@ -22,15 +27,15 @@ export const Footer: React.FC<IProps> = (props) => {
 					{t('global.privacyPolicy')}
 				</S.Link>
 				<S.Divider>|</S.Divider>
-				<S.CreatedBy text={t('footer.createdBy') as string} />{' '}
-				<S.Link
-					target='_blank'
-					href='https://sasonbraha.com/'
-					rel='noopener noreferrer'
-				>
-					Sason Braha
-				</S.Link>
 			</S.Tooltip>
+			<S.CreatedBy text={t('footer.createdBy') as string} />{' '}
+			<S.Link
+				target='_blank'
+				href='https://sasonbraha.com/'
+				rel='noopener noreferrer'
+			>
+				Sason Braha
+			</S.Link>
 		</S.Container>
 	);
 };
@@ -41,6 +46,7 @@ const S = {
 		font-size: 1.2rem;
 		color: ${({ theme }) => theme.colors.gray3};
 		padding: 3rem 0 1.5rem 0;
+		position: relative;
 
 		${media.phone`
 				padding: 1.5rem 0;
@@ -58,6 +64,6 @@ const S = {
 		margin: 0 0.5rem;
 	`,
 	Tooltip: styled(Tooltip)`
-		bottom: 2rem;
+		bottom: 3.6rem;
 	`
 };
