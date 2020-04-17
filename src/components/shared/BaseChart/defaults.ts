@@ -17,4 +17,18 @@ export const animationDefaultProps = {
 	animationBegin: 300
 };
 
+export const tooltipDefaultProps = {
+	contentStyle: {
+		borderRadius: '.5rem',
+		border: 'none',
+		boxShadow: '0 0 .5rem rgba(0, 0, 0, 0.3)',
+		direction: 'rtl'
+	},
+	position: { x: 'auto', y: 0 },
+	itemSorter: (item: any): number => -item.value,
+	wrapperStyle: {
+		top: '23%'
+	}
+};
+
 export const tooltipItemSorter = (item: any): number => -item.value;

@@ -6,11 +6,10 @@ import { Area, AreaChart, Legend, Tooltip, XAxis } from 'recharts';
 import he from 'date-fns/locale/he';
 import { CustomizedXAxisTick } from '../../BaseChart/CustomizedXAxisTick';
 import { formatChartDate } from '../../../../utils/formatChartDate';
-import { chartTooltipStyle } from '../../BaseChart/styles';
 import {
 	animationDefaultProps,
 	legendDefaultProps,
-	tooltipItemSorter,
+	tooltipDefaultProps,
 	xAxisDefaultProps
 } from '../../BaseChart/defaults';
 import { ChartContainer } from '../../BaseChart/ChartContainer';
@@ -73,8 +72,7 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 					labelFormatter={(date) =>
 						formatChartDate(date as string, { locale: he })
 					}
-					contentStyle={chartTooltipStyle}
-					itemSorter={tooltipItemSorter}
+					{...(tooltipDefaultProps as any)}
 				/>
 
 				<XAxis tick={<CustomizedXAxisTick />} {...xAxisDefaultProps} />
