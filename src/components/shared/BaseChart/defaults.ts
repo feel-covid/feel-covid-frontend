@@ -27,7 +27,7 @@ export const tooltipDefaultProps = {
 	position: { x: 'auto', y: 0 },
 	itemSorter: (item: any): number => -item.value,
 	wrapperStyle: {
-		top: '25%'
+		top: '23%'
 	}
 };
 
