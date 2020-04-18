@@ -17,7 +17,6 @@ export const ChartContainer: React.FC<IProps> = (props) => {
 			// @ts-ignore
 			(window.DocumentTouch && document instanceof window.DocumentTouch);
 		if (containerRef.current && isTouchDevice) {
-			console.log('Added');
 			let touchStartData: { startX: number; startY: number } = {} as any;
 
 			const handleTouchStart = (e: TouchEvent) => {
