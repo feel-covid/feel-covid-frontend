@@ -72,7 +72,6 @@ export const TreatmentTypeChart: React.FC<IProps> = (props) => {
 						formatChartDate(date as string, { locale: he })
 					}
 					{...(tooltipDefaultProps as any)}
-					animationBegin={2000}
 				/>
 
 				<XAxis {...xAxisDefaultProps} tick={<CustomizedXAxisTick />} />
