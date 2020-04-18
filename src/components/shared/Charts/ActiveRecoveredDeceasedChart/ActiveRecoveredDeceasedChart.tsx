@@ -14,6 +14,7 @@ import {
 } from '../../BaseChart/defaults';
 import { ChartContainer } from '../../BaseChart/ChartContainer';
 import { Gradients } from '../../BaseChart/Gradients';
+import { useDisableChartActiveState } from '../../../../hooks/useDisableChartActiveState';
 
 interface IProps {}
 
@@ -22,10 +23,16 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 	const { normalizedChartData } = useCountryData();
 	const theme = useTheme();
 	const gradientsId = 'ActiveRecoveredDeceased';
+	const { chartRef, disable } = useDisableChartActiveState();
 
 	return (
 		<ChartContainer title={t('charts.activeRecoveredDeceased.title')}>
-			<AreaChart data={normalizedChartData} syncId='daily'>
+			<AreaChart
+				data={normalizedChartData}
+				syncId='daily'
+				ref={chartRef}
+				onMouseUp={disable}
+			>
 				<Legend {...(legendDefaultProps as any)} />
 
 				<defs>
