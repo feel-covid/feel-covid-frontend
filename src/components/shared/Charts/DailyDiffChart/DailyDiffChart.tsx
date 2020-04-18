@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useTheme } from 'styled-components/macro';
 import { useCountryData } from '../../../../hooks/useCountryData';
 import { ChartContainer } from '../../BaseChart/ChartContainer';
-import { Bar, ComposedChart, Legend, Tooltip, XAxis } from 'recharts';
+import { Bar, ComposedChart, Legend, Tooltip, XAxis, YAxis } from 'recharts';
 import {
 	animationDefaultProps,
 	legendDefaultProps,
@@ -13,6 +13,7 @@ import {
 import { CustomizedXAxisTick } from '../../BaseChart/CustomizedXAxisTick';
 import { CustomizedDailyDiffTooltip } from './CustomizedDailyDiffTooltip';
 import { Gradients } from '../../BaseChart/Gradients';
+import { useDisableChartActiveState } from '../../../../hooks/useDisableChartActiveState';
 
 interface IProps {}
 
@@ -21,10 +22,15 @@ export const DailyDiffChart: React.FC<IProps> = (props) => {
 	const { normalized24HourDiff } = useCountryData();
 	const theme = useTheme();
 	const gradientsId = 'DailyDiff-';
+	const { chartRef, disable } = useDisableChartActiveState();
 
 	return (
 		<ChartContainer title={t('charts.dailyDiffChart.title')}>
-			<ComposedChart data={normalized24HourDiff}>
+			<ComposedChart
+				ref={chartRef}
+				data={normalized24HourDiff}
+				onMouseUp={disable}
+			>
 				<Legend
 					{...(legendDefaultProps as any)}
 					payload={[
