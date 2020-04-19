@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components/macro';
 import { ResponsiveContainer } from 'recharts';
 import CustomText from '../CustomText/CustomText';
@@ -9,8 +9,61 @@ interface IProps {
 }
 
 export const ChartContainer: React.FC<IProps> = (props) => {
+	const containerRef = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		const isTouchDevice =
+			'ontouchstart' in window ||
+			// @ts-ignore
+			(window.DocumentTouch && document instanceof window.DocumentTouch);
+		if (containerRef.current && isTouchDevice) {
+			let touchStartData: { startX: number; startY: number } = {} as any;
+
+			const handleTouchStart = (e: TouchEvent) => {
+				const touches = e.touches[0];
+				touchStartData = {
+					startX: touches.pageX,
+					startY: touches.pageY
+				};
+			};
+
+			const handleTouchMove = (e: TouchEvent) => {
+				const touches = e.touches[0];
+				const delta = {
+					x: Math.abs(touchStartData.startX - touches.pageX),
+					y: Math.abs(touchStartData.startY - touches.pageY)
+				};
+
+				if (delta.x < delta.y || delta.x < 22) {
+					e.stopPropagation();
+				}
+			};
+
+			containerRef.current.addEventListener('touchstart', handleTouchStart, {
+				passive: true
+			});
+
+			containerRef.current.addEventListener('touchmove', handleTouchMove, {
+				passive: true
+			});
+
+			return () => {
+				if (containerRef.current) {
+					containerRef.current.removeEventListener(
+						'touchstart',
+						handleTouchStart
+					);
+					containerRef.current.removeEventListener(
+						'touchmove',
+						handleTouchMove
+					);
+				}
+			};
+		}
+	}, []);
+
 	return (
-		<S.Container>
+		<S.Container ref={containerRef}>
 			<S.ChartTitle text={props.title} />
 			<S.OuterChartContainer>
 				<S.InnerChartContainer>
@@ -45,6 +98,10 @@ const S = {
 
 		.recharts-tooltip-wrapper {
 			font-weight: bold;
+		}
+		
+		.recharts-cartesian-axis-ticks {
+			user-select: none;
 		}
 
 		${media.tablet`
