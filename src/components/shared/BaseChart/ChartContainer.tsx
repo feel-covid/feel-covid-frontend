@@ -26,6 +26,7 @@ export const ChartContainer: React.FC<IProps> = (props) => {
 const S = {
 	Container: styled.div`
 		position: relative;
+		user-select: none;
 
 		.recharts-surface {
 			overflow: visible;
