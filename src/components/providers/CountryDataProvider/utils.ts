@@ -13,8 +13,19 @@ export const normalizeCountryData = (
 	const { deceased, recovered, mid, light, severe, treatment, date } = country;
 
 	return {
-		total: deceased + recovered + mid.cases + severe.cases + light.cases,
-		active: mid.cases + severe.cases + light.cases,
+		// total: deceased + recovered + mid.cases + severe.cases + light.cases,
+		total:
+			treatment.hotel +
+			treatment.hospital +
+			treatment.undecided +
+			treatment.home +
+			deceased +
+			recovered,
+		active:
+			treatment.home +
+			treatment.hospital +
+			treatment.hotel +
+			treatment.undecided,
 		deceased,
 		recovered,
 		treatment,
