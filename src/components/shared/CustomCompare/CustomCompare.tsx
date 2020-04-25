@@ -292,9 +292,13 @@ const S = {
 		}
 
 		${media.tablet`
-			width: 100%;
-				padding: 2rem 2rem 1rem 1rem;
+				width: 100%;
+				padding: 2rem 1rem 1rem 1rem;
 				height: unset;
+			
+				&::-webkit-scrollbar {
+					width: 4px;
+				}
 		`};
 
 		@media (max-height: 500px) {
