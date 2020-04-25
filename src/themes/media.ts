@@ -1,24 +1,58 @@
-// @ts-nocheck
-import { css } from 'styled-components';
-import { DynamicObject, PlainFunction } from '../@types/interfaces';
+import {
+	css,
+	CSSObject,
+	SimpleInterpolation,
+	FlattenSimpleInterpolation
+} from 'styled-components';
 
-interface ISizes {
+type Breakpoints = {
 	smallDesktop: number;
 	tablet: number;
 	phone: number;
-}
+};
 
-const sizes = {
+const sizes: Breakpoints = {
 	smallDesktop: 1280,
 	tablet: 880,
 	phone: 450
 };
 
-export default Object.keys(sizes).reduce((acc, label) => {
-	acc[label] = (...args) => css`
-		@media (max-width: ${sizes[label]}px) {
-			${css(...args)};
-		}
-	`;
-	return acc;
-}, {} as DynamicObject<PlainFunction>);
+const initAcc: Interpolation<Breakpoints> = {
+	smallDesktop: () => '',
+	tablet: () => '',
+	phone: () => ''
+};
+
+type BreakpointEntry = [keyof Breakpoints, Breakpoints[keyof Breakpoints]];
+type Interpolation<T> = {
+	[key in keyof T]:
+		| ((
+				first: CSSObject | TemplateStringsArray,
+				...interpolations: SimpleInterpolation[]
+		  ) => FlattenSimpleInterpolation)
+		| (() => string);
+};
+
+interface ICustomObject extends ObjectConstructor {
+	entries<K extends keyof Breakpoints, T>(
+		o: { [s in K]: T } | ArrayLike<T>
+	): [K, T][];
+}
+
+const object: ICustomObject = Object;
+
+const media = object
+	.entries(sizes)
+	.reduce<Interpolation<Breakpoints>>((acc, cur: BreakpointEntry) => {
+		const [key, value] = cur;
+		acc[key] = (first, ...interpolations) =>
+			css`
+				@media (max-width: ${value}px) {
+					${css(first, ...interpolations)}
+				}
+			`;
+
+		return acc;
+	}, initAcc);
+
+export default media;

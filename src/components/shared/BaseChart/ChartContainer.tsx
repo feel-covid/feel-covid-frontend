@@ -3,8 +3,9 @@ import styled from 'styled-components/macro';
 import { ResponsiveContainer } from 'recharts';
 import CustomText from '../CustomText/CustomText';
 import media from '../../../themes/media';
+import { IStyle } from '../../../@types/interfaces';
 
-interface IProps {
+interface IProps extends IStyle {
 	title: string;
 }
 
@@ -63,12 +64,12 @@ export const ChartContainer: React.FC<IProps> = (props) => {
 	}, []);
 
 	return (
-		<S.Container ref={containerRef}>
+		<S.Container ref={containerRef} className={props.className}>
 			<S.ChartTitle text={props.title} />
 			<S.OuterChartContainer>
 				<S.InnerChartContainer>
 					<ResponsiveContainer debounce={200}>
-						{props.children}
+						{props.children as any}
 					</ResponsiveContainer>
 				</S.InnerChartContainer>
 			</S.OuterChartContainer>

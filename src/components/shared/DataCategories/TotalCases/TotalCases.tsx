@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components/macro';
 import { PositiveFactorEnum } from '../../../../@types/enums';
-import { Overview } from '../../Overview/Overview';
+import { IOverviewCard, Overview } from '../../Overview/Overview';
 import media from '../../../../themes/media';
 
 interface IProps {}
@@ -10,7 +10,7 @@ interface IProps {}
 export const TotalCases: React.FC<IProps> = (props) => {
 	const { t } = useTranslation();
 
-	const categories = useMemo(() => {
+	const categories = useMemo<IOverviewCard[]>(() => {
 		return [
 			{
 				title: t('global.cases.confirmedCases'),

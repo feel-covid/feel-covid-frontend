@@ -8,6 +8,8 @@ import { format } from 'date-fns';
 import { DateFormatsEnum } from '../../../../@types/enums';
 import { IStyle, StateUpdaterFunction } from '../../../../@types/interfaces';
 import media from '../../../../themes/media';
+import { Select } from '../../Form/Select';
+import { useCountryData } from '../../../../hooks/useCountryData';
 
 interface IProps extends IStyle {
 	setSubHeader: StateUpdaterFunction<boolean>;
@@ -22,6 +24,7 @@ export const HeaderFilter: React.FC<IProps> = (props) => {
 		countriesByDate,
 		setPrevDate
 	} = useStatsFilterContext();
+	const { weekAgoIndexOnNormalizedData } = useCountryData();
 	const { setSubHeader, isSubHeaderOpen } = props;
 
 	const handleChange = useCallback(
@@ -40,8 +43,9 @@ export const HeaderFilter: React.FC<IProps> = (props) => {
 			{t('header.headerFilter.displayingComparison')}{' '}
 			{formatRelative(new Date(baseDate), new Date(), { locale: he })}{' '}
 			{t('header.headerFilter.andBetween')}{' '}
-			<S.Select onChange={handleChange} defaultValue={prevDate}>
+			<Select onChange={handleChange} defaultValue={prevDate}>
 				{Object.keys(countriesByDate)
+					.slice(weekAgoIndexOnNormalizedData)
 					.filter((date) => date !== baseDate)
 					.map((date) => (
 						<option key={date} value={date}>
@@ -52,7 +56,7 @@ export const HeaderFilter: React.FC<IProps> = (props) => {
 							)}
 						</option>
 					))}
-			</S.Select>
+			</Select>
 		</S.Container>
 	);
 };
@@ -70,17 +74,5 @@ const S = {
 		@media (max-width: 400px) {
 			flex-direction: column;
 		}
-	`,
-	Select: styled.select`
-		padding: 0.7rem 0.3rem;
-		font-size: 1.6rem;
-		border-radius: 0.3rem;
-		outline: none;
-		cursor: pointer;
-		margin-right: 0.5rem;
-		border: none;
-		color: white;
-		box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
-		background: ${({ theme }) => theme.colors.darkBlue1};
 	`
 };

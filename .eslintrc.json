@@ -28,6 +28,9 @@
 		"@typescript-eslint/no-explicit-any": ["off"],
 		"react/prop-types": ["off"],
 		"@typescript-eslint/explicit-function-return-type": ["off"],
-		"@typescript-eslint/ban-ts-ignore": ["off"]
+		"@typescript-eslint/ban-ts-ignore": ["off"],
+		"no-prototype-builtins": ["off"],
+		"no-case-declarations": ["off"],
+		"no-mixed-spaces-and-tabs": ["off"]
 	}
 }

@@ -39,7 +39,7 @@ const S = {
 	`,
 	ChartsContainer: styled.div`
 		display: grid;
-		grid-template-columns: repeat(auto-fit, 33%);
+		grid-template-columns: repeat(auto-fit, 33.33%);
 		padding: 3rem 1rem 5rem 1rem;
 		width: 100%;
 

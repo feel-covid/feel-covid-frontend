@@ -20,7 +20,10 @@ interface IProps {}
 
 export const CasesChart: React.FC<IProps> = (props) => {
 	const { t } = useTranslation();
-	const { normalizedChartData } = useCountryData();
+	const {
+		normalizedChartData,
+		weekAgoIndexOnNormalizedChartData
+	} = useCountryData();
 	const theme = useTheme();
 	const gradientsId = 'Cases';
 	const { chartRef, disable } = useDisableChartActiveState();
@@ -28,7 +31,7 @@ export const CasesChart: React.FC<IProps> = (props) => {
 	return (
 		<ChartContainer title={t('charts.casesChart.title')}>
 			<AreaChart
-				data={normalizedChartData}
+				data={normalizedChartData.slice(weekAgoIndexOnNormalizedChartData)}
 				syncId='daily'
 				ref={chartRef}
 				onMouseUp={disable}
@@ -39,44 +42,36 @@ export const CasesChart: React.FC<IProps> = (props) => {
 					<Gradients
 						colors={['orange2', 'orange1', 'red1', 'green1']}
 						idPrefix={gradientsId}
+						startOpacity={0.12}
+						endOpacity={0}
 					/>
 				</defs>
 
 				<Area
-					name={t('global.cases.lightCondition') as any}
-					type='monotone'
-					dataKey='light'
-					stroke={theme.colors.green1}
-					fill={`url(#${gradientsId}green1)`}
-					strokeWidth={3}
-					{...animationDefaultProps}
-				/>
-
-				<Area
 					name={t('global.cases.midCondition') as any}
-					type='linear'
 					dataKey='mid'
 					stroke={theme.colors.orange2}
 					fill={`url(#${gradientsId}orange2)`}
 					{...animationDefaultProps}
+					strokeWidth={3.5}
 				/>
 
 				<Area
 					name={t('global.cases.severeCondition') as any}
-					type='monotone'
 					dataKey='severe.cases'
 					stroke={theme.colors.orange1}
 					fill={`url(#${gradientsId}orange1)`}
 					{...animationDefaultProps}
+					strokeWidth={3.5}
 				/>
 
 				<Area
 					name={t('global.cases.intubated') as any}
-					type='monotone'
 					dataKey='severe.intubated'
 					stroke={theme.colors.red1}
 					fill={`url(#${gradientsId}red1)`}
 					{...animationDefaultProps}
+					strokeWidth={3.5}
 				/>
 
 				<Tooltip

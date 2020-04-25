@@ -1,13 +1,18 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components/macro';
 import Router from './Routes';
 import { Header } from './shared/Header/Header';
-import { useHideSpinner } from '../hooks/setup/useHideSpinner';
+import { useCountryData } from '../hooks/useCountryData';
+import { hideLoadingSpinner } from '../utils/hideLoadingSpinner';
+import { CustomCompare } from './shared/CustomCompare/CustomCompare';
 
 interface IProps {}
 
 const App: React.FC<IProps> = () => {
-	useHideSpinner();
+	const { loading } = useCountryData();
+
+	useEffect(() => {
+		hideLoadingSpinner();
+	}, [loading]);
 
 	useEffect(() => {
 		if (process.env.NODE_ENV === 'development') {
@@ -16,15 +21,12 @@ const App: React.FC<IProps> = () => {
 	}, []);
 
 	return (
-		<S.Container>
+		<>
 			<Header />
 			<Router />
-		</S.Container>
+			<CustomCompare />
+		</>
 	);
-};
-
-const S = {
-	Container: styled.div``
 };
 
 export default App;

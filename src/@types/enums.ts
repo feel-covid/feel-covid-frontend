@@ -1,7 +1,10 @@
 export enum IconsEnum {
 	Arrow = 'icon-arrow',
 	QuestionMark = 'icon-question-mark',
-	Cog = 'icon-cog'
+	Cog = 'icon-cog',
+	ArrowDropdown = 'icon-arrow_drop_down',
+	CircleDropdown = 'icon-circle-down',
+	Close = 'icon-cross'
 }
 
 export enum PositiveFactorEnum {

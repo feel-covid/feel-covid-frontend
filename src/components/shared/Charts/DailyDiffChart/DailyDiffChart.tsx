@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useTheme } from 'styled-components/macro';
 import { useCountryData } from '../../../../hooks/useCountryData';
 import { ChartContainer } from '../../BaseChart/ChartContainer';
-import { Bar, ComposedChart, Legend, Tooltip, XAxis, YAxis } from 'recharts';
+import { Bar, ComposedChart, Legend, Tooltip, XAxis } from 'recharts';
 import {
 	animationDefaultProps,
 	legendDefaultProps,
@@ -19,16 +19,21 @@ interface IProps {}
 
 export const DailyDiffChart: React.FC<IProps> = (props) => {
 	const { t } = useTranslation();
-	const { normalized24HourDiff } = useCountryData();
+	const {
+		normalized24HourDiff,
+		weekAgoNegativeIndexOnNormalized24HoursDiff
+	} = useCountryData();
+
 	const theme = useTheme();
 	const gradientsId = 'DailyDiff-';
 	const { chartRef, disable } = useDisableChartActiveState();
-
 	return (
 		<ChartContainer title={t('charts.dailyDiffChart.title')}>
 			<ComposedChart
 				ref={chartRef}
-				data={normalized24HourDiff}
+				data={normalized24HourDiff.slice(
+					weekAgoNegativeIndexOnNormalized24HoursDiff
+				)}
 				onMouseUp={disable}
 			>
 				<Legend

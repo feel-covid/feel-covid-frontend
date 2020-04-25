@@ -19,7 +19,10 @@ import { useDisableChartActiveState } from '../../../../hooks/useDisableChartAct
 interface IProps {}
 
 export const TreatmentTypeChart: React.FC<IProps> = (props) => {
-	const { normalizedChartData } = useCountryData();
+	const {
+		normalizedChartData,
+		weekAgoIndexOnNormalizedChartData
+	} = useCountryData();
 	const { t } = useTranslation();
 	const theme = useTheme();
 	const gradientsId = 'TreatmentType';
@@ -27,7 +30,11 @@ export const TreatmentTypeChart: React.FC<IProps> = (props) => {
 
 	return (
 		<ChartContainer title={t('charts.treatmentType.title')}>
-			<AreaChart data={normalizedChartData} ref={chartRef} onMouseUp={disable}>
+			<AreaChart
+				data={normalizedChartData.slice(weekAgoIndexOnNormalizedChartData)}
+				ref={chartRef}
+				onMouseUp={disable}
+			>
 				<Legend {...(legendDefaultProps as any)} />
 
 				<defs>

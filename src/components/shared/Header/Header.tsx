@@ -2,20 +2,19 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled, { css } from 'styled-components/macro';
 import CustomText from '../CustomText/CustomText';
-import { useCountryData } from '../../../hooks/useCountryData';
-import { CasesAmount } from '../CasesAmount/CasesAmount';
-import { IconsEnum, PositiveFactorEnum } from '../../../@types/enums';
+import { IconsEnum } from '../../../@types/enums';
 import { HeaderFilter } from './HeaderFilter/HeaderFilter';
 import { Icon } from '../Icon/Icon';
 import media from '../../../themes/media';
+import { useTogglesContext } from '../../../hooks/useTogglesContext';
+import { TogglesActions } from '../../providers/TogglesProvider/reducer';
 
 interface IProps {}
 
 export const Header: React.FC<IProps> = (props) => {
 	const { t } = useTranslation();
-	const { normalizedData } = useCountryData();
-	const [prevUpdate, currentUpdate] = normalizedData.slice(-2);
 	const [isSubHeaderOpen, setSubHeader] = useState(false);
+	const { dispatch } = useTogglesContext();
 
 	return (
 		<S.Container>
@@ -35,14 +34,15 @@ export const Header: React.FC<IProps> = (props) => {
 					isSubHeaderOpen={isSubHeaderOpen}
 					setSubHeader={setSubHeader}
 				/>
-				<S.ConfirmedCasesContainer>
-					<S.ConfirmedCasesText text={`${t('global.cases.confirmedCases')}:`} />
-					<S.CasesAmount
-						positiveFactor={PositiveFactorEnum.DECREASE}
-						current={currentUpdate.total}
-						before={prevUpdate.total}
-					/>
-				</S.ConfirmedCasesContainer>
+				<S.CreateComparisonContainer
+					onClick={() =>
+						dispatch({ type: TogglesActions.SET_SHOW_CUSTOM_COMPARE })
+					}
+				>
+					<S.CreateComparisonBtn>
+						<CustomText text={t('header.createComparison') as string} />
+					</S.CreateComparisonBtn>
+				</S.CreateComparisonContainer>
 			</S.MainHeader>
 
 			<S.SubHeader isVisible={isSubHeaderOpen}>
@@ -114,21 +114,26 @@ const S = {
 			display: none;
 		`}
 	`,
-	ConfirmedCasesContainer: styled.div`
+	CreateComparisonContainer: styled.div`
 		display: flex;
 		align-items: center;
 		font-weight: bold;
 	`,
-	CasesAmount: styled(CasesAmount)`
-		transform: translateY(0.05rem);
-		font-weight: bold;
+	CreateComparisonBtn: styled.button`
+		outline: none;
+		background: ${({ theme }) => theme.colors.blue2};
+		color: ${({ theme }) => theme.colors.white};
+		padding: 0.6rem 1.5rem;
+		border-radius: 0.3rem;
+		cursor: pointer;
+		transition: 0.3s;
+		background: ${({ theme }) => theme.colors.darkBlue1};
+		border: ${({ theme }) => `0.2rem solid ${theme.colors.blue2}`};
+		letter-spacing: 0.1rem;
 
-		${media.phone} {
-			transform: translateY(0.1rem);
+		&:hover {
+			background: ${({ theme }) => theme.colors.blue2};
 		}
-	`,
-	ConfirmedCasesText: styled(CustomText)`
-		margin-left: 0.8rem;
 	`,
 	SubHeader: styled.div`
 		${sharedHeaderStyles};

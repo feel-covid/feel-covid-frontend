@@ -13,19 +13,8 @@ export const normalizeCountryData = (
 	const { deceased, recovered, mid, light, severe, treatment, date } = country;
 
 	return {
-		// total: deceased + recovered + mid.cases + severe.cases + light.cases,
-		total:
-			treatment.hotel +
-			treatment.hospital +
-			treatment.undecided +
-			treatment.home +
-			deceased +
-			recovered,
-		active:
-			treatment.home +
-			treatment.hospital +
-			treatment.hotel +
-			treatment.undecided,
+		total: deceased + recovered + mid.cases + severe.cases + light.cases,
+		active: mid.cases + severe.cases + light.cases,
 		deceased,
 		recovered,
 		treatment,
@@ -37,13 +26,13 @@ export const normalizeCountryData = (
 };
 
 export const reduceDatesToSignalDay = (
-	normalizedData: Array<INormalizedCountryData>
-): DynamicObject<Array<INormalizedCountryData>> => {
+	normalizedData: INormalizedCountryData[]
+): DynamicObject<INormalizedCountryData[]> => {
 	return normalizedData.reduce((acc, currentCountry) => {
 		const key = endOfDay(new Date(currentCountry.date)).toISOString();
 		acc[key] = [...(acc[key] || []), currentCountry];
 		return acc;
-	}, {} as DynamicObject<Array<INormalizedCountryData>>);
+	}, {} as DynamicObject<INormalizedCountryData[]>);
 };
 
 /**
