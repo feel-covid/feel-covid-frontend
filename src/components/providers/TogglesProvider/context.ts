@@ -12,5 +12,6 @@ export interface ITogglesContext {
 
 export const TogglesContext = React.createContext<ITogglesContext>({
 	state: togglesContextInitialState,
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
 	dispatch: () => {}
 });

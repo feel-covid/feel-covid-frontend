@@ -33,13 +33,13 @@ type Interpolation<T> = {
 		| (() => string);
 };
 
-interface CustomObject extends ObjectConstructor {
+interface ICustomObject extends ObjectConstructor {
 	entries<K extends keyof Breakpoints, T>(
 		o: { [s in K]: T } | ArrayLike<T>
 	): [K, T][];
 }
 
-const object: CustomObject = Object;
+const object: ICustomObject = Object;
 
 const media = object
 	.entries(sizes)
