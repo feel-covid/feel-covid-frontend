@@ -307,6 +307,7 @@ const S = {
 
 		@media (max-height: 580px) {
 			overflow: auto;
+			-webkit-overflow-scrolling: touch;
 		}
 	`,
 	SelectionContainer: styled.div`
@@ -320,7 +321,7 @@ const S = {
 				width: 100%;
 				padding: 2rem 1rem 1rem 1rem;
 				height: unset;
-			
+				-webkit-overflow-scrolling: touch;
 		`};
 
 		@media (max-height: 580px) {
