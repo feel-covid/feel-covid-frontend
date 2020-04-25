@@ -9,6 +9,7 @@ import { CountryDataProvider } from './components/providers/CountryDataProvider/
 import { StatsFilterProvider } from './components/providers/StatsFilterProvider/StatsFilterProvider';
 import { ErrorBoundary } from './components/shared/ErrorBoundry/ErrorBoundary';
 import * as Sentry from '@sentry/browser';
+import { TogglesProvider } from './components/providers/TogglesProvider/TogglesProvider';
 
 if (process.env.NODE_ENV !== 'development') {
 	Sentry.init({ dsn: process.env.REACT_APP_SENTRY_DSN });
@@ -20,7 +21,9 @@ ReactDOM.render(
 			<ErrorBoundary>
 				<CountryDataProvider>
 					<StatsFilterProvider>
-						<App />
+						<TogglesProvider>
+							<App />
+						</TogglesProvider>
 					</StatsFilterProvider>
 				</CountryDataProvider>
 			</ErrorBoundary>

@@ -12,6 +12,9 @@ export interface ICountryDataContext {
 	normalizedData: Array<INormalizedCountryData>;
 	normalizedChartData: Array<INormalizedCountryData>;
 	normalized24HourDiff: Array<INormalized24HoursDiff>;
+	weekAgoIndexOnNormalizedData: number;
+	weekAgoIndexOnNormalizedChartData: number;
+	weekAgoNegativeIndexOnNormalized24HoursDiff: number;
 }
 
 export const CountryDataContext = React.createContext<ICountryDataContext>({
@@ -20,5 +23,8 @@ export const CountryDataContext = React.createContext<ICountryDataContext>({
 	error: null,
 	normalizedData: [],
 	normalizedChartData: [],
-	normalized24HourDiff: []
+	normalized24HourDiff: [],
+	weekAgoIndexOnNormalizedData: 0,
+	weekAgoIndexOnNormalizedChartData: 0,
+	weekAgoNegativeIndexOnNormalized24HoursDiff: 0
 });

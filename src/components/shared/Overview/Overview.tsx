@@ -6,14 +6,14 @@ import get from 'lodash/get';
 import { IStyle } from '../../../@types/interfaces';
 import { useStatsFilterContext } from '../../../hooks/useStatsFilterContext';
 
-interface ICard {
+export interface IOverviewCard {
 	title: string;
 	path: string;
 	positiveFactor: PositiveFactorEnum;
 }
 
 interface IProps extends IStyle {
-	cards: Array<ICard>;
+	cards: Array<IOverviewCard>;
 }
 
 export const Overview: React.FC<IProps> = (props) => {
@@ -24,12 +24,15 @@ export const Overview: React.FC<IProps> = (props) => {
 		<S.Container className={className}>
 			{cards.map((card, index) => {
 				const { title, path, positiveFactor } = card;
+				const current = get(countriesByDate[baseDate], path);
+				const before = get(countriesByDate[prevDate], path);
+
 				return (
 					<DataCard
 						key={index}
 						title={title}
-						current={get(countriesByDate[baseDate], path)}
-						before={get(countriesByDate[prevDate], path)}
+						current={current}
+						before={before}
 						positiveFactor={positiveFactor}
 					/>
 				);

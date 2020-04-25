@@ -5,7 +5,8 @@
 			"headerFilter": {
 				"displayingComparison": "מגמת שינוי בין",
 				"andBetween": "לבין"
-			}
+			},
+			"createComparison": "השווה/י מגמות"
 		},
 		"global": {
 			"increase": "עלייה",
@@ -16,7 +17,7 @@
 			"noChangeSinceLastUpdate": "ללא שינוי",
 			"cases": {
 				"confirmedCases": "סה\"כ נדבקים",
-				"currently": "חולים כעת",
+				"currently": "חולים פעילים",
 				"lightCondition": "במצב קל",
 				"midCondition": "במצב בינוני",
 				"severeCondition": "במצב קשה",
@@ -38,7 +39,7 @@
 				"title": "מגמת חולים פעילים, מחלימים ונפטרים"
 			},
 			"casesChart": {
-				"title": "מגמת מצב החולים"
+				"title": "מגמת מצב החולים (בינוני ומעלה)"
 			},
 			"dailyDiffChart": {
 				"title": "מגמה יומית של נדבקים, מחלימים ונפטרים",
@@ -63,6 +64,11 @@
 		"errorBoundary": {
 			"description": "אופס! התרחשה שגיאה. אנו מטפלים בבעיה.",
 			"eventId": "מזהה שגיאה"
+		},
+		"customCompare": {
+			"header": {
+				"title": "השווה/י מגמות"
+			}
 		}
 	}
 }

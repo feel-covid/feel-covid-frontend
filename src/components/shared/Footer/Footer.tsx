@@ -26,22 +26,13 @@ export const Footer: React.FC<IProps> = (props) => {
 				>
 					{t('global.privacyPolicy')}
 				</S.Link>
-				<S.Divider>|</S.Divider>
 			</S.Tooltip>
-			<S.CreatedBy text={t('footer.createdBy') as string} />{' '}
-			<S.Link
-				target='_blank'
-				href='https://sasonbraha.com/'
-				rel='noopener noreferrer'
-			>
-				Sason Braha
-			</S.Link>
 		</S.Container>
 	);
 };
 
 const S = {
-	Container: styled.div`
+	Container: styled.footer`
 		text-align: center;
 		font-size: 1.2rem;
 		color: ${({ theme }) => theme.colors.gray3};

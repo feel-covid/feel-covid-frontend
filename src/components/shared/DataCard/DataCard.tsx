@@ -42,10 +42,13 @@ const S = {
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
-		padding: 2.3rem;
+		padding: 2.3rem 0;
 		border-radius: 0.4rem;
-
 		flex: 1;
+
+		span {
+			text-align: center;
+		}
 	`
 };
 
