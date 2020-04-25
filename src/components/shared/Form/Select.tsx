@@ -8,6 +8,10 @@ export const Select: React.FC<IProps> = (props) => {
 	return <S.Select {...props}>{props.children}</S.Select>;
 };
 
+/*
+ * Important!
+ * Fontsize must be 16px on mobile to prevent ios from zooming.
+ * */
 const S = {
 	Select: styled.select`
 		padding: 0.7rem 0.3rem;
@@ -20,5 +24,9 @@ const S = {
 		color: white;
 		box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
 		background: ${({ theme }) => theme.colors.darkBlue1};
+
+		@supports (-webkit-touch-callout: none) {
+			font-size: 16px;
+		}
 	`
 };
