@@ -14,7 +14,7 @@ import { INormalizedCountryData } from './interfaces';
 interface IProps extends IChildren {}
 
 export const CountryDataProvider: React.FC<IProps> = ({ children }) => {
-	const now = Date.now();
+	const now = new Date();
 	const res = useRequest(
 		{
 			route: '/country',
