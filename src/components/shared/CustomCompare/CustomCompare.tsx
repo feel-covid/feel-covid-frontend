@@ -1,4 +1,10 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, {
+	useCallback,
+	useEffect,
+	useMemo,
+	useRef,
+	useState
+} from 'react';
 import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import styled, { css, useTheme } from 'styled-components/macro';
@@ -23,6 +29,8 @@ import media from '../../../themes/media';
 import { useTogglesContext } from '../../../hooks/useTogglesContext';
 import { TogglesActions } from '../../providers/TogglesProvider/reducer';
 import { useDisableChartActiveState } from '../../../hooks/useDisableChartActiveState';
+import afterTwoTicks from '../../../utils/afterTwoTicks';
+import useStrictEffect from '../../../hooks/useStrictEffect';
 
 interface IProps {}
 
@@ -48,9 +56,30 @@ export const CustomCompare: React.FC<IProps> = (props) => {
 		weekAgoIndexOnNormalizedChartData
 	);
 	const { chartRef, disable } = useDisableChartActiveState();
+	const contentContainer = useRef<HTMLDivElement>(null);
+
 	const handleCheck = useCallback((key: string) => {
 		setSelectedItems((prevState) => deleteOrAddKey(key, prevState));
 	}, []);
+
+	useStrictEffect(() => {
+		const { showCustomCompare } = state;
+		document.body.style.overflow = showCustomCompare ? 'hidden' : 'visible';
+
+		/*
+		 * "flex-direction: column-reverse" casues the scroll to be the opposite, thus requiring to reset the scroll position to a negative value.
+		 * */
+		if (
+			showCustomCompare &&
+			contentContainer.current &&
+			window.innerWidth <= 500
+		) {
+			contentContainer.current!.scrollTo(
+				0,
+				-contentContainer.current.scrollHeight
+			);
+		}
+	}, [state.showCustomCompare]);
 
 	const selectOptions: DynamicObject<DynamicObject<ISelectionItem>> = useMemo(
 		() => ({
@@ -135,7 +164,7 @@ export const CustomCompare: React.FC<IProps> = (props) => {
 		>
 			<S.InnerContainer isOpen={state.showCustomCompare}>
 				<CustomCompareHeader setStatsBackCount={setStatsBackCount} />
-				<S.ContentContainer>
+				<S.ContentContainer ref={contentContainer}>
 					<S.SelectionContainer>
 						{Object.entries(selectOptions).map(([category, items]) => {
 							return (
@@ -276,7 +305,7 @@ const S = {
 			flex-direction: column-reverse;
 		`};
 
-		@media (max-height: 500px) {
+		@media (max-height: 580px) {
 			overflow: auto;
 		}
 	`,
@@ -287,21 +316,14 @@ const S = {
 		direction: ltr;
 		height: 100%;
 
-		&::-webkit-scrollbar {
-			width: 8px;
-		}
-
 		${media.tablet`
 				width: 100%;
 				padding: 2rem 1rem 1rem 1rem;
 				height: unset;
 			
-				&::-webkit-scrollbar {
-					width: 4px;
-				}
 		`};
 
-		@media (max-height: 500px) {
+		@media (max-height: 580px) {
 			overflow: visible;
 		}
 
