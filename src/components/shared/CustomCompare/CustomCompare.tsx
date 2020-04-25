@@ -303,11 +303,16 @@ const S = {
 
 		${media.tablet`
 			flex-direction: column-reverse;
+			
+					
+			@supports (-webkit-touch-callout: none) {
+				overflow: auto;
+				-webkit-overflow-scrolling: touch;
+			}
 		`};
 
 		@media (max-height: 580px) {
 			overflow: auto;
-			-webkit-overflow-scrolling: touch;
 		}
 	`,
 	SelectionContainer: styled.div`
@@ -322,6 +327,11 @@ const S = {
 				padding: 2rem 1rem 1rem 1rem;
 				height: unset;
 				-webkit-overflow-scrolling: touch;
+				direction: rtl;
+		
+				@supports (-webkit-touch-callout: none) {
+						overflow: visible;
+				}
 		`};
 
 		@media (max-height: 580px) {

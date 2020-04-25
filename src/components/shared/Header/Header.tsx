@@ -129,6 +129,7 @@ const S = {
 		transition: 0.3s;
 		background: ${({ theme }) => theme.colors.darkBlue1};
 		border: ${({ theme }) => `0.2rem solid ${theme.colors.blue2}`};
+		letter-spacing: 0.1rem;
 
 		&:hover {
 			background: ${({ theme }) => theme.colors.blue2};
