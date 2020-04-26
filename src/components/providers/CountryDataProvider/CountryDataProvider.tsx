@@ -31,14 +31,16 @@ export const CountryDataProvider: React.FC<IProps> = ({ children }) => {
 	if (res.loading) return null;
 
 	const normalizedData = res.data.map(normalizeCountryData);
-	const normalizedChartData = normalizeChartData(normalizedData);
-	const weekAgo = startOfDay(subDays(now, 7));
+
+	const weekAgoFromLastUpdate = startOfDay(
+		subDays(new Date(normalizedData[normalizedData.length - 1].date), 7)
+	);
 
 	const weekAgoIndexOnNormalizedData = normalizedData.reduceRight(
 		(acc: number, currentStat: INormalizedCountryData, index: number) => {
 			const isCurrentBetweenInterval = isWithinInterval(
 				new Date(currentStat.date),
-				{ start: weekAgo, end: now }
+				{ start: weekAgoFromLastUpdate, end: now }
 			);
 			if (isCurrentBetweenInterval) {
 				acc = index;
@@ -47,9 +49,12 @@ export const CountryDataProvider: React.FC<IProps> = ({ children }) => {
 		},
 		0
 	);
+
 	const weekAgoIndexOnNormalizedChartData = Math.round(
 		weekAgoIndexOnNormalizedData / 2
 	);
+
+	const normalizedChartData = normalizeChartData(normalizedData);
 
 	return (
 		<CountryDataContext.Provider
