@@ -96,7 +96,7 @@ const S = {
 		`}
 	`,
 	CogIcon: styled(Icon)`
-		margin-right: 0.5rem;
+		margin-right: 0.7rem;
 		pointer-events: none;
 		fill: ${({ theme }) => theme.colors.white};
 		width: 1.6rem;
