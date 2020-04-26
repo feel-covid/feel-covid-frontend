@@ -45,9 +45,10 @@ export const CustomCompare: React.FC<IProps> = (props) => {
 	const theme = useTheme();
 	const { state, dispatch } = useTogglesContext();
 	const [selectedItems, setSelectedItems] = useState<DynamicObject<boolean>>({
-		'1.total': true,
-		'2.recovered': true
+		total: true,
+		recovered: true
 	});
+
 	const {
 		normalizedChartData,
 		weekAgoIndexOnNormalizedChartData
@@ -65,86 +66,64 @@ export const CustomCompare: React.FC<IProps> = (props) => {
 	useStrictEffect(() => {
 		const { showCustomCompare } = state;
 		document.body.style.overflow = showCustomCompare ? 'hidden' : 'visible';
-
-		/*
-		 * "flex-direction: column-reverse" casues the scroll to be the opposite, thus requiring to reset the scroll position to a negative value.
-		 * */
-		if (
-			showCustomCompare &&
-			contentContainer.current &&
-			window.innerWidth <= 500
-		) {
-			contentContainer.current!.scrollTo(
-				0,
-				-contentContainer.current.scrollHeight
-			);
-		}
 	}, [state.showCustomCompare]);
 
-	const selectOptions: DynamicObject<DynamicObject<ISelectionItem>> = useMemo(
+	const selectOptions: DynamicObject<ISelectionItem> = useMemo(
 		() => ({
-			1: {
-				total: {
-					title: t('global.cases.confirmedCases'),
-					path: 'total',
-					color: theme.colors.blue2
-				},
-				active: {
-					title: t('global.cases.currently'),
-					path: 'active',
-					color: '#5e35b1'
-				}
+			total: {
+				title: t('global.cases.confirmedCases'),
+				path: 'total',
+				color: theme.colors.blue2
 			},
-			2: {
-				recovered: {
-					title: t('global.cases.recovered'),
-					path: 'recovered',
-					color: '#00796b'
-				},
-				deceased: {
-					title: t('global.cases.deceased'),
-					path: 'deceased',
-					color: '#d50000'
-				}
+			active: {
+				title: t('global.cases.currently'),
+				path: 'active',
+				color: '#5e35b1'
 			},
-			3: {
-				light: {
-					title: t('global.cases.lightCondition'),
-					path: 'light',
-					color: theme.colors.green1
-				},
-				mid: {
-					title: t('global.cases.midCondition'),
-					path: 'mid',
-					color: theme.colors.orange2
-				},
-				severe: {
-					title: t('global.cases.severeCondition'),
-					path: 'severe.cases',
-					color: theme.colors.orange1
-				},
-				intubated: {
-					title: t('global.cases.intubated'),
-					path: 'severe.intubated',
-					color: theme.colors.red1
-				}
+			light: {
+				title: t('global.cases.lightCondition'),
+				path: 'light',
+				color: theme.colors.green1
 			},
-			4: {
-				hospital: {
-					title: t('global.treatment.hospital'),
-					path: 'treatment.hospital',
-					color: '#795548'
-				},
-				home: {
-					title: t('global.treatment.home'),
-					path: 'treatment.home',
-					color: '#33691e'
-				},
-				hotel: {
-					title: t('global.treatment.hotel'),
-					path: 'treatment.hotel',
-					color: '#9e9d24'
-				}
+			mid: {
+				title: t('global.cases.midCondition'),
+				path: 'mid',
+				color: theme.colors.orange2
+			},
+			severe: {
+				title: t('global.cases.severeCondition'),
+				path: 'severe.cases',
+				color: theme.colors.orange1
+			},
+			intubated: {
+				title: t('global.cases.intubated'),
+				path: 'severe.intubated',
+				color: theme.colors.red1
+			},
+			recovered: {
+				title: t('global.cases.recovered'),
+				path: 'recovered',
+				color: '#00796b'
+			},
+			deceased: {
+				title: t('global.cases.deceased'),
+				path: 'deceased',
+				color: '#d50000'
+			},
+			hospital: {
+				title: t('global.treatment.hospital'),
+				path: 'treatment.hospital',
+				color: '#795548'
+			},
+			hotel: {
+				title: t('global.treatment.hotel'),
+				path: 'treatment.hotel',
+				color: '#9e9d24'
+			},
+			home: {
+				title: t('global.treatment.home'),
+				path: 'treatment.home',
+				color: '#33691e'
 			}
 		}),
 		[]
@@ -158,35 +137,16 @@ export const CustomCompare: React.FC<IProps> = (props) => {
 					e.target === e.currentTarget ||
 					(e.target as HTMLDivElement).id === 'custom-compare-close-icon'
 				) {
-					dispatch({ type: TogglesActions.SET_SHOW_CUSTOM_COMPARE });
+					dispatch({
+						type: TogglesActions.SET_SHOW_CUSTOM_COMPARE,
+						payload: false
+					});
 				}
 			}}
 		>
 			<S.InnerContainer isOpen={state.showCustomCompare}>
 				<CustomCompareHeader setStatsBackCount={setStatsBackCount} />
 				<S.ContentContainer ref={contentContainer}>
-					<S.SelectionContainer>
-						{Object.entries(selectOptions).map(([category, items]) => {
-							return (
-								<React.Fragment key={category}>
-									<S.SelectionItemsContainer>
-										<S.CheckboxesContainer>
-											{Object.entries(items).map(([key, value]) => (
-												<S.Checkbox
-													key={key}
-													title={value.title}
-													checked={Boolean(selectedItems[`${category}.${key}`])}
-													onCheck={() => handleCheck(`${category}.${key}`)}
-												/>
-											))}
-										</S.CheckboxesContainer>
-									</S.SelectionItemsContainer>
-									<hr />
-								</React.Fragment>
-							);
-						})}
-					</S.SelectionContainer>
-
 					<S.ChartContainer>
 						<ChartContainer title=''>
 							<LineChart
@@ -236,6 +196,17 @@ export const CustomCompare: React.FC<IProps> = (props) => {
 							</LineChart>
 						</ChartContainer>
 					</S.ChartContainer>
+
+					<S.SelectionContainer>
+						{Object.entries(selectOptions).map(([key, value]) => (
+							<S.Checkbox
+								key={key}
+								title={value.title}
+								checked={Boolean(selectedItems[key])}
+								onCheck={() => handleCheck(key)}
+							/>
+						))}
+					</S.SelectionContainer>
 				</S.ContentContainer>
 			</S.InnerContainer>
 		</S.Wrapper>,
@@ -258,6 +229,9 @@ const S = {
 		opacity: 0;
 		visibility: hidden;
 		transition: 0.3s;
+		overflow: auto;
+		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+		-webkit-tap-highlight-color: transparent;
 
 		${({ isOpen }) =>
 			isOpen &&
@@ -271,7 +245,7 @@ const S = {
 		display: flex;
 		background: ${({ theme }) => theme.colors.darkBlue1};
 		width: 100%;
-		height: 60vh;
+		min-height: 50vh;
 		max-width: 130rem;
 		border-radius: 0.5rem;
 		box-shadow: 0 0 2rem rgba(0, 0, 0, 0.2);
@@ -297,16 +271,15 @@ const S = {
 	ContentContainer: styled.div`
 		display: flex;
 		align-items: center;
-
+		flex-direction: row-reverse;
 		height: calc(100% - 5.6rem);
 		width: 100%;
+		overflow: auto;
 
 		${media.tablet`
-			flex-direction: column-reverse;
-			
-					
+			flex-direction: column;
+		
 			@supports (-webkit-touch-callout: none) {
-				overflow: auto;
 				-webkit-overflow-scrolling: touch;
 			}
 		`};
@@ -317,17 +290,24 @@ const S = {
 	`,
 	SelectionContainer: styled.div`
 		flex: 1;
-		overflow: auto;
-		padding: 1rem 2rem 1rem 0;
-		direction: ltr;
-		height: 100%;
+		height: 50vh;
+		align-self: flex-start;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-gap: 1rem;
+		padding: 1rem 1rem 1rem 0;
+
+		@media (max-height: 700px) {
+			height: unset;
+		}
 
 		${media.tablet`
 				width: 100%;
-				padding: 2rem 1rem 1rem 1rem;
+				height: 100%;
+				padding: 1rem;
 				height: unset;
 				-webkit-overflow-scrolling: touch;
-				direction: rtl;
+
 		
 				@supports (-webkit-touch-callout: none) {
 						overflow: visible;
@@ -336,17 +316,6 @@ const S = {
 
 		@media (max-height: 580px) {
 			overflow: visible;
-		}
-
-		hr {
-			border: 0.1rem dashed #383838;
-			display: block;
-			width: 98%;
-			margin: 0.7rem 0;
-
-			&:last-child {
-				display: none;
-			}
 		}
 	`,
 	ChartContainer: styled.div`
@@ -362,17 +331,12 @@ const S = {
 				padding: 0;
 		`}
 	`,
-	SelectionItemsContainer: styled.div`
-		direction: rtl;
-		width: 100%;
-	`,
 	SelectionTitle: styled(CustomText)`
 		font-weight: bold;
 	`,
 	Checkbox: styled(Checkbox)`
-		margin: 1rem 0;
-	`,
-	CheckboxesContainer: styled.div`
-		width: 100%;
+		&:last-child {
+			grid-column: 1 / 3;
+		}
 	`
 };
