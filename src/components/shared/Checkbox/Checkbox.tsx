@@ -41,6 +41,12 @@ const S = {
 		justify-content: center;
 		align-items: center;
 
+		@media not all and (pointer: coarse) {
+			&:hover {
+				background: #2a344e;
+			}
+		}
+
 		${({ checked }) =>
 			checked &&
 			css`
