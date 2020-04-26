@@ -123,16 +123,16 @@ const S = {
 		outline: none;
 		background: ${({ theme }) => theme.colors.blue2};
 		color: ${({ theme }) => theme.colors.white};
-		padding: 0.6rem 1.5rem;
+		padding: 0.5rem 1.4rem;
 		border-radius: 0.3rem;
 		cursor: pointer;
 		transition: 0.3s;
-		background: ${({ theme }) => theme.colors.darkBlue1};
+		background: ${({ theme }) => theme.colors.blue2};
 		border: ${({ theme }) => `0.2rem solid ${theme.colors.blue2}`};
 		letter-spacing: 0.1rem;
 
 		&:hover {
-			background: ${({ theme }) => theme.colors.blue2};
+			background: ${({ theme }) => theme.colors.darkBlue1};
 		}
 	`,
 	SubHeader: styled.div`

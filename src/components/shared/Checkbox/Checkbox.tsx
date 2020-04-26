@@ -13,11 +13,14 @@ interface IProps extends IStyle {
 
 export const Checkbox: React.FC<IProps> = (props) => {
 	const { t } = useTranslation();
-	const { onCheck, title, ...rest } = props;
+	const { onCheck, title, checked, ...rest } = props;
 	return (
-		<S.Container onClick={props.onCheck} className={props.className}>
+		<S.Container
+			checked={checked}
+			onClick={props.onCheck}
+			className={props.className}
+		>
 			<S.Title text={title} />
-			<S.Box {...rest} />
 		</S.Container>
 	);
 };
@@ -27,28 +30,21 @@ Checkbox.defaultProps = {
 };
 
 const S = {
-	Container: styled.div`
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
+	Container: styled.div<Partial<IProps>>`
 		cursor: pointer;
 		background: ${({ theme }) => theme.colors.darkBlue2};
 		padding: 1rem 2rem;
 		border-radius: 0.5rem;
-	`,
-	Box: styled.div<Partial<IProps>>`
+		border: 0.2rem solid transparent;
+		transition: 0.2s;
 		display: flex;
-		width: ${({ size }) => size};
-		height: ${({ size }) => size};
-
-		transition: 0.3s;
-		border-radius: 0.4rem;
-		border: 0.1rem solid #c7b8b8;
+		justify-content: center;
+		align-items: center;
 
 		${({ checked }) =>
 			checked &&
 			css`
-				background: ${({ theme }) => theme.colors.blue2};
+				border-color: ${({ theme }) => theme.colors.blue2};
 			`};
 	`,
 	Title: styled(CustomText)`

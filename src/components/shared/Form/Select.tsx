@@ -24,7 +24,7 @@ const S = {
 		position: relative;
 	`,
 	Select: styled.select`
-		padding: 0.7rem 0.3rem 0.7rem 2.3rem;
+		padding: 0.7rem 0.5rem 0.7rem 2.3rem;
 		font-size: 1.6rem;
 		border-radius: 0.3rem;
 		outline: none;
