@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { DynamicObject } from '../@types/interfaces';
+import * as Sentry from '@sentry/browser';
 
 interface IRequestParams {
 	method?: string;
@@ -23,14 +24,22 @@ const useRequest = (_params: IRequestParams, deps: Array<any> = []) => {
 	url.search = new URLSearchParams(params).toString();
 
 	useEffect(() => {
-		fetch((url as unknown) as string, {
-			method,
-			credentials: 'same-origin'
-		})
-			.then((res: Response) => res.json())
-			.then(setData)
-			.catch(setError)
-			.finally(() => setLoading(false));
+		const requestResource = async () => {
+			try {
+				const data = await fetch((url as unknown) as string, {
+					method,
+					credentials: 'same-origin'
+				}).then((res) => res.json());
+				setData(data);
+			} catch (ex) {
+				Sentry.captureException(ex);
+				setError(ex);
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		requestResource();
 	}, deps);
 
 	return { loading, error, data };
