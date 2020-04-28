@@ -24,7 +24,7 @@
 		"build:css": "postcss src/tailwind.css -o src/tailwind.output.css --env production",
 		"watch:css": "postcss src/tailwind.css -o src/tailwind.output.css -w",
 		"start": "concurrently \"npm run watch:css\" \"react-scripts start\"",
-		"build": "yarn test && cross-env GENERATE_SOURCEMAP=false react-scripts build",
+		"build": "cross-env CI=true yarn test && cross-env GENERATE_SOURCEMAP=false react-scripts build",
 		"test": "react-scripts test --coverage",
 		"eject": "react-scripts eject",
 		"start:storybook": "start-storybook -p 9009 -s public",
@@ -36,7 +36,7 @@
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "yarn lint && yarn test"
+			"pre-commit": "yarn lint && cross-env CI=true yarn test"
 		}
 	},
 	"lint-staged": {

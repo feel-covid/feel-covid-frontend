@@ -17,9 +17,12 @@ const CustomText: React.FC<IProps> = (props) => {
 	const { link, href, text, className, percent, ...rest } = props;
 
 	return link ? (
-		<S.Link rel='noopener noreferrer' href={href} target='_blank' {...rest}>
-			{text}
-		</S.Link>
+		<S.Link
+			rel='noopener noreferrer'
+			href={href}
+			target='_blank'
+			{...rest}
+		></S.Link>
 	) : (
 		<S.Text className={className} {...rest}>
 			{text}
