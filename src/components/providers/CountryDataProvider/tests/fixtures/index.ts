@@ -6,65 +6,65 @@ import {
 } from '../../../../../../tests/fixtures';
 
 export const reduceDatesToSingleDayResultFixture = {
-	'2020-03-30T20:59:59.999Z': [
+	'30.03.2020': [
 		{
-			total: 4347,
 			active: 4198,
+			date: '2020-03-30T05:00:00.000Z',
 			deceased: 15,
-			recovered: 134,
-			treatment: {
-				home: 2107,
-				hotel: 586,
-				hospital: 543,
-				undecided: 962
-			},
-			mid: 81,
 			light: 4037,
+			mid: 81,
+			recovered: 134,
 			severe: {
 				cases: 80,
 				intubated: 63
 			},
-			date: '2020-03-30T05:00:00.000Z'
-		},
-		{
-			total: 4695,
-			active: 4518,
-			deceased: 16,
-			recovered: 161,
+			total: 4347,
 			treatment: {
 				home: 2107,
+				hospital: 543,
 				hotel: 586,
-				hospital: 527,
-				undecided: 1269
-			},
-			mid: 90,
+				undecided: 962
+			}
+		},
+		{
+			active: 4518,
+			date: '2020-03-30T17:00:00.000Z',
+			deceased: 16,
 			light: 4349,
+			mid: 90,
+			recovered: 161,
 			severe: {
 				cases: 79,
 				intubated: 66
 			},
-			date: '2020-03-30T17:00:00.000Z'
+			total: 4695,
+			treatment: {
+				home: 2107,
+				hospital: 527,
+				hotel: 586,
+				undecided: 1269
+			}
 		}
 	],
-	'2020-03-31T20:59:59.999Z': [
+	'31.03.2020': [
 		{
-			total: 4831,
 			active: 4651,
+			date: '2020-03-31T05:00:00.000Z',
 			deceased: 17,
-			recovered: 163,
-			treatment: {
-				home: 2580,
-				hotel: 619,
-				hospital: 573,
-				undecided: 879
-			},
-			mid: 95,
 			light: 4473,
+			mid: 95,
+			recovered: 163,
 			severe: {
 				cases: 83,
 				intubated: 69
 			},
-			date: '2020-03-31T05:00:00.000Z'
+			total: 4831,
+			treatment: {
+				home: 2580,
+				hospital: 573,
+				hotel: 619,
+				undecided: 879
+			}
 		}
 	]
 };

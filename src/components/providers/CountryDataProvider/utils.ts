@@ -3,7 +3,7 @@ import {
 	INormalized24HoursDiff,
 	INormalizedCountryData
 } from './interfaces';
-import { endOfDay } from 'date-fns';
+import { endOfDay, format } from 'date-fns';
 import { DynamicObject } from '../../../@types/interfaces';
 import { differenceInHours } from 'date-fns';
 
@@ -29,7 +29,7 @@ export const reduceDatesToSignalDay = (
 	normalizedData: INormalizedCountryData[]
 ): DynamicObject<INormalizedCountryData[]> => {
 	return normalizedData.reduce((acc, currentCountry) => {
-		const key = endOfDay(new Date(currentCountry.date)).toISOString();
+		const key = format(new Date(currentCountry.date), 'dd.MM.yyyy');
 		acc[key] = [...(acc[key] || []), currentCountry];
 		return acc;
 	}, {} as DynamicObject<INormalizedCountryData[]>);
