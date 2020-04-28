@@ -12,7 +12,6 @@ interface IProps extends IStyle {
 }
 
 export const Checkbox: React.FC<IProps> = (props) => {
-	const { t } = useTranslation();
 	const { onCheck, title, checked, ...rest } = props;
 	return (
 		<S.Container

@@ -55,25 +55,32 @@ export const normalize24HoursDiff = (
 
 	const dateValues = Object.values(countryDataObjectByDate);
 
-	const acc: Array<INormalized24HoursDiff> = [];
+	const diffIn24 = dateValues
+		.reduceRight((acc, currentDate, index) => {
+			if (index === 0) return acc;
+			const [currentDayFirstUpdate] = currentDate;
+			const [prevDayFirstUpdate] = dateValues[index - 1];
 
-	for (let i = dateValues.length - 1; i > 0; i--) {
-		const currentDay = dateValues[i][0];
-		const prevDay = dateValues[i - 1][0];
+			const isDateDiffInHoursSmallerThan20 =
+				differenceInHours(
+					new Date(currentDayFirstUpdate.date),
+					new Date(prevDayFirstUpdate.date)
+				) < 20;
 
-		const isDateDiffInHoursSmallerThan20 =
-			differenceInHours(new Date(currentDay.date), new Date(prevDay.date)) < 20;
+			if (isDateDiffInHoursSmallerThan20) return acc;
 
-		if (isDateDiffInHoursSmallerThan20) continue;
+			acc.push({
+				recovered:
+					currentDayFirstUpdate.recovered - prevDayFirstUpdate.recovered,
+				total: currentDayFirstUpdate.total - prevDayFirstUpdate.total,
+				date: currentDayFirstUpdate.date,
+				compareDate: prevDayFirstUpdate.date,
+				deceased: currentDayFirstUpdate.deceased - prevDayFirstUpdate.deceased
+			});
 
-		acc.push({
-			recovered: currentDay.recovered - prevDay.recovered,
-			total: currentDay.total - prevDay.total,
-			date: currentDay.date,
-			compareDate: prevDay.date,
-			deceased: currentDay.deceased - prevDay.deceased
-		});
-	}
+			return acc;
+		}, [] as INormalized24HoursDiff[])
+		.reverse();
 
-	return acc.reverse();
+	return diffIn24;
 };

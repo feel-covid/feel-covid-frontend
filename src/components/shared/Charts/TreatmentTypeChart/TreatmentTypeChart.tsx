@@ -50,7 +50,7 @@ export const TreatmentTypeChart: React.FC<IProps> = (props) => {
 					dataKey='treatment.home'
 					fill={`url(#${gradientsId}green1)`}
 					stroke={theme.colors.green1}
-					strokeWidth={3}
+					strokeWidth={3.5}
 					{...animationDefaultProps}
 				/>
 
@@ -60,7 +60,7 @@ export const TreatmentTypeChart: React.FC<IProps> = (props) => {
 					dataKey='treatment.hotel'
 					fill={`url(#${gradientsId}blue2)`}
 					stroke={theme.colors.blue2}
-					strokeWidth={3}
+					strokeWidth={3.5}
 					{...animationDefaultProps}
 				/>
 
@@ -70,7 +70,7 @@ export const TreatmentTypeChart: React.FC<IProps> = (props) => {
 					dataKey='treatment.hospital'
 					fill={`url(#${gradientsId}orange1)`}
 					stroke={theme.colors.orange1}
-					strokeWidth={3}
+					strokeWidth={3.5}
 					{...animationDefaultProps}
 				/>
 
