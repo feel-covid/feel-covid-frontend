@@ -42,6 +42,8 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 					<Gradients
 						colors={['blue2', 'green1', 'red1']}
 						idPrefix={gradientsId}
+						startOpacity={0.7}
+						endOpacity={0}
 					/>
 				</defs>
 
@@ -51,7 +53,7 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 					dataKey='active'
 					stroke={theme.colors.blue2}
 					fill={`url(#${gradientsId}blue2)`}
-					strokeWidth={3}
+					strokeWidth={3.5}
 					fillOpacity={1}
 					{...animationDefaultProps}
 				/>
@@ -62,7 +64,7 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 					dataKey='recovered'
 					fill={`url(#${gradientsId}green1)`}
 					stroke={theme.colors.green1}
-					strokeWidth={3}
+					strokeWidth={3.5}
 					fillOpacity={1}
 					{...animationDefaultProps}
 				/>
@@ -72,7 +74,7 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 					type='monotone'
 					dataKey='deceased'
 					fill={`url(#${gradientsId}red1)`}
-					strokeWidth={3}
+					strokeWidth={3.5}
 					fillOpacity={1}
 					stroke={theme.colors.red1}
 					{...animationDefaultProps}

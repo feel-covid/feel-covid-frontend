@@ -13,6 +13,10 @@ export interface IStyle {
 	className?: string;
 }
 
+export interface ITestId {
+	'data-testid'?: string;
+}
+
 export interface ITheme {
 	theme: DefaultTheme;
 }

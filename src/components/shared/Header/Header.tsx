@@ -58,7 +58,7 @@ export const Header: React.FC<IProps> = (props) => {
 const sharedHeaderStyles = css`
 	display: flex;
 	background: ${({ theme }) => theme.colors.darkBlue2};
-	padding: 0 2rem;
+	padding: 0 1.1rem 0 1rem;
 	align-items: center;
 	justify-content: space-between;
 	box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.2);

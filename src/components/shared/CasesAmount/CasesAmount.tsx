@@ -36,6 +36,7 @@ export const CasesAmount: React.FC<IProps> = (props) => {
 			<S.CurrentText size={fontSize} text={current.toLocaleString()} />
 			{trend !== 0 && (
 				<S.ArrowIcon
+					data-testid='CasesAmount.ArrowIcon'
 					type={IconsEnum.Arrow}
 					trend={trend}
 					iconSize={iconSize!}
@@ -66,6 +67,7 @@ const S = {
 		margin: 0.4rem 0 0.6rem 0;
 		color: currentColor;
 	`,
+	ArrowIconContainer: styled.div``,
 	ArrowIcon: styled(Icon)<{ trend: number; iconSize: string }>`
 		margin-right: 0.5rem;
 		width: ${({ iconSize }) => iconSize};
