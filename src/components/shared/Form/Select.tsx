@@ -45,5 +45,6 @@ const S = {
 		top: 50%;
 		transform: translateY(-50%);
 		fill: white;
+		pointer-events: none;
 	`
 };
