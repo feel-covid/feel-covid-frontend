@@ -11,7 +11,9 @@ const App: React.FC<IProps> = () => {
 	const { loading } = useCountryData();
 
 	useEffect(() => {
-		hideLoadingSpinner();
+		if (!loading) {
+			hideLoadingSpinner();
+		}
 	}, [loading]);
 
 	useEffect(() => {
