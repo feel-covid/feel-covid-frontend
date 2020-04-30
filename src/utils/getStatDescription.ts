@@ -14,15 +14,13 @@ export const getStatDescription = ({ before, current, context }: IParams) => {
 	if (trend === 0) {
 		description = i18n.t('global.noChangeSinceLastUpdate');
 	} else {
-		{
-			const prefixTranslation =
-				trend === 1 ? i18n.t('global.increase') : i18n.t('global.decrease');
-			const ofTranslation = i18n.t('global.of');
-			const asTranslation = i18n.t('global.as');
+		const prefixTranslation =
+			trend === 1 ? i18n.t('global.increase') : i18n.t('global.decrease');
+		const ofTranslation = i18n.t('global.of');
+		const asTranslation = i18n.t('global.as');
 
-			/* prettier-ignore */
-			description = `${prefixTranslation} ${ofTranslation} ${Math.abs(actualDiff)}, ${asTranslation}${percentDiff}%`;
-		}
+		/* prettier-ignore */
+		description = `${prefixTranslation} ${ofTranslation} ${Math.abs(actualDiff)}, ${asTranslation}${percentDiff}%`;
 	}
 
 	return {
