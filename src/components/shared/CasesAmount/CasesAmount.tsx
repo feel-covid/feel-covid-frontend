@@ -74,6 +74,6 @@ const S = {
 		height: ${({ iconSize }) => iconSize};
 		transform: ${({ trend }) => `rotate(${trend === 1 ? 0 : 180}deg)`};
 		fill: currentColor;
-		transition: 0.3s;
+		transition: transform 0.3s;
 	`
 };
