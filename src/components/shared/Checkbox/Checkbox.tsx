@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import styled, { css } from 'styled-components/macro';
 import { IStyle, PlainFunction } from '../../../@types/interfaces';
 import CustomText from '../CustomText/CustomText';
@@ -12,11 +11,11 @@ interface IProps extends IStyle {
 }
 
 export const Checkbox: React.FC<IProps> = (props) => {
-	const { onCheck, title, checked, ...rest } = props;
+	const { onCheck, title, checked } = props;
 	return (
 		<S.Container
 			checked={checked}
-			onClick={props.onCheck}
+			onClick={onCheck}
 			className={props.className}
 		>
 			<S.Title text={title} />

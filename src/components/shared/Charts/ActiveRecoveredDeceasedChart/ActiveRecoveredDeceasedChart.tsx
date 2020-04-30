@@ -42,21 +42,10 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 					<Gradients
 						colors={['blue2', 'green1', 'red1']}
 						idPrefix={gradientsId}
-						startOpacity={0.7}
+						startOpacity={0.5}
 						endOpacity={0}
 					/>
 				</defs>
-
-				<Area
-					name={t('global.cases.numOfCases') as any}
-					type='monotone'
-					dataKey='active'
-					stroke={theme.colors.blue2}
-					fill={`url(#${gradientsId}blue2)`}
-					strokeWidth={3.5}
-					fillOpacity={1}
-					{...animationDefaultProps}
-				/>
 
 				<Area
 					name={t('global.cases.recovered') as any}
@@ -66,6 +55,17 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 					stroke={theme.colors.green1}
 					strokeWidth={3.5}
 					fillOpacity={1}
+					{...animationDefaultProps}
+				/>
+
+				<Area
+					name={t('global.cases.numOfCases') as any}
+					type='monotone'
+					dataKey='active'
+					stroke={theme.colors.blue2}
+					fill={`url(#${gradientsId}blue2)`}
+					strokeWidth={3.5}
+					fillOpacity={0.5}
 					{...animationDefaultProps}
 				/>
 

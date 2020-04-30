@@ -3,9 +3,8 @@ import {
 	INormalized24HoursDiff,
 	INormalizedCountryData
 } from './interfaces';
-import { endOfDay, format } from 'date-fns';
+import { differenceInHours, format } from 'date-fns';
 import { DynamicObject } from '../../../@types/interfaces';
-import { differenceInHours } from 'date-fns';
 
 export const normalizeCountryData = (
 	country: ICountry

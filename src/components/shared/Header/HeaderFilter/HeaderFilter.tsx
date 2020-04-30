@@ -35,7 +35,7 @@ export const HeaderFilter: React.FC<IProps> = (props) => {
 				setSubHeader(false);
 			}
 		},
-		[isSubHeaderOpen]
+		[isSubHeaderOpen, setPrevDate, setSubHeader]
 	);
 
 	return (

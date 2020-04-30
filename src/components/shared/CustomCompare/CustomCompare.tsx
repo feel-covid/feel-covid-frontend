@@ -1,10 +1,4 @@
-import React, {
-	useCallback,
-	useEffect,
-	useMemo,
-	useRef,
-	useState
-} from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import styled, { css, useTheme } from 'styled-components/macro';
@@ -29,7 +23,6 @@ import media from '../../../themes/media';
 import { useTogglesContext } from '../../../hooks/useTogglesContext';
 import { TogglesActions } from '../../providers/TogglesProvider/reducer';
 import { useDisableChartActiveState } from '../../../hooks/useDisableChartActiveState';
-import afterTwoTicks from '../../../utils/afterTwoTicks';
 import useStrictEffect from '../../../hooks/useStrictEffect';
 
 interface IProps {}
