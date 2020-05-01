@@ -51,7 +51,7 @@ export const HeaderFilter: React.FC<IProps> = (props) => {
 						<option key={date} value={date}>
 							{format(
 								new Date(date),
-								DateFormatsEnum.FULL_MONTH_NAME_WITH_DAY_AND_TIME,
+								DateFormatsEnum.PART_MONTH_NAME_WITH_DAY_AND_TIME,
 								{ locale: he }
 							)}
 						</option>
