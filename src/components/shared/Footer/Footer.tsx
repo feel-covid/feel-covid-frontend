@@ -26,7 +26,16 @@ export const Footer: React.FC<IProps> = (props) => {
 				>
 					{t('global.privacyPolicy')}
 				</S.Link>
+				<S.Divider>|</S.Divider>
 			</S.Tooltip>
+			<S.CreatedBy text={t('footer.createdBy') as string} />{' '}
+			<S.Link
+				target='_blank'
+				href='https://www.linkedin.com/in/sasonbraha/'
+				rel='noopener noreferrer'
+			>
+				Sason Braha
+			</S.Link>
 		</S.Container>
 	);
 };

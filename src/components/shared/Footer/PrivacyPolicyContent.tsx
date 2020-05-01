@@ -9,13 +9,13 @@ export const PrivacyPolicyContent: React.FC<IProps> = (props) => {
 	const { t } = useTranslation();
 	return (
 		<S.Container>
-			<CustomText text={`${t('footer.privacyPolicy.weAreUsing')} `} />
+			<CustomText text={`${t('footer.privacyPolicy.weAreUsing')}`} />
 			<CustomText
 				text={t('footer.privacyPolicy.googleAnalytics') as string}
 				href='https://support.google.com/analytics/answer/6004245?ref_topic=2919631'
 				link
 			/>{' '}
-			<CustomText text={`${t('footer.privacyPolicy.forBasicInfo')} `} />{' '}
+			<CustomText text={`${t('footer.privacyPolicy.forBasicInfo')}`} />{' '}
 			<CustomText
 				text={t('footer.privacyPolicy.sentry') as string}
 				href='https://sentry.io/privacy/'
