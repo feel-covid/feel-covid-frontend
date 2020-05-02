@@ -20,7 +20,7 @@ export const CustomCompareHeader: React.FC<IProps> = (props) => {
 		<S.Container>
 			<CustomText text={t('customCompare.header.title') as string} />
 			<S.SelectAndCloseContainer>
-				<Select
+				<S.Select
 					onChange={(e: ChangeEvent<HTMLSelectElement>) => {
 						props.setStatsBackCount(Number(e.target.value));
 					}}
@@ -29,7 +29,7 @@ export const CustomCompareHeader: React.FC<IProps> = (props) => {
 						מהשבוע האחרון
 					</option>
 					<option value='0'>מהחודש האחרון</option>
-				</Select>
+				</S.Select>
 
 				<S.CloseIconContainer id='custom-compare-close-icon'>
 					<S.CloseIcon type={IconsEnum.Close} />
@@ -70,5 +70,8 @@ const S = {
 		justify-content: center;
 		align-items: center;
 		height: 100%;
+	`,
+	Select: styled(Select)`
+		padding-left: 2rem;
 	`
 };
