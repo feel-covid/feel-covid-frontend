@@ -55,7 +55,7 @@ const S = {
 	`,
 	CloseIconContainer: styled.div`
 		cursor: pointer;
-		padding: 0 2rem 0 1rem;
+		padding: 1rem 2rem 1rem 1rem;
 		transform: translateY(0.22rem);
 	`,
 	CloseIcon: styled(Icon)`
