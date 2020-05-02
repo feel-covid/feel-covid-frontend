@@ -1,4 +1,4 @@
-import React, { SelectHTMLAttributes } from 'react';
+import React, { SelectHTMLAttributes, useRef } from 'react';
 import styled from 'styled-components/macro';
 import { IStyle, Ref } from '../../../@types/interfaces';
 import { IconsEnum } from '../../../@types/enums';
@@ -8,9 +8,20 @@ interface IProps extends IStyle, SelectHTMLAttributes<HTMLSelectElement> {}
 
 export const Select = React.forwardRef<HTMLSelectElement, IProps>(
 	(props, ref) => {
+		const { onChange, ...rest } = props;
+
 		return (
 			<S.Container>
-				<S.Select ref={ref} {...props}>
+				<S.Select
+					ref={ref}
+					{...rest}
+					onChange={(e) => {
+						if (onChange) {
+							onChange(e);
+						}
+						(e.currentTarget as HTMLSelectElement).blur();
+					}}
+				>
 					{props.children}
 				</S.Select>
 				<S.ArrowIcon type={IconsEnum.ArrowDropdown} />
@@ -41,7 +52,6 @@ const S = {
 		background: ${({ theme }) => theme.colors.darkBlue1};
 		-webkit-appearance: none;
 		border: 0.2rem solid transparent;
-		transition: 0.1s;
 
 		@supports (-webkit-touch-callout: none) {
 			font-size: 16px;
