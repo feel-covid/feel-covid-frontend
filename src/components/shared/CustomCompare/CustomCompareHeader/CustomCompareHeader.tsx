@@ -47,7 +47,7 @@ const S = {
 		flex-shrink: 0;
 		font-weight: bold;
 		align-items: center;
-		padding: 0 1rem 0 0;
+		padding-right: 1rem;
 		background: ${({ theme }) => theme.colors.darkBlue2};
 		box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.2);
 		z-index: 1;
@@ -55,8 +55,11 @@ const S = {
 	`,
 	CloseIconContainer: styled.div`
 		cursor: pointer;
-		padding: 1rem 2rem 1rem 1rem;
-		transform: translateY(0.22rem);
+		padding: 0 1rem;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		margin-right: 0.7rem;
 	`,
 	CloseIcon: styled(Icon)`
 		fill: ${({ theme }) => theme.colors.white};
@@ -66,5 +69,6 @@ const S = {
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		height: 100%;
 	`
 };

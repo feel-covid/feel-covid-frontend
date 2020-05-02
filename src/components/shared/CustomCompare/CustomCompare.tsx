@@ -244,7 +244,7 @@ const S = {
 		box-shadow: 0 0 2rem rgba(0, 0, 0, 0.2);
 		margin: 0 1rem;
 		overflow: hidden;
-		transform: translateY(7rem) scale(0.98);
+		transform: translateY(7rem) scale(0.95);
 		opacity: 0;
 		transition: 0.3s;
 

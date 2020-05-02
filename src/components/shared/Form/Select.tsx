@@ -41,7 +41,7 @@ const S = {
 		position: relative;
 	`,
 	Select: styled.select`
-		padding: 0.7rem 0.5rem 0.7rem 1.6rem;
+		padding: 0.6rem 0.4rem 0.6rem 1.5rem;
 		font-size: 1.6rem;
 		border-radius: 0.3rem;
 		outline: none;
@@ -51,7 +51,7 @@ const S = {
 		box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
 		background: ${({ theme }) => theme.colors.darkBlue1};
 		-webkit-appearance: none;
-		border: 0.2rem solid transparent;
+		border: 0.1rem solid transparent;
 
 		@supports (-webkit-touch-callout: none) {
 			font-size: 16px;
