@@ -4,6 +4,7 @@ import { Header } from './shared/Header/Header';
 import { useCountryData } from '../hooks/useCountryData';
 import { hideLoadingSpinner } from '../utils/hideLoadingSpinner';
 import { CustomCompare } from './shared/CustomCompare/CustomCompare';
+import { Footer } from './shared/Footer/Footer';
 
 interface IProps {}
 
@@ -26,6 +27,7 @@ const App: React.FC<IProps> = () => {
 		<>
 			<Header />
 			<Router />
+			<Footer />
 			<CustomCompare />
 		</>
 	);

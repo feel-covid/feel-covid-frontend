@@ -27,7 +27,6 @@ ReactDOM.render(
 					</StatsFilterProvider>
 				</CountryDataProvider>
 			</ErrorBoundary>
-			,
 		</ThemeProvider>
 	</I18nextProvider>,
 	document.getElementById('appMountPoint')

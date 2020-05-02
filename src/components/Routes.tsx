@@ -6,9 +6,11 @@ interface IProps {}
 
 const Routes: React.FC<IProps> = () => {
 	return (
-		<Router>
-			<Route exact path='/' component={Home} />
-		</Router>
+		<main>
+			<Router>
+				<Route exact path='/' component={Home} />
+			</Router>
+		</main>
 	);
 };
 

@@ -20,7 +20,7 @@ export const CountryDataProvider: React.FC<IProps> = ({ children }) => {
 			route: '/country',
 			params: {
 				name: 'israel',
-				startDate: JSON.stringify(subDays(now, 31)),
+				startDate: JSON.stringify(subDays(now, 30)),
 				endDate: JSON.stringify(now)
 			},
 			initialDataValue: []

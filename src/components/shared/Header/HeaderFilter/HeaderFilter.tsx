@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useCallback } from 'react';
+import React, { ChangeEvent, Ref, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components/macro';
 import formatRelative from 'date-fns/formatRelative';
@@ -12,8 +12,10 @@ import { Select } from '../../Form/Select';
 import { useCountryData } from '../../../../hooks/useCountryData';
 
 interface IProps extends IStyle {
-	setSubHeader: StateUpdaterFunction<boolean>;
+	containerRef?: Ref<HTMLDivElement>;
+	selectRef?: Ref<HTMLSelectElement>;
 	isSubHeaderOpen: boolean;
+	setSubHeader: StateUpdaterFunction<boolean>;
 }
 
 export const HeaderFilter: React.FC<IProps> = (props) => {
@@ -25,7 +27,7 @@ export const HeaderFilter: React.FC<IProps> = (props) => {
 		setPrevDate
 	} = useStatsFilterContext();
 	const { weekAgoIndexOnNormalizedData } = useCountryData();
-	const { setSubHeader, isSubHeaderOpen } = props;
+	const { isSubHeaderOpen, setSubHeader, containerRef, selectRef } = props;
 
 	const handleChange = useCallback(
 		(e: ChangeEvent<HTMLSelectElement>) => {
@@ -39,11 +41,14 @@ export const HeaderFilter: React.FC<IProps> = (props) => {
 	);
 
 	return (
-		<S.Container className={props.className}>
-			{t('header.headerFilter.displayingComparison')}{' '}
-			{formatRelative(new Date(baseDate), new Date(), { locale: he })}{' '}
-			{t('header.headerFilter.andBetween')}{' '}
-			<Select onChange={handleChange} defaultValue={prevDate}>
+		<S.Container className={props.className} ref={containerRef}>
+			<S.TextContainer>
+				{t('header.headerFilter.displayingComparison')}{' '}
+				{formatRelative(new Date(baseDate), new Date(), { locale: he })}{' '}
+				{t('header.headerFilter.andBetween')}{' '}
+			</S.TextContainer>
+
+			<Select onChange={handleChange} value={prevDate} ref={selectRef}>
 				{Object.keys(countriesByDate)
 					.slice(weekAgoIndexOnNormalizedData)
 					.filter((date) => date !== baseDate)
@@ -74,5 +79,8 @@ const S = {
 		@media (max-width: 400px) {
 			flex-direction: column;
 		}
+	`,
+	TextContainer: styled.span`
+		pointer-events: none;
 	`
 };

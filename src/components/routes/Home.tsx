@@ -8,7 +8,6 @@ import { ActiveRecoveredDeceasedChart } from '../shared/Charts/ActiveRecoveredDe
 import { CasesChart } from '../shared/Charts/CasesChart/CasesChart';
 import { DailyDiffChart } from '../shared/Charts/DailyDiffChart/DailyDiffChart';
 import media from '../../themes/media';
-import { Footer } from '../shared/Footer/Footer';
 
 interface IProps extends RouteComponentProps {}
 
@@ -24,7 +23,6 @@ const Home: React.FC<IProps> = () => {
 				</S.ChartsContainer>
 				<Treatment />
 			</S.Container>
-			<Footer />
 		</PaddingContainer>
 	);
 };
@@ -35,7 +33,6 @@ const S = {
 		width: 100%;
 		flex-direction: column;
 		padding: 0.8rem 1rem;
-		margin-top: 5.6rem;
 	`,
 	ChartsContainer: styled.div`
 		display: grid;
