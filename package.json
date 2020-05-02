@@ -95,6 +95,7 @@
 		"prettier": "^1.19.1",
 		"prettier-eslint": "^9.0.1",
 		"prettier-eslint-cli": "^5.0.0",
+		"react-axe": "^3.4.1",
 		"react-docgen-typescript-loader": "^3.7.1",
 		"serve": "^11.3.0",
 		"webpack-bundle-analyzer": "^3.6.1"

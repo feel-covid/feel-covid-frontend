@@ -1,19 +1,25 @@
 import React, { SelectHTMLAttributes } from 'react';
 import styled from 'styled-components/macro';
-import { IStyle } from '../../../@types/interfaces';
+import { IStyle, Ref } from '../../../@types/interfaces';
 import { IconsEnum } from '../../../@types/enums';
 import { Icon } from '../Icon/Icon';
 
 interface IProps extends IStyle, SelectHTMLAttributes<HTMLSelectElement> {}
 
-export const Select: React.FC<IProps> = (props) => {
-	return (
-		<S.Container>
-			<S.Select {...props}>{props.children}</S.Select>
-			<S.ArrowIcon type={IconsEnum.ArrowDropdown} />
-		</S.Container>
-	);
-};
+export const Select = React.forwardRef<HTMLSelectElement, IProps>(
+	(props, ref) => {
+		return (
+			<S.Container>
+				<S.Select ref={ref} {...props}>
+					{props.children}
+				</S.Select>
+				<S.ArrowIcon type={IconsEnum.ArrowDropdown} />
+			</S.Container>
+		);
+	}
+);
+
+Select.displayName = 'Select';
 
 /*
  * Important!
@@ -30,13 +36,19 @@ const S = {
 		outline: none;
 		cursor: pointer;
 		margin-right: 0.5rem;
-		border: none;
 		color: white;
 		box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
 		background: ${({ theme }) => theme.colors.darkBlue1};
 		-webkit-appearance: none;
+		border: 0.2rem solid transparent;
+		transition: 0.1s;
+
 		@supports (-webkit-touch-callout: none) {
 			font-size: 16px;
+		}
+
+		&:focus {
+			border-color: ${({ theme }) => theme.colors.blue2};
 		}
 	`,
 	ArrowIcon: styled(Icon)`

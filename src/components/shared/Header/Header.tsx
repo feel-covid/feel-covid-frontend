@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled, { css } from 'styled-components/macro';
 import CustomText from '../CustomText/CustomText';
@@ -8,54 +8,54 @@ import { Icon } from '../Icon/Icon';
 import media from '../../../themes/media';
 import { useTogglesContext } from '../../../hooks/useTogglesContext';
 import { TogglesActions } from '../../providers/TogglesProvider/reducer';
+import { SubHeader } from './SubHeader';
 
 interface IProps {}
 
 export const Header: React.FC<IProps> = (props) => {
 	const { t } = useTranslation();
-	const [isSubHeaderOpen, setSubHeader] = useState(false);
 	const { dispatch } = useTogglesContext();
+	const [isSubHeaderOpen, setSubHeader] = useState(false);
+
+	const handleSettingsClick = useCallback(() => {
+		setSubHeader((prevState) => !prevState);
+	}, [dispatch]);
+
+	const handleCustomCompareClick = useCallback(() => {
+		dispatch({ type: TogglesActions.SET_SHOW_CUSTOM_COMPARE });
+	}, [dispatch]);
 
 	return (
 		<S.Container>
 			<S.MainHeader>
 				<S.TitleContainer>
 					<S.Title text={t('header.title')!} />
-
-					<S.SettingsContainer
-						onClick={() => {
-							setSubHeader((prevState) => !prevState);
-						}}
-					>
+					<S.SettingsContainer onClick={handleSettingsClick}>
 						<S.CogIcon type={IconsEnum.Cog} />
 					</S.SettingsContainer>
 				</S.TitleContainer>
+
 				<S.Filter
 					isSubHeaderOpen={isSubHeaderOpen}
 					setSubHeader={setSubHeader}
 				/>
-				<S.CreateComparisonContainer
-					onClick={() =>
-						dispatch({ type: TogglesActions.SET_SHOW_CUSTOM_COMPARE })
-					}
-				>
+
+				<S.CreateComparisonContainer onClick={handleCustomCompareClick}>
 					<S.CreateComparisonBtn>
 						<CustomText text={t('header.createComparison') as string} />
 					</S.CreateComparisonBtn>
 				</S.CreateComparisonContainer>
 			</S.MainHeader>
 
-			<S.SubHeader isVisible={isSubHeaderOpen}>
-				<HeaderFilter
-					isSubHeaderOpen={isSubHeaderOpen}
-					setSubHeader={setSubHeader}
-				/>
-			</S.SubHeader>
+			<SubHeader
+				isSubHeaderOpen={isSubHeaderOpen}
+				setSubHeader={setSubHeader}
+			/>
 		</S.Container>
 	);
 };
 
-const sharedHeaderStyles = css`
+export const sharedHeaderStyles = css`
 	display: flex;
 	background: ${({ theme }) => theme.colors.darkBlue2};
 	padding: 0 1.1rem 0 1rem;
@@ -67,9 +67,8 @@ const sharedHeaderStyles = css`
 
 const S = {
 	Container: styled.header`
-		position: fixed;
+		position: sticky;
 		top: 0;
-		left: 0;
 		z-index: 100;
 		width: 100%;
 	`,
@@ -131,31 +130,9 @@ const S = {
 		border: ${({ theme }) => `0.2rem solid ${theme.colors.blue2}`};
 		letter-spacing: 0.1rem;
 
-		&:hover {
+		&:hover,
+		&:focus {
 			background: ${({ theme }) => theme.colors.darkBlue1};
 		}
-	`,
-	SubHeader: styled.div`
-		${sharedHeaderStyles};
-		justify-content: center;
-		transform: translateY(-100%);
-		box-shadow: none;
-		transition: 0.3s;
-		position: absolute;
-		top: 5.6rem;
-		width: 100%;
-		left: 0;
-
-		@media (max-width: 400px) {
-			padding: 1rem 0;
-			height: initial;
-		}
-
-		${({ isVisible }: { isVisible: boolean }) =>
-			isVisible &&
-			css`
-				transform: translateY(0);
-				box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.2);
-			`};
 	`
 };

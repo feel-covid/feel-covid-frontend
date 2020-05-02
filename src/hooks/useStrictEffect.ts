@@ -5,7 +5,7 @@ import { PlainFunction } from '../@types/interfaces';
  * @description Modified useEffect that only runs when the dependencies change and not on initial render.
  */
 const useStrictEffect = (
-	effect: PlainFunction,
+	effect: PlainFunction<void>,
 	deps: Array<any> = []
 ): void => {
 	const isMounted = useRef(false);

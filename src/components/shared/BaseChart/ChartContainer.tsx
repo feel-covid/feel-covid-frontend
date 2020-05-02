@@ -4,6 +4,7 @@ import { ResponsiveContainer } from 'recharts';
 import CustomText from '../CustomText/CustomText';
 import media from '../../../themes/media';
 import { IStyle } from '../../../@types/interfaces';
+import { envInfo } from '../../../utils/envInfo';
 
 interface IProps extends IStyle {
 	title: string;
@@ -13,11 +14,8 @@ export const ChartContainer: React.FC<IProps> = (props) => {
 	const containerRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		const isTouchDevice =
-			'ontouchstart' in window ||
-			// @ts-ignore
-			(window.DocumentTouch && document instanceof window.DocumentTouch);
-		if (containerRef.current && isTouchDevice) {
+		const { current: container } = containerRef;
+		if (container && envInfo.isTouchDevice) {
 			let touchStartData: { startX: number; startY: number } = {} as any;
 
 			const handleTouchStart = (e: TouchEvent) => {
@@ -40,24 +38,18 @@ export const ChartContainer: React.FC<IProps> = (props) => {
 				}
 			};
 
-			containerRef.current.addEventListener('touchstart', handleTouchStart, {
+			container.addEventListener('touchstart', handleTouchStart, {
 				passive: true
 			});
 
-			containerRef.current.addEventListener('touchmove', handleTouchMove, {
+			container.addEventListener('touchmove', handleTouchMove, {
 				passive: true
 			});
 
 			return () => {
-				if (containerRef.current) {
-					containerRef.current.removeEventListener(
-						'touchstart',
-						handleTouchStart
-					);
-					containerRef.current.removeEventListener(
-						'touchmove',
-						handleTouchMove
-					);
+				if (container) {
+					container.removeEventListener('touchstart', handleTouchStart);
+					container.removeEventListener('touchmove', handleTouchMove);
 				}
 			};
 		}

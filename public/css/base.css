@@ -24,7 +24,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 html {
-    height: 100vh;
+    min-height: 100vh;
     font-size: 62.5%;
 }
 

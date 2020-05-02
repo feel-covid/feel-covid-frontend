@@ -1,6 +1,6 @@
 import { PlainFunction } from '../@types/interfaces';
 
-const afterTwoTicks = (cb: PlainFunction): void => {
+const afterTwoTicks = (cb: PlainFunction<void>): void => {
 	requestAnimationFrame(() => {
 		requestAnimationFrame(() => {
 			cb();
