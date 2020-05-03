@@ -17,3 +17,8 @@ export enum DateFormatsEnum {
 	PART_MONTH_NAME_WITH_DAY_AND_TIME = 'MMM dd בשעה HH:mm',
 	FULL_MONTH_NAME_WITH_DAY_AND_TIME = 'MMMM dd בשעה HH:mm'
 }
+
+export enum RoutesEnum {
+	HOME = '/',
+	ADMIN = '/admin'
+}
