@@ -8,6 +8,7 @@ export interface ITreatment {
 	hotel: number;
 	hospital: number;
 	undecided: number;
+	combinedHomeHotelUndecided: number;
 }
 
 export interface ICountry {

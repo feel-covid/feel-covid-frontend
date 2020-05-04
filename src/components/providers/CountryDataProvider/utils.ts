@@ -16,7 +16,11 @@ export const normalizeCountryData = (
 		active: mid.cases + severe.cases + light.cases,
 		deceased,
 		recovered,
-		treatment,
+		treatment: {
+			...treatment,
+			combinedHomeHotelUndecided:
+				treatment.hotel + treatment.home + treatment.undecided
+		},
 		mid: mid.cases,
 		light: light.cases,
 		severe,

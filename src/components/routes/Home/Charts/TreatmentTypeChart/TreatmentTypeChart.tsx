@@ -38,26 +38,13 @@ export const TreatmentTypeChart: React.FC<IProps> = (props) => {
 				<Legend {...(legendDefaultProps as any)} />
 
 				<defs>
-					<Gradients
-						colors={['green1', 'blue2', 'orange1']}
-						idPrefix={gradientsId}
-					/>
+					<Gradients colors={['blue2', 'orange1']} idPrefix={gradientsId} />
 				</defs>
 
 				<Area
-					name={t('global.treatment.home') as any}
+					name={t('global.treatment.homeHotelUndecided') as any}
 					type='monotone'
-					dataKey='treatment.home'
-					fill={`url(#${gradientsId}green1)`}
-					stroke={theme.colors.green1}
-					strokeWidth={3.5}
-					{...animationDefaultProps}
-				/>
-
-				<Area
-					name={t('global.treatment.hotel') as any}
-					type='linear'
-					dataKey='treatment.hotel'
+					dataKey='treatment.combinedHomeHotelUndecided'
 					fill={`url(#${gradientsId}blue2)`}
 					stroke={theme.colors.blue2}
 					strokeWidth={3.5}

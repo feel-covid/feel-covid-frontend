@@ -29,6 +29,7 @@ const defaultTheme: DefaultTheme = {
 		darkBlue1: '#1C2135',
 		darkBlue2: '#222A3F',
 		red1: '#EE423A',
+		red2: '#680101',
 		green1: '#53A653',
 		orange1: '#EF6C00',
 		orange2: '#FFB300',

@@ -34,7 +34,7 @@ export const CustomizedDailyDiffTooltip: React.FC<IProps> = (props) => {
 			color = color.slice(dashIndex + 1, color.length - 1);
 
 			acc[dataKey] = {
-				color,
+				color: dataKey === 'total' ? 'blue2' : color,
 				value
 			};
 
