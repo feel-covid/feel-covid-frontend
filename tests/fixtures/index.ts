@@ -83,7 +83,8 @@ export const normalizedDataFixture = [
 			home: 2107,
 			hotel: 586,
 			hospital: 543,
-			undecided: 962
+			undecided: 962,
+			combinedHomeHotelUndecided: 3655
 		},
 		mid: 81,
 		light: 4037,
@@ -102,7 +103,8 @@ export const normalizedDataFixture = [
 			home: 2107,
 			hotel: 586,
 			hospital: 527,
-			undecided: 1269
+			undecided: 1269,
+			combinedHomeHotelUndecided: 3962
 		},
 		mid: 90,
 		light: 4349,
@@ -121,7 +123,8 @@ export const normalizedDataFixture = [
 			home: 2580,
 			hotel: 619,
 			hospital: 573,
-			undecided: 879
+			undecided: 879,
+			combinedHomeHotelUndecided: 4078
 		},
 		mid: 95,
 		light: 4473,
@@ -143,7 +146,8 @@ export const normalizedChartDataFixture = [
 			home: 2107,
 			hotel: 586,
 			hospital: 527,
-			undecided: 1269
+			undecided: 1269,
+			combinedHomeHotelUndecided: 3962
 		},
 		mid: 90,
 		light: 4349,
@@ -162,7 +166,8 @@ export const normalizedChartDataFixture = [
 			home: 2580,
 			hotel: 619,
 			hospital: 573,
-			undecided: 879
+			undecided: 879,
+			combinedHomeHotelUndecided: 4078
 		},
 		mid: 95,
 		light: 4473,

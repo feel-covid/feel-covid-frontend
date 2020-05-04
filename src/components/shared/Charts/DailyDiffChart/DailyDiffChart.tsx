@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useTheme } from 'styled-components/macro';
 import { useCountryData } from '../../../../hooks/useCountryData';
 import { ChartContainer } from '../../BaseChart/ChartContainer';
-import { Bar, ComposedChart, Legend, Tooltip, XAxis } from 'recharts';
+import { Bar, ComposedChart, Legend, Line, Tooltip, XAxis } from 'recharts';
 import {
 	animationDefaultProps,
 	legendDefaultProps,
@@ -67,13 +67,6 @@ export const DailyDiffChart: React.FC<IProps> = (props) => {
 						idPrefix={gradientsId}
 					/>
 				</defs>
-				<Bar
-					dataKey='total'
-					fill={`url(#${gradientsId}blue2)`}
-					name={t('charts.dailyDiffChart.total') as string}
-					stroke={theme.colors.blue2}
-					{...animationDefaultProps}
-				/>
 
 				<Bar
 					dataKey='recovered'
@@ -84,11 +77,27 @@ export const DailyDiffChart: React.FC<IProps> = (props) => {
 				/>
 
 				<Bar
+					dataKey='total'
+					fill={`url(#${gradientsId}blue2)`}
+					name={t('charts.dailyDiffChart.total') as string}
+					stroke={theme.colors.blue2}
+					{...animationDefaultProps}
+				/>
+
+				<Bar
 					dataKey='deceased'
 					fill={`url(#${gradientsId}red1)`}
 					name={t('charts.dailyDiffChart.deceased') as string}
 					stroke={theme.colors.red1}
 					{...animationDefaultProps}
+				/>
+
+				<Line
+					dataKey='total'
+					stroke={theme.colors.white}
+					strokeWidth={2}
+					{...animationDefaultProps}
+					style={{ top: '-10px' }}
 				/>
 
 				<Tooltip
