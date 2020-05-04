@@ -108,15 +108,10 @@ export const CustomCompare: React.FC<IProps> = (props) => {
 				path: 'treatment.hospital',
 				color: '#795548'
 			},
-			hotel: {
-				title: t('global.treatment.hotel'),
-				path: 'treatment.hotel',
+			homeHotelUndecided: {
+				title: t('global.treatment.homeHotelUndecided'),
+				path: 'treatment.combinedHomeHotelUndecided',
 				color: '#9e9d24'
-			},
-			home: {
-				title: t('global.treatment.home'),
-				path: 'treatment.home',
-				color: '#33691e'
 			}
 		}),
 		[]
@@ -327,9 +322,5 @@ const S = {
 	SelectionTitle: styled(CustomText)`
 		font-weight: bold;
 	`,
-	Checkbox: styled(Checkbox)`
-		&:last-child {
-			grid-column: 1 / 3;
-		}
-	`
+	Checkbox: styled(Checkbox)``
 };

@@ -30,7 +30,8 @@
 				"hospital": "בבתי חולים",
 				"home": "בבית",
 				"hotel": "בבתי מלון",
-				"undecided": "טרם הוחלט"
+				"undecided": "טרם הוחלט",
+				"homeHotelUndecided": "בבית, במלון ולהחלטה"
 			},
 			"privacyPolicy": "מדיניות פרטיות"
 		},

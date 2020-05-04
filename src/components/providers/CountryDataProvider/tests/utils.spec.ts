@@ -9,12 +9,14 @@ import {
 
 describe('Utils - basic functionality', () => {
 	it('normalizeCountryData', () => {
+		// @ts-ignore
 		const result = apiResponseFixture.map(utils.normalizeCountryData);
 		expect(result).toEqual(normalizedDataFixture);
 	});
 
 	it('reduceDatesToSignalDay', () => {
 		const result = utils.reduceDatesToSignalDay(normalizedDataFixture);
+
 		expect(result).toEqual(reduceDatesToSingleDayResultFixture);
 	});
 
