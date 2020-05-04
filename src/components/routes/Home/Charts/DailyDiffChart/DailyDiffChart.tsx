@@ -1,8 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'styled-components/macro';
-import { useCountryData } from '../../../../hooks/useCountryData';
-import { ChartContainer } from '../../BaseChart/ChartContainer';
 import { Bar, ComposedChart, Legend, Line, Tooltip, XAxis } from 'recharts';
 import {
 	animationDefaultProps,
@@ -14,6 +12,8 @@ import { CustomizedXAxisTick } from '../../../../shared/BaseChart/CustomizedXAxi
 import { CustomizedDailyDiffTooltip } from './CustomizedDailyDiffTooltip';
 import { Gradients } from '../../../../shared/BaseChart/Gradients';
 import { useDisableChartActiveState } from '../../../../../hooks/useDisableChartActiveState';
+import { useCountryData } from '../../../../../hooks/useCountryData';
+import { ChartContainer } from '../../../../shared/BaseChart/ChartContainer';
 
 interface IProps {}
 
