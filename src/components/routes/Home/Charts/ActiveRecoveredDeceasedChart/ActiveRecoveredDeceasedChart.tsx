@@ -32,7 +32,6 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 		<ChartContainer title={t('charts.activeRecoveredDeceased.title')}>
 			<AreaChart
 				data={normalizedChartData.slice(weekAgoIndexOnNormalizedChartData)}
-				syncId='daily'
 				ref={chartRef}
 				onMouseUp={disable}
 			>
@@ -42,8 +41,6 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 					<Gradients
 						colors={['blue2', 'green1', 'red1']}
 						idPrefix={gradientsId}
-						startOpacity={0.7}
-						endOpacity={0}
 					/>
 				</defs>
 
@@ -54,7 +51,6 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 					fill={`url(#${gradientsId}green1)`}
 					stroke={theme.colors.green1}
 					strokeWidth={3.5}
-					fillOpacity={0.9}
 					{...animationDefaultProps}
 				/>
 
@@ -65,7 +61,6 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 					stroke={theme.colors.blue2}
 					fill={`url(#${gradientsId}blue2)`}
 					strokeWidth={3.8}
-					fillOpacity={0.4}
 					{...animationDefaultProps}
 				/>
 

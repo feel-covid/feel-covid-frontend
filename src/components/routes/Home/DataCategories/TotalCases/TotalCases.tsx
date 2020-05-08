@@ -52,6 +52,16 @@ export const TotalCases: React.FC<IProps> = (props) => {
 				title: t('global.cases.deceased'),
 				path: 'deceased',
 				positiveFactor: PositiveFactorEnum.DECREASE
+			},
+			{
+				title: t('global.treatment.hospital'),
+				path: 'treatment.hospital',
+				positiveFactor: PositiveFactorEnum.DECREASE
+			},
+			{
+				title: t('global.treatment.homeHotelUndecided'),
+				path: 'treatment.combinedHomeHotelUndecided',
+				positiveFactor: PositiveFactorEnum.NONE
 			}
 		];
 	}, []);
@@ -73,6 +83,11 @@ const S = {
 		display: grid;
 		width: 100%;
 
+		& > div:nth-child(9),
+		& > div:nth-child(10) {
+			display: none;
+		}
+
 		${media.smallDesktop`
 				grid-template-columns: repeat(4, 1fr);
 				justify-content: stretch;
@@ -82,6 +97,12 @@ const S = {
 		${media.tablet`
 				grid-template-columns: repeat(2, 1fr);
 				grid-auto-rows: auto;
+				
+				
+				& > div:nth-child(9),
+				& > div:nth-child(10) {
+					display: flex;
+				}
 		`};
 	`
 };

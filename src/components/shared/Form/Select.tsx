@@ -1,6 +1,6 @@
-import React, { SelectHTMLAttributes, useRef } from 'react';
+import React, { SelectHTMLAttributes } from 'react';
 import styled from 'styled-components/macro';
-import { IStyle, Ref } from '../../../@types/interfaces';
+import { IStyle } from '../../../@types/interfaces';
 import { IconsEnum } from '../../../@types/enums';
 import { Icon } from '../Icon/Icon';
 

@@ -5,11 +5,11 @@ import { PaddingContainer } from '../../shared/PaddingContainer/PaddingContainer
 import { TotalCases } from './DataCategories/TotalCases/TotalCases';
 import { Treatment } from './DataCategories/Treatment/Treatment';
 import { ActiveRecoveredDeceasedChart } from './Charts/ActiveRecoveredDeceasedChart/ActiveRecoveredDeceasedChart';
-import { CasesChart } from './Charts/CasesChart/CasesChart';
 import { DailyDiffChart } from './Charts/DailyDiffChart/DailyDiffChart';
 import media from '../../../themes/media';
 import { useCountryData } from '../../../hooks/useCountryData';
 import { hideLoadingSpinner } from '../../../utils/hideLoadingSpinner';
+import { TestsAmountChart } from './Charts/TestsAmountChart/TestsAmountChart';
 
 interface IProps extends RouteComponentProps {}
 
@@ -29,7 +29,7 @@ const Home: React.FC<IProps> = () => {
 				<S.ChartsContainer>
 					<DailyDiffChart />
 					<ActiveRecoveredDeceasedChart />
-					<CasesChart />
+					<TestsAmountChart />
 				</S.ChartsContainer>
 				<Treatment />
 			</S.Container>

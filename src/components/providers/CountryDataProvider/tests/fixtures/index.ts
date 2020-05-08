@@ -1,8 +1,9 @@
 import {
-	apiResponseFixture,
+	statsResponseFixture,
 	normalized24HoursDiffFixture,
 	normalizedChartDataFixture,
-	normalizedDataFixture
+	normalizedDataFixture,
+	testAmountResponseFixture
 } from '../../../../../../tests/fixtures';
 
 export const reduceDatesToSingleDayResultFixture = {
@@ -73,7 +74,7 @@ export const reduceDatesToSingleDayResultFixture = {
 };
 
 export const countryDataContextFixture = {
-	data: apiResponseFixture,
+	data: statsResponseFixture,
 	normalizedChartData: normalizedChartDataFixture,
 	normalized24HourDiff: normalized24HoursDiffFixture,
 	normalizedData: normalizedDataFixture,
@@ -81,5 +82,6 @@ export const countryDataContextFixture = {
 	weekAgoIndexOnNormalizedChartData: 0,
 	weekAgoNegativeIndexOnNormalized24HoursDiff: -2,
 	error: null,
-	loading: false
+	loading: false,
+	testsData: testAmountResponseFixture
 };

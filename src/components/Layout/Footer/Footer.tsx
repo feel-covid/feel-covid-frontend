@@ -6,7 +6,6 @@ import media from '../../../themes/media';
 import { Tooltip } from '../../shared/Tooltip/Tooltip';
 import { PrivacyPolicyContent } from './PrivacyPolicyContent';
 import { Link } from 'react-router-dom';
-import { RoutesEnum } from '../../../@types/enums';
 
 interface IProps {}
 
@@ -38,10 +37,10 @@ export const Footer: React.FC<IProps> = (props) => {
 			>
 				Sason Braha
 			</S.Link>
-			<S.Divider>|</S.Divider>
-			<S.RouterLink to={RoutesEnum.ADMIN}>
-				{t('footer.adminPanel')}
-			</S.RouterLink>
+			{/*<S.Divider>|</S.Divider>*/}
+			{/*<S.RouterLink to={RoutesEnum.ADMIN}>*/}
+			{/*	{t('footer.adminPanel')}*/}
+			{/*</S.RouterLink>*/}
 		</S.Container>
 	);
 };
@@ -51,7 +50,7 @@ const S = {
 		text-align: center;
 		font-size: 1.2rem;
 		color: ${({ theme }) => theme.colors.gray3};
-		padding: 3rem 0 1.5rem 0;
+		padding: 5rem 0 1.5rem 0;
 		position: relative;
 
 		${media.phone`

@@ -1,7 +1,7 @@
 import * as utils from '../utils';
 import { reduceDatesToSingleDayResultFixture } from './fixtures';
 import {
-	apiResponseFixture,
+	statsResponseFixture,
 	normalized24HoursDiffFixture,
 	normalizedChartDataFixture,
 	normalizedDataFixture
@@ -10,7 +10,7 @@ import {
 describe('Utils - basic functionality', () => {
 	it('normalizeCountryData', () => {
 		// @ts-ignore
-		const result = apiResponseFixture.map(utils.normalizeCountryData);
+		const result = statsResponseFixture.map(utils.normalizeCountryData);
 		expect(result).toEqual(normalizedDataFixture);
 	});
 

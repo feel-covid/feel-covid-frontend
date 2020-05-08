@@ -50,6 +50,12 @@
 			},
 			"treatmentType": {
 				"title": "מגמת אופי הטיפול בחולים"
+			},
+			"testsAmountChart": {
+				"title": "מגמה יומית של בדיקות",
+				"sumTests": "סך הבדיקות",
+				"today": "נעשו היום",
+				"positive": "אחוז חיוביים"
 			}
 		},
 		"footer": {

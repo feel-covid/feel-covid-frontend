@@ -5,6 +5,7 @@ import { PositiveFactorEnum } from '../../../../../@types/enums';
 import { IOverviewCard, Overview } from '../../Overview/Overview';
 import { TreatmentTypeChart } from '../../Charts/TreatmentTypeChart/TreatmentTypeChart';
 import media from '../../../../../themes/media';
+import { CasesChart } from '../../Charts/CasesChart/CasesChart';
 
 interface IProps {}
 
@@ -30,6 +31,7 @@ export const Treatment: React.FC<IProps> = (props) => {
 		<S.Container>
 			<S.Overview cards={categories} />
 			<TreatmentTypeChart />
+			<CasesChart />
 		</S.Container>
 	);
 };
@@ -37,7 +39,7 @@ export const Treatment: React.FC<IProps> = (props) => {
 const S = {
 	Container: styled.div`
 		display: grid;
-		grid-template-columns: 40% 60%;
+		grid-template-columns: 1fr 1fr 1fr;
 		width: 100%;
 
 		${media.tablet`
@@ -50,7 +52,7 @@ const S = {
 		display: grid;
 
 		${media.tablet`
-			grid-template-columns: repeat(2, 1fr);
+			display: none;
 		`}
 	`,
 	ChartContainer: styled.div`

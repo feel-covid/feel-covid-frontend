@@ -32,7 +32,6 @@ export const CasesChart: React.FC<IProps> = (props) => {
 		<ChartContainer title={t('charts.casesChart.title')}>
 			<AreaChart
 				data={normalizedChartData.slice(weekAgoIndexOnNormalizedChartData)}
-				syncId='daily'
 				ref={chartRef}
 				onMouseUp={disable}
 			>

@@ -26,6 +26,7 @@ export const tooltipDefaultProps = {
 	},
 	position: { x: 'auto', y: 0 },
 	itemSorter: (item: any): number => -item.value,
+	formatter: (value: string) => value.toLocaleString(),
 	wrapperStyle: {
 		top: '23%'
 	}

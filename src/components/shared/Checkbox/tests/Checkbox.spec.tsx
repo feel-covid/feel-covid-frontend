@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { cleanup, fireEvent } from '@testing-library/react';
 import { Checkbox } from '../Checkbox';
 import { renderWithProviders } from '../../../../../tests/renderWithProviders';
 import 'jest-styled-components';

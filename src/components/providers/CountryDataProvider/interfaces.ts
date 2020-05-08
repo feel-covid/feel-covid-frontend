@@ -24,6 +24,17 @@ export interface ICountry {
 	date: string;
 }
 
+export interface ITestAmountItem {
+	amount: number;
+	date: string;
+	positive: number;
+}
+
+export interface ITestAmountData {
+	data: Array<ITestAmountItem>;
+	total: number;
+}
+
 export interface INormalizedCountryData {
 	total: number;
 	active: number;

@@ -9,28 +9,29 @@ interface IRequestParams {
 	initialDataValue?: any;
 }
 
-const useRequest = (_params: IRequestParams, deps: Array<any> = []) => {
-	const {
-		method = 'GET',
-		params = {},
-		route,
-		initialDataValue = null
-	} = _params;
+const useRequest = (requests: Array<IRequestParams>, deps: Array<any> = []) => {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
-	const [data, setData] = useState(initialDataValue);
-
-	const url = new URL(`${process.env.REACT_APP_BASE_URL}${route}`);
-	url.search = new URLSearchParams(params).toString();
+	const [data, setData] = useState(requests.map((req) => req.initialDataValue));
 
 	useEffect(() => {
-		const requestResource = async () => {
+		const requestResources = async () => {
 			try {
-				const data = await fetch((url as unknown) as string, {
-					method,
-					credentials: 'same-origin'
-				}).then((res) => res.json());
-				setData(data);
+				const requestPromises = requests.map((req) => {
+					const { method = 'GET', params = {}, route } = req;
+
+					const url = new URL(`${process.env.REACT_APP_BASE_URL}${route}`);
+					url.search = new URLSearchParams(params).toString();
+
+					return fetch((url as unknown) as string, {
+						method,
+						credentials: 'same-origin'
+					}).then((res) => res.json());
+				});
+
+				const results = await Promise.all(requestPromises);
+
+				setData(results);
 			} catch (ex) {
 				Sentry.captureException(ex);
 				setError(ex);
@@ -39,7 +40,7 @@ const useRequest = (_params: IRequestParams, deps: Array<any> = []) => {
 			}
 		};
 
-		requestResource();
+		requestResources();
 	}, deps);
 
 	return { loading, error, data };

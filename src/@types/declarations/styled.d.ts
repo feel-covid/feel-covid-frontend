@@ -34,6 +34,7 @@ export interface IColors {
 	lightBlack1: string;
 	orange1: string;
 	orange2: string;
+	turquoise1: string;
 }
 
 declare module 'styled-components' {

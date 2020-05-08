@@ -1,4 +1,4 @@
-export const apiResponseFixture = [
+export const statsResponseFixture = [
 	{
 		id: 'bffb3b4d-ac57-4d0d-813e-171ed0833269',
 		name: 'Israel',
@@ -72,6 +72,57 @@ export const apiResponseFixture = [
 		date: '2020-03-31T05:00:00.000Z'
 	}
 ];
+
+export const testAmountResponseFixture = {
+	total: 448849,
+	data: [
+		{
+			amount: 9932,
+			date: '2020-04-29T21:00:00.000Z',
+			positive: 1.5
+		},
+		{
+			amount: 11051,
+			date: '2020-04-30T21:00:00.000Z',
+			positive: 1.1
+		},
+		{
+			amount: 5569,
+			date: '2020-05-01T21:00:00.000Z',
+			positive: 1
+		},
+		{
+			amount: 8028,
+			date: '2020-05-02T21:00:00.000Z',
+			positive: 0.4
+		},
+		{
+			amount: 9261,
+			date: '2020-05-03T21:00:00.000Z',
+			positive: 0.6
+		},
+		{
+			amount: 8953,
+			date: '2020-05-04T21:00:00.000Z',
+			positive: 0.4
+		},
+		{
+			amount: 9459,
+			date: '2020-05-05T21:00:00.000Z',
+			positive: 0.7
+		},
+		{
+			amount: 10137,
+			date: '2020-05-06T21:00:00.000Z',
+			positive: 0.6
+		},
+		{
+			amount: 5954,
+			date: '2020-05-07T21:00:00.000Z',
+			positive: 0.5
+		}
+	]
+};
 
 export const normalizedDataFixture = [
 	{
