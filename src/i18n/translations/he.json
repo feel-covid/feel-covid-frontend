@@ -50,6 +50,12 @@
 			},
 			"treatmentType": {
 				"title": "מגמת אופי הטיפול בחולים"
+			},
+			"testsAmountChart": {
+				"title": "מגמה יומית של בדיקות",
+				"sumTests": "סך הבדיקות",
+				"today": "נעשו היום",
+				"positive": "אחוז חיוביים"
 			}
 		},
 		"footer": {
@@ -60,7 +66,8 @@
 				"forBasicInfo": "על מנת לנטר מידע בסיסי (מספר כניסות) ו-",
 				"sentry": "Sentry",
 				"forErrorLogging": "על מנת לנטר שגיאות"
-			}
+			},
+			"adminPanel": "פאנל ניהול"
 		},
 		"errorBoundary": {
 			"description": "אופס! התרחשה שגיאה. אנו מטפלים בבעיה.",

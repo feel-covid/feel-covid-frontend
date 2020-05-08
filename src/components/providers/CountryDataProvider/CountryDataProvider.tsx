@@ -15,22 +15,39 @@ interface IProps extends IChildren {}
 
 export const CountryDataProvider: React.FC<IProps> = ({ children }) => {
 	const now = new Date();
-	const res = useRequest(
-		{
-			route: '/country',
-			params: {
-				name: 'israel',
-				startDate: JSON.stringify(subDays(now, 30)),
-				endDate: JSON.stringify(now)
+
+	const requestParams = {
+		startDate: JSON.stringify(subDays(now, 30)),
+		endDate: JSON.stringify(now),
+		name: 'israel'
+	};
+
+	const {
+		loading,
+		error,
+		data: [statsResponse, testsResponse]
+	} = useRequest(
+		[
+			{
+				route: '/country/stats',
+				params: requestParams,
+				initialDataValue: []
 			},
-			initialDataValue: []
-		},
+			{
+				route: '/country/tests',
+				params: {
+					...requestParams,
+					startDate: JSON.stringify(subDays(now, 8))
+				},
+				initialDataValue: []
+			}
+		],
 		[]
 	);
 
-	if (res.loading) return null;
+	if (loading) return null;
 
-	const normalizedData = res.data.map(normalizeCountryData);
+	const normalizedData = statsResponse.map(normalizeCountryData);
 
 	const weekAgoFromLastUpdate = startOfDay(
 		subDays(new Date(normalizedData[normalizedData.length - 1].date), 7)
@@ -50,7 +67,7 @@ export const CountryDataProvider: React.FC<IProps> = ({ children }) => {
 		0
 	);
 
-	const weekAgoIndexOnNormalizedChartData = Math.round(
+	const weekAgoIndexOnNormalizedChartData = Math.floor(
 		weekAgoIndexOnNormalizedData / 2
 	);
 
@@ -59,7 +76,9 @@ export const CountryDataProvider: React.FC<IProps> = ({ children }) => {
 	return (
 		<CountryDataContext.Provider
 			value={{
-				...res,
+				error,
+				loading,
+				data: statsResponse,
 				normalizedData,
 				normalizedChartData: normalizedChartData,
 				normalized24HourDiff: normalize24HoursDiff(normalizedData),
@@ -67,7 +86,8 @@ export const CountryDataProvider: React.FC<IProps> = ({ children }) => {
 				weekAgoIndexOnNormalizedChartData,
 				weekAgoNegativeIndexOnNormalized24HoursDiff: -(
 					normalizedChartData.length - weekAgoIndexOnNormalizedChartData
-				)
+				),
+				testsData: testsResponse
 			}}
 		>
 			{children}

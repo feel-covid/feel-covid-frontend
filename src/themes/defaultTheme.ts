@@ -33,7 +33,8 @@ const defaultTheme: DefaultTheme = {
 		green1: '#53A653',
 		orange1: '#EF6C00',
 		orange2: '#FFB300',
-		lightBlack1: 'rgba(0, 0, 0, .2)'
+		lightBlack1: 'rgba(0, 0, 0, .2)',
+		turquoise1: '#1abc9c'
 	}
 };
 

@@ -103,7 +103,7 @@ const S = {
 	`,
 	OuterChartContainer: styled.div`
 		width: 100%;
-		direction: ltr;
+		direction: ltr; 
 		height: 40vh;
 		min-height: 25rem;
 		max-height: 38rem;
@@ -116,6 +116,10 @@ const S = {
 		top: 0;
 		left: 0;
 		padding: 0 2.5rem;
+		
+		${media.tablet`
+			padding: 0 1.2rem;
+		`}
 	`,
 	ChartTitle: styled(CustomText)`
 		text-align: center;
