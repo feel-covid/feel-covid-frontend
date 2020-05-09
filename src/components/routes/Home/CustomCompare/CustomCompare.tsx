@@ -135,54 +135,52 @@ export const CustomCompare: React.FC<IProps> = (props) => {
 			<S.InnerContainer isOpen={state.showCustomCompare}>
 				<CustomCompareHeader setStatsBackCount={setStatsBackCount} />
 				<S.ContentContainer ref={contentContainer}>
-					<S.ChartContainer>
-						<ChartContainer title=''>
-							<LineChart
-								data={normalizedChartData.slice(statsBackCount)}
-								ref={chartRef}
-								onMouseUp={disable}
-							>
-								{Object.keys(selectedItems).map((key) => {
-									const { path, title, color } = get(selectOptions, key);
-									return (
-										// @ts-ignore
-										<Line
-											key={key}
-											dataKey={path}
-											fill='transparent'
-											strokeWidth={3}
-											name={title}
-											dot={false}
-											type={'linear'}
-											stroke={color}
-										/>
-									);
-								})}
+					<S.ChartContainer title=''>
+						<LineChart
+							data={normalizedChartData.slice(statsBackCount)}
+							ref={chartRef}
+							onMouseUp={disable}
+						>
+							{Object.keys(selectedItems).map((key) => {
+								const { path, title, color } = get(selectOptions, key);
+								return (
+									// @ts-ignore
+									<Line
+										key={key}
+										dataKey={path}
+										fill='transparent'
+										strokeWidth={3}
+										name={title}
+										dot={false}
+										type={'linear'}
+										stroke={color}
+									/>
+								);
+							})}
 
-								<Tooltip
-									labelFormatter={(date) =>
-										formatChartDate(date as string, { locale: he })
-									}
-									{...{ ...(tooltipDefaultProps as any), position: { y: 0 } }}
-								/>
+							<Tooltip
+								labelFormatter={(date) =>
+									formatChartDate(date as string, { locale: he })
+								}
+								{...{ ...(tooltipDefaultProps as any), position: { y: 0 } }}
+							/>
 
-								<XAxis
-									{...xAxisDefaultProps}
-									tick={<CustomizedXAxisTick />}
-									interval={Number(
-										statsBackCount !== weekAgoIndexOnNormalizedChartData
-									)}
-								/>
+							<XAxis
+								{...xAxisDefaultProps}
+								tick={<CustomizedXAxisTick />}
+								interval={Number(
+									statsBackCount !== weekAgoIndexOnNormalizedChartData
+								)}
+							/>
 
-								<Legend
-									{...{
-										...(legendDefaultProps as any),
-										wrapperStyle: { transform: 'translateY(-1.5rem)' }
-									}}
-									verticalAlign='top'
-								/>
-							</LineChart>
-						</ChartContainer>
+							<Legend
+								{...{
+									...(legendDefaultProps as any),
+									wrapperStyle: { transform: 'translateY(-1.5rem)' }
+								}}
+								verticalAlign='top'
+							/>
+						</LineChart>
 					</S.ChartContainer>
 
 					<S.SelectionContainer>
@@ -306,17 +304,17 @@ const S = {
 			overflow: visible;
 		}
 	`,
-	ChartContainer: styled.div`
+	ChartContainer: styled(ChartContainer)`
 		flex: 2;
 		align-self: flex-end;
-		margin-bottom: 3rem;
-		padding: 0 0 0 1.5rem;
+		margin-bottom: 1rem;
+		padding: 0 3rem;
+		background: transparent;
 
 		${media.tablet`
 				flex: 1;
 				width: 100%;
 				margin-bottom: 0;
-				padding: 0;
 		`}
 	`,
 	SelectionTitle: styled(CustomText)`

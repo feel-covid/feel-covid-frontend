@@ -10,6 +10,8 @@ import media from '../../../themes/media';
 import { useCountryData } from '../../../hooks/useCountryData';
 import { hideLoadingSpinner } from '../../../utils/hideLoadingSpinner';
 import { TestsAmountChart } from './Charts/TestsAmountChart/TestsAmountChart';
+import { TreatmentTypeChart } from './Charts/TreatmentTypeChart/TreatmentTypeChart';
+import { CasesChart } from './Charts/CasesChart/CasesChart';
 
 interface IProps extends RouteComponentProps {}
 
@@ -26,16 +28,31 @@ const Home: React.FC<IProps> = () => {
 		<PaddingContainer>
 			<S.Container>
 				<TotalCases />
-				<S.ChartsContainer>
+				<SChartsContainer style={{ margin: '1rem 0' }}>
 					<DailyDiffChart />
 					<ActiveRecoveredDeceasedChart />
 					<TestsAmountChart />
-				</S.ChartsContainer>
-				<Treatment />
+				</SChartsContainer>
+				<SChartsContainer>
+					<Treatment />
+					<TreatmentTypeChart />
+					<CasesChart />
+				</SChartsContainer>
 			</S.Container>
 		</PaddingContainer>
 	);
 };
+
+const SChartsContainer = styled.div`
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 1rem;
+	width: 100%;
+
+	${media.tablet`
+			grid-template-columns: 1fr;
+		`}
+`;
 
 const S = {
 	Container: styled.div`
@@ -43,17 +60,6 @@ const S = {
 		width: 100%;
 		flex-direction: column;
 		padding: 0.8rem 1rem;
-	`,
-	ChartsContainer: styled.div`
-		display: grid;
-		grid-template-columns: repeat(auto-fit, 33.33%);
-		padding: 3rem 1rem 5rem 1rem;
-		width: 100%;
-
-		${media.tablet`
-			grid-template-columns: 1fr;
-			padding: 3rem 1rem;
-		`}
 	`
 };
 

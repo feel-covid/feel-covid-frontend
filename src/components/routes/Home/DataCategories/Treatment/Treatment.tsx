@@ -27,25 +27,10 @@ export const Treatment: React.FC<IProps> = (props) => {
 		];
 	}, []);
 
-	return (
-		<S.Container>
-			<S.Overview cards={categories} />
-			<TreatmentTypeChart />
-			<CasesChart />
-		</S.Container>
-	);
+	return <S.Overview cards={categories} />;
 };
 
 const S = {
-	Container: styled.div`
-		display: grid;
-		grid-template-columns: 1fr 1fr 1fr;
-		width: 100%;
-
-		${media.tablet`
-			grid-template-columns: 1fr;
-		`}
-	`,
 	Overview: styled(Overview)`
 		width: 100%;
 		grid-template-columns: repeat(1, 1fr);
@@ -54,8 +39,5 @@ const S = {
 		${media.tablet`
 			display: none;
 		`}
-	`,
-	ChartContainer: styled.div`
-		direction: ltr;
 	`
 };
