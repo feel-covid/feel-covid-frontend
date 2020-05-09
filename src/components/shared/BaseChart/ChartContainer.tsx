@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components/macro';
 import { ResponsiveContainer } from 'recharts';
 import CustomText from '../CustomText/CustomText';
-import media from '../../../themes/media';
 import { IStyle } from '../../../@types/interfaces';
 import { envInfo } from '../../../utils/envInfo';
 
@@ -73,7 +72,12 @@ const S = {
 	Container: styled.div`
 		position: relative;
 		user-select: none;
-
+	  background: ${({ theme }) => theme.colors.darkBlue2};
+	  box-shadow: ${({ theme }) => `0 0 .6rem ${theme.colors.lightBlack1}`};
+		border-radius: .4rem;
+		padding: 2rem;
+		height: 100%;
+		
 		.recharts-surface {
 			overflow: visible;
 		}
@@ -96,10 +100,6 @@ const S = {
 		.recharts-cartesian-axis-ticks {
 			user-select: none;
 		}
-
-		${media.tablet`
-			margin: 2rem 0 3rem 0;
-		`};
 	`,
 	OuterChartContainer: styled.div`
 		width: 100%;
@@ -115,11 +115,6 @@ const S = {
 		position: absolute;
 		top: 0;
 		left: 0;
-		padding: 0 2.5rem;
-		
-		${media.tablet`
-			padding: 0 1.2rem;
-		`}
 	`,
 	ChartTitle: styled(CustomText)`
 		text-align: center;

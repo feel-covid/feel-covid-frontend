@@ -50,11 +50,11 @@ const S = {
 		text-align: center;
 		font-size: 1.2rem;
 		color: ${({ theme }) => theme.colors.gray3};
-		padding: 5rem 0 1.5rem 0;
+		padding: 1.5rem 0;
 		position: relative;
 
 		${media.phone`
-				padding: 1.5rem 0;
+				padding: 0.7rem 0 1.5rem 0;
 		`}
 	`,
 	CreatedBy: styled(CustomText)`
