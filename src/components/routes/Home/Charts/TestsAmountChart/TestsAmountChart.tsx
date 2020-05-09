@@ -54,7 +54,7 @@ export const TestsAmountChart: React.FC<IProps> = (props) => {
 					...currentAmount,
 					overall: tmpAmount,
 					amount: (currentAmount.amount / amountRatio) * 0.7,
-					positive: (currentAmount.positive / positiveRatio) * 0.2,
+					positive: (currentAmount.positive / positiveRatio) * 0.09,
 					original: currentAmount
 				});
 
