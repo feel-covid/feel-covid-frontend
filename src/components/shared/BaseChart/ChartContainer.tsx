@@ -60,24 +60,24 @@ export const ChartContainer: React.FC<IProps> = (props) => {
 			<S.OuterChartContainer>
 				<S.InnerChartContainer>
 					<ResponsiveContainer debounce={200}>
-						{props.children as any}
+						{props.children}
 					</ResponsiveContainer>
 				</S.InnerChartContainer>
 			</S.OuterChartContainer>
 		</S.Container>
 	);
 };
-// prettier-ignore
+
 const S = {
 	Container: styled.div`
 		position: relative;
 		user-select: none;
-	  background: ${({ theme }) => theme.colors.darkBlue2};
-	  box-shadow: ${({ theme }) => `0 0 .6rem ${theme.colors.lightBlack1}`};
-		border-radius: .4rem;
+		background: ${({ theme }) => theme.colors.darkBlue2};
+		box-shadow: ${({ theme }) => `0 0 .6rem ${theme.colors.lightBlack1}`};
+		border-radius: 0.4rem;
 		padding: 2rem;
 		height: 100%;
-		
+
 		.recharts-surface {
 			overflow: visible;
 		}
@@ -96,14 +96,14 @@ const S = {
 		.recharts-tooltip-wrapper {
 			font-weight: bold;
 		}
-		
+
 		.recharts-cartesian-axis-ticks {
 			user-select: none;
 		}
 	`,
 	OuterChartContainer: styled.div`
 		width: 100%;
-		direction: ltr; 
+		direction: ltr;
 		height: 40vh;
 		min-height: 25rem;
 		max-height: 38rem;

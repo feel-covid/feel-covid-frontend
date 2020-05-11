@@ -127,7 +127,7 @@ export const TestsAmountChart: React.FC<IProps> = (props) => {
 					<Line
 						dataKey='positive'
 						stroke={theme.colors.red1}
-						strokeWidth={3}
+						strokeWidth={3.5}
 						name={t('charts.testsAmountChart.positive') as string}
 						{...animationDefaultProps}
 					/>

@@ -48,7 +48,7 @@ export const HeaderFilter: React.FC<IProps> = (props) => {
 				{t('header.headerFilter.andBetween')}{' '}
 			</S.TextContainer>
 
-			<Select onChange={handleChange} value={prevDate} ref={selectRef}>
+			<S.Select onChange={handleChange} value={prevDate} ref={selectRef}>
 				{Object.keys(countriesByDate)
 					.slice(weekAgoIndexOnNormalizedData)
 					.filter((date) => date !== baseDate)
@@ -61,7 +61,7 @@ export const HeaderFilter: React.FC<IProps> = (props) => {
 							)}
 						</option>
 					))}
-			</Select>
+			</S.Select>
 		</S.Container>
 	);
 };
@@ -82,5 +82,8 @@ const S = {
 	`,
 	TextContainer: styled.span`
 		pointer-events: none;
+	`,
+	Select: styled(Select)`
+		padding-left: 1.8rem;
 	`
 };

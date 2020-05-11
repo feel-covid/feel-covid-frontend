@@ -4,10 +4,9 @@ import i18n from '../i18n/i18n';
 interface IParams {
 	before: number;
 	current: number;
-	context?: string;
 }
 
-export const getStatDescription = ({ before, current, context }: IParams) => {
+export const getStatDescription = ({ before, current }: IParams) => {
 	const { trend, actualDiff, percentDiff } = getStats(before, current);
 	let description = null;
 
