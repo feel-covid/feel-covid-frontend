@@ -67,7 +67,7 @@ export const CountryDataProvider: React.FC<IProps> = ({ children }) => {
 		0
 	);
 
-	const weekAgoIndexOnNormalizedChartData = Math.floor(
+	const weekAgoIndexOnNormalizedChartData = Math.round(
 		weekAgoIndexOnNormalizedData / 2
 	);
 
