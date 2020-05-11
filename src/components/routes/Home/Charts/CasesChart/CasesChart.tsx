@@ -28,6 +28,27 @@ export const CasesChart: React.FC<IProps> = (props) => {
 	const gradientsId = 'Cases';
 	const { chartRef, disable } = useDisableChartActiveState();
 
+	const areas = [
+		{
+			name: t('global.cases.midCondition'),
+			dataKey: 'mid',
+			stroke: theme.colors.orange2,
+			fill: `url(#${gradientsId}orange2)`
+		},
+		{
+			name: t('global.cases.severeCondition'),
+			dataKey: 'severe.cases',
+			stroke: theme.colors.orange1,
+			fill: `url(#${gradientsId}orange1)`
+		},
+		{
+			name: t('global.cases.intubated'),
+			dataKey: 'severe.intubated',
+			stroke: theme.colors.red1,
+			fill: `url(#${gradientsId}red1)`
+		}
+	];
+
 	return (
 		<ChartContainer title={t('charts.casesChart.title')}>
 			<AreaChart
@@ -46,32 +67,14 @@ export const CasesChart: React.FC<IProps> = (props) => {
 					/>
 				</defs>
 
-				<Area
-					name={t('global.cases.midCondition') as any}
-					dataKey='mid'
-					stroke={theme.colors.orange2}
-					fill={`url(#${gradientsId}orange2)`}
-					{...animationDefaultProps}
-					strokeWidth={3.5}
-				/>
-
-				<Area
-					name={t('global.cases.severeCondition') as any}
-					dataKey='severe.cases'
-					stroke={theme.colors.orange1}
-					fill={`url(#${gradientsId}orange1)`}
-					{...animationDefaultProps}
-					strokeWidth={3.5}
-				/>
-
-				<Area
-					name={t('global.cases.intubated') as any}
-					dataKey='severe.intubated'
-					stroke={theme.colors.red1}
-					fill={`url(#${gradientsId}red1)`}
-					{...animationDefaultProps}
-					strokeWidth={3.5}
-				/>
+				{areas.map((area) => (
+					<Area
+						key={area.dataKey}
+						{...area}
+						{...animationDefaultProps}
+						strokeWidth={3.5}
+					/>
+				))}
 
 				<Tooltip
 					labelFormatter={(date) =>

@@ -23,10 +23,32 @@ export const DailyDiffChart: React.FC<IProps> = (props) => {
 		normalized24HourDiff,
 		weekAgoNegativeIndexOnNormalized24HoursDiff
 	} = useCountryData();
-
 	const theme = useTheme();
 	const gradientsId = 'DailyDiff-';
 	const { chartRef, disable } = useDisableChartActiveState();
+
+	const bars = [
+		{
+			dataKey: 'recovered',
+			fill: `url(#${gradientsId}green1)`,
+			name: t('charts.dailyDiffChart.recovered'),
+			stroke: theme.colors.green1
+		},
+
+		{
+			dataKey: 'total',
+			fill: `url(#${gradientsId}blue2)`,
+			name: t('charts.dailyDiffChart.total'),
+			stroke: theme.colors.blue2
+		},
+		{
+			dataKey: 'deceased',
+			fill: `url(#${gradientsId}red1)`,
+			name: t('charts.dailyDiffChart.deceased'),
+			stroke: theme.colors.red1
+		}
+	];
+
 	return (
 		<ChartContainer title={t('charts.dailyDiffChart.title')}>
 			<ComposedChart
@@ -59,6 +81,7 @@ export const DailyDiffChart: React.FC<IProps> = (props) => {
 						}
 					]}
 				/>
+
 				<defs>
 					<Gradients
 						colors={['blue2', 'green1', 'red1']}
@@ -68,29 +91,9 @@ export const DailyDiffChart: React.FC<IProps> = (props) => {
 					/>
 				</defs>
 
-				<Bar
-					dataKey='recovered'
-					fill={`url(#${gradientsId}green1)`}
-					name={t('charts.dailyDiffChart.recovered') as string}
-					stroke={theme.colors.green1}
-					{...animationDefaultProps}
-				/>
-
-				<Bar
-					dataKey='total'
-					fill={`url(#${gradientsId}blue2)`}
-					name={t('charts.dailyDiffChart.total') as string}
-					stroke={theme.colors.blue2}
-					{...animationDefaultProps}
-				/>
-
-				<Bar
-					dataKey='deceased'
-					fill={`url(#${gradientsId}red1)`}
-					name={t('charts.dailyDiffChart.deceased') as string}
-					stroke={theme.colors.red1}
-					{...animationDefaultProps}
-				/>
+				{bars.map((bar) => (
+					<Bar key={bar.dataKey} {...bar} {...animationDefaultProps} />
+				))}
 
 				<Line
 					dataKey='total'

@@ -5,6 +5,10 @@ export const getStats = (before: number, current: number) => {
 		percentDiff = (100).toFixed(1);
 	}
 
+	if (Number.isNaN(Number(percentDiff))) {
+		percentDiff = (0).toString();
+	}
+
 	const actualDiff = current - before;
 	const trend = actualDiff === 0 ? 0 : Math.sign(actualDiff);
 

@@ -61,7 +61,7 @@ export const sharedHeaderStyles = css`
 	padding: 0 1.1rem 0 1rem;
 	align-items: center;
 	justify-content: space-between;
-	box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.2);
+	box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.4);
 	height: 5.6rem;
 `;
 

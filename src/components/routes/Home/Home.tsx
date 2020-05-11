@@ -28,7 +28,7 @@ const Home: React.FC<IProps> = () => {
 		<PaddingContainer>
 			<S.Container>
 				<TotalCases />
-				<SChartsContainer style={{ margin: '1rem 0' }}>
+				<SChartsContainer style={{ margin: '0.8rem 0' }}>
 					<DailyDiffChart />
 					<ActiveRecoveredDeceasedChart />
 					<TestsAmountChart />
@@ -46,7 +46,7 @@ const Home: React.FC<IProps> = () => {
 const SChartsContainer = styled.div`
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	grid-gap: 1rem;
+	grid-gap: 0.8rem;
 	width: 100%;
 
 	${media.tablet`

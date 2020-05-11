@@ -28,6 +28,27 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 	const gradientsId = 'ActiveRecoveredDeceased';
 	const { chartRef, disable } = useDisableChartActiveState();
 
+	const areas = [
+		{
+			name: t('global.cases.recovered'),
+			dataKey: 'recovered',
+			fill: `url(#${gradientsId}green1)`,
+			stroke: theme.colors.green1
+		},
+		{
+			name: t('global.cases.numOfCases'),
+			dataKey: 'active',
+			fill: `url(#${gradientsId}blue2)`,
+			stroke: theme.colors.blue2
+		},
+		{
+			name: t('global.cases.deceased'),
+			dataKey: 'deceased',
+			fill: `url(#${gradientsId}red1)`,
+			stroke: theme.colors.red1
+		}
+	];
+
 	return (
 		<ChartContainer title={t('charts.activeRecoveredDeceased.title')}>
 			<AreaChart
@@ -44,36 +65,14 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 					/>
 				</defs>
 
-				<Area
-					name={t('global.cases.recovered') as any}
-					type='linear'
-					dataKey='recovered'
-					fill={`url(#${gradientsId}green1)`}
-					stroke={theme.colors.green1}
-					strokeWidth={3.5}
-					{...animationDefaultProps}
-				/>
-
-				<Area
-					name={t('global.cases.numOfCases') as any}
-					type='monotone'
-					dataKey='active'
-					stroke={theme.colors.blue2}
-					fill={`url(#${gradientsId}blue2)`}
-					strokeWidth={3.8}
-					{...animationDefaultProps}
-				/>
-
-				<Area
-					name={t('global.cases.deceased') as any}
-					type='monotone'
-					dataKey='deceased'
-					fill={`url(#${gradientsId}red1)`}
-					strokeWidth={3.5}
-					fillOpacity={1}
-					stroke={theme.colors.red1}
-					{...animationDefaultProps}
-				/>
+				{areas.map((area) => (
+					<Area
+						key={area.dataKey}
+						{...area}
+						{...animationDefaultProps}
+						strokeWidth={3.5}
+					/>
+				))}
 
 				<Tooltip
 					labelFormatter={(date) =>

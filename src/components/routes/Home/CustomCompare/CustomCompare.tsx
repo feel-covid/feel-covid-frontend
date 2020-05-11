@@ -280,7 +280,7 @@ const S = {
 		align-self: flex-start;
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		grid-gap: 1rem;
+		grid-gap: 0.8rem;
 		padding: 1rem 1rem 1rem 0;
 
 		@media (max-height: 700px) {
