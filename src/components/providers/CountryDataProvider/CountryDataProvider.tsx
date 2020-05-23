@@ -37,7 +37,7 @@ export const CountryDataProvider: React.FC<IProps> = ({ children }) => {
 				route: '/country/tests',
 				params: {
 					...requestParams,
-					startDate: JSON.stringify(subDays(now, 8))
+					startDate: JSON.stringify(subDays(now, 15))
 				},
 				initialDataValue: []
 			}

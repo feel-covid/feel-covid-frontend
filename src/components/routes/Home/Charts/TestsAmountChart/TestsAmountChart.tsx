@@ -67,7 +67,7 @@ export const TestsAmountChart: React.FC<IProps> = (props) => {
 		<S.Container>
 			<ChartContainer title={t('charts.testsAmountChart.title')}>
 				<ComposedChart
-					data={withTotal.slice(1)}
+					data={withTotal.slice(-8)}
 					ref={chartRef}
 					onMouseUp={disable}
 					barCategoryGap={'30%'}

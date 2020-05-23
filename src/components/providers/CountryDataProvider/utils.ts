@@ -64,13 +64,13 @@ export const normalize24HoursDiff = (
 			const [currentDayFirstUpdate] = currentDate;
 			const [prevDayFirstUpdate] = dateValues[index - 1];
 
-			const isDateDiffInHoursSmallerThan20 =
-				differenceInHours(
-					new Date(currentDayFirstUpdate.date),
-					new Date(prevDayFirstUpdate.date)
-				) < 20;
-
-			if (isDateDiffInHoursSmallerThan20) return acc;
+			// const isDateDiffInHoursSmallerThan20 =
+			// 	differenceInHours(
+			// 		new Date(currentDayFirstUpdate.date),
+			// 		new Date(prevDayFirstUpdate.date)
+			// 	) < 20;
+			//
+			// if (isDateDiffInHoursSmallerThan20) return acc;
 
 			acc.push({
 				recovered:
