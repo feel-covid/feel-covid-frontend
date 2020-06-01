@@ -5,6 +5,7 @@ import {
 } from './interfaces';
 import { differenceInHours, format } from 'date-fns';
 import { DynamicObject } from '../../../@types/interfaces';
+import { clamp } from '../../../utils/clamp';
 
 export const normalizeCountryData = (
 	country: ICountry
@@ -55,6 +56,7 @@ export const normalize24HoursDiff = (
 	normalizedData: Array<INormalizedCountryData>
 ): Array<INormalized24HoursDiff> => {
 	const countryDataObjectByDate = reduceDatesToSignalDay(normalizedData);
+	const clamp0 = (number: number) => clamp({ number, min: 0 });
 
 	const dateValues = Object.values(countryDataObjectByDate);
 
@@ -64,21 +66,16 @@ export const normalize24HoursDiff = (
 			const [currentDayFirstUpdate] = currentDate;
 			const [prevDayFirstUpdate] = dateValues[index - 1];
 
-			// const isDateDiffInHoursSmallerThan20 =
-			// 	differenceInHours(
-			// 		new Date(currentDayFirstUpdate.date),
-			// 		new Date(prevDayFirstUpdate.date)
-			// 	) < 20;
-			//
-			// if (isDateDiffInHoursSmallerThan20) return acc;
-
 			acc.push({
-				recovered:
-					currentDayFirstUpdate.recovered - prevDayFirstUpdate.recovered,
-				total: currentDayFirstUpdate.total - prevDayFirstUpdate.total,
+				recovered: clamp0(
+					currentDayFirstUpdate.recovered - prevDayFirstUpdate.recovered
+				),
+				total: clamp0(currentDayFirstUpdate.total - prevDayFirstUpdate.total),
 				date: currentDayFirstUpdate.date,
 				compareDate: prevDayFirstUpdate.date,
-				deceased: currentDayFirstUpdate.deceased - prevDayFirstUpdate.deceased
+				deceased: clamp0(
+					currentDayFirstUpdate.deceased - prevDayFirstUpdate.deceased
+				)
 			});
 
 			return acc;
