@@ -26,7 +26,8 @@ export const TotalCases: React.FC<IProps> = (props) => {
 			{
 				title: t('global.cases.lightCondition'),
 				path: 'light',
-				positiveFactor: PositiveFactorEnum.DECREASE
+				positiveFactor: PositiveFactorEnum.DECREASE,
+				tooltip: t('dataCards.lightCondition.tooltip')
 			},
 			{
 				title: t('global.cases.midCondition'),
