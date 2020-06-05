@@ -4,7 +4,8 @@ export enum IconsEnum {
 	Cog = 'icon-cog',
 	ArrowDropdown = 'icon-arrow_drop_down',
 	CircleDropdown = 'icon-circle-down',
-	Close = 'icon-cross'
+	Close = 'icon-cross',
+	MoreInformation = 'icon-info_outline'
 }
 
 export enum PositiveFactorEnum {

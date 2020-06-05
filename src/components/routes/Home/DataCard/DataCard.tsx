@@ -2,18 +2,21 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import CustomText from '../../../shared/CustomText/CustomText';
 import { getStatDescription } from '../../../../utils/getStatDescription';
-import { PositiveFactorEnum } from '../../../../@types/enums';
+import { IconsEnum, PositiveFactorEnum } from '../../../../@types/enums';
 import { CasesAmount } from '../../../shared/CasesAmount/CasesAmount';
+import { Tooltip } from '../../../shared/Tooltip/Tooltip';
+import { Icon } from '../../../shared/Icon/Icon';
 
 interface IProps {
 	title: string;
 	current: number;
 	before: number;
 	positiveFactor: PositiveFactorEnum;
+	tooltip?: string;
 }
 
 const DataCard: React.FC<IProps> = (props) => {
-	const { title, current, before, positiveFactor } = props;
+	const { title, current, before, positiveFactor, tooltip } = props;
 	const { description } = getStatDescription({
 		before,
 		current
@@ -21,7 +24,18 @@ const DataCard: React.FC<IProps> = (props) => {
 
 	return (
 		<S.Container>
-			<CustomText text={title} />
+			<S.TitleAndTooltipContainer>
+				<CustomText text={title} />
+				{tooltip && (
+					// eslint-disable-next-line @typescript-eslint/no-empty-function
+					<S.TooltipContainer onClick={() => {}}>
+						<S.Tooltip content={tooltip}>
+							<Icon type={IconsEnum.MoreInformation} />
+						</S.Tooltip>
+					</S.TooltipContainer>
+				)}
+			</S.TitleAndTooltipContainer>
+
 			<CasesAmount
 				positiveFactor={positiveFactor}
 				current={current}
@@ -45,10 +59,31 @@ const S = {
 		padding: 2.3rem 0;
 		border-radius: 0.4rem;
 		flex: 1;
+		position: relative;
 
 		span {
 			text-align: center;
 		}
+	`,
+	TitleAndTooltipContainer: styled.div`
+		position: relative;
+		display: flex;
+	`,
+	TooltipContainer: styled.div`
+		fill: ${({ theme }) => theme.colors.white};
+		line-height: 0;
+		margin-right: 0.5rem;
+		transform: translateY(0.1rem);
+		z-index: 10;
+	`,
+	Tooltip: styled(Tooltip)`
+		width: 23rem;
+		z-index: 100;
+		bottom: -0.4rem;
+		transform: translate(-50%, 100%);
+		line-height: initial;
+		color: ${({ theme }) => theme.colors.white};
+		padding: 0.8rem 1rem;
 	`
 };
 

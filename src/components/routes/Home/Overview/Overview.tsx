@@ -23,7 +23,7 @@ export const Overview: React.FC<IProps> = (props) => {
 	return (
 		<S.Container className={className}>
 			{cards.map((card, index) => {
-				const { title, path, positiveFactor } = card;
+				const { title, path, positiveFactor, ...rest } = card;
 				const current = get(countriesByDate[baseDate], path);
 				const before = get(countriesByDate[prevDate], path);
 
@@ -34,6 +34,7 @@ export const Overview: React.FC<IProps> = (props) => {
 						current={current}
 						before={before}
 						positiveFactor={positiveFactor}
+						{...rest}
 					/>
 				);
 			})}

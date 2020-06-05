@@ -25,7 +25,7 @@ const STooltip = styled.div`
 	opacity: 0;
 	visibility: hidden;
 	transition: opacity 0.3s, visibility 0.3s;
-	background: ${({ theme }) => theme.colors.darkBlue2};
+	background: #1b233e;
 	box-shadow: 0 0 0.7rem rgba(0, 0, 0, 0.4);
 	padding: 1rem 2rem;
 	border-radius: 0.5rem;
