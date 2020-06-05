@@ -1,5 +1,5 @@
 [[headers]]
-    for = ".html"
+    for = "*.html"
     [headers.values]
     	cache-control = '''
     	max-age=0,
