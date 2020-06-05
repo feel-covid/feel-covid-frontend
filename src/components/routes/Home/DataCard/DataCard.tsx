@@ -82,9 +82,7 @@ const S = {
 		bottom: -0.4rem;
 		transform: translate(-50%, 100%);
 		line-height: initial;
-		box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.7);
-		background: ${({ theme }) => theme.colors.white};
-		color: black;
+		color: ${({ theme }) => theme.colors.white};
 		padding: 0.8rem 1rem;
 	`
 };
