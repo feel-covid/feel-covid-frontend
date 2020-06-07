@@ -6,16 +6,16 @@ import he from 'date-fns/locale/he';
 import { useStatsFilterContext } from '../../../../../hooks/useStatsFilterContext';
 import { format } from 'date-fns';
 import { DateFormatsEnum } from '../../../../../@types/enums';
-import { IStyle, StateUpdaterFunction } from '../../../../../@types/interfaces';
+import { IStyle } from '../../../../../@types/interfaces';
 import media from '../../../../../themes/media';
 import { Select } from '../../../../shared/Form/Select';
 import { useCountryData } from '../../../../../hooks/useCountryData';
+import { useTogglesContext } from '../../../../../hooks/useTogglesContext';
+import { TogglesActions } from '../../../../providers/TogglesProvider/reducer';
 
 interface IProps extends IStyle {
 	containerRef?: Ref<HTMLDivElement>;
 	selectRef?: Ref<HTMLSelectElement>;
-	isSubHeaderOpen: boolean;
-	setSubHeader: StateUpdaterFunction<boolean>;
 }
 
 export const HeaderFilter: React.FC<IProps> = (props) => {
@@ -27,17 +27,18 @@ export const HeaderFilter: React.FC<IProps> = (props) => {
 		setPrevDate
 	} = useStatsFilterContext();
 	const { weekAgoIndexOnNormalizedData } = useCountryData();
-	const { isSubHeaderOpen, setSubHeader, containerRef, selectRef } = props;
+	const { containerRef, selectRef } = props;
+	const { state, dispatch } = useTogglesContext();
 
 	const handleChange = useCallback(
 		(e: ChangeEvent<HTMLSelectElement>) => {
 			setPrevDate!(e.target.value);
 
-			if (isSubHeaderOpen) {
-				setSubHeader(false);
+			if (state.showSubHeader) {
+				dispatch({ type: TogglesActions.SET_SHOW_SUB_HEADER, payload: false });
 			}
 		},
-		[isSubHeaderOpen, setPrevDate, setSubHeader]
+		[state.showSubHeader, dispatch, setPrevDate]
 	);
 
 	return (

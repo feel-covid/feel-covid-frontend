@@ -14,43 +14,37 @@ interface IProps {}
 
 export const Header: React.FC<IProps> = (props) => {
 	const { t } = useTranslation();
-	const { dispatch } = useTogglesContext();
+	const { state, dispatch } = useTogglesContext();
 	const [isSubHeaderOpen, setSubHeader] = useState(false);
-
-	const handleSettingsClick = useCallback(() => {
-		setSubHeader((prevState) => !prevState);
-	}, [dispatch]);
-
-	const handleCustomCompareClick = useCallback(() => {
-		dispatch({ type: TogglesActions.SET_SHOW_CUSTOM_COMPARE });
-	}, [dispatch]);
 
 	return (
 		<S.Container>
 			<S.MainHeader>
 				<S.TitleContainer>
 					<S.Title text={t('header.title')!} />
-					<S.SettingsContainer onClick={handleSettingsClick}>
+					<S.SettingsContainer
+						onClick={() =>
+							dispatch({ type: TogglesActions.SET_SHOW_SUB_HEADER })
+						}
+					>
 						<S.CogIcon type={IconsEnum.Cog} />
 					</S.SettingsContainer>
 				</S.TitleContainer>
 
-				<S.Filter
-					isSubHeaderOpen={isSubHeaderOpen}
-					setSubHeader={setSubHeader}
-				/>
+				<S.Filter />
 
-				<S.CreateComparisonContainer onClick={handleCustomCompareClick}>
+				<S.CreateComparisonContainer
+					onClick={() =>
+						dispatch({ type: TogglesActions.SET_SHOW_CUSTOM_COMPARE })
+					}
+				>
 					<S.CreateComparisonBtn>
 						<CustomText text={t('header.createComparison') as string} />
 					</S.CreateComparisonBtn>
 				</S.CreateComparisonContainer>
 			</S.MainHeader>
 
-			<SubHeader
-				isSubHeaderOpen={isSubHeaderOpen}
-				setSubHeader={setSubHeader}
-			/>
+			<SubHeader />
 		</S.Container>
 	);
 };
@@ -62,7 +56,7 @@ export const sharedHeaderStyles = css`
 	align-items: center;
 	justify-content: space-between;
 	box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.4);
-	height: 5.6rem;
+	height: var(--header-height);
 `;
 
 const S = {

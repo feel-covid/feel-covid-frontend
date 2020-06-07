@@ -30,7 +30,7 @@ const DataCard: React.FC<IProps> = (props) => {
 					// eslint-disable-next-line @typescript-eslint/no-empty-function
 					<S.TooltipContainer onClick={() => {}}>
 						<S.Tooltip content={tooltip}>
-							<Icon type={IconsEnum.MoreInformation} />
+							<S.InfoIcon type={IconsEnum.MoreInformation} />
 						</S.Tooltip>
 					</S.TooltipContainer>
 				)}
@@ -69,21 +69,26 @@ const S = {
 		position: relative;
 		display: flex;
 	`,
+	InfoIcon: styled(Icon)`
+		width: 1.8rem;
+		height: 1.8rem;
+	`,
 	TooltipContainer: styled.div`
 		fill: ${({ theme }) => theme.colors.white};
 		line-height: 0;
 		margin-right: 0.5rem;
-		transform: translateY(0.1rem);
+		transform: translateY(0.23rem);
 		z-index: 10;
 	`,
 	Tooltip: styled(Tooltip)`
-		width: 23rem;
+		width: 22rem;
 		z-index: 100;
 		bottom: -0.4rem;
 		transform: translate(-50%, 100%);
 		line-height: initial;
 		color: ${({ theme }) => theme.colors.white};
 		padding: 0.8rem 1rem;
+		text-align: center;
 	`
 };
 
