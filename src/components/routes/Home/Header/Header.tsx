@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled, { css } from 'styled-components/macro';
 import CustomText from '../../../shared/CustomText/CustomText';
@@ -14,8 +14,7 @@ interface IProps {}
 
 export const Header: React.FC<IProps> = (props) => {
 	const { t } = useTranslation();
-	const { state, dispatch } = useTogglesContext();
-	const [isSubHeaderOpen, setSubHeader] = useState(false);
+	const { dispatch } = useTogglesContext();
 
 	return (
 		<S.Container>

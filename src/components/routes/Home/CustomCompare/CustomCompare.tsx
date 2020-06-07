@@ -117,85 +117,92 @@ export const CustomCompare: React.FC<IProps> = (props) => {
 		[]
 	);
 
+	const children = useMemo(
+		() => (
+			<S.Wrapper
+				isOpen={state.showCustomCompare}
+				onClick={(e: React.MouseEvent<HTMLElement>) => {
+					if (
+						e.target === e.currentTarget ||
+						(e.target as HTMLDivElement).id === 'custom-compare-close-icon'
+					) {
+						dispatch({
+							type: TogglesActions.SET_SHOW_CUSTOM_COMPARE,
+							payload: false
+						});
+					}
+				}}
+			>
+				<S.InnerContainer isOpen={state.showCustomCompare}>
+					<CustomCompareHeader setStatsBackCount={setStatsBackCount} />
+					<S.ContentContainer ref={contentContainer}>
+						<S.ChartContainer title=''>
+							<LineChart
+								data={normalizedChartData.slice(statsBackCount)}
+								ref={chartRef}
+								onMouseUp={disable}
+							>
+								{Object.keys(selectedItems).map((key) => {
+									const { path, title, color } = get(selectOptions, key);
+									return (
+										// @ts-ignore
+										<Line
+											key={key}
+											dataKey={path}
+											fill='transparent'
+											strokeWidth={3}
+											name={title}
+											dot={false}
+											type={'linear'}
+											stroke={color}
+										/>
+									);
+								})}
+
+								<Tooltip
+									labelFormatter={(date) =>
+										formatChartDate(date as string, { locale: he })
+									}
+									{...{ ...(tooltipDefaultProps as any), position: { y: 0 } }}
+								/>
+
+								<XAxis
+									{...xAxisDefaultProps}
+									tick={<CustomizedXAxisTick />}
+									interval={Number(
+										statsBackCount !== weekAgoIndexOnNormalizedChartData
+									)}
+								/>
+
+								<Legend
+									{...{
+										...(legendDefaultProps as any),
+										wrapperStyle: { transform: 'translateY(-1.5rem)' }
+									}}
+									verticalAlign='top'
+								/>
+							</LineChart>
+						</S.ChartContainer>
+
+						<S.SelectionContainer>
+							{Object.entries(selectOptions).map(([key, value]) => (
+								<S.Checkbox
+									key={key}
+									title={value.title}
+									checked={Boolean(selectedItems[key])}
+									onCheck={() => handleCheck(key)}
+								/>
+							))}
+						</S.SelectionContainer>
+					</S.ContentContainer>
+				</S.InnerContainer>
+			</S.Wrapper>
+		),
+		[state.showCustomCompare, dispatch, selectedItems, statsBackCount]
+	);
+
 	return ReactDOM.createPortal(
-		<S.Wrapper
-			isOpen={state.showCustomCompare}
-			onClick={(e: React.MouseEvent<HTMLElement>) => {
-				if (
-					e.target === e.currentTarget ||
-					(e.target as HTMLDivElement).id === 'custom-compare-close-icon'
-				) {
-					dispatch({
-						type: TogglesActions.SET_SHOW_CUSTOM_COMPARE,
-						payload: false
-					});
-				}
-			}}
-		>
-			<S.InnerContainer isOpen={state.showCustomCompare}>
-				<CustomCompareHeader setStatsBackCount={setStatsBackCount} />
-				<S.ContentContainer ref={contentContainer}>
-					<S.ChartContainer title=''>
-						<LineChart
-							data={normalizedChartData.slice(statsBackCount)}
-							ref={chartRef}
-							onMouseUp={disable}
-						>
-							{Object.keys(selectedItems).map((key) => {
-								const { path, title, color } = get(selectOptions, key);
-								return (
-									// @ts-ignore
-									<Line
-										key={key}
-										dataKey={path}
-										fill='transparent'
-										strokeWidth={3}
-										name={title}
-										dot={false}
-										type={'linear'}
-										stroke={color}
-									/>
-								);
-							})}
-
-							<Tooltip
-								labelFormatter={(date) =>
-									formatChartDate(date as string, { locale: he })
-								}
-								{...{ ...(tooltipDefaultProps as any), position: { y: 0 } }}
-							/>
-
-							<XAxis
-								{...xAxisDefaultProps}
-								tick={<CustomizedXAxisTick />}
-								interval={Number(
-									statsBackCount !== weekAgoIndexOnNormalizedChartData
-								)}
-							/>
-
-							<Legend
-								{...{
-									...(legendDefaultProps as any),
-									wrapperStyle: { transform: 'translateY(-1.5rem)' }
-								}}
-								verticalAlign='top'
-							/>
-						</LineChart>
-					</S.ChartContainer>
-
-					<S.SelectionContainer>
-						{Object.entries(selectOptions).map(([key, value]) => (
-							<S.Checkbox
-								key={key}
-								title={value.title}
-								checked={Boolean(selectedItems[key])}
-								onCheck={() => handleCheck(key)}
-							/>
-						))}
-					</S.SelectionContainer>
-				</S.ContentContainer>
-			</S.InnerContainer>
-		</S.Wrapper>,
+		children,
 		document.getElementById('customCompareMountPoint')!
 	);
 };
