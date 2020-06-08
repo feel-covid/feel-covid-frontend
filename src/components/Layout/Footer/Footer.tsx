@@ -60,6 +60,10 @@ const S = {
 			showSubHeader &&
 			css`
 				transform: translateY(var(--header-height));
+
+				@media (max-width: 400px) {
+					transform: translateY(var(--small-device-subheader-height));
+				}
 			`}
 
 		${media.phone`

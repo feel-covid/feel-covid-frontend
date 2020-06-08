@@ -51,7 +51,7 @@ const S = {
 
 		@media (max-width: 400px) {
 			padding: 1rem 0;
-			height: initial;
+			height: var(--small-device-subheader-height);
 		}
 
 		${({ isVisible }) =>
