@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import styled from 'styled-components/macro';
+import React, { useEffect, useMemo } from 'react';
+import styled, { css } from 'styled-components/macro';
 import { RouteComponentProps } from '@reach/router';
 import { PaddingContainer } from '../../shared/PaddingContainer/PaddingContainer';
 import { TotalCases } from './DataCategories/TotalCases/TotalCases';
@@ -12,11 +12,13 @@ import { hideLoadingSpinner } from '../../../utils/hideLoadingSpinner';
 import { TestsAmountChart } from './Charts/TestsAmountChart/TestsAmountChart';
 import { TreatmentTypeChart } from './Charts/TreatmentTypeChart/TreatmentTypeChart';
 import { CasesChart } from './Charts/CasesChart/CasesChart';
+import { useTogglesContext } from '../../../hooks/useTogglesContext';
 
 interface IProps extends RouteComponentProps {}
 
 const Home: React.FC<IProps> = () => {
 	const { loading } = useCountryData();
+	const { state } = useTogglesContext();
 
 	useEffect(() => {
 		if (!loading) {
@@ -24,9 +26,9 @@ const Home: React.FC<IProps> = () => {
 		}
 	}, [loading]);
 
-	return (
-		<PaddingContainer>
-			<S.Container>
+	const children = useMemo(() => {
+		return (
+			<>
 				<TotalCases />
 				<SChartsContainer style={{ margin: '0.8rem 0' }}>
 					<DailyDiffChart />
@@ -38,7 +40,13 @@ const Home: React.FC<IProps> = () => {
 					<TreatmentTypeChart />
 					<CasesChart />
 				</SChartsContainer>
-			</S.Container>
+			</>
+		);
+	}, [loading]);
+
+	return (
+		<PaddingContainer>
+			<S.Container showSubHeader={state.showSubHeader}>{children}</S.Container>
 		</PaddingContainer>
 	);
 };
@@ -55,11 +63,22 @@ const SChartsContainer = styled.div`
 `;
 
 const S = {
-	Container: styled.div`
+	Container: styled.div<{ showSubHeader: boolean }>`
 		display: flex;
 		width: 100%;
 		flex-direction: column;
 		padding: 0.8rem 1rem;
+		transition: 0.3s;
+
+		${({ showSubHeader }) =>
+			showSubHeader &&
+			css`
+				transform: translateY(var(--header-height));
+
+				@media (max-width: 400px) {
+					transform: translateY(var(--small-device-subheader-height));
+				}
+			`}
 	`
 };
 

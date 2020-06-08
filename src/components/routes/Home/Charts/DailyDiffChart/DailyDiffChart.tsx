@@ -1,7 +1,15 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'styled-components/macro';
-import { Bar, ComposedChart, Legend, Line, Tooltip, XAxis } from 'recharts';
+import {
+	Bar,
+	ComposedChart,
+	LabelList,
+	Legend,
+	Line,
+	Tooltip,
+	XAxis
+} from 'recharts';
 import {
 	animationDefaultProps,
 	legendDefaultProps,
@@ -14,6 +22,8 @@ import { Gradients } from '../../../../shared/BaseChart/Gradients';
 import { useDisableChartActiveState } from '../../../../../hooks/useDisableChartActiveState';
 import { useCountryData } from '../../../../../hooks/useCountryData';
 import { ChartContainer } from '../../../../shared/BaseChart/ChartContainer';
+import { CustomTestAmountLabel } from '../TestsAmountChart/CustomTestAmountLabel';
+import { CustomDailyDiffBarLabel } from './CustomDailyDiffBarLabel';
 
 interface IProps {}
 
@@ -39,7 +49,10 @@ export const DailyDiffChart: React.FC<IProps> = (props) => {
 			dataKey: 'total',
 			fill: `url(#${gradientsId}blue2)`,
 			name: t('charts.dailyDiffChart.total'),
-			stroke: theme.colors.blue2
+			stroke: theme.colors.blue2,
+			children: (
+				<LabelList dataKey='total' content={<CustomDailyDiffBarLabel />} />
+			)
 		},
 		{
 			dataKey: 'deceased',
@@ -94,14 +107,6 @@ export const DailyDiffChart: React.FC<IProps> = (props) => {
 				{bars.map((bar) => (
 					<Bar key={bar.dataKey} {...bar} {...animationDefaultProps} />
 				))}
-
-				<Line
-					dataKey='total'
-					stroke={theme.colors.white}
-					strokeWidth={2}
-					{...animationDefaultProps}
-					style={{ top: '-10px' }}
-				/>
 
 				<Tooltip
 					content={<CustomizedDailyDiffTooltip />}

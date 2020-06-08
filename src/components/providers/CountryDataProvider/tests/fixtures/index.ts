@@ -79,8 +79,8 @@ export const countryDataContextFixture = {
 	normalized24HourDiff: normalized24HoursDiffFixture,
 	normalizedData: normalizedDataFixture,
 	weekAgoIndexOnNormalizedData: 0,
-	weekAgoIndexOnNormalizedChartData: 0,
-	weekAgoNegativeIndexOnNormalized24HoursDiff: -2,
+	weekAgoIndexOnNormalizedChartData: -8,
+	weekAgoNegativeIndexOnNormalized24HoursDiff: -8,
 	error: null,
 	loading: false,
 	testsData: testAmountResponseFixture

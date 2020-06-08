@@ -67,12 +67,6 @@ export const CountryDataProvider: React.FC<IProps> = ({ children }) => {
 		0
 	);
 
-	const weekAgoIndexOnNormalizedChartData = Math.round(
-		weekAgoIndexOnNormalizedData / 2
-	);
-
-	const normalizedChartData = normalizeChartData(normalizedData);
-
 	return (
 		<CountryDataContext.Provider
 			value={{
@@ -80,13 +74,11 @@ export const CountryDataProvider: React.FC<IProps> = ({ children }) => {
 				loading,
 				data: statsResponse,
 				normalizedData,
-				normalizedChartData: normalizedChartData,
+				normalizedChartData: normalizeChartData(normalizedData),
 				normalized24HourDiff: normalize24HoursDiff(normalizedData),
 				weekAgoIndexOnNormalizedData,
-				weekAgoIndexOnNormalizedChartData,
-				weekAgoNegativeIndexOnNormalized24HoursDiff: -(
-					normalizedChartData.length - weekAgoIndexOnNormalizedChartData
-				),
+				weekAgoIndexOnNormalizedChartData: -8,
+				weekAgoNegativeIndexOnNormalized24HoursDiff: -8,
 				testsData: testsResponse
 			}}
 		>

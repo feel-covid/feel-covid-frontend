@@ -2,40 +2,34 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components/macro';
 import { HeaderFilter } from './HeaderFilter/HeaderFilter';
 import { StateUpdaterFunction } from '../../../../@types/interfaces';
+import { useTogglesContext } from '../../../../hooks/useTogglesContext';
+import { TogglesActions } from '../../../providers/TogglesProvider/reducer';
 
-interface IProps {
-	isSubHeaderOpen: boolean;
-	setSubHeader: StateUpdaterFunction<boolean>;
-}
+interface IProps {}
 
 export const SubHeader: React.FC<IProps> = (props) => {
-	const { isSubHeaderOpen, setSubHeader } = props;
 	const containerRef = useRef(null);
 	const selectRef = useRef(null);
+	const { dispatch, state } = useTogglesContext();
 
 	const closeSubHeader = useCallback((e) => {
 		if ([containerRef.current, selectRef.current].includes(e.target)) return;
-		setSubHeader(false);
+		dispatch({ type: TogglesActions.SET_SHOW_SUB_HEADER, payload: false });
 	}, []);
 
 	useEffect(() => {
-		if (isSubHeaderOpen) {
+		if (state.showSubHeader) {
 			document.addEventListener('click', closeSubHeader);
 		} else {
 			document.removeEventListener('click', closeSubHeader);
 		}
 
 		return () => document.removeEventListener('click', closeSubHeader);
-	}, [isSubHeaderOpen]);
+	}, [state.showSubHeader]);
 
 	return (
-		<S.Container isVisible={isSubHeaderOpen}>
-			<S.Filter
-				containerRef={containerRef}
-				selectRef={selectRef}
-				isSubHeaderOpen={isSubHeaderOpen}
-				setSubHeader={setSubHeader}
-			/>
+		<S.Container isVisible={state.showSubHeader}>
+			<S.Filter containerRef={containerRef} selectRef={selectRef} />
 		</S.Container>
 	);
 };
@@ -45,7 +39,7 @@ const S = {
 		display: flex;
 		background: ${({ theme }) => theme.colors.darkBlue2};
 		align-items: center;
-		height: 5.6rem;
+		height: var(--header-height);
 		justify-content: center;
 		transform: translateY(-100%);
 		box-shadow: none;
@@ -57,7 +51,7 @@ const S = {
 
 		@media (max-width: 400px) {
 			padding: 1rem 0;
-			height: initial;
+			height: var(--small-device-subheader-height);
 		}
 
 		${({ isVisible }) =>

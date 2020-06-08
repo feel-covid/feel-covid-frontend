@@ -1,17 +1,20 @@
 export interface ITogglesContextState {
 	showCustomCompare: boolean;
+	showSubHeader: boolean;
 }
 
 export const togglesContextInitialState = {
-	showCustomCompare: false
+	showCustomCompare: false,
+	showSubHeader: false
 };
 
 export enum TogglesActions {
-	SET_SHOW_CUSTOM_COMPARE
+	SET_SHOW_CUSTOM_COMPARE,
+	SET_SHOW_SUB_HEADER
 }
 
 export type TogglesActionEnum = {
-	type: TogglesActions.SET_SHOW_CUSTOM_COMPARE;
+	type: TogglesActions;
 	payload?: boolean;
 };
 
@@ -20,13 +23,23 @@ export const togglesContextReducer = (
 	action: TogglesActionEnum
 ) => {
 	switch (action.type) {
-		case TogglesActions.SET_SHOW_CUSTOM_COMPARE:
+		case TogglesActions.SET_SHOW_CUSTOM_COMPARE: {
 			const { payload } = action;
 			return {
 				...state,
 				showCustomCompare: action.hasOwnProperty('payload')
 					? payload
 					: !state.showCustomCompare
+			};
+		}
+
+		case TogglesActions.SET_SHOW_SUB_HEADER:
+			const { payload } = action;
+			return {
+				...state,
+				showSubHeader: action.hasOwnProperty('payload')
+					? payload
+					: !state.showSubHeader
 			};
 
 		default:

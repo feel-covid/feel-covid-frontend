@@ -1,18 +1,20 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import styled from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
 import CustomText from '../../shared/CustomText/CustomText';
 import media from '../../../themes/media';
 import { Tooltip } from '../../shared/Tooltip/Tooltip';
 import { PrivacyPolicyContent } from './PrivacyPolicyContent';
 import { Link } from 'react-router-dom';
+import { useTogglesContext } from '../../../hooks/useTogglesContext';
 
 interface IProps {}
 
 export const Footer: React.FC<IProps> = (props) => {
 	const { t } = useTranslation();
+	const { state } = useTogglesContext();
 	return (
-		<S.Container>
+		<S.Container showSubHeader={state.showSubHeader}>
 			<S.Tooltip
 				containerStyle={{
 					position: 'initial'
@@ -46,12 +48,23 @@ export const Footer: React.FC<IProps> = (props) => {
 };
 
 const S = {
-	Container: styled.footer`
+	Container: styled.footer<{ showSubHeader: boolean }>`
 		text-align: center;
 		font-size: 1.2rem;
 		color: ${({ theme }) => theme.colors.gray3};
 		padding: 1.5rem 0;
 		position: relative;
+		transition: 0.3s;
+
+		${({ showSubHeader }) =>
+			showSubHeader &&
+			css`
+				transform: translateY(var(--header-height));
+
+				@media (max-width: 400px) {
+					transform: translateY(var(--small-device-subheader-height));
+				}
+			`}
 
 		${media.phone`
 				padding: 0.7rem 0 1.5rem 0;
