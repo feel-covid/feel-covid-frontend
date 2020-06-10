@@ -33,10 +33,12 @@ export const CustomizedDailyDiffTooltip: React.FC<IProps> = (props) => {
 
 			color = color.slice(dashIndex + 1, color.length - 1);
 
-			acc[dataKey] = {
-				color: dataKey === 'total' ? 'blue2' : color,
-				value
-			};
+			if (dataKey !== 'totalBuffer') {
+				acc[dataKey] = {
+					color: dataKey === 'total' ? 'blue2' : color,
+					value
+				};
+			}
 
 			return acc;
 		}, {} as DynamicObject<{ color: string; value: number }>);

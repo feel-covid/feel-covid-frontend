@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useTheme } from 'styled-components/macro';
+import styled, { useTheme } from 'styled-components/macro';
 import {
 	Bar,
 	ComposedChart,
@@ -24,6 +24,7 @@ import { useCountryData } from '../../../../../hooks/useCountryData';
 import { ChartContainer } from '../../../../shared/BaseChart/ChartContainer';
 import { CustomTestAmountLabel } from '../TestsAmountChart/CustomTestAmountLabel';
 import { CustomDailyDiffBarLabel } from './CustomDailyDiffBarLabel';
+import media from '../../../../../themes/media';
 
 interface IProps {}
 
@@ -36,6 +37,15 @@ export const DailyDiffChart: React.FC<IProps> = (props) => {
 	const theme = useTheme();
 	const gradientsId = 'DailyDiff-';
 	const { chartRef, disable } = useDisableChartActiveState();
+
+	const weekData = normalized24HourDiff.slice(
+		weekAgoNegativeIndexOnNormalized24HoursDiff
+	);
+
+	const maxDailyInfected = useMemo(
+		() => Math.max(...weekData.map(({ total }) => total)),
+		[normalized24HourDiff, weekAgoNegativeIndexOnNormalized24HoursDiff]
+	);
 
 	const bars = [
 		{
@@ -63,12 +73,13 @@ export const DailyDiffChart: React.FC<IProps> = (props) => {
 	];
 
 	return (
-		<ChartContainer title={t('charts.dailyDiffChart.title')}>
+		<S.ChartContainer title={t('charts.dailyDiffChart.title')}>
 			<ComposedChart
 				ref={chartRef}
-				data={normalized24HourDiff.slice(
-					weekAgoNegativeIndexOnNormalized24HoursDiff
-				)}
+				data={weekData.map((day) => ({
+					...day,
+					totalBuffer: maxDailyInfected + 7.5
+				}))}
 				onMouseUp={disable}
 			>
 				<Legend
@@ -104,6 +115,13 @@ export const DailyDiffChart: React.FC<IProps> = (props) => {
 					/>
 				</defs>
 
+				<Line
+					type='monotone'
+					dataKey='totalBuffer'
+					strokeWidth={0}
+					cursor={false as any}
+					dot={false}
+				/>
 				{bars.map((bar) => (
 					<Bar key={bar.dataKey} {...bar} {...animationDefaultProps} />
 				))}
@@ -115,6 +133,14 @@ export const DailyDiffChart: React.FC<IProps> = (props) => {
 
 				<XAxis {...xAxisDefaultProps} tick={<CustomizedXAxisTick />} />
 			</ComposedChart>
-		</ChartContainer>
+		</S.ChartContainer>
 	);
+};
+
+const S = {
+	ChartContainer: styled(ChartContainer)`
+		.recharts-active-dot {
+			display: none;
+		}
+	`
 };

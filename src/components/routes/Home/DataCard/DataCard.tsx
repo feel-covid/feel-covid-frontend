@@ -77,7 +77,7 @@ const S = {
 		fill: ${({ theme }) => theme.colors.white};
 		line-height: 0;
 		margin-right: 0.5rem;
-		transform: translateY(0.23rem);
+		transform: translateY(0.255rem);
 		z-index: 10;
 	`,
 	Tooltip: styled(Tooltip)`
