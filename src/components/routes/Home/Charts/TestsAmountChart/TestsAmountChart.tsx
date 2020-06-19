@@ -53,8 +53,8 @@ export const TestsAmountChart: React.FC<IProps> = (props) => {
 				acc.push({
 					...currentAmount,
 					overall: tmpAmount,
-					amount: (currentAmount.amount / amountRatio) * 0.7,
-					positive: (currentAmount.positive / positiveRatio) * 0.11,
+					amount: (currentAmount.amount / amountRatio) * 0.85,
+					positive: (currentAmount.positive / positiveRatio) * 0.1,
 					original: currentAmount
 				});
 

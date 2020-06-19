@@ -7,7 +7,7 @@ import media from '../../../../../themes/media';
 
 interface IProps {}
 
-export const TotalCases: React.FC<IProps> = (props) => {
+export const TotalCases = React.forwardRef<HTMLDivElement, IProps>((props, ref) => {
 	const { t } = useTranslation();
 
 	const categories = useMemo<IOverviewCard[]>(() => {
@@ -68,11 +68,13 @@ export const TotalCases: React.FC<IProps> = (props) => {
 	}, []);
 
 	return (
-		<S.Container>
+		<S.Container ref={ref}>
 			<S.Overview cards={categories} />
 		</S.Container>
 	);
-};
+});
+
+TotalCases.displayName = 'TotalCases';
 
 const S = {
 	Container: styled.div`

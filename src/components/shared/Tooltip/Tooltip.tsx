@@ -32,6 +32,7 @@ const STooltip = styled.div`
 	bottom: 0;
 	left: 50%;
 	transform: translateX(-50%);
+	color: white;
 `;
 
 const S = {

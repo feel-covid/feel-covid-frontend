@@ -5,7 +5,7 @@ export interface ITogglesContextState {
 
 export const togglesContextInitialState = {
 	showCustomCompare: false,
-	showSubHeader: false
+	showSubHeader: true
 };
 
 export enum TogglesActions {

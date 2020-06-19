@@ -17,34 +17,30 @@ export const Header: React.FC<IProps> = (props) => {
 	const { dispatch } = useTogglesContext();
 
 	return (
-		<S.Container>
-			<S.MainHeader>
-				<S.TitleContainer>
-					<S.Title text={t('header.title')!} />
-					<S.SettingsContainer
+		<>
+			<S.Container>
+				<S.MainHeader>
+					<S.TitleContainer>
+						<S.Title text={t('header.title')!} />
+					</S.TitleContainer>
+
+					<S.Filter />
+
+					<S.CreateComparisonContainer
 						onClick={() =>
-							dispatch({ type: TogglesActions.SET_SHOW_SUB_HEADER })
+							dispatch({ type: TogglesActions.SET_SHOW_CUSTOM_COMPARE })
 						}
 					>
-						<S.CogIcon type={IconsEnum.Cog} />
-					</S.SettingsContainer>
-				</S.TitleContainer>
-
-				<S.Filter />
-
-				<S.CreateComparisonContainer
-					onClick={() =>
-						dispatch({ type: TogglesActions.SET_SHOW_CUSTOM_COMPARE })
-					}
-				>
-					<S.CreateComparisonBtn>
-						<CustomText text={t('header.createComparison') as string} />
-					</S.CreateComparisonBtn>
-				</S.CreateComparisonContainer>
-			</S.MainHeader>
+						<S.CreateComparisonBtn>
+							<CustomText text={t('header.createComparison') as string} />
+						</S.CreateComparisonBtn>
+					</S.CreateComparisonContainer>
+				</S.MainHeader>
+			</S.Container>
 
 			<SubHeader />
-		</S.Container>
+		</>
+
 	);
 };
 
@@ -76,25 +72,6 @@ const S = {
 	`,
 	Title: styled(CustomText)`
 		font-weight: bold;
-	`,
-	SettingsContainer: styled.div`
-		display: none;
-		transform: translateY(0.2rem);
-		cursor: pointer;
-		-webkit-tap-highlight-color: transparent;
-
-		${media.tablet`
-			display: initial;
-		`}
-	`,
-	CogIcon: styled(Icon)`
-		margin-right: 0.7rem;
-		pointer-events: none;
-		fill: ${({ theme }) => theme.colors.white};
-		width: 1.6rem;
-		height: 1.6rem;
-		user-select: none;
-		outline: none;
 	`,
 	Filter: styled(HeaderFilter)`
 		position: absolute;

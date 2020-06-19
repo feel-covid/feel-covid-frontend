@@ -4,13 +4,19 @@ import { ResponsiveContainer } from 'recharts';
 import CustomText from '../CustomText/CustomText';
 import { IStyle } from '../../../@types/interfaces';
 import { envInfo } from '../../../utils/envInfo';
+import {IconsEnum} from "../../../@types/enums";
+import {Tooltip} from "../Tooltip/Tooltip";
+import {Icon} from "../Icon/Icon";
+import media from "../../../themes/media";
 
 interface IProps extends IStyle {
 	title: string;
+	tooltip?: string;
 }
 
 export const ChartContainer: React.FC<IProps> = (props) => {
 	const containerRef = useRef<HTMLDivElement>(null);
+	const { tooltip, title, children } = props;
 
 	useEffect(() => {
 		const { current: container } = containerRef;
@@ -56,7 +62,18 @@ export const ChartContainer: React.FC<IProps> = (props) => {
 
 	return (
 		<S.Container ref={containerRef} className={props.className}>
-			<S.ChartTitle text={props.title} />
+			<S.TitleAndTooltipContainer>
+				<S.ChartTitle text={title} />
+				 {tooltip && (
+					// eslint-disable-next-line @typescript-eslint/no-empty-function
+					<S.TooltipContainer onClick={() => {}}>
+						<S.Tooltip content={tooltip}>
+							<S.InfoIcon type={IconsEnum.MoreInformation} />
+						</S.Tooltip>
+					</S.TooltipContainer>
+				)}
+			</S.TitleAndTooltipContainer>
+
 			<S.OuterChartContainer>
 				<S.InnerChartContainer>
 					<ResponsiveContainer debounce={200}>
@@ -116,11 +133,45 @@ const S = {
 		top: 0;
 		left: 0;
 	`,
-	ChartTitle: styled(CustomText)`
+	TooltipContainer: styled.div`
+		position: relative;
+		line-height: 0;
+		transform: translateY(.03rem);
+		margin-right: .5rem;
+	`,
+	TitleAndTooltipContainer: styled.div`
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		z-index: 1;
+    	position: relative;
+	`,
+	InfoIcon: styled(Icon)`
+		fill: white;
+		width: 1.8rem;
+		height: 1.8rem;
+	`,
+	Tooltip: styled(Tooltip)`
+		width: 23rem;
 		text-align: center;
-		width: 100%;
+		bottom: 2.3rem;
+		line-height: initial;
+		
+		@media(max-width: 500px) {
+			left: 0;
+			top: 2.3rem;
+			transform: none;
+			bottom: initial;
+		}
+	`,
+	ChartTitle: styled(CustomText)`
 		display: inline-block;
 		font-weight: bold;
 		direction: rtl;
+		
+		@media(max-width: 345px) {
+			font-size: 1.5rem;
+		}
 	`
 };

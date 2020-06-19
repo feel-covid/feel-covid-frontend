@@ -4,6 +4,7 @@
 			"title": "תמונת מצב",
 			"headerFilter": {
 				"displayingComparison": "מגמת שינוי בין",
+				"displayingComparisonSmallDevices": "בין",
 				"andBetween": "לבין"
 			},
 			"createComparison": "השווה/י מגמות"
@@ -46,7 +47,8 @@
 				"title": "מגמה יומית של נדבקים, מחלימים ונפטרים",
 				"deceased": "נפטרים",
 				"total": "נדבקים",
-				"recovered": "מחלימים"
+				"recovered": "מחלימים",
+				"tooltip": "תרשים זה מייצג את מגמת השינוי היומית בין עדכוני בוקר (עדכון בוקר - עדכון בוקר)"
 			},
 			"treatmentType": {
 				"title": "מגמת אופי הטיפול בחולים"
@@ -55,7 +57,8 @@
 				"title": "מגמה יומית של בדיקות",
 				"sumTests": "סך הבדיקות",
 				"today": "נעשו היום",
-				"positive": "אחוז חיוביים"
+				"positive": "אחוז חיוביים",
+				"tooltip": "משרד הבריאות מעדכן את נתוני הבדיקות מס' פעמים ביממה כך שתרשים זה אינו סופי"
 			}
 		},
 		"footer": {
