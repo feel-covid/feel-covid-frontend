@@ -6,6 +6,7 @@ import {
 import { differenceInHours, format } from 'date-fns';
 import { DynamicObject } from '../../../@types/interfaces';
 import { clamp } from '../../../utils/clamp';
+import {findClosestInRangeOf24h} from "../../../utils/findClosestInRangeOf24H";
 
 export const normalizeCountryData = (
 	country: ICountry
@@ -62,9 +63,17 @@ export const normalize24HoursDiff = (
 
 	const diffIn24 = dateValues
 		.reduceRight((acc, currentDate, index) => {
+
 			if (index === 0) return acc;
-			const [currentDayFirstUpdate] = currentDate;
-			const [prevDayFirstUpdate] = dateValues[index - 1];
+
+			const [currentIndex, prevIndex] = findClosestInRangeOf24h({
+				currentDay: currentDate,
+				prevDay: dateValues[index - 1]
+			});
+
+			if ([currentIndex, prevIndex].includes(-1)) return acc;
+			const currentDayFirstUpdate = currentDate[currentIndex];
+			const prevDayFirstUpdate = dateValues[index - 1][prevIndex];
 
 			acc.push({
 				recovered: clamp0(

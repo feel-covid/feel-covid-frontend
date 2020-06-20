@@ -8,7 +8,23 @@ interface IPrams {
 	prevIndex?: number;
 }
 
-const BUFFER = 5;
+const BUFFER = 3;
+
+// export const findClosestInRangeOf24h = ({
+// 	currentDay,
+// 	prevDay,
+// 	currentIndex = currentDay.length - 1,
+// 	prevIndex = prevDay.length - 1
+// }: IPrams): [number, number] => {
+// 	const { date: prevDate } = currentDay[currentIndex];
+// 	const { date: currentDate } = prevDay[prevIndex];
+//
+// 	const diffInHours = differenceInHours(
+// 		new Date(prevDate),
+// 		new Date(currentDate)
+// 	);
+// }
+
 
 export const findClosestInRangeOf24h = ({
 	currentDay,
@@ -40,7 +56,7 @@ export const findClosestInRangeOf24h = ({
 	 * Safeguard
 	 * */
 	if (nextCurrentIndex < 0 && nextPrevIndex < 0) {
-		return [currentIndex, prevIndex];
+		return [-1, -1]
 	}
 
 	return findClosestInRangeOf24h({

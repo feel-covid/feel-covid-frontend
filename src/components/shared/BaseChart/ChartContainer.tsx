@@ -152,10 +152,11 @@ const S = {
 		height: 1.8rem;
 	`,
 	Tooltip: styled(Tooltip)`
-		width: 23rem;
+		width: 27rem;
 		text-align: center;
 		bottom: 2.3rem;
 		line-height: initial;
+		padding: 1rem;
 
 		@media (max-width: 500px) {
 			left: 0;
