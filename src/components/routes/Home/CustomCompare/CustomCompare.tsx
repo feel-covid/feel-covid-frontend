@@ -341,8 +341,6 @@ const S = {
 				width: 100%;
 				margin-bottom: 0;
 				padding-top: 1.5rem;
-				display: flex;
-				align-items: flex-end;
 		`}
 	`,
 	SelectionTitle: styled(CustomText)`
