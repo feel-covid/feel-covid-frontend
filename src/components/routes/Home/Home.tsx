@@ -29,15 +29,17 @@ const Home: React.FC<IProps> = () => {
 	}, [loading]);
 
 	useEffect(() => {
-		const observer = new IntersectionObserver((entries, observer) => {
-			entries.forEach(entry => {
-				const { isIntersecting } = entry;
-				dispatch({ type: TogglesActions.SET_SHOW_SUB_HEADER, payload: isIntersecting })
-			});
-		}, { threshold: 0.15 });
+		if ('IntersectionObserver' in window) {
+			const observer = new IntersectionObserver((entries, observer) => {
+				entries.forEach(entry => {
+					const { isIntersecting } = entry;
+					dispatch({ type: TogglesActions.SET_SHOW_SUB_HEADER, payload: isIntersecting })
+				});
+			}, { threshold: 0.15 });
 
-		if (totalCasesRef.current) {
-			observer.observe(totalCasesRef.current);
+			if (totalCasesRef.current) {
+				observer.observe(totalCasesRef.current);
+			}
 		}
 	}, [])
 
