@@ -20,7 +20,7 @@ interface IProps extends RouteComponentProps {}
 const Home: React.FC<IProps> = () => {
 	const { loading } = useCountryData();
 	const totalCasesRef = useRef<HTMLDivElement>(null);
-	const { state, dispatch } = useTogglesContext();
+	const { dispatch } = useTogglesContext();
 
 	useEffect(() => {
 		if (!loading) {
@@ -29,17 +29,12 @@ const Home: React.FC<IProps> = () => {
 	}, [loading]);
 
 	useEffect(() => {
-		if (window.innerWidth > 880) return;
-		const headerAndSubHeaderHeight = 11.2 * parseFloat(getComputedStyle(document.documentElement).fontSize);
 		const observer = new IntersectionObserver((entries, observer) => {
 			entries.forEach(entry => {
-				if (entry.intersectionRatio === 0) {
-					dispatch({ type: TogglesActions.SET_SHOW_SUB_HEADER, payload: false })
-				} else {
-					dispatch({ type: TogglesActions.SET_SHOW_SUB_HEADER, payload: true })
-				}
+				const { isIntersecting } = entry;
+				dispatch({ type: TogglesActions.SET_SHOW_SUB_HEADER, payload: isIntersecting })
 			});
-		}, { rootMargin: `-${headerAndSubHeaderHeight}px 0px 0px 0px` });
+		}, { threshold: 0.15 });
 
 		if (totalCasesRef.current) {
 			observer.observe(totalCasesRef.current);
