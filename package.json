@@ -24,7 +24,7 @@
 		"build:css": "postcss src/tailwind.css -o src/tailwind.output.css --env production",
 		"watch:css": "postcss src/tailwind.css -o src/tailwind.output.css -w",
 		"start": "concurrently \"npm run watch:css\" \"react-scripts start\"",
-		"build": "yarn test:all && cross-env GENERATE_SOURCEMAP=false react-scripts build",
+		"build": "yarn test:all && cross-env GENERATE_SOURCEMAP=false CI=false react-scripts build",
 		"test:all": "cross-env CI=true yarn test",
 		"test": "react-scripts test --coverage",
 		"eject": "react-scripts eject",
