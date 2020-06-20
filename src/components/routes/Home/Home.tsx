@@ -1,19 +1,19 @@
-import React, {useEffect, useMemo, useRef} from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import styled from 'styled-components/macro';
-import {RouteComponentProps} from '@reach/router';
-import {PaddingContainer} from '../../shared/PaddingContainer/PaddingContainer';
-import {TotalCases} from './DataCategories/TotalCases/TotalCases';
-import {Treatment} from './DataCategories/Treatment/Treatment';
-import {ActiveRecoveredDeceasedChart} from './Charts/ActiveRecoveredDeceasedChart/ActiveRecoveredDeceasedChart';
-import {DailyDiffChart} from './Charts/DailyDiffChart/DailyDiffChart';
+import { RouteComponentProps } from '@reach/router';
+import { PaddingContainer } from '../../shared/PaddingContainer/PaddingContainer';
+import { TotalCases } from './DataCategories/TotalCases/TotalCases';
+import { Treatment } from './DataCategories/Treatment/Treatment';
+import { ActiveRecoveredDeceasedChart } from './Charts/ActiveRecoveredDeceasedChart/ActiveRecoveredDeceasedChart';
+import { DailyDiffChart } from './Charts/DailyDiffChart/DailyDiffChart';
 import media from '../../../themes/media';
-import {useCountryData} from '../../../hooks/useCountryData';
-import {hideLoadingSpinner} from '../../../utils/hideLoadingSpinner';
-import {TestsAmountChart} from './Charts/TestsAmountChart/TestsAmountChart';
-import {TreatmentTypeChart} from './Charts/TreatmentTypeChart/TreatmentTypeChart';
-import {CasesChart} from './Charts/CasesChart/CasesChart';
-import {useTogglesContext} from "../../../hooks/useTogglesContext";
-import {TogglesActions} from "../../providers/TogglesProvider/reducer";
+import { useCountryData } from '../../../hooks/useCountryData';
+import { hideLoadingSpinner } from '../../../utils/hideLoadingSpinner';
+import { TestsAmountChart } from './Charts/TestsAmountChart/TestsAmountChart';
+import { TreatmentTypeChart } from './Charts/TreatmentTypeChart/TreatmentTypeChart';
+import { CasesChart } from './Charts/CasesChart/CasesChart';
+import { useTogglesContext } from '../../../hooks/useTogglesContext';
+import { TogglesActions } from '../../providers/TogglesProvider/reducer';
 
 interface IProps extends RouteComponentProps {}
 
@@ -30,18 +30,24 @@ const Home: React.FC<IProps> = () => {
 
 	useEffect(() => {
 		if ('IntersectionObserver' in window) {
-			const observer = new IntersectionObserver((entries, observer) => {
-				entries.forEach(entry => {
-					const { isIntersecting } = entry;
-					dispatch({ type: TogglesActions.SET_SHOW_SUB_HEADER, payload: isIntersecting })
-				});
-			}, { threshold: 0.15 });
+			const observer = new IntersectionObserver(
+				(entries, observer) => {
+					entries.forEach((entry) => {
+						const { isIntersecting } = entry;
+						dispatch({
+							type: TogglesActions.SET_SHOW_SUB_HEADER,
+							payload: isIntersecting
+						});
+					});
+				},
+				{ threshold: 0.15 }
+			);
 
 			if (totalCasesRef.current) {
 				observer.observe(totalCasesRef.current);
 			}
 		}
-	}, [])
+	}, []);
 
 	const children = useMemo(() => {
 		return (
@@ -71,8 +77,8 @@ const SChartsContainer = styled.div`
 	grid-template-columns: repeat(3, 1fr);
 	grid-gap: 0.8rem;
 	width: 100%;
-	
-	@media(max-width: 1150px) {
+
+	@media (max-width: 1150px) {
 		grid-template-columns: repeat(2, 1fr);
 	}
 

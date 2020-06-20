@@ -4,10 +4,9 @@ import { ResponsiveContainer } from 'recharts';
 import CustomText from '../CustomText/CustomText';
 import { IStyle } from '../../../@types/interfaces';
 import { envInfo } from '../../../utils/envInfo';
-import {IconsEnum} from "../../../@types/enums";
-import {Tooltip} from "../Tooltip/Tooltip";
-import {Icon} from "../Icon/Icon";
-import media from "../../../themes/media";
+import { IconsEnum } from '../../../@types/enums';
+import { Tooltip } from '../Tooltip/Tooltip';
+import { Icon } from '../Icon/Icon';
 
 interface IProps extends IStyle {
 	title: string;
@@ -16,7 +15,7 @@ interface IProps extends IStyle {
 
 export const ChartContainer: React.FC<IProps> = (props) => {
 	const containerRef = useRef<HTMLDivElement>(null);
-	const { tooltip, title, children } = props;
+	const { tooltip, title } = props;
 
 	useEffect(() => {
 		const { current: container } = containerRef;
@@ -64,7 +63,7 @@ export const ChartContainer: React.FC<IProps> = (props) => {
 		<S.Container ref={containerRef} className={props.className}>
 			<S.TitleAndTooltipContainer>
 				<S.ChartTitle text={title} />
-				 {tooltip && (
+				{tooltip && (
 					// eslint-disable-next-line @typescript-eslint/no-empty-function
 					<S.TooltipContainer onClick={() => {}}>
 						<S.Tooltip content={tooltip}>
@@ -136,8 +135,8 @@ const S = {
 	TooltipContainer: styled.div`
 		position: relative;
 		line-height: 0;
-		transform: translateY(.03rem);
-		margin-right: .5rem;
+		transform: translateY(0.03rem);
+		margin-right: 0.5rem;
 	`,
 	TitleAndTooltipContainer: styled.div`
 		display: flex;
@@ -145,7 +144,7 @@ const S = {
 		justify-content: center;
 		align-items: center;
 		z-index: 1;
-    	position: relative;
+		position: relative;
 	`,
 	InfoIcon: styled(Icon)`
 		fill: white;
@@ -157,8 +156,8 @@ const S = {
 		text-align: center;
 		bottom: 2.3rem;
 		line-height: initial;
-		
-		@media(max-width: 500px) {
+
+		@media (max-width: 500px) {
 			left: 0;
 			top: 2.3rem;
 			transform: none;
@@ -169,8 +168,8 @@ const S = {
 		display: inline-block;
 		font-weight: bold;
 		direction: rtl;
-		
-		@media(max-width: 345px) {
+
+		@media (max-width: 345px) {
 			font-size: 1.5rem;
 		}
 	`

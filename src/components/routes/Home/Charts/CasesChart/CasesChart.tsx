@@ -15,6 +15,7 @@ import {
 import { ChartContainer } from '../../../../shared/BaseChart/ChartContainer';
 import { Gradients } from '../../../../shared/BaseChart/Gradients';
 import { useDisableChartActiveState } from '../../../../../hooks/useDisableChartActiveState';
+import { CustomizedLineLabel } from '../../../../shared/BaseChart/CustomizedLineLabel';
 
 interface IProps {}
 

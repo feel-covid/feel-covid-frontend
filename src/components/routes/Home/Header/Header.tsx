@@ -40,7 +40,6 @@ export const Header: React.FC<IProps> = (props) => {
 
 			<SubHeader />
 		</>
-
 	);
 };
 

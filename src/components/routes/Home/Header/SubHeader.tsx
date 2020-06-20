@@ -1,8 +1,8 @@
-import React, {useRef} from 'react';
-import styled, {css} from 'styled-components/macro';
-import {HeaderFilter} from './HeaderFilter/HeaderFilter';
-import {useTogglesContext} from '../../../../hooks/useTogglesContext';
-import media from "../../../../themes/media";
+import React, { useRef } from 'react';
+import styled, { css } from 'styled-components/macro';
+import { HeaderFilter } from './HeaderFilter/HeaderFilter';
+import { useTogglesContext } from '../../../../hooks/useTogglesContext';
+import media from '../../../../themes/media';
 
 interface IProps {}
 
@@ -29,14 +29,14 @@ const S = {
 		z-index: 99;
 		box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.2);
 		display: none;
-		transition: .3s;
-		
-		${({isVisible}) =>
+		transition: 0.3s;
+
+		${({ isVisible }) =>
 			!isVisible &&
 			css`
-					transform: translateY(-100%);
-				`};
-		
+				transform: translateY(-100%);
+			`};
+
 		${media.tablet`
 			display: flex;
 		`}

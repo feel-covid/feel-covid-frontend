@@ -1,9 +1,15 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, {
+	PureComponent,
+	useCallback,
+	useMemo,
+	useRef,
+	useState
+} from 'react';
 import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import styled, { css, useTheme } from 'styled-components/macro';
 import { ChartContainer } from '../../../shared/BaseChart/ChartContainer';
-import { Legend, Line, LineChart, Tooltip, XAxis } from 'recharts';
+import { Legend, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts';
 import { Checkbox } from '../../../shared/Checkbox/Checkbox';
 import { DynamicObject } from '../../../../@types/interfaces';
 import { useCountryData } from '../../../../hooks/useCountryData';
@@ -24,6 +30,7 @@ import { useTogglesContext } from '../../../../hooks/useTogglesContext';
 import { TogglesActions } from '../../../providers/TogglesProvider/reducer';
 import { useDisableChartActiveState } from '../../../../hooks/useDisableChartActiveState';
 import useStrictEffect from '../../../../hooks/useStrictEffect';
+import { CustomizedLineLabel } from '../../../shared/BaseChart/CustomizedLineLabel';
 
 interface IProps {}
 
@@ -152,9 +159,20 @@ export const CustomCompare: React.FC<IProps> = (props) => {
 											fill='transparent'
 											strokeWidth={3}
 											name={title}
-											dot={false}
-											type={'linear'}
+											isAnimationActive={false}
+											type='monotone'
 											stroke={color}
+											dot={false}
+											// @ts-ignore
+											label={
+												<CustomizedLineLabel
+													stroke={color}
+													itemsLength={
+														normalizedChartData.slice(statsBackCount)
+															.length as any
+													}
+												/>
+											}
 										/>
 									);
 								})}
@@ -322,6 +340,9 @@ const S = {
 				flex: 1;
 				width: 100%;
 				margin-bottom: 0;
+				padding-top: 1.5rem;
+				display: flex;
+				align-items: flex-end;
 		`}
 	`,
 	SelectionTitle: styled(CustomText)`

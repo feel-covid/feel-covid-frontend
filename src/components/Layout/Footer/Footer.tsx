@@ -1,11 +1,11 @@
 import React from 'react';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components/macro';
 import CustomText from '../../shared/CustomText/CustomText';
 import media from '../../../themes/media';
-import {Tooltip} from '../../shared/Tooltip/Tooltip';
-import {PrivacyPolicyContent} from './PrivacyPolicyContent';
-import {Link} from 'react-router-dom';
+import { Tooltip } from '../../shared/Tooltip/Tooltip';
+import { PrivacyPolicyContent } from './PrivacyPolicyContent';
+import { Link } from 'react-router-dom';
 
 interface IProps {}
 
@@ -53,7 +53,7 @@ const S = {
 		padding: 1.5rem 0;
 		position: relative;
 		transition: 0.3s;
-		
+
 		${media.phone`
 				padding: 0.7rem 0 1.5rem 0;
 		`}

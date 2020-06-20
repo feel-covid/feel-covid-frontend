@@ -1,20 +1,28 @@
-import React, {useMemo} from 'react';
-import {useTranslation} from 'react-i18next';
-import styled, {useTheme} from 'styled-components/macro';
-import {Bar, ComposedChart, LabelList, Legend, Line, Tooltip, XAxis} from 'recharts';
+import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
+import styled, { useTheme } from 'styled-components/macro';
+import {
+	Bar,
+	ComposedChart,
+	LabelList,
+	Legend,
+	Line,
+	Tooltip,
+	XAxis
+} from 'recharts';
 import {
 	animationDefaultProps,
 	legendDefaultProps,
 	tooltipDefaultProps,
 	xAxisDefaultProps
 } from '../../../../shared/BaseChart/defaults';
-import {CustomizedXAxisTick} from '../../../../shared/BaseChart/CustomizedXAxisTick';
-import {CustomizedDailyDiffTooltip} from './CustomizedDailyDiffTooltip';
-import {Gradients} from '../../../../shared/BaseChart/Gradients';
-import {useDisableChartActiveState} from '../../../../../hooks/useDisableChartActiveState';
-import {useCountryData} from '../../../../../hooks/useCountryData';
-import {ChartContainer} from '../../../../shared/BaseChart/ChartContainer';
-import {CustomDailyDiffBarLabel} from './CustomDailyDiffBarLabel';
+import { CustomizedXAxisTick } from '../../../../shared/BaseChart/CustomizedXAxisTick';
+import { CustomizedDailyDiffTooltip } from './CustomizedDailyDiffTooltip';
+import { Gradients } from '../../../../shared/BaseChart/Gradients';
+import { useDisableChartActiveState } from '../../../../../hooks/useDisableChartActiveState';
+import { useCountryData } from '../../../../../hooks/useCountryData';
+import { ChartContainer } from '../../../../shared/BaseChart/ChartContainer';
+import { CustomDailyDiffBarLabel } from './CustomDailyDiffBarLabel';
 
 interface IProps {}
 
@@ -63,7 +71,10 @@ export const DailyDiffChart: React.FC<IProps> = (props) => {
 	];
 
 	return (
-		<S.ChartContainer title={t('charts.dailyDiffChart.title')} tooltip={t('charts.dailyDiffChart.tooltip')}>
+		<S.ChartContainer
+			title={t('charts.dailyDiffChart.title')}
+			tooltip={t('charts.dailyDiffChart.tooltip')}
+		>
 			<ComposedChart
 				ref={chartRef}
 				data={weekData.map((day) => ({
