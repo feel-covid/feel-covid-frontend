@@ -1,20 +1,38 @@
-import React, { SelectHTMLAttributes } from 'react';
-import styled from 'styled-components/macro';
+import React, { SelectHTMLAttributes, useRef } from 'react';
+import styled, { css } from 'styled-components/macro';
 import { IStyle } from '../../../@types/interfaces';
 import { IconsEnum } from '../../../@types/enums';
 import { Icon } from '../Icon/Icon';
+import CustomText from '../CustomText/CustomText';
 
-interface IProps extends IStyle, SelectHTMLAttributes<HTMLSelectElement> {}
+interface IProps extends IStyle, SelectHTMLAttributes<HTMLSelectElement> {
+	autoResize?: boolean;
+	formattedValue?: string;
+	containerStyle?: React.CSSProperties;
+}
 
 export const Select = React.forwardRef<HTMLSelectElement, IProps>(
 	(props, ref) => {
-		const { onChange, ...rest } = props;
+		const {
+			onChange,
+			autoResize,
+			containerStyle,
+			formattedValue,
+			...rest
+		} = props;
 
 		return (
-			<S.Container>
+			<S.Container style={containerStyle}>
+				{autoResize && (
+					<S.ValueContainer>
+						<S.Value text={formattedValue!} />
+					</S.ValueContainer>
+				)}
+
 				<S.Select
 					ref={ref}
 					{...rest}
+					autoResize={autoResize!}
 					onChange={(e) => {
 						if (onChange) {
 							onChange(e);
@@ -32,33 +50,55 @@ export const Select = React.forwardRef<HTMLSelectElement, IProps>(
 
 Select.displayName = 'Select';
 
-/*
- * Important!
- * Fontsize must be 16px on mobile to prevent ios from zooming.
- * */
+const sharedSelectStyles = css`
+	padding: 0 0.3rem 0 1.6rem;
+	font-size: 1.6rem;
+	border-radius: 0.3rem;
+	outline: none;
+	cursor: pointer;
+	color: white;
+	box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
+	background: ${({ theme }) => theme.colors.darkBlue1};
+	border: 0.2rem solid transparent;
+
+	&:focus {
+		border-color: ${({ theme }) => theme.colors.blue2};
+	}
+`;
+
 const S = {
 	Container: styled.div`
 		position: relative;
-	`,
-	Select: styled.select`
-		padding: 0.6rem 0.4rem 0.6rem 1.5rem;
-		font-size: 1.6rem;
-		border-radius: 0.3rem;
-		outline: none;
-		cursor: pointer;
 		margin-right: 0.5rem;
-		color: white;
-		box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
-		background: ${({ theme }) => theme.colors.darkBlue1};
+		height: 3.3rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+	`,
+	/*
+	 * Important!
+	 * Fontsize must be 16px on mobile to prevent ios from zooming.
+	 * */
+	Select: styled.select<{ autoResize: boolean }>`
+		${sharedSelectStyles};
 		-webkit-appearance: none;
-		border: 0.1rem solid transparent;
+		height: 100%;
+
+		${({ autoResize }) =>
+			autoResize &&
+			css`
+				position: absolute;
+				bottom: 0;
+				margin: 0;
+				box-shadow: none;
+				right: 0;
+				width: calc(100% + 0.3rem);
+				padding: 0.4rem;
+			`};
 
 		@supports (-webkit-touch-callout: none) {
 			font-size: 16px;
-		}
-
-		&:focus {
-			border-color: ${({ theme }) => theme.colors.blue2};
 		}
 	`,
 	ArrowIcon: styled(Icon)`
@@ -68,5 +108,21 @@ const S = {
 		transform: translateY(-50%);
 		fill: white;
 		pointer-events: none;
+		z-index: 1;
+	`,
+	ValueContainer: styled.div`
+		${sharedSelectStyles};
+		pointer-events: none;
+		z-index: 1;
+		position: relative;
+		box-shadow: none;
+		height: calc(100% - 0.4rem);
+		display: flex;
+		align-items: center;
+		margin-right: 0.2rem;
+		font-size: inherit;
+	`,
+	Value: styled(CustomText)`
+		transform: translateY(-0.02rem);
 	`
 };
