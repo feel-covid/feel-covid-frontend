@@ -16,7 +16,6 @@ interface IProps extends IStyle {
 
 const CustomText: React.FC<IProps> = (props) => {
 	const { link, href, text, className, percent, ...rest } = props;
-	console.log(rest);
 
 	return link ? (
 		<S.Link rel='noopener noreferrer' href={href} target='_blank' {...rest}>
