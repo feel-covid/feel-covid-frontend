@@ -1,10 +1,4 @@
-import React, {
-	PureComponent,
-	useCallback,
-	useMemo,
-	useRef,
-	useState
-} from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import styled, { css, useTheme } from 'styled-components/macro';

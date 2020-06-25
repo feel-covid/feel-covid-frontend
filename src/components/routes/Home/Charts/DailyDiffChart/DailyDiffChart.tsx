@@ -8,7 +8,8 @@ import {
 	Legend,
 	Line,
 	Tooltip,
-	XAxis
+	XAxis,
+	YAxis
 } from 'recharts';
 import {
 	animationDefaultProps,
@@ -79,7 +80,7 @@ export const DailyDiffChart: React.FC<IProps> = (props) => {
 				ref={chartRef}
 				data={weekData.map((day) => ({
 					...day,
-					totalBuffer: maxDailyInfected * 1.05
+					totalBuffer: maxDailyInfected * 1.1
 				}))}
 				onMouseUp={disable}
 			>
@@ -123,6 +124,7 @@ export const DailyDiffChart: React.FC<IProps> = (props) => {
 					cursor={false as any}
 					dot={false}
 				/>
+
 				{bars.map((bar) => (
 					<Bar key={bar.dataKey} {...bar} {...animationDefaultProps} />
 				))}
@@ -132,6 +134,7 @@ export const DailyDiffChart: React.FC<IProps> = (props) => {
 					{...(tooltipDefaultProps as any)}
 				/>
 
+				<YAxis domain={['dataMin', 'dataMax']} hide />
 				<XAxis {...xAxisDefaultProps} tick={<CustomizedXAxisTick />} />
 			</ComposedChart>
 		</S.ChartContainer>

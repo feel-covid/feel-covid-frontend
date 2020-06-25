@@ -8,23 +8,7 @@ interface IPrams {
 	prevIndex?: number;
 }
 
-const BUFFER = 3;
-
-// export const findClosestInRangeOf24h = ({
-// 	currentDay,
-// 	prevDay,
-// 	currentIndex = currentDay.length - 1,
-// 	prevIndex = prevDay.length - 1
-// }: IPrams): [number, number] => {
-// 	const { date: prevDate } = currentDay[currentIndex];
-// 	const { date: currentDate } = prevDay[prevIndex];
-//
-// 	const diffInHours = differenceInHours(
-// 		new Date(prevDate),
-// 		new Date(currentDate)
-// 	);
-// }
-
+const BUFFER = 2;
 
 export const findClosestInRangeOf24h = ({
 	currentDay,
@@ -40,7 +24,7 @@ export const findClosestInRangeOf24h = ({
 		new Date(currentDate)
 	);
 
-	const isInRange = Math.abs(24 - diffInHours) < BUFFER;
+	const isInRange = Math.abs(24 - diffInHours) <= BUFFER;
 
 	/*
 	 * Return the indices if date in range
@@ -49,20 +33,34 @@ export const findClosestInRangeOf24h = ({
 		return [currentIndex, prevIndex];
 	}
 
-	const nextCurrentIndex = currentIndex - 1;
-	const nextPrevIndex = prevIndex - 1;
+	let nextCurrentIndex, nextPrevIndex;
+	const [currentDayLength, prevDayLength] = [
+		currentDay.slice(0, currentIndex),
+		prevDay.slice(0, prevIndex)
+	];
+
+	if (currentDayLength > prevDayLength) {
+		nextCurrentIndex = currentIndex - 1;
+		nextPrevIndex = prevIndex;
+	} else if (prevDayLength > currentDayLength) {
+		nextCurrentIndex = currentIndex;
+		nextPrevIndex = prevIndex - 1;
+	} else {
+		nextCurrentIndex = currentIndex - 1;
+		nextPrevIndex = prevIndex - 1;
+	}
 
 	/*
 	 * Safeguard
 	 * */
-	if (nextCurrentIndex < 0 && nextPrevIndex < 0) {
-		return [-1, -1]
+	if (nextCurrentIndex < 0 || nextPrevIndex < 0) {
+		return [-1, -1];
 	}
 
 	return findClosestInRangeOf24h({
 		currentDay,
 		prevDay,
-		currentIndex: nextCurrentIndex < 0 ? 0 : nextCurrentIndex,
-		prevIndex: nextPrevIndex < 0 ? 0 : nextPrevIndex
+		currentIndex: nextCurrentIndex,
+		prevIndex: nextPrevIndex
 	});
 };

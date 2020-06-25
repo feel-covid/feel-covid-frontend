@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components/macro';
 import { IColors, IFontSizes } from '../../../@types/declarations/styled';
-import { IStyle, ITheme } from '../../../@types/interfaces';
+import { IStyle, ITheme, PlainFunction } from '../../../@types/interfaces';
 
 interface IProps extends IStyle {
 	text: string | number;
@@ -11,6 +11,7 @@ interface IProps extends IStyle {
 	percent?: boolean;
 	link?: boolean;
 	href?: string;
+	onClick?: PlainFunction<any>;
 }
 
 const CustomText: React.FC<IProps> = (props) => {

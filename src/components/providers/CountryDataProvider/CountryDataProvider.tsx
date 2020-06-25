@@ -17,7 +17,7 @@ export const CountryDataProvider: React.FC<IProps> = ({ children }) => {
 	const now = new Date();
 
 	const requestParams = {
-		startDate: JSON.stringify(subDays(now, 30)),
+		startDate: JSON.stringify(subDays(now, 31)),
 		endDate: JSON.stringify(now),
 		name: 'israel'
 	};

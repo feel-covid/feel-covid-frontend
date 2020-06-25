@@ -4,14 +4,12 @@ import styled from 'styled-components/macro';
 import formatRelative from 'date-fns/formatRelative';
 import he from 'date-fns/locale/he';
 import { useStatsFilterContext } from '../../../../../hooks/useStatsFilterContext';
-import { format } from 'date-fns';
+import { format, isSameDay, isYesterday } from 'date-fns';
 import { DateFormatsEnum } from '../../../../../@types/enums';
 import { IStyle } from '../../../../../@types/interfaces';
 import media from '../../../../../themes/media';
 import { Select } from '../../../../shared/Form/Select';
 import { useCountryData } from '../../../../../hooks/useCountryData';
-import { useTogglesContext } from '../../../../../hooks/useTogglesContext';
-import { TogglesActions } from '../../../../providers/TogglesProvider/reducer';
 import CustomText from '../../../../shared/CustomText/CustomText';
 
 interface IProps extends IStyle {
@@ -29,7 +27,16 @@ export const HeaderFilter: React.FC<IProps> = (props) => {
 	} = useStatsFilterContext();
 	const { weekAgoIndexOnNormalizedData } = useCountryData();
 	const { containerRef, selectRef } = props;
-	const { state, dispatch } = useTogglesContext();
+
+	const formatDate = useCallback((baseDate, dateToFormat) => {
+		return isSameDay(baseDate, dateToFormat) || isYesterday(dateToFormat)
+			? formatRelative(dateToFormat, new Date(), { locale: he })
+			: format(
+					dateToFormat,
+					DateFormatsEnum.PART_MONTH_NAME_WITH_DAY_AND_TIME,
+					{ locale: he }
+			  );
+	}, []);
 
 	const handleChange = useCallback(
 		(e: ChangeEvent<HTMLSelectElement>) => {
@@ -49,21 +56,26 @@ export const HeaderFilter: React.FC<IProps> = (props) => {
 						t('header.headerFilter.displayingComparisonSmallDevices') as string
 					}
 				/>{' '}
-				{formatRelative(new Date(baseDate), new Date(), { locale: he })}{' '}
-				{t('header.headerFilter.andBetween')}{' '}
+				<CustomText
+					text={formatRelative(new Date(baseDate), new Date(), { locale: he })}
+				/>{' '}
+				<CustomText text={t('header.headerFilter.andBetween') as string} />{' '}
 			</S.TextContainer>
 
-			<S.Select onChange={handleChange} value={prevDate} ref={selectRef}>
+			<S.Select
+				onChange={handleChange}
+				value={prevDate}
+				ref={selectRef}
+				autoResize
+				formattedValue={formatDate(new Date(baseDate), new Date(prevDate))}
+				containerStyle={{ transform: 'translateY(.1rem)' }}
+			>
 				{Object.keys(countriesByDate)
 					.slice(weekAgoIndexOnNormalizedData)
 					.filter((date) => date !== baseDate)
 					.map((date) => (
 						<option key={date} value={date}>
-							{format(
-								new Date(date),
-								DateFormatsEnum.PART_MONTH_NAME_WITH_DAY_AND_TIME,
-								{ locale: he }
-							)}
+							{formatDate(new Date(baseDate), new Date(date))}
 						</option>
 					))}
 			</S.Select>
@@ -100,7 +112,6 @@ const S = {
 			display: initial;
 		}
 	`,
-	Select: styled(Select)`
-		padding-left: 1.8rem;
-	`
+	SelectContainer: styled.div``,
+	Select: styled(Select)``
 };
