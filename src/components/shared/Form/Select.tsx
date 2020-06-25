@@ -52,7 +52,7 @@ export const Select = React.forwardRef<HTMLSelectElement, IProps>(
 Select.displayName = 'Select';
 
 const sharedSelectStyles = css`
-	padding: 0 0.25rem 0 1.6rem;
+	padding: 0 0.21rem 0 1.6rem;
 	font-size: 1.6rem;
 	border-radius: 0.3rem;
 	outline: none;
@@ -71,7 +71,7 @@ const S = {
 	Container: styled.div`
 		position: relative;
 		margin-right: 0.5rem;
-		height: 3.2rem;
+		height: 3.3rem;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -124,6 +124,6 @@ const S = {
 		font-size: inherit;
 	`,
 	Value: styled(CustomText)`
-		transform: translateY(-0.057rem);
+		transform: translateY(-0.058rem);
 	`
 };
