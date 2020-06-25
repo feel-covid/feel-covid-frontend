@@ -4,6 +4,7 @@ import { IStyle } from '../../../@types/interfaces';
 import { IconsEnum } from '../../../@types/enums';
 import { Icon } from '../Icon/Icon';
 import CustomText from '../CustomText/CustomText';
+import media from '../../../themes/media';
 
 interface IProps extends IStyle, SelectHTMLAttributes<HTMLSelectElement> {
 	autoResize?: boolean;
@@ -51,7 +52,7 @@ export const Select = React.forwardRef<HTMLSelectElement, IProps>(
 Select.displayName = 'Select';
 
 const sharedSelectStyles = css`
-	padding: 0 0.3rem 0 1.6rem;
+	padding: 0 0.25rem 0 1.6rem;
 	font-size: 1.6rem;
 	border-radius: 0.3rem;
 	outline: none;
@@ -70,7 +71,7 @@ const S = {
 	Container: styled.div`
 		position: relative;
 		margin-right: 0.5rem;
-		height: 3.3rem;
+		height: 3.2rem;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -93,7 +94,7 @@ const S = {
 				margin: 0;
 				box-shadow: none;
 				right: 0;
-				width: calc(100% + 0.3rem);
+				width: calc(100% + 0.15rem);
 				padding: 0.4rem;
 			`};
 
@@ -123,6 +124,6 @@ const S = {
 		font-size: inherit;
 	`,
 	Value: styled(CustomText)`
-		transform: translateY(-0.02rem);
+		transform: translateY(-0.057rem);
 	`
 };
