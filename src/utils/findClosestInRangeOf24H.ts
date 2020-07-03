@@ -10,57 +10,48 @@ interface IPrams {
 
 const BUFFER = 2;
 
+// prettier-ignore
 export const findClosestInRangeOf24h = ({
 	currentDay,
-	prevDay,
-	currentIndex = currentDay.length - 1,
-	prevIndex = prevDay.length - 1
-}: IPrams): [number, number] => {
-	const { date: prevDate } = currentDay[currentIndex];
-	const { date: currentDate } = prevDay[prevIndex];
-
-	const diffInHours = differenceInHours(
-		new Date(prevDate),
-		new Date(currentDate)
+	prevDay
+}: IPrams): number[] => {
+	const [dayWithMoreUpdates, dayWithLessUpdates] = [currentDay, prevDay].sort(
+		(a, b) => b.length - a.length
 	);
 
-	const isInRange = Math.abs(24 - diffInHours) <= BUFFER;
+	let results = null;
+	dayWithMoreUpdatesLoop:
+	for (let i = dayWithMoreUpdates.length - 1; i >= 0; i--) {
+		const firstDate = dayWithMoreUpdates[i].date;
 
-	/*
-	 * Return the indices if date in range
-	 * */
-	if (isInRange) {
-		return [currentIndex, prevIndex];
+		for (let j = dayWithLessUpdates.length - 1; j >= 0; j--) {
+			const secondDate = dayWithLessUpdates[j].date;
+
+			const diffInHours = differenceInHours(
+				new Date(firstDate),
+				new Date(secondDate)
+			);
+
+			const isInRange = Math.abs(24 - Math.abs(diffInHours)) <= BUFFER;
+
+			/*
+			 * Return the indices if date in range
+			 * */
+			if (isInRange) {
+				if (dayWithMoreUpdates === currentDay) {
+					results = [i, j];
+				} else {
+					results = [j, i];
+				}
+				break dayWithMoreUpdatesLoop;
+			}
+		}
 	}
 
-	let nextCurrentIndex, nextPrevIndex;
-	const [currentDayLength, prevDayLength] = [
-		currentDay.slice(0, currentIndex),
-		prevDay.slice(0, prevIndex)
-	];
 
-	if (currentDayLength > prevDayLength) {
-		nextCurrentIndex = currentIndex - 1;
-		nextPrevIndex = prevIndex;
-	} else if (prevDayLength > currentDayLength) {
-		nextCurrentIndex = currentIndex;
-		nextPrevIndex = prevIndex - 1;
-	} else {
-		nextCurrentIndex = currentIndex - 1;
-		nextPrevIndex = prevIndex - 1;
-	}
-
-	/*
-	 * Safeguard
-	 * */
-	if (nextCurrentIndex < 0 || nextPrevIndex < 0) {
+	if (!results) {
 		return [-1, -1];
 	}
 
-	return findClosestInRangeOf24h({
-		currentDay,
-		prevDay,
-		currentIndex: nextCurrentIndex,
-		prevIndex: nextPrevIndex
-	});
+	return results;
 };

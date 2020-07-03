@@ -154,7 +154,7 @@ const S = {
 	Tooltip: styled(Tooltip)`
 		width: 29rem;
 		text-align: center;
-		bottom: -18rem;
+		bottom: -11.2rem;
 		line-height: initial;
 		padding: 1rem;
 		height: auto;

@@ -8,7 +8,7 @@ import {
 	normalizeCountryData
 } from './utils';
 import subDays from 'date-fns/subDays';
-import { startOfDay, isWithinInterval } from 'date-fns';
+import { startOfDay, isWithinInterval, subMonths } from 'date-fns';
 import { INormalizedCountryData } from './interfaces';
 
 interface IProps extends IChildren {}
@@ -17,7 +17,7 @@ export const CountryDataProvider: React.FC<IProps> = ({ children }) => {
 	const now = new Date();
 
 	const requestParams = {
-		startDate: JSON.stringify(subDays(now, 31)),
+		startDate: JSON.stringify(subMonths(subDays(now, 1), 1)),
 		endDate: JSON.stringify(now),
 		name: 'israel'
 	};
