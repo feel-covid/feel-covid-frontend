@@ -4,9 +4,8 @@ import { DynamicObject } from '../../../../../@types/interfaces';
 import { he } from 'date-fns/locale';
 import { chartTooltipStyle } from '../../../../shared/BaseChart/styles';
 import CustomText from '../../../../shared/CustomText/CustomText';
-import { format } from 'date-fns';
 import i18n from '../../../../../i18n/i18n';
-import { DateFormatsEnum } from '../../../../../@types/enums';
+import { formatChartDate } from '../../../../../utils/formatChartDate';
 
 interface IProps {
 	active?: boolean;
@@ -33,9 +32,9 @@ export const CustomizedDailyDiffTooltip: React.FC<IProps> = (props) => {
 
 			color = color.slice(dashIndex + 1, color.length - 1);
 
-			if (dataKey !== 'totalBuffer') {
+			if (dataKey !== 'infectedBuffer') {
 				acc[dataKey] = {
-					color: dataKey === 'total' ? 'blue2' : color,
+					color: dataKey === 'infected' ? 'blue2' : color,
 					value
 				};
 			}
@@ -44,28 +43,20 @@ export const CustomizedDailyDiffTooltip: React.FC<IProps> = (props) => {
 		}, {} as DynamicObject<{ color: string; value: number }>);
 
 	const {
-		payload: { date, compareDate }
+		payload: { date }
 	} = props.payload![0];
-
-	const dateFormatConfig: [string, object] = [
-		DateFormatsEnum.PART_MONTH_NAME_WITH_DAY_AND_TIME,
-		{ locale: he }
-	];
 
 	return (
 		<S.Container style={chartTooltipStyle as any}>
-			<S.DateCompare
-				text={`${format(new Date(compareDate), ...dateFormatConfig)} - ${format(
-					new Date(date),
-					...dateFormatConfig
-				)}`}
-			/>
+			<S.DateCompare text={formatChartDate(date, { locale: he })} />
 
 			{Object.entries(uniqueValues).map(([key, { value, color }]) => (
 				<S.Description
 					key={key}
 					color={color as any}
-					text={`${i18n.t(`charts.dailyDiffChart.${key}`)}: ${value}`}
+					text={`${i18n.t(
+						`charts.dailyDiffChart.${key}`
+					)}: ${value.toLocaleString()}`}
 				/>
 			))}
 		</S.Container>

@@ -29,7 +29,8 @@ interface IProps {}
 
 export const TestsAmountChart: React.FC<IProps> = (props) => {
 	const {
-		testsData: { data, total }
+		testsData: { data, total },
+		chartSliceIndex
 	} = useCountryData();
 	const { t } = useTranslation();
 	const theme = useTheme();
@@ -65,12 +66,9 @@ export const TestsAmountChart: React.FC<IProps> = (props) => {
 
 	return (
 		<S.Container>
-			<ChartContainer
-				title={t('charts.testsAmountChart.title')}
-				// tooltip={t('charts.testsAmountChart.tooltip')}
-			>
+			<ChartContainer title={t('charts.testsAmountChart.title')}>
 				<ComposedChart
-					data={withTotal.slice(-8)}
+					data={withTotal.slice(chartSliceIndex)}
 					ref={chartRef}
 					onMouseUp={disable}
 					barCategoryGap={'30%'}

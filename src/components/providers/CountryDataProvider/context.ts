@@ -9,28 +9,28 @@ import {
 export interface ICountryDataContext {
 	loading: boolean;
 	error: typeof Error | null;
-	data: Array<ICountry>;
+	dailyIRD: Array<{
+		infected: number;
+		recovered: number;
+		deceased: number;
+	}>;
 	testsData: ITestAmountData;
 	normalizedData: Array<INormalizedCountryData>;
 	normalizedChartData: Array<INormalizedCountryData>;
-	normalized24HourDiff: Array<INormalized24HoursDiff>;
 	weekAgoIndexOnNormalizedData: number;
-	weekAgoIndexOnNormalizedChartData: number;
-	weekAgoNegativeIndexOnNormalized24HoursDiff: number;
+	chartSliceIndex: number;
 }
 
 export const CountryDataContext = React.createContext<ICountryDataContext>({
 	loading: true,
 	error: null,
-	data: [],
 	testsData: {
 		data: [] as any,
 		total: 0
 	},
+	dailyIRD: [],
 	normalizedData: [],
 	normalizedChartData: [],
-	normalized24HourDiff: [],
 	weekAgoIndexOnNormalizedData: 0,
-	weekAgoIndexOnNormalizedChartData: 0,
-	weekAgoNegativeIndexOnNormalized24HoursDiff: 0
+	chartSliceIndex: 0
 });

@@ -14,7 +14,7 @@ interface IProps {
 
 export const CustomCompareHeader: React.FC<IProps> = (props) => {
 	const { t } = useTranslation();
-	const { weekAgoIndexOnNormalizedChartData } = useCountryData();
+	const { chartSliceIndex } = useCountryData();
 
 	return (
 		<S.Container>
@@ -25,9 +25,7 @@ export const CustomCompareHeader: React.FC<IProps> = (props) => {
 						props.setStatsBackCount(Number(e.target.value));
 					}}
 				>
-					<option value={weekAgoIndexOnNormalizedChartData}>
-						מהשבוע האחרון
-					</option>
+					<option value={chartSliceIndex}>מהשבוע האחרון</option>
 					<option value='0'>מהחודש האחרון</option>
 				</S.Select>
 

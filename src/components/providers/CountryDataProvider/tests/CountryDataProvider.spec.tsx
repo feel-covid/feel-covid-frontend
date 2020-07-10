@@ -2,10 +2,7 @@ import React from 'react';
 import { cleanup, render } from '@testing-library/react';
 import { CountryDataProvider } from '../CountryDataProvider';
 import { useRequest } from '../../../../hooks';
-import {
-	statsResponseFixture,
-	testAmountResponseFixture
-} from '../../../../../tests/fixtures';
+import { serverResponseFixture } from '../../../../../tests/fixtures';
 import { CountryDataContext } from '../context';
 import { countryDataContextFixture } from './fixtures';
 
@@ -16,7 +13,7 @@ afterEach(cleanup);
 describe('CountryDataProvider - Basic functionality', () => {
 	beforeEach(() => {
 		(useRequest as jest.Mock).mockImplementation(() => ({
-			data: [statsResponseFixture, testAmountResponseFixture],
+			data: [serverResponseFixture],
 			error: null,
 			loading: false
 		}));
