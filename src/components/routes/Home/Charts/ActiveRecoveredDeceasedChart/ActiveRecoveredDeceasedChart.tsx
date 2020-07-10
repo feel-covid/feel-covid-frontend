@@ -20,10 +20,7 @@ interface IProps {}
 
 export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 	const { t } = useTranslation();
-	const {
-		normalizedChartData,
-		weekAgoIndexOnNormalizedChartData
-	} = useCountryData();
+	const { normalizedChartData, chartSliceIndex } = useCountryData();
 	const theme = useTheme();
 	const gradientsId = 'ActiveRecoveredDeceased';
 	const { chartRef, disable } = useDisableChartActiveState();
@@ -52,7 +49,7 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 	return (
 		<ChartContainer title={t('charts.activeRecoveredDeceased.title')}>
 			<AreaChart
-				data={normalizedChartData.slice(weekAgoIndexOnNormalizedChartData)}
+				data={normalizedChartData.slice(chartSliceIndex)}
 				ref={chartRef}
 				onMouseUp={disable}
 			>

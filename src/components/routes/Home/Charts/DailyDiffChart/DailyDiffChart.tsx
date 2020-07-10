@@ -29,21 +29,16 @@ interface IProps {}
 
 export const DailyDiffChart: React.FC<IProps> = (props) => {
 	const { t } = useTranslation();
-	const {
-		normalized24HourDiff,
-		weekAgoNegativeIndexOnNormalized24HoursDiff
-	} = useCountryData();
+	const { dailyIRD, chartSliceIndex } = useCountryData();
 	const theme = useTheme();
 	const gradientsId = 'DailyDiff-';
 	const { chartRef, disable } = useDisableChartActiveState();
 
-	const weekData = normalized24HourDiff.slice(
-		weekAgoNegativeIndexOnNormalized24HoursDiff
-	);
+	const weekData = dailyIRD.slice(chartSliceIndex);
 
 	const maxDailyInfected = useMemo(
-		() => Math.max(...weekData.map(({ total }) => total)),
-		[normalized24HourDiff, weekAgoNegativeIndexOnNormalized24HoursDiff]
+		() => Math.max(...weekData.map(({ infected }) => infected)),
+		[dailyIRD]
 	);
 
 	const bars = [
@@ -55,12 +50,12 @@ export const DailyDiffChart: React.FC<IProps> = (props) => {
 		},
 
 		{
-			dataKey: 'total',
+			dataKey: 'infected',
 			fill: `url(#${gradientsId}blue2)`,
 			name: t('charts.dailyDiffChart.total'),
 			stroke: theme.colors.blue2,
 			children: (
-				<LabelList dataKey='total' content={<CustomDailyDiffBarLabel />} />
+				<LabelList dataKey='infected' content={<CustomDailyDiffBarLabel />} />
 			)
 		},
 		{
@@ -72,15 +67,12 @@ export const DailyDiffChart: React.FC<IProps> = (props) => {
 	];
 
 	return (
-		<S.ChartContainer
-			title={t('charts.dailyDiffChart.title')}
-			tooltip={t('charts.dailyDiffChart.tooltip')}
-		>
+		<S.ChartContainer title={t('charts.dailyDiffChart.title')}>
 			<ComposedChart
 				ref={chartRef}
 				data={weekData.map((day) => ({
 					...day,
-					totalBuffer: maxDailyInfected * 1.1
+					infectedBuffer: maxDailyInfected * 1.1
 				}))}
 				onMouseUp={disable}
 			>
@@ -89,7 +81,7 @@ export const DailyDiffChart: React.FC<IProps> = (props) => {
 					payload={[
 						{
 							id: 'total',
-							value: t('charts.dailyDiffChart.total'),
+							value: t('charts.dailyDiffChart.infected'),
 							color: theme.colors.blue2,
 							type: 'square'
 						},
@@ -119,7 +111,7 @@ export const DailyDiffChart: React.FC<IProps> = (props) => {
 
 				<Line
 					type='monotone'
-					dataKey='totalBuffer'
+					dataKey='infectedBuffer'
 					strokeWidth={0}
 					cursor={false as any}
 					dot={false}

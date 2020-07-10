@@ -2,11 +2,7 @@ import React from 'react';
 import { IChildren } from '../../../@types/interfaces';
 import { useRequest } from '../../../hooks';
 import { CountryDataContext } from './context';
-import {
-	normalize24HoursDiff,
-	normalizeChartData,
-	normalizeCountryData
-} from './utils';
+import { normalizeChartData, normalizeCountryData } from './utils';
 import subDays from 'date-fns/subDays';
 import { startOfDay, isWithinInterval, subMonths } from 'date-fns';
 import { INormalizedCountryData } from './interfaces';
@@ -16,28 +12,18 @@ interface IProps extends IChildren {}
 export const CountryDataProvider: React.FC<IProps> = ({ children }) => {
 	const now = new Date();
 
-	const requestParams = {
-		startDate: JSON.stringify(subMonths(subDays(now, 1), 1)),
-		endDate: JSON.stringify(now),
-		name: 'israel'
-	};
-
 	const {
 		loading,
 		error,
-		data: [statsResponse, testsResponse]
+		data: [{ data }]
 	} = useRequest(
 		[
 			{
-				route: '/country/stats',
-				params: requestParams,
-				initialDataValue: []
-			},
-			{
-				route: '/country/tests',
+				route: '/country/data',
 				params: {
-					...requestParams,
-					startDate: JSON.stringify(subDays(now, 15))
+					startDate: JSON.stringify(subMonths(subDays(now, 1), 1)),
+					endDate: JSON.stringify(now),
+					name: 'israel'
 				},
 				initialDataValue: []
 			}
@@ -47,7 +33,9 @@ export const CountryDataProvider: React.FC<IProps> = ({ children }) => {
 
 	if (loading) return null;
 
-	const normalizedData = statsResponse.map(normalizeCountryData);
+	const { dailyIRD, dailyTestAmount, hourlyUpdates } = data;
+
+	const normalizedData = hourlyUpdates.map(normalizeCountryData);
 
 	const weekAgoFromLastUpdate = startOfDay(
 		subDays(new Date(normalizedData[normalizedData.length - 1].date), 7)
@@ -72,14 +60,12 @@ export const CountryDataProvider: React.FC<IProps> = ({ children }) => {
 			value={{
 				error,
 				loading,
-				data: statsResponse,
 				normalizedData,
 				normalizedChartData: normalizeChartData(normalizedData),
-				normalized24HourDiff: normalize24HoursDiff(normalizedData),
+				dailyIRD,
 				weekAgoIndexOnNormalizedData,
-				weekAgoIndexOnNormalizedChartData: -8,
-				weekAgoNegativeIndexOnNormalized24HoursDiff: -8,
-				testsData: testsResponse
+				testsData: dailyTestAmount,
+				chartSliceIndex: -8
 			}}
 		>
 			{children}

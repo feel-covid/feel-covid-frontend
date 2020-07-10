@@ -20,10 +20,7 @@ import { CustomizedLineLabel } from '../../../../shared/BaseChart/CustomizedLine
 interface IProps {}
 
 export const TreatmentTypeChart: React.FC<IProps> = (props) => {
-	const {
-		normalizedChartData,
-		weekAgoIndexOnNormalizedChartData
-	} = useCountryData();
+	const { normalizedChartData, chartSliceIndex } = useCountryData();
 	const { t } = useTranslation();
 	const theme = useTheme();
 	const gradientsId = 'TreatmentType';
@@ -44,7 +41,7 @@ export const TreatmentTypeChart: React.FC<IProps> = (props) => {
 		}
 	];
 
-	const data = normalizedChartData.slice(weekAgoIndexOnNormalizedChartData);
+	const data = normalizedChartData.slice(chartSliceIndex);
 	return (
 		<ChartContainer title={t('charts.treatmentType.title')}>
 			<AreaChart data={data} ref={chartRef} onMouseUp={disable}>

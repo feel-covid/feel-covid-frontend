@@ -43,13 +43,8 @@ export const CustomCompare: React.FC<IProps> = (props) => {
 		recovered: true
 	});
 
-	const {
-		normalizedChartData,
-		weekAgoIndexOnNormalizedChartData
-	} = useCountryData();
-	const [statsBackCount, setStatsBackCount] = useState(
-		weekAgoIndexOnNormalizedChartData
-	);
+	const { normalizedChartData, chartSliceIndex } = useCountryData();
+	const [statsBackCount, setStatsBackCount] = useState(chartSliceIndex);
 	const { chartRef, disable } = useDisableChartActiveState();
 	const contentContainer = useRef<HTMLDivElement>(null);
 
@@ -181,9 +176,7 @@ export const CustomCompare: React.FC<IProps> = (props) => {
 								<XAxis
 									{...xAxisDefaultProps}
 									tick={<CustomizedXAxisTick />}
-									interval={Number(
-										statsBackCount !== weekAgoIndexOnNormalizedChartData
-									)}
+									interval={Number(statsBackCount !== chartSliceIndex)}
 								/>
 
 								<Legend

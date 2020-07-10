@@ -30,10 +30,7 @@ interface IProps {}
 
 export const CasesChart: React.FC<IProps> = (props) => {
 	const { t } = useTranslation();
-	const {
-		normalizedChartData,
-		weekAgoIndexOnNormalizedChartData
-	} = useCountryData();
+	const { normalizedChartData, chartSliceIndex } = useCountryData();
 	const theme = useTheme();
 	const gradientsId = 'Cases';
 	const { chartRef, disable } = useDisableChartActiveState();
@@ -62,7 +59,7 @@ export const CasesChart: React.FC<IProps> = (props) => {
 	return (
 		<ChartContainer title={t('charts.casesChart.title')}>
 			<AreaChart
-				data={normalizedChartData.slice(weekAgoIndexOnNormalizedChartData)}
+				data={normalizedChartData.slice(chartSliceIndex)}
 				ref={chartRef}
 				onMouseUp={disable}
 			>
@@ -86,10 +83,7 @@ export const CasesChart: React.FC<IProps> = (props) => {
 						// label={
 						// 	<CustomizedLineLabel
 						// 		stroke={area.stroke}
-						// 		itemsLength={
-						// 			normalizedChartData.slice(weekAgoIndexOnNormalizedChartData)
-						// 				.length
-						// 		}
+						// 		itemsLength={normalizedChartData.slice(chartSliceIndex).length}
 						// 	/>
 						// }
 					/>
