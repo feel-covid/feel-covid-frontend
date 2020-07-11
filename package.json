@@ -3,7 +3,6 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
-		"@fullhuman/postcss-purgecss": "^2.1.0",
 		"@sentry/browser": "^5.15.4",
 		"date-fns": "^2.11.1",
 		"i18next": "^19.3.3",
@@ -17,13 +16,10 @@
 		"react-scripts": "3.4.0",
 		"recharts": "1.8.5",
 		"styled-components": "^5.0.1",
-		"tailwindcss": "^1.2.0",
 		"typescript": "~3.8.3"
 	},
 	"scripts": {
-		"build:css": "postcss src/tailwind.css -o src/tailwind.output.css --env production",
-		"watch:css": "postcss src/tailwind.css -o src/tailwind.output.css -w",
-		"start": "concurrently \"npm run watch:css\" \"react-scripts start\"",
+		"start": "react-scripts start",
 		"build": "yarn test:all && cross-env GENERATE_SOURCEMAP=false CI=false react-scripts build",
 		"test:all": "cross-env CI=true yarn test",
 		"test": "react-scripts test --coverage",
@@ -91,7 +87,6 @@
 		"eslint-plugin-react": "^7.19.0",
 		"husky": "^4.2.3",
 		"jest-styled-components": "^7.0.2",
-		"postcss-cli": "^7.1.0",
 		"prettier": "^1.19.1",
 		"prettier-eslint": "^9.0.1",
 		"prettier-eslint-cli": "^5.0.0",

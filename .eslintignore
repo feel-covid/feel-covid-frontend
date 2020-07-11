@@ -1,7 +1,5 @@
 /src/serviceWorker.ts
 /src/types/definitions
-tailwind.config.js
-postcss.config.js
 preInstallScript.js
 **/*.spec.ts
 **/*.spec.tsx
