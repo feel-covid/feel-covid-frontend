@@ -36,7 +36,9 @@ export const CustomizedLineLabel: React.FC<IProps> = (props) => {
 
 const S = {
 	TextContainer: styled.div`
-		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	`,
 	Text: styled(CustomText)<{ backgroundColor: string }>`
 		border: 0.1rem solid white;
