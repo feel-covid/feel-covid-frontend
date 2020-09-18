@@ -28,16 +28,10 @@ export const TreatmentTypeChart: React.FC<IProps> = (props) => {
 
 	const areas = [
 		{
-			name: t('global.treatment.homeHotelUndecided'),
-			dataKey: 'treatment.combinedHomeHotelUndecided',
-			fill: `url(#${gradientsId}blue2)`,
-			stroke: theme.colors.blue2
-		},
-		{
 			name: t('global.treatment.hospital'),
 			dataKey: 'treatment.hospital',
-			fill: `url(#${gradientsId}orange1)`,
-			stroke: theme.colors.orange1
+			fill: `url(#${gradientsId}turquoise1)`,
+			stroke: theme.colors.turquoise1
 		}
 	];
 
@@ -48,7 +42,12 @@ export const TreatmentTypeChart: React.FC<IProps> = (props) => {
 				<Legend {...(legendDefaultProps as any)} />
 
 				<defs>
-					<Gradients colors={['blue2', 'orange1']} idPrefix={gradientsId} />
+					<Gradients
+						colors={['blue2', 'turquoise1']}
+						idPrefix={gradientsId}
+						startOpacity={0.12}
+						endOpacity={0}
+					/>
 				</defs>
 
 				{areas.map((area) => (
@@ -57,6 +56,12 @@ export const TreatmentTypeChart: React.FC<IProps> = (props) => {
 						{...area}
 						type='monotone'
 						strokeWidth={3.5}
+						label={
+							<CustomizedLineLabel
+								stroke={area.stroke}
+								itemsLength={normalizedChartData.slice(chartSliceIndex).length}
+							/>
+						}
 						{...animationDefaultProps}
 					/>
 				))}

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { PureComponent, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled, { useTheme } from 'styled-components/macro';
 import {
@@ -29,8 +29,7 @@ interface IProps {}
 
 export const TestsAmountChart: React.FC<IProps> = (props) => {
 	const {
-		testsData: { data, total },
-		chartSliceIndex
+		testsData: { data, total }
 	} = useCountryData();
 	const { t } = useTranslation();
 	const theme = useTheme();
@@ -68,7 +67,7 @@ export const TestsAmountChart: React.FC<IProps> = (props) => {
 		<S.Container>
 			<ChartContainer title={t('charts.testsAmountChart.title')}>
 				<ComposedChart
-					data={withTotal.slice(chartSliceIndex)}
+					data={withTotal.slice(-9)}
 					ref={chartRef}
 					onMouseUp={disable}
 					barCategoryGap={'30%'}

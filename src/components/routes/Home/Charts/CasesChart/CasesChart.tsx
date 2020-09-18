@@ -80,12 +80,12 @@ export const CasesChart: React.FC<IProps> = (props) => {
 						{...area}
 						{...animationDefaultProps}
 						strokeWidth={3.5}
-						// label={
-						// 	<CustomizedLineLabel
-						// 		stroke={area.stroke}
-						// 		itemsLength={normalizedChartData.slice(chartSliceIndex).length}
-						// 	/>
-						// }
+						label={
+							<CustomizedLineLabel
+								stroke={area.stroke}
+								itemsLength={normalizedChartData.slice(chartSliceIndex).length}
+							/>
+						}
 					/>
 				))}
 
