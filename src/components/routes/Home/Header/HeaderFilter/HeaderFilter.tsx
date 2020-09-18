@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 import formatRelative from 'date-fns/formatRelative';
 import he from 'date-fns/locale/he';
 import { useStatsFilterContext } from '../../../../../hooks/useStatsFilterContext';
-import { format, isSameDay, isYesterday } from 'date-fns';
+import { format, isSameDay, isToday, isYesterday } from 'date-fns';
 import { DateFormatsEnum } from '../../../../../@types/enums';
 import { IStyle } from '../../../../../@types/interfaces';
 import media from '../../../../../themes/media';
@@ -28,14 +28,12 @@ export const HeaderFilter: React.FC<IProps> = (props) => {
 	const { weekAgoIndexOnNormalizedData } = useCountryData();
 	const { containerRef, selectRef } = props;
 
-	const formatDate = useCallback((baseDate, dateToFormat) => {
-		return isSameDay(baseDate, dateToFormat) || isYesterday(dateToFormat)
-			? formatRelative(dateToFormat, new Date(), { locale: he })
-			: format(
-					dateToFormat,
-					DateFormatsEnum.PART_MONTH_NAME_WITH_DAY_AND_TIME,
-					{ locale: he }
-			  );
+	const formatDate = useCallback((date) => {
+		return isToday(date) || isYesterday(date)
+			? formatRelative(date, new Date(), { locale: he })
+			: format(date, DateFormatsEnum.PART_MONTH_NAME_WITH_DAY_AND_TIME, {
+					locale: he
+			  });
 	}, []);
 
 	const handleChange = useCallback(
@@ -56,9 +54,7 @@ export const HeaderFilter: React.FC<IProps> = (props) => {
 						t('header.headerFilter.displayingComparisonSmallDevices') as string
 					}
 				/>{' '}
-				<CustomText
-					text={formatRelative(new Date(baseDate), new Date(), { locale: he })}
-				/>{' '}
+				<CustomText text={formatDate(new Date(baseDate))} />{' '}
 				<CustomText text={t('header.headerFilter.andBetween') as string} />{' '}
 			</S.TextContainer>
 
@@ -67,7 +63,7 @@ export const HeaderFilter: React.FC<IProps> = (props) => {
 				value={prevDate}
 				ref={selectRef}
 				autoResize
-				formattedValue={formatDate(new Date(baseDate), new Date(prevDate))}
+				formattedValue={formatDate(new Date(prevDate))}
 				containerStyle={{ transform: 'translateY(.1rem)' }}
 			>
 				{Object.keys(countriesByDate)
@@ -75,7 +71,7 @@ export const HeaderFilter: React.FC<IProps> = (props) => {
 					.filter((date) => date !== baseDate)
 					.map((date) => (
 						<option key={date} value={date}>
-							{formatDate(new Date(baseDate), new Date(date))}
+							{formatDate(new Date(date))}
 						</option>
 					))}
 			</S.Select>
@@ -101,14 +97,14 @@ const S = {
 		pointer-events: none;
 	`,
 	DisplayingComparisonText: styled(CustomText)`
-		@media (max-width: 370px) {
+		@media (max-width: 375px) {
 			display: none;
 		}
 	`,
 	DisplayingComparisonTextSmallDevices: styled(CustomText)`
 		display: none;
 
-		@media (max-width: 370px) {
+		@media (max-width: 375px) {
 			display: initial;
 		}
 	`,

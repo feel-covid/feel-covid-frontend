@@ -37,7 +37,7 @@ export const ChartContainer: React.FC<IProps> = (props) => {
 					y: Math.abs(touchStartData.startY - touches.pageY)
 				};
 
-				if (delta.x < delta.y || delta.x < 22) {
+				if (delta.x < delta.y) {
 					e.stopPropagation();
 				}
 			};

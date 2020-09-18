@@ -46,14 +46,14 @@ export const TotalCases = React.forwardRef<HTMLDivElement, IProps>(
 					positiveFactor: PositiveFactorEnum.DECREASE
 				},
 				{
-					title: t('global.cases.recovered'),
-					path: 'recovered',
-					positiveFactor: PositiveFactorEnum.INCREASE
-				},
-				{
 					title: t('global.cases.deceased'),
 					path: 'deceased',
 					positiveFactor: PositiveFactorEnum.DECREASE
+				},
+				{
+					title: t('global.cases.recovered'),
+					path: 'recovered',
+					positiveFactor: PositiveFactorEnum.INCREASE
 				},
 				{
 					title: t('global.treatment.hospital'),

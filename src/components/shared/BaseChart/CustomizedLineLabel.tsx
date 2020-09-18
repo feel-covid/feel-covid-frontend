@@ -17,9 +17,11 @@ export const CustomizedLineLabel: React.FC<IProps> = (props) => {
 
 	if (![0, itemsLength - 1].includes(index!)) return null;
 
+	const xBuffer = index === 0 ? 25 : 35;
+
 	return (
 		<g>
-			<foreignObject x={x - 30} y={y - 12} width={60} height={30}>
+			<foreignObject x={x - xBuffer} y={y - 12} width={60} height={30}>
 				<S.TextContainer>
 					<S.Text
 						size='s13'
