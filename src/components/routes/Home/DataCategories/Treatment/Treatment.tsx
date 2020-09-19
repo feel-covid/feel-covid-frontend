@@ -3,9 +3,7 @@ import { useTranslation } from 'react-i18next';
 import styled from 'styled-components/macro';
 import { PositiveFactorEnum } from '../../../../../@types/enums';
 import { IOverviewCard, Overview } from '../../Overview/Overview';
-import { TreatmentTypeChart } from '../../Charts/TreatmentTypeChart/TreatmentTypeChart';
 import media from '../../../../../themes/media';
-import { CasesChart } from '../../Charts/CasesChart/CasesChart';
 
 interface IProps {}
 

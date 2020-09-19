@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-	ICountry,
-	INormalized24HoursDiff,
-	INormalizedCountryData,
-	ITestAmountData
-} from './interfaces';
+import { INormalizedCountryData, ITestAmountData } from './interfaces';
 
 export interface ICountryDataContext {
 	loading: boolean;

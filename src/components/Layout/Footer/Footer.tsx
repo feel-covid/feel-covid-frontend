@@ -5,7 +5,6 @@ import CustomText from '../../shared/CustomText/CustomText';
 import media from '../../../themes/media';
 import { Tooltip } from '../../shared/Tooltip/Tooltip';
 import { PrivacyPolicyContent } from './PrivacyPolicyContent';
-import { Link } from 'react-router-dom';
 
 interface IProps {}
 
@@ -37,10 +36,6 @@ export const Footer: React.FC<IProps> = (props) => {
 			>
 				Sason Braha
 			</S.Link>
-			{/*<S.Divider>|</S.Divider>*/}
-			{/*<S.RouterLink to={RoutesEnum.ADMIN}>*/}
-			{/*	{t('footer.adminPanel')}*/}
-			{/*</S.RouterLink>*/}
 		</S.Container>
 	);
 };
@@ -63,9 +58,6 @@ const S = {
 		font-size: inherit;
 	`,
 	Link: styled.a`
-		color: currentColor;
-	`,
-	RouterLink: styled(Link)`
 		color: currentColor;
 	`,
 	Divider: styled.span`

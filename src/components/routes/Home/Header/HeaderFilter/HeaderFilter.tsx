@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 import formatRelative from 'date-fns/formatRelative';
 import he from 'date-fns/locale/he';
 import { useStatsFilterContext } from '../../../../../hooks/useStatsFilterContext';
-import { format, isSameDay, isToday, isYesterday } from 'date-fns';
+import { format, isToday, isYesterday } from 'date-fns';
 import { DateFormatsEnum } from '../../../../../@types/enums';
 import { IStyle } from '../../../../../@types/interfaces';
 import media from '../../../../../themes/media';

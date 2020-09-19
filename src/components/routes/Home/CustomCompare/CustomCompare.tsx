@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import styled, { css, useTheme } from 'styled-components/macro';
 import { ChartContainer } from '../../../shared/BaseChart/ChartContainer';
-import { Legend, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts';
+import { Legend, Line, LineChart, Tooltip, XAxis } from 'recharts';
 import { Checkbox } from '../../../shared/Checkbox/Checkbox';
 import { DynamicObject } from '../../../../@types/interfaces';
 import { useCountryData } from '../../../../hooks/useCountryData';

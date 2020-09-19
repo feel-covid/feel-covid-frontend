@@ -15,7 +15,7 @@ export const CustomDailyDiffBarLabel = (props: any) => {
 		<g>
 			<text
 				x={xCenter}
-				y={y - 11}
+				y={y - 7}
 				fill={theme.colors.white}
 				textAnchor='middle'
 				dominantBaseline='middle'

@@ -2,16 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'styled-components/macro';
 import { useCountryData } from '../../../../../hooks/useCountryData';
-import {
-	Area,
-	AreaChart,
-	ComposedChart,
-	Legend,
-	Line,
-	Tooltip,
-	XAxis,
-	YAxis
-} from 'recharts';
+import { Area, AreaChart, Legend, Tooltip, XAxis } from 'recharts';
 import { formatChartDate } from '../../../../../utils/formatChartDate';
 import he from 'date-fns/locale/he';
 import { CustomizedXAxisTick } from '../../../../shared/BaseChart/CustomizedXAxisTick';

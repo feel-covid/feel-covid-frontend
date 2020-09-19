@@ -43,11 +43,13 @@ export const ChartContainer: React.FC<IProps> = (props) => {
 			};
 
 			container.addEventListener('touchstart', handleTouchStart, {
-				passive: true
+				passive: true,
+				capture: true
 			});
 
 			container.addEventListener('touchmove', handleTouchMove, {
-				passive: true
+				passive: true,
+				capture: true
 			});
 
 			return () => {

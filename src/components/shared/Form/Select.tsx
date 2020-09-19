@@ -1,10 +1,9 @@
-import React, { SelectHTMLAttributes, useRef } from 'react';
+import React, { SelectHTMLAttributes } from 'react';
 import styled, { css } from 'styled-components/macro';
 import { IStyle } from '../../../@types/interfaces';
 import { IconsEnum } from '../../../@types/enums';
 import { Icon } from '../Icon/Icon';
 import CustomText from '../CustomText/CustomText';
-import media from '../../../themes/media';
 
 interface IProps extends IStyle, SelectHTMLAttributes<HTMLSelectElement> {
 	autoResize?: boolean;
