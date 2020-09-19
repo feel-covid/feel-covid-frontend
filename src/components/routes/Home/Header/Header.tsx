@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled, { css } from 'styled-components/macro';
 import CustomText from '../../../shared/CustomText/CustomText';
-import { IconsEnum } from '../../../../@types/enums';
 import { HeaderFilter } from './HeaderFilter/HeaderFilter';
-import { Icon } from '../../../shared/Icon/Icon';
 import media from '../../../../themes/media';
 import { useTogglesContext } from '../../../../hooks/useTogglesContext';
 import { TogglesActions } from '../../../providers/TogglesProvider/reducer';

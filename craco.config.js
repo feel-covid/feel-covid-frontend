@@ -9,6 +9,10 @@ module.exports = {
 				() => [new BundleAnalyzerPlugin()],
 				[]
 			)
-		]
+		],
+		alias: {
+			react: 'preact/compat',
+			'react-dom': 'preact/compat'
+		}
 	}
 };

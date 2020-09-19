@@ -10,9 +10,10 @@ import { StatsFilterProvider } from './components/providers/StatsFilterProvider/
 import { ErrorBoundary } from './components/shared/ErrorBoundry/ErrorBoundary';
 import * as Sentry from '@sentry/browser';
 import { TogglesProvider } from './components/providers/TogglesProvider/TogglesProvider';
-import { BrowserRouter as Router } from 'react-router-dom';
 
-if (process.env.NODE_ENV !== 'development') {
+if (process.env.NODE_ENV === 'development') {
+	require('preact/debug');
+} else {
 	Sentry.init({ dsn: process.env.REACT_APP_SENTRY_DSN });
 }
 
@@ -23,9 +24,7 @@ ReactDOM.render(
 				<CountryDataProvider>
 					<StatsFilterProvider>
 						<TogglesProvider>
-							<Router>
-								<App />
-							</Router>
+							<App />
 						</TogglesProvider>
 					</StatsFilterProvider>
 				</CountryDataProvider>
