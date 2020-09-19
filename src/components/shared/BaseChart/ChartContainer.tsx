@@ -113,6 +113,7 @@ const S = {
 
 		.recharts-tooltip-wrapper {
 			font-weight: bold;
+			pointer-events: none;
 		}
 
 		.recharts-cartesian-axis-ticks {
