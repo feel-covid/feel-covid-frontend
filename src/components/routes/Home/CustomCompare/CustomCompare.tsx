@@ -2,19 +2,10 @@ import React, { useCallback, useMemo, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import styled, { css, useTheme } from 'styled-components/macro';
-import { ChartContainer } from '../../../shared/BaseChart/ChartContainer';
-import { Legend, Line, LineChart, Tooltip, XAxis } from 'recharts';
+import { LineChart } from 'recharts';
 import { Checkbox } from '../../../shared/Checkbox/Checkbox';
 import { DynamicObject } from '../../../../@types/interfaces';
 import { useCountryData } from '../../../../hooks/useCountryData';
-import {
-	legendDefaultProps,
-	tooltipDefaultProps,
-	xAxisDefaultProps
-} from '../../../shared/BaseChart/defaults';
-import { CustomizedXAxisTick } from '../../../shared/BaseChart/CustomizedXAxisTick';
-import { formatChartDate } from '../../../../utils/formatChartDate';
-import { he } from 'date-fns/locale';
 import CustomText from '../../../shared/CustomText/CustomText';
 import get from 'lodash/get';
 import { deleteOrAddKey } from '../../../../utils/deleteOrAddKey';
@@ -22,9 +13,15 @@ import { CustomCompareHeader } from './CustomCompareHeader/CustomCompareHeader';
 import media from '../../../../themes/media';
 import { useTogglesContext } from '../../../../hooks/useTogglesContext';
 import { TogglesActions } from '../../../providers/TogglesProvider/reducer';
-import { useDisableChartActiveState } from '../../../../hooks/useDisableChartActiveState';
 import useStrictEffect from '../../../../hooks/useStrictEffect';
-import { CustomizedLineLabel } from '../../../shared/BaseChart/CustomizedLineLabel';
+import { CustomizedLineLabel } from '../../../shared/chart/customized/CustomizedLineLabel';
+import {
+	ChartContainer,
+	Tooltip,
+	XAxis,
+	Legend,
+	Line
+} from '../../../shared/chart';
 
 interface IProps {}
 
@@ -45,7 +42,6 @@ export const CustomCompare: React.FC<IProps> = (props) => {
 
 	const { normalizedChartData, chartSliceIndex } = useCountryData();
 	const [statsBackCount, setStatsBackCount] = useState(chartSliceIndex);
-	const { chartRef, disable } = useDisableChartActiveState();
 	const contentContainer = useRef<HTMLDivElement>(null);
 
 	const handleCheck = useCallback((key: string) => {
@@ -133,22 +129,16 @@ export const CustomCompare: React.FC<IProps> = (props) => {
 					<CustomCompareHeader setStatsBackCount={setStatsBackCount} />
 					<S.ContentContainer ref={contentContainer}>
 						<S.ChartContainer title=''>
-							<LineChart
-								data={normalizedChartData.slice(statsBackCount)}
-								ref={chartRef}
-								onMouseUp={disable}
-							>
+							<LineChart data={normalizedChartData.slice(statsBackCount)}>
 								{Object.keys(selectedItems).map((key) => {
 									const { path, title, color } = get(selectOptions, key);
 									return (
-										// @ts-ignore
 										<Line
 											key={key}
 											dataKey={path}
 											fill='transparent'
 											strokeWidth={3}
 											name={title}
-											isAnimationActive={false}
 											type='monotone'
 											stroke={color}
 											dot={false}
@@ -166,24 +156,12 @@ export const CustomCompare: React.FC<IProps> = (props) => {
 									);
 								})}
 
-								<Tooltip
-									labelFormatter={(date) =>
-										formatChartDate(date as string, { locale: he })
-									}
-									{...{ ...(tooltipDefaultProps as any), position: { y: 0 } }}
-								/>
+								<Tooltip />
 
-								<XAxis
-									{...xAxisDefaultProps}
-									tick={<CustomizedXAxisTick />}
-									interval={Number(statsBackCount !== chartSliceIndex)}
-								/>
+								<XAxis interval={Number(statsBackCount !== chartSliceIndex)} />
 
 								<Legend
-									{...{
-										...(legendDefaultProps as any),
-										wrapperStyle: { transform: 'translateY(-1.5rem)' }
-									}}
+									wrapperStyle={{ transform: 'translateY(-1.5rem)' }}
 									verticalAlign='top'
 								/>
 							</LineChart>
@@ -322,8 +300,8 @@ const S = {
 		margin-bottom: 1rem;
 		padding: 0 3rem;
 		background: transparent;
-		
-		@supports (-moz-appearance:none) {
+
+		@supports (-moz-appearance: none) {
 			display: flex;
 			align-items: flex-end;
 		}

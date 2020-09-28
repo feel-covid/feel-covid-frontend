@@ -1,6 +1,6 @@
 import React from 'react';
-import { DynamicObject } from '../../../@types/interfaces';
-import { formatChartDate } from '../../../utils/formatChartDate';
+import { DynamicObject } from '../../../../@types/interfaces';
+import { formatChartDate } from '../../../../utils/formatChartDate';
 import { he } from 'date-fns/locale';
 
 interface IProps extends DynamicObject<any> {}
