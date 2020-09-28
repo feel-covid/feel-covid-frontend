@@ -15,7 +15,7 @@ export const CustomTestAmountLabel = (props: any) => {
 			{props.index % 2 == 0 && (
 				<text
 					x={x + width / 2}
-					y={y - 7}
+					y={y - 11}
 					fill={theme.colors.white}
 					textAnchor='middle'
 					dominantBaseline='middle'

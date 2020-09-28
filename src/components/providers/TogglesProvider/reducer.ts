@@ -24,22 +24,16 @@ export const togglesContextReducer = (
 ) => {
 	switch (action.type) {
 		case TogglesActions.SET_SHOW_CUSTOM_COMPARE: {
-			const { payload } = action;
 			return {
 				...state,
-				showCustomCompare: action.hasOwnProperty('payload')
-					? payload
-					: !state.showCustomCompare
+				showCustomCompare: action.payload ?? !state.showCustomCompare
 			};
 		}
 
 		case TogglesActions.SET_SHOW_SUB_HEADER:
-			const { payload } = action;
 			return {
 				...state,
-				showSubHeader: action.hasOwnProperty('payload')
-					? payload
-					: !state.showSubHeader
+				showSubHeader: action.payload ?? !state.showSubHeader
 			};
 
 		default:

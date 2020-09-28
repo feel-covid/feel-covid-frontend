@@ -8,17 +8,16 @@
 		"i18next": "^19.3.3",
 		"i18next-xhr-backend": "^3.2.2",
 		"lodash": "^4.17.15",
-		"preact": "^10.4.8",
-		"preact-compat": "^3.19.0",
+		"react": "^16.13.1",
+		"react-dom": "^16.13.1",
 		"react-i18next": "^11.3.4",
 		"react-scripts": "3.4.0",
 		"recharts": "1.8.5",
-		"styled-components": "^5.0.1",
-		"typescript": "~3.8.3"
+		"styled-components": "^5.0.1"
 	},
 	"scripts": {
-		"start": "craco start",
-		"build": "yarn test:all && cross-env GENERATE_SOURCEMAP=false CI=false craco build",
+		"start": "react-scripts start",
+		"build": "yarn test:all && cross-env GENERATE_SOURCEMAP=false CI=false react-scripts build",
 		"test:all": "cross-env CI=true yarn test",
 		"test": "craco test --coverage",
 		"start:storybook": "start-storybook -p 9009 -s public",
@@ -90,6 +89,7 @@
 		"react-docgen-typescript-loader": "^3.7.1",
 		"react-hot-loader": "^4.12.21",
 		"serve": "^11.3.0",
-		"webpack-bundle-analyzer": "^3.6.1"
+		"webpack-bundle-analyzer": "^3.6.1",
+		"typescript": "~3.8.3"
 	}
 }
