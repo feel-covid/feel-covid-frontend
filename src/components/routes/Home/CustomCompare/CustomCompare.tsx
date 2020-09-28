@@ -322,6 +322,11 @@ const S = {
 		margin-bottom: 1rem;
 		padding: 0 3rem;
 		background: transparent;
+		
+		@supports (-moz-appearance:none) {
+			display: flex;
+			align-items: flex-end;
+		}
 
 		${media.tablet`
 				flex: 1;
