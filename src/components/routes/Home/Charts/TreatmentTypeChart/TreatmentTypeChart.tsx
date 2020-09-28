@@ -28,10 +28,16 @@ export const TreatmentTypeChart: React.FC<IProps> = (props) => {
 
 	const areas = [
 		{
-			name: t('global.treatment.hospital'),
-			dataKey: 'treatment.hospital',
+			name: t('global.treatment.hotel'),
+			dataKey: 'treatment.hotel',
 			fill: `url(#${gradientsId}blue2)`,
 			stroke: theme.colors.blue2
+		},
+		{
+			name: t('global.treatment.hospital'),
+			dataKey: 'treatment.hospital',
+			fill: `url(#${gradientsId}red1)`,
+			stroke: theme.colors.red1
 		}
 	];
 
@@ -43,10 +49,8 @@ export const TreatmentTypeChart: React.FC<IProps> = (props) => {
 
 				<defs>
 					<Gradients
-						colors={['blue2', 'turquoise1']}
+						colors={['blue2', 'red1']}
 						idPrefix={gradientsId}
-						startOpacity={0.5}
-						endOpacity={0}
 					/>
 				</defs>
 

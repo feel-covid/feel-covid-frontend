@@ -61,8 +61,8 @@ export const TotalCases = React.forwardRef<HTMLDivElement, IProps>(
 					positiveFactor: PositiveFactorEnum.DECREASE
 				},
 				{
-					title: t('global.treatment.homeHotelUndecided'),
-					path: 'treatment.combinedHomeHotelUndecided',
+					title: t('global.treatment.hotel'),
+					path: 'treatment.hotel',
 					positiveFactor: PositiveFactorEnum.NONE
 				}
 			];

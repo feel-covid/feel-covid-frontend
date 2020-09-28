@@ -35,6 +35,7 @@ export const TestsAmountChart: React.FC<IProps> = (props) => {
 	const theme = useTheme();
 	const gradientsId = 'TestsAmount';
 	const { chartRef, disable } = useDisableChartActiveState();
+	const { chartSliceIndex } = useCountryData()
 
 	const withTotal = useMemo(() => {
 		const distinctAmount = data.map(({ amount }) => amount);
@@ -67,7 +68,7 @@ export const TestsAmountChart: React.FC<IProps> = (props) => {
 		<S.Container>
 			<ChartContainer title={t('charts.testsAmountChart.title')}>
 				<ComposedChart
-					data={withTotal.slice(-9)}
+					data={withTotal.slice(chartSliceIndex)}
 					ref={chartRef}
 					onMouseUp={disable}
 					barCategoryGap={'30%'}
