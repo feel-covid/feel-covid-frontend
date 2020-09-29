@@ -2,19 +2,15 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'styled-components/macro';
 import { useCountryData } from '../../../../../hooks/useCountryData';
-import { Area, AreaChart, Legend, Tooltip, XAxis } from 'recharts';
-import he from 'date-fns/locale/he';
-import { CustomizedXAxisTick } from '../../../../shared/BaseChart/CustomizedXAxisTick';
-import { formatChartDate } from '../../../../../utils/formatChartDate';
+import { AreaChart } from 'recharts';
 import {
-	animationDefaultProps,
-	legendDefaultProps,
-	tooltipDefaultProps,
-	xAxisDefaultProps
-} from '../../../../shared/BaseChart/defaults';
-import { ChartContainer } from '../../../../shared/BaseChart/ChartContainer';
-import { Gradients } from '../../../../shared/BaseChart/Gradients';
-import { useDisableChartActiveState } from '../../../../../hooks/useDisableChartActiveState';
+	ChartContainer,
+	Gradients,
+	Area,
+	Legend,
+	Tooltip,
+	XAxis
+} from '../../../../shared/chart';
 
 interface IProps {}
 
@@ -23,7 +19,6 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 	const { normalizedChartData, chartSliceIndex } = useCountryData();
 	const theme = useTheme();
 	const gradientsId = 'ActiveRecoveredDeceased';
-	const { chartRef, disable } = useDisableChartActiveState();
 
 	const areas = [
 		{
@@ -48,12 +43,8 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 
 	return (
 		<ChartContainer title={t('charts.activeRecoveredDeceased.title')}>
-			<AreaChart
-				data={normalizedChartData.slice(chartSliceIndex)}
-				ref={chartRef}
-				onMouseUp={disable}
-			>
-				<Legend {...(legendDefaultProps as any)} />
+			<AreaChart data={normalizedChartData.slice(chartSliceIndex)}>
+				<Legend />
 
 				<defs>
 					<Gradients
@@ -63,22 +54,12 @@ export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 				</defs>
 
 				{areas.map((area) => (
-					<Area
-						key={area.dataKey}
-						{...area}
-						{...animationDefaultProps}
-						strokeWidth={3.5}
-					/>
+					<Area key={area.dataKey} {...area} />
 				))}
 
-				<Tooltip
-					labelFormatter={(date) =>
-						formatChartDate(date as string, { locale: he })
-					}
-					{...(tooltipDefaultProps as any)}
-				/>
+				<Tooltip />
 
-				<XAxis tick={<CustomizedXAxisTick />} {...xAxisDefaultProps} />
+				<XAxis />
 			</AreaChart>
 		</ChartContainer>
 	);

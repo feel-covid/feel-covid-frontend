@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React from 'react';
 import styled from 'styled-components';
-import CustomText from '../CustomText/CustomText';
+import CustomText from '../../CustomText/CustomText';
 
 interface IProps {
 	x?: number;

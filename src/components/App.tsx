@@ -1,3 +1,4 @@
+import { hot } from 'react-hot-loader/root';
 import React from 'react';
 import Routes from './Routes';
 import { Header } from './routes/Home/Header/Header';
@@ -8,7 +9,7 @@ interface IProps {}
 
 const App: React.FC<IProps> = () => {
 	if (process.env.NODE_ENV === 'development') {
-		document.title = 'Dev - Feel';
+		document.title = 'DEV - Feel';
 	}
 
 	return (
@@ -21,4 +22,4 @@ const App: React.FC<IProps> = () => {
 	);
 };
 
-export default App;
+export default hot(App);

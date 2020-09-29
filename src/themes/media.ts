@@ -12,7 +12,7 @@ type Breakpoints = {
 };
 
 const sizes: Breakpoints = {
-	smallDesktop: 1280,
+	smallDesktop: 1530,
 	tablet: 880,
 	phone: 450
 };

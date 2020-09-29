@@ -1,29 +1,20 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled, { useTheme } from 'styled-components/macro';
-import {
-	Bar,
-	ComposedChart,
-	LabelList,
-	Legend,
-	Line,
-	Tooltip,
-	XAxis
-} from 'recharts';
+import { ComposedChart, LabelList } from 'recharts';
 import { useCountryData } from '../../../../../hooks/useCountryData';
-import { CustomizedXAxisTick } from '../../../../shared/BaseChart/CustomizedXAxisTick';
-import {
-	animationDefaultProps,
-	legendDefaultProps,
-	tooltipDefaultProps,
-	xAxisDefaultProps
-} from '../../../../shared/BaseChart/defaults';
-import { ChartContainer } from '../../../../shared/BaseChart/ChartContainer';
-import { Gradients } from '../../../../shared/BaseChart/Gradients';
-import { useDisableChartActiveState } from '../../../../../hooks/useDisableChartActiveState';
 import { ITestAmountItem } from '../../../../providers/CountryDataProvider/interfaces';
 import { CustomTestAmountLabel } from './CustomTestAmountLabel';
 import { CustomizedTestAmountTooltip } from './CustomizedTestAmountTooltip';
+import {
+	ChartContainer,
+	Gradients,
+	Legend,
+	Line,
+	Bar,
+	Tooltip,
+	XAxis
+} from '../../../../shared/chart';
 
 interface IProps {}
 
@@ -34,7 +25,7 @@ export const TestsAmountChart: React.FC<IProps> = (props) => {
 	const { t } = useTranslation();
 	const theme = useTheme();
 	const gradientsId = 'TestsAmount';
-	const { chartRef, disable } = useDisableChartActiveState();
+	const { chartSliceIndex } = useCountryData();
 
 	const withTotal = useMemo(() => {
 		const distinctAmount = data.map(({ amount }) => amount);
@@ -67,13 +58,10 @@ export const TestsAmountChart: React.FC<IProps> = (props) => {
 		<S.Container>
 			<ChartContainer title={t('charts.testsAmountChart.title')}>
 				<ComposedChart
-					data={withTotal.slice(-9)}
-					ref={chartRef}
-					onMouseUp={disable}
+					data={withTotal.slice(chartSliceIndex)}
 					barCategoryGap={'30%'}
 				>
 					<Legend
-						{...(legendDefaultProps as any)}
 						payload={[
 							{
 								id: 'sumTests',
@@ -108,9 +96,7 @@ export const TestsAmountChart: React.FC<IProps> = (props) => {
 					<Line
 						dataKey='overall'
 						stroke={theme.colors.turquoise1}
-						strokeWidth={3.5}
 						name={t('charts.testsAmountChart.sumTests') as string}
-						{...animationDefaultProps}
 					/>
 
 					<Bar
@@ -118,7 +104,6 @@ export const TestsAmountChart: React.FC<IProps> = (props) => {
 						fill={`url(#${gradientsId}blue2)`}
 						stroke={theme.colors.blue2}
 						strokeWidth={1}
-						{...animationDefaultProps}
 						name={t('charts.testsAmountChart.today') as string}
 					>
 						<LabelList dataKey='original' content={<CustomTestAmountLabel />} />
@@ -127,17 +112,12 @@ export const TestsAmountChart: React.FC<IProps> = (props) => {
 					<Line
 						dataKey='positive'
 						stroke={theme.colors.red1}
-						strokeWidth={3.5}
 						name={t('charts.testsAmountChart.positive') as string}
-						{...animationDefaultProps}
 					/>
 
-					<Tooltip
-						content={<CustomizedTestAmountTooltip />}
-						{...(tooltipDefaultProps as any)}
-					/>
+					<Tooltip content={<CustomizedTestAmountTooltip />} />
 
-					<XAxis {...xAxisDefaultProps} tick={<CustomizedXAxisTick />} />
+					<XAxis />
 				</ComposedChart>
 			</ChartContainer>
 		</S.Container>

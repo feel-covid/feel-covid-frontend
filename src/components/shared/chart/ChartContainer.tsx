@@ -7,6 +7,7 @@ import { envInfo } from '../../../utils/envInfo';
 import { IconsEnum } from '../../../@types/enums';
 import { Tooltip } from '../Tooltip/Tooltip';
 import { Icon } from '../Icon/Icon';
+import { useDisableChartActiveState } from '../../../hooks/useDisableChartActiveState';
 
 interface IProps extends IStyle {
 	title: string;
@@ -16,6 +17,7 @@ interface IProps extends IStyle {
 export const ChartContainer: React.FC<IProps> = (props) => {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const { tooltip, title } = props;
+	const { chartRef, disable } = useDisableChartActiveState();
 
 	useEffect(() => {
 		const { current: container } = containerRef;
@@ -78,7 +80,10 @@ export const ChartContainer: React.FC<IProps> = (props) => {
 			<S.OuterChartContainer>
 				<S.InnerChartContainer>
 					<ResponsiveContainer debounce={200}>
-						{props.children}
+						{React.cloneElement(props.children as any, {
+							ref: chartRef,
+							onMouseUp: disable
+						})}
 					</ResponsiveContainer>
 				</S.InnerChartContainer>
 			</S.OuterChartContainer>

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { DynamicObject } from '../../../../../@types/interfaces';
 import { he } from 'date-fns/locale';
-import { chartTooltipStyle } from '../../../../shared/BaseChart/styles';
+import { chartTooltipStyle } from '../../../../shared/chart/styles';
 import CustomText from '../../../../shared/CustomText/CustomText';
 import i18n from '../../../../../i18n/i18n';
 import { formatChartDate } from '../../../../../utils/formatChartDate';

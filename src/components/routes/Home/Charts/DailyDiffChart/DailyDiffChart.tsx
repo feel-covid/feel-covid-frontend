@@ -1,29 +1,19 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled, { useTheme } from 'styled-components/macro';
+import { CustomizedDailyDiffTooltip } from './CustomizedDailyDiffTooltip';
+import { useCountryData } from '../../../../../hooks/useCountryData';
+import { CustomDailyDiffBarLabel } from './CustomDailyDiffBarLabel';
 import {
-	Bar,
-	ComposedChart,
-	LabelList,
+	ChartContainer,
+	Gradients,
 	Legend,
 	Line,
 	Tooltip,
 	XAxis,
-	YAxis
-} from 'recharts';
-import {
-	animationDefaultProps,
-	legendDefaultProps,
-	tooltipDefaultProps,
-	xAxisDefaultProps
-} from '../../../../shared/BaseChart/defaults';
-import { CustomizedXAxisTick } from '../../../../shared/BaseChart/CustomizedXAxisTick';
-import { CustomizedDailyDiffTooltip } from './CustomizedDailyDiffTooltip';
-import { Gradients } from '../../../../shared/BaseChart/Gradients';
-import { useDisableChartActiveState } from '../../../../../hooks/useDisableChartActiveState';
-import { useCountryData } from '../../../../../hooks/useCountryData';
-import { ChartContainer } from '../../../../shared/BaseChart/ChartContainer';
-import { CustomDailyDiffBarLabel } from './CustomDailyDiffBarLabel';
+	Bar
+} from '../../../../shared/chart';
+import { ComposedChart, LabelList, YAxis } from 'recharts';
 
 interface IProps {}
 
@@ -32,7 +22,6 @@ export const DailyDiffChart: React.FC<IProps> = (props) => {
 	const { dailyIRD, chartSliceIndex } = useCountryData();
 	const theme = useTheme();
 	const gradientsId = 'DailyDiff-';
-	const { chartRef, disable } = useDisableChartActiveState();
 
 	const weekData = dailyIRD.slice(chartSliceIndex);
 
@@ -69,15 +58,12 @@ export const DailyDiffChart: React.FC<IProps> = (props) => {
 	return (
 		<S.ChartContainer title={t('charts.dailyDiffChart.title')}>
 			<ComposedChart
-				ref={chartRef}
 				data={weekData.map((day) => ({
 					...day,
 					infectedBuffer: maxDailyInfected * 1.1
 				}))}
-				onMouseUp={disable}
 			>
 				<Legend
-					{...(legendDefaultProps as any)}
 					payload={[
 						{
 							id: 'total',
@@ -118,16 +104,13 @@ export const DailyDiffChart: React.FC<IProps> = (props) => {
 				/>
 
 				{bars.map((bar) => (
-					<Bar key={bar.dataKey} {...bar} {...animationDefaultProps} />
+					<Bar key={bar.dataKey} {...bar} />
 				))}
 
-				<Tooltip
-					content={<CustomizedDailyDiffTooltip />}
-					{...(tooltipDefaultProps as any)}
-				/>
+				<Tooltip content={<CustomizedDailyDiffTooltip />} />
 
 				<YAxis domain={['dataMin', 'dataMax']} hide />
-				<XAxis {...xAxisDefaultProps} tick={<CustomizedXAxisTick />} />
+				<XAxis />
 			</ComposedChart>
 		</S.ChartContainer>
 	);

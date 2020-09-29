@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { chartTooltipStyle } from '../../../../shared/BaseChart/styles';
+import { chartTooltipStyle } from '../../../../shared/chart/styles';
 import CustomText from '../../../../shared/CustomText/CustomText';
 import { format } from 'date-fns';
 import { DateFormatsEnum } from '../../../../../@types/enums';

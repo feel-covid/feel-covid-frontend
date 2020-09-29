@@ -11,9 +11,7 @@ import { ErrorBoundary } from './components/shared/ErrorBoundry/ErrorBoundary';
 import * as Sentry from '@sentry/browser';
 import { TogglesProvider } from './components/providers/TogglesProvider/TogglesProvider';
 
-if (process.env.NODE_ENV === 'development') {
-	require('preact/debug');
-} else {
+if (process.env.NODE_ENV !== 'development') {
 	Sentry.init({ dsn: process.env.REACT_APP_SENTRY_DSN });
 }
 

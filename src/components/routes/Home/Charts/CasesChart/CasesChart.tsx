@@ -2,20 +2,17 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'styled-components/macro';
 import { useCountryData } from '../../../../../hooks/useCountryData';
-import { Area, AreaChart, Legend, Tooltip, XAxis } from 'recharts';
-import { formatChartDate } from '../../../../../utils/formatChartDate';
-import he from 'date-fns/locale/he';
-import { CustomizedXAxisTick } from '../../../../shared/BaseChart/CustomizedXAxisTick';
-import {
-	animationDefaultProps,
-	legendDefaultProps,
-	tooltipDefaultProps,
-	xAxisDefaultProps
-} from '../../../../shared/BaseChart/defaults';
-import { ChartContainer } from '../../../../shared/BaseChart/ChartContainer';
-import { Gradients } from '../../../../shared/BaseChart/Gradients';
+import { AreaChart } from 'recharts';
 import { useDisableChartActiveState } from '../../../../../hooks/useDisableChartActiveState';
-import { CustomizedLineLabel } from '../../../../shared/BaseChart/CustomizedLineLabel';
+import { CustomizedLineLabel } from '../../../../shared/chart/customized/CustomizedLineLabel';
+import {
+	ChartContainer,
+	Gradients,
+	Area,
+	Legend,
+	Tooltip,
+	XAxis
+} from '../../../../shared/chart';
 
 interface IProps {}
 
@@ -54,7 +51,7 @@ export const CasesChart: React.FC<IProps> = (props) => {
 				ref={chartRef}
 				onMouseUp={disable}
 			>
-				<Legend {...(legendDefaultProps as any)} />
+				<Legend />
 
 				<defs>
 					<Gradients
@@ -69,8 +66,6 @@ export const CasesChart: React.FC<IProps> = (props) => {
 					<Area
 						key={area.dataKey}
 						{...area}
-						{...animationDefaultProps}
-						strokeWidth={3.5}
 						label={
 							<CustomizedLineLabel
 								stroke={area.stroke}
@@ -80,14 +75,9 @@ export const CasesChart: React.FC<IProps> = (props) => {
 					/>
 				))}
 
-				<Tooltip
-					labelFormatter={(date) =>
-						formatChartDate(date as string, { locale: he })
-					}
-					{...(tooltipDefaultProps as any)}
-				/>
+				<Tooltip />
 
-				<XAxis tick={<CustomizedXAxisTick />} {...xAxisDefaultProps} />
+				<XAxis />
 			</AreaChart>
 		</ChartContainer>
 	);

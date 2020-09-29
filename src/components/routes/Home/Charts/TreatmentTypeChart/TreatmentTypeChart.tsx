@@ -1,21 +1,17 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'styled-components/macro';
-import { Area, AreaChart, Legend, Tooltip, XAxis } from 'recharts';
+import { AreaChart } from 'recharts';
 import { useCountryData } from '../../../../../hooks/useCountryData';
-import { formatChartDate } from '../../../../../utils/formatChartDate';
-import { he } from 'date-fns/locale';
-import { CustomizedXAxisTick } from '../../../../shared/BaseChart/CustomizedXAxisTick';
+import { CustomizedLineLabel } from '../../../../shared/chart/customized/CustomizedLineLabel';
 import {
-	animationDefaultProps,
-	legendDefaultProps,
-	tooltipDefaultProps,
-	xAxisDefaultProps
-} from '../../../../shared/BaseChart/defaults';
-import { ChartContainer } from '../../../../shared/BaseChart/ChartContainer';
-import { Gradients } from '../../../../shared/BaseChart/Gradients';
-import { useDisableChartActiveState } from '../../../../../hooks/useDisableChartActiveState';
-import { CustomizedLineLabel } from '../../../../shared/BaseChart/CustomizedLineLabel';
+	ChartContainer,
+	Gradients,
+	Area,
+	Legend,
+	Tooltip,
+	XAxis
+} from '../../../../shared/chart';
 
 interface IProps {}
 
@@ -24,29 +20,32 @@ export const TreatmentTypeChart: React.FC<IProps> = (props) => {
 	const { t } = useTranslation();
 	const theme = useTheme();
 	const gradientsId = 'TreatmentType';
-	const { chartRef, disable } = useDisableChartActiveState();
 
 	const areas = [
 		{
-			name: t('global.treatment.hospital'),
-			dataKey: 'treatment.hospital',
+			name: t('global.treatment.hotel'),
+			dataKey: 'treatment.hotel',
 			fill: `url(#${gradientsId}blue2)`,
 			stroke: theme.colors.blue2
+		},
+		{
+			name: t('global.treatment.hospital'),
+			dataKey: 'treatment.hospital',
+			fill: `url(#${gradientsId}orange1)`,
+			stroke: theme.colors.orange1
 		}
 	];
 
-	const data = normalizedChartData.slice(chartSliceIndex);
 	return (
 		<ChartContainer title={t('charts.treatmentType.title')}>
-			<AreaChart data={data} ref={chartRef} onMouseUp={disable}>
-				<Legend {...(legendDefaultProps as any)} />
+			<AreaChart data={normalizedChartData.slice(chartSliceIndex)}>
+				<Legend />
 
 				<defs>
 					<Gradients
-						colors={['blue2', 'turquoise1']}
+						colors={['blue2', 'orange1']}
 						idPrefix={gradientsId}
-						startOpacity={0.5}
-						endOpacity={0}
+						startOpacity={0.6}
 					/>
 				</defs>
 
@@ -54,26 +53,18 @@ export const TreatmentTypeChart: React.FC<IProps> = (props) => {
 					<Area
 						key={area.name}
 						{...area}
-						type='monotone'
-						strokeWidth={3.5}
 						label={
 							<CustomizedLineLabel
 								stroke={area.stroke}
 								itemsLength={normalizedChartData.slice(chartSliceIndex).length}
 							/>
 						}
-						{...animationDefaultProps}
 					/>
 				))}
 
-				<Tooltip
-					labelFormatter={(date) =>
-						formatChartDate(date as string, { locale: he })
-					}
-					{...(tooltipDefaultProps as any)}
-				/>
+				<Tooltip />
 
-				<XAxis {...xAxisDefaultProps} tick={<CustomizedXAxisTick />} />
+				<XAxis />
 			</AreaChart>
 		</ChartContainer>
 	);

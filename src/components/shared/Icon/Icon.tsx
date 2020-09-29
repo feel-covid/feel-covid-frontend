@@ -11,7 +11,7 @@ export const Icon: React.FC<IProps> = (props) => {
 	const { type, ...rest } = props;
 	return (
 		<S.Icon {...rest}>
-			<use xlinkHref={`/assets/icons/sprite.svg#${type}`}></use>
+			<use xlinkHref={`/assets/icons/sprite.svg#${type}`} />
 		</S.Icon>
 	);
 };
