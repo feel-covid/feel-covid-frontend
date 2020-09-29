@@ -409,5 +409,5 @@ export const countryDataContextFixture = {
 	dailyIRD: serverResponseFixture.data.dailyIRD,
 	weekAgoIndexOnNormalizedData: 0,
 	testsData: serverResponseFixture.data.dailyTestAmount,
-	chartSliceIndex: -8
+	chartSliceIndex: -9
 };
