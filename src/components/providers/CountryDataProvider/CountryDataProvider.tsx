@@ -65,7 +65,7 @@ export const CountryDataProvider: React.FC<IProps> = ({ children }) => {
 				dailyIRD,
 				weekAgoIndexOnNormalizedData,
 				testsData: dailyTestAmount,
-				chartSliceIndex: -9
+				chartSliceIndex: -8
 			}}
 		>
 			{children}
