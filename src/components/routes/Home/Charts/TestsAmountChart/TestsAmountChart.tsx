@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled, { useTheme } from 'styled-components/macro';
-import { ComposedChart, LabelList } from 'recharts';
+import { ComposedChart, LabelList, YAxis } from 'recharts';
 import { useCountryData } from '../../../../../hooks/useCountryData';
 import { ITestAmountItem } from '../../../../providers/CountryDataProvider/interfaces';
 import { CustomTestAmountLabel } from './CustomTestAmountLabel';
@@ -19,13 +19,16 @@ import {
 interface IProps {}
 
 export const TestsAmountChart: React.FC<IProps> = (props) => {
-	const {
+	let {
+		// eslint-disable-next-line prefer-const
 		testsData: { data, total }
 	} = useCountryData();
+
 	const { t } = useTranslation();
 	const theme = useTheme();
 	const gradientsId = 'TestsAmount';
 	const { chartSliceIndex } = useCountryData();
+	data = data.slice(chartSliceIndex);
 
 	const withTotal = useMemo(() => {
 		const distinctAmount = data.map(({ amount }) => amount);
@@ -57,10 +60,7 @@ export const TestsAmountChart: React.FC<IProps> = (props) => {
 	return (
 		<S.Container>
 			<ChartContainer title={t('charts.testsAmountChart.title')}>
-				<ComposedChart
-					data={withTotal.slice(chartSliceIndex)}
-					barCategoryGap={'30%'}
-				>
+				<ComposedChart data={withTotal} barCategoryGap={'30%'}>
 					<Legend
 						payload={[
 							{
@@ -116,7 +116,7 @@ export const TestsAmountChart: React.FC<IProps> = (props) => {
 					/>
 
 					<Tooltip content={<CustomizedTestAmountTooltip />} />
-
+					<YAxis type='number' domain={[0, `dataMax + ${total * 0.05}`]} hide />
 					<XAxis />
 				</ComposedChart>
 			</ChartContainer>

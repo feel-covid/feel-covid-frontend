@@ -43,5 +43,6 @@ const S = {
 		background: ${({ backgroundColor }) => backgroundColor};
 		padding: 0 0.3rem;
 		border-radius: 0.5rem;
+		font-weight: bold;
 	`
 };
