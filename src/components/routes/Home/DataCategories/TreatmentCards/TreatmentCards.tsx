@@ -7,7 +7,7 @@ import media from '../../../../../themes/media';
 
 interface IProps {}
 
-export const Treatment: React.FC<IProps> = (props) => {
+export const TreatmentCards: React.FC<IProps> = (props) => {
 	const { t } = useTranslation();
 
 	const categories = useMemo<IOverviewCard[]>(() => {

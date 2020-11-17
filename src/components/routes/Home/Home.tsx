@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import { RouteComponentProps } from '@reach/router';
 import { PaddingContainer } from '../../shared/PaddingContainer/PaddingContainer';
 import { TotalCases } from './DataCategories/TotalCases/TotalCases';
-import { Treatment } from './DataCategories/Treatment/Treatment';
+import { TreatmentCards } from './DataCategories/TreatmentCards/TreatmentCards';
 import { ActiveRecoveredDeceasedChart } from './Charts/ActiveRecoveredDeceasedChart/ActiveRecoveredDeceasedChart';
 import { DailyDiffChart } from './Charts/DailyDiffChart/DailyDiffChart';
 import media from '../../../themes/media';
@@ -53,11 +53,11 @@ const Home: React.FC<IProps> = () => {
 		return (
 			<>
 				<TotalCases ref={totalCasesRef} />
-				<SChartsContainer style={{ margin: '0.8rem 0' }}>
+				<SChartsContainer>
 					<DailyDiffChart />
 					<ActiveRecoveredDeceasedChart />
 					<TestsAmountChart />
-					<Treatment />
+					<TreatmentCards />
 					<TreatmentTypeChart />
 					<CasesChart />
 				</SChartsContainer>
@@ -77,6 +77,7 @@ const SChartsContainer = styled.div`
 	grid-template-columns: repeat(3, 1fr);
 	grid-gap: 0.8rem;
 	width: 100%;
+	margin: 0.8rem 0;
 
 	@media (max-width: 1150px) {
 		grid-template-columns: repeat(2, 1fr);

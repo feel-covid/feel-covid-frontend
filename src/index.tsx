@@ -15,6 +15,10 @@ if (process.env.NODE_ENV !== 'development') {
 	Sentry.init({ dsn: process.env.REACT_APP_SENTRY_DSN });
 }
 
+if (process.env.NODE_ENV === 'development') {
+	document.title = 'DEV - Feel';
+}
+
 ReactDOM.render(
 	<I18nextProvider i18n={i18n}>
 		<ThemeProvider theme={defaultTheme}>

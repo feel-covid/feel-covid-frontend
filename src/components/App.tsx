@@ -8,10 +8,6 @@ import { Footer } from './Layout/Footer/Footer';
 interface IProps {}
 
 const App: React.FC<IProps> = () => {
-	if (process.env.NODE_ENV === 'development') {
-		document.title = 'DEV - Feel';
-	}
-
 	return (
 		<>
 			<Header />
