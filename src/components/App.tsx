@@ -1,4 +1,3 @@
-import { hot } from 'react-hot-loader/root';
 import React from 'react';
 import Routes from './Routes';
 import { Header } from './routes/Home/Header/Header';
@@ -18,4 +17,4 @@ const App: React.FC<IProps> = () => {
 	);
 };
 
-export default hot(App);
+export default App;
