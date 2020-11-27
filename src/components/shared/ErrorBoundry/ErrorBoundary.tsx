@@ -22,7 +22,7 @@ export class ErrorBoundary extends React.Component<IProps, IState> {
 		return { hasError: true };
 	}
 
-	componentDidCatch(error: Error, errorInfo: object) {
+	componentDidCatch(error: Error, errorInfo: Record<string, any>) {
 		if (process.env.NODE_ENV !== 'development') {
 			Sentry.withScope((scope) => {
 				scope.setExtras(errorInfo);
