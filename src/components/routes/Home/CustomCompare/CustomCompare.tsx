@@ -221,7 +221,7 @@ const S = {
 		display: flex;
 		background: ${({ theme }) => theme.colors.darkBlue1};
 		width: 100%;
-		min-height: 50vh;
+		min-height: min(50vh, 50rem);
 		max-width: 130rem;
 		border-radius: 0.5rem;
 		box-shadow: 0 0 2rem rgba(0, 0, 0, 0.2);
@@ -266,7 +266,7 @@ const S = {
 	`,
 	SelectionContainer: styled.div`
 		flex: 1;
-		height: 50vh;
+		height: min(50vh, 50rem);
 		align-self: flex-start;
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
