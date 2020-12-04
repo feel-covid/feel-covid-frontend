@@ -1,7 +1,7 @@
-import { getTrendAndDiff } from '../../../../../../utils/getTrendAndDiff';
-import { DynamicObject } from '../../../../../../@types/interfaces';
+import { getTrendAndDiff } from '../getTrendAndDiff';
+import { DynamicObject } from '../../@types/interfaces';
 
-describe('getStats - Basic functionality', () => {
+describe('getTrendAndDiff - Basic functionality', () => {
 	const tests = [
 		[
 			'With before > current',
