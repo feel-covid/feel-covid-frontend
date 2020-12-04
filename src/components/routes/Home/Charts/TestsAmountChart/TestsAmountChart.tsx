@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled, { useTheme } from 'styled-components/macro';
 import { ComposedChart, LabelList, YAxis } from 'recharts';
-import { useCountryData } from '../../../../../hooks/useCountryData';
+import { useCountryDataContext } from '../../../../providers/CountryDataProvider/hooks/useCountryDataContext';
 import { ITestAmountItem } from '../../../../providers/CountryDataProvider/interfaces';
 import { CustomTestAmountLabel } from './CustomTestAmountLabel';
 import { CustomizedTestAmountTooltip } from './CustomizedTestAmountTooltip';
@@ -22,12 +22,12 @@ export const TestsAmountChart: React.FC<IProps> = (props) => {
 	let {
 		// eslint-disable-next-line prefer-const
 		testsData: { data, total }
-	} = useCountryData();
+	} = useCountryDataContext();
 
 	const { t } = useTranslation();
 	const theme = useTheme();
 	const gradientsId = 'TestsAmount';
-	const { chartSliceIndex } = useCountryData();
+	const { chartSliceIndex } = useCountryDataContext();
 	data = data.slice(chartSliceIndex);
 
 	const withTotal = useMemo(() => {

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'styled-components/macro';
-import { useCountryData } from '../../../../../hooks/useCountryData';
+import { useCountryDataContext } from '../../../../providers/CountryDataProvider/hooks/useCountryDataContext';
 import { AreaChart } from 'recharts';
-import { useDisableChartActiveState } from '../../../../../hooks/useDisableChartActiveState';
+import { useDisableChartActiveState } from '../../../../shared/chart/hooks/useDisableChartActiveState';
 import { CustomizedLineLabel } from '../../../../shared/chart/customized/CustomizedLineLabel';
 import {
 	ChartContainer,
@@ -18,10 +18,9 @@ interface IProps {}
 
 export const CasesChart: React.FC<IProps> = (props) => {
 	const { t } = useTranslation();
-	const { normalizedChartData, chartSliceIndex } = useCountryData();
+	const { normalizedChartData, chartSliceIndex } = useCountryDataContext();
 	const theme = useTheme();
 	const gradientsId = 'Cases';
-	const { chartRef, disable } = useDisableChartActiveState();
 
 	const areas = [
 		{
@@ -46,11 +45,7 @@ export const CasesChart: React.FC<IProps> = (props) => {
 
 	return (
 		<ChartContainer title={t('charts.casesChart.title')}>
-			<AreaChart
-				data={normalizedChartData.slice(chartSliceIndex)}
-				ref={chartRef}
-				onMouseUp={disable}
-			>
+			<AreaChart data={normalizedChartData.slice(chartSliceIndex)}>
 				<Legend />
 
 				<defs>

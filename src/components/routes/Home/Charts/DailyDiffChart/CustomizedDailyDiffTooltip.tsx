@@ -5,7 +5,7 @@ import { he } from 'date-fns/locale';
 import { chartTooltipStyle } from '../../../../shared/chart/styles';
 import CustomText from '../../../../shared/CustomText/CustomText';
 import i18n from '../../../../../i18n/i18n';
-import { formatChartDate } from '../../../../../utils/formatChartDate';
+import { formatChartDate } from '../../../../shared/chart/utils/formatChartDate';
 
 interface IProps {
 	active?: boolean;

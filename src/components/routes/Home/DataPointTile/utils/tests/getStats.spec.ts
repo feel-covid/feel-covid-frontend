@@ -1,5 +1,5 @@
-import { getStats } from '../getStats';
-import { DynamicObject } from '../../@types/interfaces';
+import { getTrendAndDiff } from '../../../../../../utils/getTrendAndDiff';
+import { DynamicObject } from '../../../../../../@types/interfaces';
 
 describe('getStats - Basic functionality', () => {
 	const tests = [
@@ -63,7 +63,7 @@ describe('getStats - Basic functionality', () => {
 			expectedActualDiff,
 			expectedPercent
 		} = testDetails as DynamicObject<any>;
-		const { percentDiff, actualDiff, trend } = getStats(before, current);
+		const { percentDiff, actualDiff, trend } = getTrendAndDiff(before, current);
 
 		expect(percentDiff).toBe(expectedPercent);
 		expect(actualDiff).toBe(expectedActualDiff);

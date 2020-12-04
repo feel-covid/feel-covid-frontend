@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tooltip as RCTooltip } from 'recharts';
-import { formatChartDate } from '../../../../utils/formatChartDate';
+import { formatChartDate } from '../utils/formatChartDate';
 import { he } from 'date-fns/locale';
 
 class Tooltip extends RCTooltip {

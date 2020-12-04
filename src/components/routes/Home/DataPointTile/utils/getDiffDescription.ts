@@ -1,13 +1,13 @@
-import { getStats } from './getStats';
-import i18n from '../i18n/i18n';
+import { getTrendAndDiff } from '../../../../../utils/getTrendAndDiff';
+import i18n from '../../../../../i18n/i18n';
 
 interface IParams {
 	before: number;
 	current: number;
 }
 
-export const getStatDescription = ({ before, current }: IParams) => {
-	const { trend, actualDiff, percentDiff } = getStats(before, current);
+export const getDiffDescription = ({ before, current }: IParams) => {
+	const { trend, actualDiff, percentDiff } = getTrendAndDiff(before, current);
 	let description = null;
 
 	if (trend === 0) {

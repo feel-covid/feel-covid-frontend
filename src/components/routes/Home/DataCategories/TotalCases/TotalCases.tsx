@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components/macro';
 import { PositiveFactorEnum } from '../../../../../@types/enums';
-import { IOverviewCard, Overview } from '../../Overview/Overview';
+import { IOverviewCard, Tiles } from '../../Overview/Tiles';
 import media from '../../../../../themes/media';
 
 interface IProps {}
@@ -70,7 +70,7 @@ export const TotalCases = React.forwardRef<HTMLDivElement, IProps>(
 
 		return (
 			<S.Container ref={ref}>
-				<S.Overview cards={categories} />
+				<S.Tiles cards={categories} />
 			</S.Container>
 		);
 	}
@@ -83,7 +83,7 @@ const S = {
 		display: flex;
 		width: 100%;
 	`,
-	Overview: styled(Overview)`
+	Tiles: styled(Tiles)`
 		grid-template-columns: repeat(8, 1fr);
 		display: grid;
 		width: 100%;

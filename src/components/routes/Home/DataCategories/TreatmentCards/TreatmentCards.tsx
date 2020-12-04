@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components/macro';
 import { PositiveFactorEnum } from '../../../../../@types/enums';
-import { IOverviewCard, Overview } from '../../Overview/Overview';
+import { IOverviewCard, Tiles } from '../../Overview/Tiles';
 import media from '../../../../../themes/media';
 
 interface IProps {}
@@ -29,7 +29,7 @@ export const TreatmentCards: React.FC<IProps> = (props) => {
 };
 
 const S = {
-	Overview: styled(Overview)`
+	Overview: styled(Tiles)`
 		width: 100%;
 		grid-template-columns: repeat(1, 1fr);
 		display: grid;

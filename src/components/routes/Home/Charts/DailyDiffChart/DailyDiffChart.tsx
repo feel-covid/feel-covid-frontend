@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled, { useTheme } from 'styled-components/macro';
 import { CustomizedDailyDiffTooltip } from './CustomizedDailyDiffTooltip';
-import { useCountryData } from '../../../../../hooks/useCountryData';
+import { useCountryDataContext } from '../../../../providers/CountryDataProvider/hooks/useCountryDataContext';
 import { CustomDailyDiffBarLabel } from './CustomDailyDiffBarLabel';
 import {
 	ChartContainer,
@@ -19,7 +19,7 @@ interface IProps {}
 
 export const DailyDiffChart: React.FC<IProps> = (props) => {
 	const { t } = useTranslation();
-	const { dailyIRD, chartSliceIndex } = useCountryData();
+	const { dailyIRD, chartSliceIndex } = useCountryDataContext();
 	const theme = useTheme();
 	const gradientsId = 'DailyDiff-';
 

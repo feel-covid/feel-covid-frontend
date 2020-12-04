@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import CustomText from '../../../shared/CustomText/CustomText';
-import { getStatDescription } from '../../../../utils/getStatDescription';
+import { getDiffDescription } from './utils/getDiffDescription';
 import { IconsEnum, PositiveFactorEnum } from '../../../../@types/enums';
 import { CasesAmount } from '../../../shared/CasesAmount/CasesAmount';
 import { Tooltip } from '../../../shared/Tooltip/Tooltip';
@@ -15,9 +15,9 @@ interface IProps {
 	tooltip?: string;
 }
 
-const DataCard: React.FC<IProps> = (props) => {
+const DataPointTile: React.FC<IProps> = (props) => {
 	const { title, current, before, positiveFactor, tooltip } = props;
-	const { description } = getStatDescription({
+	const { description } = getDiffDescription({
 		before,
 		current
 	});
@@ -92,4 +92,4 @@ const S = {
 	`
 };
 
-export default DataCard;
+export default DataPointTile;

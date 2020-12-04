@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { PositiveFactorEnum } from '../../../../@types/enums';
-import DataCard from '../DataCard/DataCard';
+import DataPointTile from '../DataPointTile/DataPointTile';
 import get from 'lodash/get';
 import { IStyle } from '../../../../@types/interfaces';
-import { useStatsFilterContext } from '../../../../hooks/useStatsFilterContext';
+import { useStatsFilterContext } from '../../../providers/StatsFilterProvider/hooks/useStatsFilterContext';
 
 export interface IOverviewCard {
 	title: string;
@@ -16,7 +16,7 @@ interface IProps extends IStyle {
 	cards: Array<IOverviewCard>;
 }
 
-export const Overview: React.FC<IProps> = (props) => {
+export const Tiles: React.FC<IProps> = (props) => {
 	const { cards, className } = props;
 	const { baseDate, prevDate, countriesByDate } = useStatsFilterContext();
 
@@ -28,7 +28,7 @@ export const Overview: React.FC<IProps> = (props) => {
 				const before = get(countriesByDate[prevDate], path);
 
 				return (
-					<DataCard
+					<DataPointTile
 						key={index}
 						title={title}
 						current={current}

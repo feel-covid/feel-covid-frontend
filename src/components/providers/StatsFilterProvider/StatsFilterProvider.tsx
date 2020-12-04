@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { useCountryData } from '../../../hooks/useCountryData';
+import { useCountryDataContext } from '../CountryDataProvider/hooks/useCountryDataContext';
 import { StatsFilterContext } from './context';
 
 interface IProps {}
 
 export const StatsFilterProvider: React.FC<IProps> = (props) => {
-	const { normalizedData } = useCountryData();
+	const { normalizedData } = useCountryDataContext();
 	const [initialPrevDate, initialBaseDate] = normalizedData.slice(-2);
 
 	const [baseDate, setBaseDate] = useState(initialBaseDate.date);

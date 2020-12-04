@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { IconsEnum, PositiveFactorEnum } from '../../../@types/enums';
-import { getTrendColor } from '../../../utils/getTrendColor';
+import { getTrendColor } from './utils/getTrendColor';
 import CustomText from '../CustomText/CustomText';
 import { Icon } from '../Icon/Icon';
-import { getStats } from '../../../utils/getStats';
+import { getTrendAndDiff } from '../../../utils/getTrendAndDiff';
 import { IFontSizes } from '../../../@types/declarations/styled';
 import { IStyle } from '../../../@types/interfaces';
 
@@ -25,7 +25,7 @@ export const CasesAmount: React.FC<IProps> = (props) => {
 		iconSize,
 		className
 	} = props;
-	const { trend } = getStats(before, current);
+	const { trend } = getTrendAndDiff(before, current);
 
 	return (
 		<S.CurrentContainer

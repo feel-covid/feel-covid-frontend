@@ -6,7 +6,7 @@ import { Icon } from '../../../../shared/Icon/Icon';
 import { IconsEnum } from '../../../../../@types/enums';
 import { Select } from '../../../../shared/Form/Select';
 import { StateUpdaterFunction } from '../../../../../@types/interfaces';
-import { useCountryData } from '../../../../../hooks/useCountryData';
+import { useCountryDataContext } from '../../../../providers/CountryDataProvider/hooks/useCountryDataContext';
 
 interface IProps {
 	setStatsBackCount: StateUpdaterFunction<number>;
@@ -14,7 +14,7 @@ interface IProps {
 
 export const CustomCompareHeader: React.FC<IProps> = (props) => {
 	const { t } = useTranslation();
-	const { chartSliceIndex } = useCountryData();
+	const { chartSliceIndex } = useCountryDataContext();
 
 	return (
 		<S.Container>

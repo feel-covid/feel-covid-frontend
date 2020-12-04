@@ -7,7 +7,7 @@ import { envInfo } from '../../../utils/envInfo';
 import { IconsEnum } from '../../../@types/enums';
 import { Tooltip } from '../Tooltip/Tooltip';
 import { Icon } from '../Icon/Icon';
-import { useDisableChartActiveState } from '../../../hooks/useDisableChartActiveState';
+import { useDisableChartActiveState } from './hooks/useDisableChartActiveState';
 
 interface IProps extends IStyle {
 	title: string;

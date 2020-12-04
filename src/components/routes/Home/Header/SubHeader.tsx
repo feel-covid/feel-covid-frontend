@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import styled, { css } from 'styled-components/macro';
 import { HeaderFilter } from './HeaderFilter/HeaderFilter';
-import { useTogglesContext } from '../../../../hooks/useTogglesContext';
+import { useTogglesContext } from '../../../providers/TogglesProvider/hooks/useTogglesContext';
 import media from '../../../../themes/media';
 
 interface IProps {}
@@ -19,7 +19,7 @@ export const SubHeader: React.FC<IProps> = (props) => {
 };
 
 const S = {
-	Container: styled.div<{ isVisible: boolean }>`
+	Container: styled.header<{ isVisible: boolean }>`
 		background: ${({ theme }) => theme.colors.darkBlue2};
 		align-items: center;
 		height: var(--header-height);

@@ -1,5 +1,5 @@
-import { PositiveFactorEnum } from '../@types/enums';
-import defaultTheme from '../themes/defaultTheme';
+import { PositiveFactorEnum } from '../../../../@types/enums';
+import defaultTheme from '../../../../themes/defaultTheme';
 
 export const getTrendColor = (
 	positiveFactor: PositiveFactorEnum,

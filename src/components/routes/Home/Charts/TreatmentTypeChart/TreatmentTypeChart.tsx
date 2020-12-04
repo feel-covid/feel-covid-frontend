@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'styled-components/macro';
 import { AreaChart } from 'recharts';
-import { useCountryData } from '../../../../../hooks/useCountryData';
+import { useCountryDataContext } from '../../../../providers/CountryDataProvider/hooks/useCountryDataContext';
 import { CustomizedLineLabel } from '../../../../shared/chart/customized/CustomizedLineLabel';
 import {
 	ChartContainer,
@@ -16,7 +16,7 @@ import {
 interface IProps {}
 
 export const TreatmentTypeChart: React.FC<IProps> = (props) => {
-	const { normalizedChartData, chartSliceIndex } = useCountryData();
+	const { normalizedChartData, chartSliceIndex } = useCountryDataContext();
 	const { t } = useTranslation();
 	const theme = useTheme();
 	const gradientsId = 'TreatmentType';

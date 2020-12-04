@@ -5,13 +5,13 @@ import styled, { css, useTheme } from 'styled-components/macro';
 import { LineChart } from 'recharts';
 import { Checkbox } from '../../../shared/Checkbox/Checkbox';
 import { DynamicObject } from '../../../../@types/interfaces';
-import { useCountryData } from '../../../../hooks/useCountryData';
+import { useCountryDataContext } from '../../../providers/CountryDataProvider/hooks/useCountryDataContext';
 import CustomText from '../../../shared/CustomText/CustomText';
 import get from 'lodash/get';
 import { deleteOrAddKey } from '../../../../utils/deleteOrAddKey';
 import { CustomCompareHeader } from './CustomCompareHeader/CustomCompareHeader';
 import media from '../../../../themes/media';
-import { useTogglesContext } from '../../../../hooks/useTogglesContext';
+import { useTogglesContext } from '../../../providers/TogglesProvider/hooks/useTogglesContext';
 import { TogglesActions } from '../../../providers/TogglesProvider/reducer';
 import useStrictEffect from '../../../../hooks/useStrictEffect';
 import { CustomizedLineLabel } from '../../../shared/chart/customized/CustomizedLineLabel';
@@ -31,7 +31,7 @@ interface ISelectionItem {
 	color: string;
 }
 
-export const CustomCompare: React.FC<IProps> = (props) => {
+const CustomCompare: React.FC<IProps> = (props) => {
 	const { t } = useTranslation();
 	const theme = useTheme();
 	const { state, dispatch } = useTogglesContext();
@@ -40,7 +40,7 @@ export const CustomCompare: React.FC<IProps> = (props) => {
 		recovered: true
 	});
 
-	const { normalizedChartData, chartSliceIndex } = useCountryData();
+	const { normalizedChartData, chartSliceIndex } = useCountryDataContext();
 	const [statsBackCount, setStatsBackCount] = useState(chartSliceIndex);
 	const contentContainer = useRef<HTMLDivElement>(null);
 
@@ -318,3 +318,5 @@ const S = {
 	`,
 	Checkbox: styled(Checkbox)``
 };
+
+export default CustomCompare;

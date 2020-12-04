@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components/macro';
 import CustomText from '../../../shared/CustomText/CustomText';
 import { HeaderFilter } from './HeaderFilter/HeaderFilter';
 import media from '../../../../themes/media';
-import { useTogglesContext } from '../../../../hooks/useTogglesContext';
+import { useTogglesContext } from '../../../providers/TogglesProvider/hooks/useTogglesContext';
 import { TogglesActions } from '../../../providers/TogglesProvider/reducer';
 import { SubHeader } from './SubHeader';
 

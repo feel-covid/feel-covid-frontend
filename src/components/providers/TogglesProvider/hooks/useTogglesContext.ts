@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { TogglesContext } from '../components/providers/TogglesProvider/context';
+import { TogglesContext } from '../context';
 
 export const useTogglesContext = () => {
 	const data = useContext(TogglesContext);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'styled-components/macro';
-import { useCountryData } from '../../../../../hooks/useCountryData';
+import { useCountryDataContext } from '../../../../providers/CountryDataProvider/hooks/useCountryDataContext';
 import { AreaChart } from 'recharts';
 import {
 	ChartContainer,
@@ -16,7 +16,7 @@ interface IProps {}
 
 export const ActiveRecoveredDeceasedChart: React.FC<IProps> = (props) => {
 	const { t } = useTranslation();
-	const { normalizedChartData, chartSliceIndex } = useCountryData();
+	const { normalizedChartData, chartSliceIndex } = useCountryDataContext();
 	const theme = useTheme();
 	const gradientsId = 'ActiveRecoveredDeceased';
 
