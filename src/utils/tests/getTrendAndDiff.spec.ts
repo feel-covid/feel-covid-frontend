@@ -52,6 +52,16 @@ describe('getTrendAndDiff - Basic functionality', () => {
 				expectedActualDiff: 0,
 				expectedPercent: 0
 			}
+		],
+		[
+			'With current > before && percentDiff < 0.1',
+			{
+				current: 1000,
+				before: 999.5,
+				expectedTrend: 1,
+				expectedActualDiff: 0.5,
+				expectedPercent: 0.05
+			}
 		]
 	];
 
