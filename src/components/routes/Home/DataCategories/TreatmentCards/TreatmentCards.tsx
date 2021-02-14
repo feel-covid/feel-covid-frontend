@@ -10,20 +10,18 @@ interface IProps {}
 export const TreatmentCards: React.FC<IProps> = (props) => {
 	const { t } = useTranslation();
 
-	const categories = useMemo<IOverviewCard[]>(() => {
-		return [
-			{
-				title: t('global.treatment.hospital'),
-				path: 'treatment.hospital',
-				positiveFactor: PositiveFactorEnum.DECREASE
-			},
-			{
-				title: t('global.treatment.hotel'),
-				path: 'treatment.hotel',
-				positiveFactor: PositiveFactorEnum.NONE
-			}
-		];
-	}, []);
+	const categories: IOverviewCard[] = [
+		{
+			title: t('global.treatment.hospital'),
+			path: 'treatment.hospital',
+			positiveFactor: PositiveFactorEnum.DECREASE
+		},
+		{
+			title: t('global.treatment.hotel'),
+			path: 'treatment.hotel',
+			positiveFactor: PositiveFactorEnum.NONE
+		}
+	];
 
 	return <S.Overview cards={categories} />;
 };

@@ -10,6 +10,7 @@ export interface IOverviewCard {
 	title: string;
 	path: string;
 	positiveFactor: PositiveFactorEnum;
+	tooltip?: string;
 }
 
 interface IProps extends IStyle {

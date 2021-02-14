@@ -11,62 +11,59 @@ export const TotalCases = React.forwardRef<HTMLDivElement, IProps>(
 	(props, ref) => {
 		const { t } = useTranslation();
 
-		const categories = useMemo<IOverviewCard[]>(() => {
-			return [
-				{
-					title: t('global.cases.confirmedCases'),
-					path: 'total',
-					positiveFactor: PositiveFactorEnum.DECREASE
-				},
-				{
-					title: t('global.cases.currently'),
-					path: 'active',
-					positiveFactor: PositiveFactorEnum.DECREASE
-				},
-
-				{
-					title: t('global.cases.lightCondition'),
-					path: 'light',
-					positiveFactor: PositiveFactorEnum.DECREASE,
-					tooltip: t('dataCards.lightCondition.tooltip')
-				},
-				{
-					title: t('global.cases.midCondition'),
-					path: 'mid',
-					positiveFactor: PositiveFactorEnum.DECREASE
-				},
-				{
-					title: t('global.cases.severeCondition'),
-					path: 'severe.cases',
-					positiveFactor: PositiveFactorEnum.DECREASE
-				},
-				{
-					title: t('global.cases.intubated'),
-					path: 'severe.intubated',
-					positiveFactor: PositiveFactorEnum.DECREASE
-				},
-				{
-					title: t('global.cases.deceased'),
-					path: 'deceased',
-					positiveFactor: PositiveFactorEnum.DECREASE
-				},
-				{
-					title: t('global.cases.recovered'),
-					path: 'recovered',
-					positiveFactor: PositiveFactorEnum.INCREASE
-				},
-				{
-					title: t('global.treatment.hospital'),
-					path: 'treatment.hospital',
-					positiveFactor: PositiveFactorEnum.DECREASE
-				},
-				{
-					title: t('global.treatment.hotel'),
-					path: 'treatment.hotel',
-					positiveFactor: PositiveFactorEnum.NONE
-				}
-			];
-		}, []);
+		const categories: IOverviewCard[] = [
+			{
+				title: t('global.cases.confirmedCases'),
+				path: 'total',
+				positiveFactor: PositiveFactorEnum.DECREASE
+			},
+			{
+				title: t('global.cases.currently'),
+				path: 'active',
+				positiveFactor: PositiveFactorEnum.DECREASE
+			},
+			{
+				title: t('global.cases.lightCondition'),
+				path: 'light',
+				positiveFactor: PositiveFactorEnum.DECREASE,
+				tooltip: t('dataCards.lightCondition.tooltip')
+			},
+			{
+				title: t('global.cases.midCondition'),
+				path: 'mid',
+				positiveFactor: PositiveFactorEnum.DECREASE
+			},
+			{
+				title: t('global.cases.severeCondition'),
+				path: 'severe.cases',
+				positiveFactor: PositiveFactorEnum.DECREASE
+			},
+			{
+				title: t('global.cases.intubated'),
+				path: 'severe.intubated',
+				positiveFactor: PositiveFactorEnum.DECREASE
+			},
+			{
+				title: t('global.cases.deceased'),
+				path: 'deceased',
+				positiveFactor: PositiveFactorEnum.DECREASE
+			},
+			{
+				title: t('global.cases.recovered'),
+				path: 'recovered',
+				positiveFactor: PositiveFactorEnum.INCREASE
+			},
+			{
+				title: t('global.treatment.hospital'),
+				path: 'treatment.hospital',
+				positiveFactor: PositiveFactorEnum.DECREASE
+			},
+			{
+				title: t('global.treatment.hotel'),
+				path: 'treatment.hotel',
+				positiveFactor: PositiveFactorEnum.NONE
+			}
+		];
 
 		return (
 			<S.Container ref={ref}>

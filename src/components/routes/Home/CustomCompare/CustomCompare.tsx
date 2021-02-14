@@ -53,61 +53,58 @@ const CustomCompare: React.FC<IProps> = (props) => {
 		document.body.style.overflow = showCustomCompare ? 'hidden' : 'visible';
 	}, [state.showCustomCompare]);
 
-	const selectOptions: DynamicObject<ISelectionItem> = useMemo(
-		() => ({
-			total: {
-				title: t('global.cases.confirmedCases'),
-				path: 'total',
-				color: theme.colors.blue2
-			},
-			active: {
-				title: t('global.cases.currently'),
-				path: 'active',
-				color: '#5e35b1'
-			},
-			light: {
-				title: t('global.cases.lightCondition'),
-				path: 'light',
-				color: theme.colors.green1
-			},
-			mid: {
-				title: t('global.cases.midCondition'),
-				path: 'mid',
-				color: theme.colors.orange2
-			},
-			severe: {
-				title: t('global.cases.severeCondition'),
-				path: 'severe.cases',
-				color: theme.colors.orange1
-			},
-			intubated: {
-				title: t('global.cases.intubated'),
-				path: 'severe.intubated',
-				color: theme.colors.red1
-			},
-			recovered: {
-				title: t('global.cases.recovered'),
-				path: 'recovered',
-				color: '#00796b'
-			},
-			deceased: {
-				title: t('global.cases.deceased'),
-				path: 'deceased',
-				color: '#d50000'
-			},
-			hospital: {
-				title: t('global.treatment.hospital'),
-				path: 'treatment.hospital',
-				color: '#795548'
-			},
-			homeHotelUndecided: {
-				title: t('global.treatment.homeHotelUndecided'),
-				path: 'treatment.combinedHomeHotelUndecided',
-				color: '#9e9d24'
-			}
-		}),
-		[]
-	);
+	const selectOptions: DynamicObject<ISelectionItem> = {
+		total: {
+			title: t('global.cases.confirmedCases'),
+			path: 'total',
+			color: theme.colors.blue2
+		},
+		active: {
+			title: t('global.cases.currently'),
+			path: 'active',
+			color: '#5e35b1'
+		},
+		light: {
+			title: t('global.cases.lightCondition'),
+			path: 'light',
+			color: theme.colors.green1
+		},
+		mid: {
+			title: t('global.cases.midCondition'),
+			path: 'mid',
+			color: theme.colors.orange2
+		},
+		severe: {
+			title: t('global.cases.severeCondition'),
+			path: 'severe.cases',
+			color: theme.colors.orange1
+		},
+		intubated: {
+			title: t('global.cases.intubated'),
+			path: 'severe.intubated',
+			color: theme.colors.red1
+		},
+		recovered: {
+			title: t('global.cases.recovered'),
+			path: 'recovered',
+			color: '#00796b'
+		},
+		deceased: {
+			title: t('global.cases.deceased'),
+			path: 'deceased',
+			color: '#d50000'
+		},
+		hospital: {
+			title: t('global.treatment.hospital'),
+			path: 'treatment.hospital',
+			color: '#795548'
+		},
+		hotel: {
+			title: t('global.treatment.hotel'),
+			path: 'treatment.hotel',
+			color: '#9e9d24'
+		}
+	};
 
 	const children = useMemo(
 		() => (
@@ -142,13 +139,11 @@ const CustomCompare: React.FC<IProps> = (props) => {
 											type='monotone'
 											stroke={color}
 											dot={false}
-											// @ts-ignore
 											label={
 												<CustomizedLineLabel
 													stroke={color}
 													itemsLength={
-														normalizedChartData.slice(statsBackCount)
-															.length as any
+														normalizedChartData.slice(statsBackCount).length
 													}
 												/>
 											}
