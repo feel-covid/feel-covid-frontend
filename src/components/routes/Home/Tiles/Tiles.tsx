@@ -1,40 +1,44 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { PositiveFactorEnum } from '../../../../@types/enums';
+import { PositiveTrendEnum } from '../../../../@types/enums';
 import DataPointTile from '../DataPointTile/DataPointTile';
 import get from 'lodash/get';
 import { IStyle } from '../../../../@types/interfaces';
-import { useStatsFilterContext } from '../../../providers/StatsFilterProvider/hooks/useStatsFilterContext';
+import { useHourlyUpdatesCompareContext } from '../../../providers/HourlyUpdatesCompareProvider/hooks/useHourlyUpdatesCompareContext';
 
-export interface IOverviewCard {
+export interface ITile {
 	title: string;
 	path: string;
-	positiveFactor: PositiveFactorEnum;
+	positiveTrend: PositiveTrendEnum;
 	tooltip?: string;
 }
 
 interface IProps extends IStyle {
-	cards: Array<IOverviewCard>;
+	cards: Array<ITile>;
 }
 
-export const Tiles: React.FC<IProps> = (props) => {
+export const Tiles: React.FC<IProps> = props => {
 	const { cards, className } = props;
-	const { baseDate, prevDate, countriesByDate } = useStatsFilterContext();
+	const {
+		baseDate,
+		prevDate,
+		countriesByDate
+	} = useHourlyUpdatesCompareContext();
 
 	return (
 		<S.Container className={className}>
-			{cards.map((card, index) => {
-				const { title, path, positiveFactor, ...rest } = card;
+			{cards.map(card => {
+				const { title, path, positiveTrend, ...rest } = card;
 				const current = get(countriesByDate[baseDate], path);
 				const before = get(countriesByDate[prevDate], path);
 
 				return (
 					<DataPointTile
-						key={index}
+						key={path}
 						title={title}
 						current={current}
 						before={before}
-						positiveFactor={positiveFactor}
+						positiveTrend={positiveTrend}
 						{...rest}
 					/>
 				);

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { IconsEnum, PositiveFactorEnum } from '../../../@types/enums';
+import { IconsEnum, PositiveTrendEnum } from '../../../@types/enums';
 import { getTrendColor } from './utils/getTrendColor';
 import CustomText from '../CustomText/CustomText';
 import { Icon } from '../Icon/Icon';
@@ -9,18 +9,18 @@ import { IFontSizes } from '../../../@types/declarations/styled';
 import { IStyle } from '../../../@types/interfaces';
 
 interface IProps extends IStyle {
-	positiveFactor: PositiveFactorEnum;
+	positiveTrend: PositiveTrendEnum;
 	current: number;
 	before: number;
 	fontSize?: keyof IFontSizes;
 	iconSize?: string;
 }
 
-export const CasesAmount: React.FC<IProps> = (props) => {
+export const CasesAmount: React.FC<IProps> = props => {
 	const {
 		before,
 		current,
-		positiveFactor,
+		positiveTrend,
 		fontSize,
 		iconSize,
 		className
@@ -30,7 +30,7 @@ export const CasesAmount: React.FC<IProps> = (props) => {
 	return (
 		<S.CurrentContainer
 			trend={trend}
-			positiveFactor={positiveFactor}
+			positiveTrend={positiveTrend}
 			className={className}
 		>
 			<S.CurrentText size={fontSize} text={current.toLocaleString()} />
@@ -54,14 +54,14 @@ CasesAmount.defaultProps = {
 const S = {
 	CurrentContainer: styled.div<{
 		trend: number;
-		positiveFactor: PositiveFactorEnum;
+		positiveTrend: PositiveTrendEnum;
 	}>`
 		display: flex;
 		align-items: center;
-		color: ${({ trend, theme, positiveFactor }) =>
-			trend === 0 || positiveFactor === PositiveFactorEnum.NONE
+		color: ${({ trend, theme, positiveTrend }) =>
+			trend === 0 || positiveTrend === PositiveTrendEnum.NONE
 				? theme.colors.blue2
-				: getTrendColor(positiveFactor, trend)};
+				: getTrendColor(positiveTrend, trend)};
 	`,
 	CurrentText: styled(CustomText)`
 		margin: 0.4rem 0 0.6rem 0;

@@ -6,7 +6,7 @@ import i18n from './i18n';
 import { ThemeProvider } from 'styled-components';
 import { defaultTheme } from './themes';
 import { CountryDataProvider } from './components/providers/CountryDataProvider/CountryDataProvider';
-import { StatsFilterProvider } from './components/providers/StatsFilterProvider/StatsFilterProvider';
+import { HourlyUpdatesCompareProvider } from './components/providers/HourlyUpdatesCompareProvider/HourlyUpdatesCompareProvider';
 import { ErrorBoundary } from './components/shared/ErrorBoundry/ErrorBoundary';
 import * as Sentry from '@sentry/browser';
 import { TogglesProvider } from './components/providers/TogglesProvider/TogglesProvider';
@@ -24,11 +24,11 @@ ReactDOM.render(
 		<ThemeProvider theme={defaultTheme}>
 			<ErrorBoundary>
 				<CountryDataProvider>
-					<StatsFilterProvider>
+					<HourlyUpdatesCompareProvider>
 						<TogglesProvider>
 							<App />
 						</TogglesProvider>
-					</StatsFilterProvider>
+					</HourlyUpdatesCompareProvider>
 				</CountryDataProvider>
 			</ErrorBoundary>
 		</ThemeProvider>

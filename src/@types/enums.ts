@@ -1,14 +1,11 @@
 export enum IconsEnum {
 	Arrow = 'icon-arrow',
-	QuestionMark = 'icon-question-mark',
-	Cog = 'icon-cog',
 	ArrowDropdown = 'icon-arrow_drop_down',
-	CircleDropdown = 'icon-circle-down',
 	Close = 'icon-cross',
 	MoreInformation = 'icon-info_outline'
 }
 
-export enum PositiveFactorEnum {
+export enum PositiveTrendEnum {
 	INCREASE = 1,
 	DECREASE = -1,
 	NONE = 'NONE'
@@ -16,11 +13,5 @@ export enum PositiveFactorEnum {
 
 export enum DateFormatsEnum {
 	PART_MONTH_NAME_WITH_DAY_AND_TIME = 'MMM dd בשעה HH:mm',
-	FULL_MONTH_NAME_WITH_DAY_AND_TIME = 'MMMM dd בשעה HH:mm',
 	MONTH_AND_DAY = 'MMM dd'
-}
-
-export enum RoutesEnum {
-	HOME = '/',
-	ADMIN = '/admin'
 }

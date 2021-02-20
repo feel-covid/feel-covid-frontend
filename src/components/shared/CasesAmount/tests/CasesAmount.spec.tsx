@@ -1,6 +1,6 @@
 import React from 'react';
 import { CasesAmount } from '../CasesAmount';
-import { PositiveFactorEnum } from '../../../../@types/enums';
+import { PositiveTrendEnum } from '../../../../@types/enums';
 import { renderWithProviders } from '../../../../../tests/renderWithProviders';
 import { defaultTheme } from '../../../../themes';
 import { cleanup } from '@testing-library/react';
@@ -16,7 +16,7 @@ describe('<CasesAmount /> - Basic functionality', () => {
 			<CasesAmount
 				current={current}
 				before={0}
-				positiveFactor={PositiveFactorEnum.INCREASE}
+				positiveTrend={PositiveTrendEnum.INCREASE}
 			/>
 		);
 
@@ -28,7 +28,7 @@ describe('<CasesAmount /> - Basic functionality', () => {
 			<CasesAmount
 				current={100}
 				before={50}
-				positiveFactor={PositiveFactorEnum.INCREASE}
+				positiveTrend={PositiveTrendEnum.INCREASE}
 			/>
 		);
 
@@ -38,75 +38,75 @@ describe('<CasesAmount /> - Basic functionality', () => {
 		expect(await getByText('100')).toHaveStyle('color: currentColor');
 	});
 
-	const positiveFactorAndArrowDirectionTestCases = [
+	const positiveTrendAndArrowDirectionTestCases = [
 		[
-			'With PositiveFactorEnum.INCREASE && current > before',
+			'With PositiveTrendEnum.INCREASE && current > before',
 			{
 				current: 100,
 				before: 50,
 				expectedIconRotate: 'rotate(0deg)',
 				expectedColor: defaultTheme.colors.green1,
-				positiveFactor: PositiveFactorEnum.INCREASE
+				positiveTrend: PositiveTrendEnum.INCREASE
 			}
 		],
 		[
-			'With PositiveFactorEnum.INCREASE && current < before',
+			'With PositiveTrendEnum.INCREASE && current < before',
 			{
 				current: 50,
 				before: 100,
 				expectedIconRotate: 'rotate(180deg)',
 				expectedColor: defaultTheme.colors.red1,
-				positiveFactor: PositiveFactorEnum.INCREASE
+				positiveTrend: PositiveTrendEnum.INCREASE
 			}
 		],
 		[
-			'With PositiveFactorEnum.DECREASE && current > before',
+			'With PositiveTrendEnum.DECREASE && current > before',
 			{
 				current: 100,
 				before: 50,
 				expectedIconRotate: 'rotate(0deg)',
 				expectedColor: defaultTheme.colors.red1,
-				positiveFactor: PositiveFactorEnum.DECREASE
+				positiveTrend: PositiveTrendEnum.DECREASE
 			}
 		],
 		[
-			'With PositiveFactorEnum.DECREASE && current < before',
+			'With PositiveTrendEnum.DECREASE && current < before',
 			{
 				current: 50,
 				before: 100,
 				expectedIconRotate: 'rotate(180deg)',
 				expectedColor: defaultTheme.colors.green1,
-				positiveFactor: PositiveFactorEnum.DECREASE
+				positiveTrend: PositiveTrendEnum.DECREASE
 			}
 		],
 		[
-			'With PositiveFactorEnum.NONE && current < before',
+			'With PositiveTrendEnum.NONE && current < before',
 			{
 				current: 50,
 				before: 100,
 				expectedIconRotate: 'rotate(180deg)',
 				expectedColor: defaultTheme.colors.blue2,
-				positiveFactor: PositiveFactorEnum.NONE
+				positiveTrend: PositiveTrendEnum.NONE
 			}
 		],
 		[
-			'With PositiveFactorEnum.NONE && current > before',
+			'With PositiveTrendEnum.NONE && current > before',
 			{
 				current: 100,
 				before: 50,
 				expectedIconRotate: 'rotate(0deg)',
 				expectedColor: defaultTheme.colors.blue2,
-				positiveFactor: PositiveFactorEnum.NONE
+				positiveTrend: PositiveTrendEnum.NONE
 			}
 		]
 	];
-	it.each(positiveFactorAndArrowDirectionTestCases)(
+	it.each(positiveTrendAndArrowDirectionTestCases)(
 		'%s',
 		async (_, testDetails) => {
 			const {
 				current,
 				before,
-				positiveFactor,
+				positiveTrend,
 				expectedIconRotate,
 				expectedColor
 			} = testDetails as DynamicObject<any>;
@@ -114,7 +114,7 @@ describe('<CasesAmount /> - Basic functionality', () => {
 				<CasesAmount
 					current={current}
 					before={before}
-					positiveFactor={positiveFactor}
+					positiveTrend={positiveTrend}
 				/>
 			);
 
@@ -134,7 +134,7 @@ describe('<CasesAmount /> - Basic functionality', () => {
 			<CasesAmount
 				current={100}
 				before={100}
-				positiveFactor={PositiveFactorEnum.NONE}
+				positiveTrend={PositiveTrendEnum.NONE}
 			/>
 		);
 		expect(await queryByTestId('CasesAmount.ArrowIcon')).toBeNull();

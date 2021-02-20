@@ -1,11 +1,11 @@
-import { PositiveFactorEnum } from '../../../../@types/enums';
+import { PositiveTrendEnum } from '../../../../@types/enums';
 import defaultTheme from '../../../../themes/defaultTheme';
 
 export const getTrendColor = (
-	positiveFactor: PositiveFactorEnum,
-	trend: number
+	positiveTrend: PositiveTrendEnum,
+	actualTrend: number
 ): string => {
-	return positiveFactor === trend
+	return positiveTrend === actualTrend
 		? defaultTheme.colors.green1
 		: defaultTheme.colors.red1;
 };

@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components/macro';
-import { PositiveFactorEnum } from '../../../../../@types/enums';
-import { IOverviewCard, Tiles } from '../../Overview/Tiles';
+import { PositiveTrendEnum } from '../../../../../@types/enums';
+import { ITile, Tiles } from '../../Tiles/Tiles';
 import media from '../../../../../themes/media';
 
 interface IProps {}
@@ -11,57 +11,57 @@ export const TotalCases = React.forwardRef<HTMLDivElement, IProps>(
 	(props, ref) => {
 		const { t } = useTranslation();
 
-		const categories: IOverviewCard[] = [
+		const categories: ITile[] = [
 			{
 				title: t('global.cases.confirmedCases'),
 				path: 'total',
-				positiveFactor: PositiveFactorEnum.DECREASE
+				positiveTrend: PositiveTrendEnum.DECREASE
 			},
 			{
 				title: t('global.cases.currently'),
 				path: 'active',
-				positiveFactor: PositiveFactorEnum.DECREASE
+				positiveTrend: PositiveTrendEnum.DECREASE
 			},
 			{
 				title: t('global.cases.lightCondition'),
 				path: 'light',
-				positiveFactor: PositiveFactorEnum.DECREASE,
+				positiveTrend: PositiveTrendEnum.DECREASE,
 				tooltip: t('dataCards.lightCondition.tooltip')
 			},
 			{
 				title: t('global.cases.midCondition'),
 				path: 'mid',
-				positiveFactor: PositiveFactorEnum.DECREASE
+				positiveTrend: PositiveTrendEnum.DECREASE
 			},
 			{
 				title: t('global.cases.severeCondition'),
 				path: 'severe.cases',
-				positiveFactor: PositiveFactorEnum.DECREASE
+				positiveTrend: PositiveTrendEnum.DECREASE
 			},
 			{
 				title: t('global.cases.intubated'),
 				path: 'severe.intubated',
-				positiveFactor: PositiveFactorEnum.DECREASE
+				positiveTrend: PositiveTrendEnum.DECREASE
 			},
 			{
 				title: t('global.cases.deceased'),
 				path: 'deceased',
-				positiveFactor: PositiveFactorEnum.DECREASE
+				positiveTrend: PositiveTrendEnum.DECREASE
 			},
 			{
 				title: t('global.cases.recovered'),
 				path: 'recovered',
-				positiveFactor: PositiveFactorEnum.INCREASE
+				positiveTrend: PositiveTrendEnum.INCREASE
 			},
 			{
 				title: t('global.treatment.hospital'),
 				path: 'treatment.hospital',
-				positiveFactor: PositiveFactorEnum.DECREASE
+				positiveTrend: PositiveTrendEnum.DECREASE
 			},
 			{
 				title: t('global.treatment.hotel'),
 				path: 'treatment.hotel',
-				positiveFactor: PositiveFactorEnum.NONE
+				positiveTrend: PositiveTrendEnum.NONE
 			}
 		];
 

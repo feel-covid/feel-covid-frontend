@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useCountryDataContext } from '../CountryDataProvider/hooks/useCountryDataContext';
-import { StatsFilterContext } from './context';
+import { HourlyUpdatesCompareContext } from './context';
 
 interface IProps {}
 
-export const StatsFilterProvider: React.FC<IProps> = (props) => {
+export const HourlyUpdatesCompareProvider: React.FC<IProps> = (props) => {
 	const { normalizedData } = useCountryDataContext();
 	const [initialPrevDate, initialBaseDate] = normalizedData.slice(-2);
 
@@ -12,7 +12,7 @@ export const StatsFilterProvider: React.FC<IProps> = (props) => {
 	const [prevDate, setPrevDate] = useState(initialPrevDate.date);
 
 	return (
-		<StatsFilterContext.Provider
+		<HourlyUpdatesCompareContext.Provider
 			value={{
 				setBaseDate,
 				setPrevDate,
@@ -26,6 +26,6 @@ export const StatsFilterProvider: React.FC<IProps> = (props) => {
 			}}
 		>
 			{props.children}
-		</StatsFilterContext.Provider>
+		</HourlyUpdatesCompareContext.Provider>
 	);
 };

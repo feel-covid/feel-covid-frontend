@@ -1,25 +1,25 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components/macro';
-import { PositiveFactorEnum } from '../../../../../@types/enums';
-import { IOverviewCard, Tiles } from '../../Overview/Tiles';
+import { PositiveTrendEnum } from '../../../../../@types/enums';
+import { ITile, Tiles } from '../../Tiles/Tiles';
 import media from '../../../../../themes/media';
 
 interface IProps {}
 
-export const TreatmentCards: React.FC<IProps> = (props) => {
+export const TreatmentCards: React.FC<IProps> = props => {
 	const { t } = useTranslation();
 
-	const categories: IOverviewCard[] = [
+	const categories: ITile[] = [
 		{
 			title: t('global.treatment.hospital'),
 			path: 'treatment.hospital',
-			positiveFactor: PositiveFactorEnum.DECREASE
+			positiveTrend: PositiveTrendEnum.DECREASE
 		},
 		{
 			title: t('global.treatment.hotel'),
 			path: 'treatment.hotel',
-			positiveFactor: PositiveFactorEnum.NONE
+			positiveTrend: PositiveTrendEnum.NONE
 		}
 	];
 

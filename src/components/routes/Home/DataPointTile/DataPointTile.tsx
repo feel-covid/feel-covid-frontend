@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import CustomText from '../../../shared/CustomText/CustomText';
 import { getDiffDescription } from './utils/getDiffDescription';
-import { IconsEnum, PositiveFactorEnum } from '../../../../@types/enums';
+import { IconsEnum, PositiveTrendEnum } from '../../../../@types/enums';
 import { CasesAmount } from '../../../shared/CasesAmount/CasesAmount';
 import { Tooltip } from '../../../shared/Tooltip/Tooltip';
 import { Icon } from '../../../shared/Icon/Icon';
@@ -11,12 +11,12 @@ interface IProps {
 	title: string;
 	current: number;
 	before: number;
-	positiveFactor: PositiveFactorEnum;
+	positiveTrend: PositiveTrendEnum;
 	tooltip?: string;
 }
 
-const DataPointTile: React.FC<IProps> = (props) => {
-	const { title, current, before, positiveFactor, tooltip } = props;
+const DataPointTile: React.FC<IProps> = props => {
+	const { title, current, before, positiveTrend, tooltip } = props;
 	const { description } = getDiffDescription({
 		before,
 		current
@@ -37,7 +37,7 @@ const DataPointTile: React.FC<IProps> = (props) => {
 			</S.TitleAndTooltipContainer>
 
 			<CasesAmount
-				positiveFactor={positiveFactor}
+				positiveTrend={positiveTrend}
 				current={current}
 				before={before}
 				fontSize='s32'

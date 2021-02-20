@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import styled from 'styled-components/macro';
 import formatRelative from 'date-fns/formatRelative';
 import he from 'date-fns/locale/he';
-import { useStatsFilterContext } from '../../../../providers/StatsFilterProvider/hooks/useStatsFilterContext';
+import { useHourlyUpdatesCompareContext } from '../../../../providers/HourlyUpdatesCompareProvider/hooks/useHourlyUpdatesCompareContext';
 import { format, isToday, isYesterday } from 'date-fns';
 import { DateFormatsEnum } from '../../../../../@types/enums';
 import { IStyle } from '../../../../../@types/interfaces';
@@ -24,7 +24,7 @@ export const HeaderFilter: React.FC<IProps> = (props) => {
 		prevDate,
 		countriesByDate,
 		setPrevDate
-	} = useStatsFilterContext();
+	} = useHourlyUpdatesCompareContext();
 	const { weekAgoIndexOnNormalizedData } = useCountryDataContext();
 	const { containerRef, selectRef } = props;
 
