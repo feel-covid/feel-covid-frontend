@@ -65,8 +65,8 @@ const Home: React.FC<IProps> = () => {
 								<CasesChart />
 								<TreatmentTypeChart />
 								<TreatmentCards />
-								<TestsAmountChart />
 								<DailyDiffChart />
+								<TestsAmountChart />
 							</S.ChartsContainer>
 						</S.Container>
 					</PaddingContainer>
