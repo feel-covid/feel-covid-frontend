@@ -12,9 +12,10 @@ interface IProps extends IStyle {
 	link?: boolean;
 	href?: string;
 	onClick?: PlainFunction<any>;
+	numeric?: boolean;
 }
 
-const CustomText: React.FC<IProps> = (props) => {
+const CustomText: React.FC<IProps> = props => {
 	const { link, href, text, className, percent, ...rest } = props;
 
 	return link ? (

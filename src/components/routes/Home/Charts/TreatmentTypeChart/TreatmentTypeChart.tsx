@@ -15,7 +15,7 @@ import {
 
 interface IProps {}
 
-export const TreatmentTypeChart: React.FC<IProps> = (props) => {
+export const TreatmentTypeChart: React.FC<IProps> = props => {
 	const { normalizedChartData, chartSliceIndex } = useCountryDataContext();
 	const { t } = useTranslation();
 	const theme = useTheme();
@@ -45,11 +45,12 @@ export const TreatmentTypeChart: React.FC<IProps> = (props) => {
 					<Gradients
 						colors={['blue2', 'orange1']}
 						idPrefix={gradientsId}
-						startOpacity={0.6}
+						startOpacity={0.15}
+						endOpacity={0}
 					/>
 				</defs>
 
-				{areas.map((area) => (
+				{areas.map(area => (
 					<Area
 						key={area.name}
 						{...area}

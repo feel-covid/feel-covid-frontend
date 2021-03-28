@@ -1,5 +1,6 @@
 import React from 'react';
 import { CustomizedTooltip } from '../../../../shared/chart/customized/CustomizedTooltip';
+import { IDailyVaccination } from '../../../../providers/CountryDataProvider/interfaces';
 
 interface IProps {
 	active?: boolean;
@@ -17,25 +18,28 @@ interface IProps {
 			date: string;
 			positive: number;
 			overall: number;
-			original: {
-				amount: number;
-				positive: number;
-			};
+			original: IDailyVaccination;
 		};
 	}>;
 }
 
-export const CustomizedTestAmountTooltip: React.FC<IProps> = props => {
+export const CustomizedVaccinationTooltip: React.FC<IProps> = props => {
 	if (!props.active) return null;
 
 	const originValues = props.payload!.map(currentPayload => {
-		const { name, dataKey, value, payload, stroke } = currentPayload;
+		const { name, dataKey, payload, stroke } = currentPayload;
+
+		let value = (payload.original[
+			dataKey as keyof IDailyVaccination
+		] as string).toLocaleString();
+
+		if (dataKey === 'secondDoseCumulative') {
+			value += ` (${payload.original.secondDosePercentage}%)`;
+		}
 
 		return {
 			text: name,
-			value:
-				// @ts-ignore
-				dataKey === 'overall' ? value : payload.original[dataKey as string],
+			value,
 			color: stroke
 		};
 	});

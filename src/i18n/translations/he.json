@@ -57,6 +57,12 @@
 				"sumTests": "סך הבדיקות",
 				"today": "נעשו היום",
 				"positive": "אחוז חיוביים"
+			},
+			"vaccinationsChart": {
+				"title": "מגמת מתחסנים (מנה שנייה)",
+				"secondDoseCumulative": "סך המתחסנים",
+				"secondDoseAmount": "חוסנו היום",
+				"secondDosePercentage": "אחוז מהאוכלוסיה"
 			}
 		},
 		"footer": {

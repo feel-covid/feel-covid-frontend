@@ -1,10 +1,9 @@
-import React, { useEffect, useMemo, useRef, Suspense } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import styled from 'styled-components/macro';
 import { RouteComponentProps } from '@reach/router';
 import { PaddingContainer } from '../../shared/PaddingContainer/PaddingContainer';
 import { TotalCases } from './DataCategories/TotalCases/TotalCases';
 import { TreatmentCards } from './DataCategories/TreatmentCards/TreatmentCards';
-import { ActiveRecoveredDeceasedChart } from './Charts/ActiveRecoveredDeceasedChart/ActiveRecoveredDeceasedChart';
 import { DailyDiffChart } from './Charts/DailyDiffChart/DailyDiffChart';
 import media from '../../../themes/media';
 import { useCountryDataContext } from '../../providers/CountryDataProvider/hooks/useCountryDataContext';
@@ -17,6 +16,7 @@ import { TogglesActions } from '../../providers/TogglesProvider/reducer';
 import CustomCompare from './CustomCompare/CustomCompare';
 import { Header } from './Header/Header';
 import { Footer } from '../../Layout/Footer/Footer';
+import { VaccinationsChart } from './Charts/VaccinationsChart/VaccinationsChart';
 
 interface IProps extends RouteComponentProps {}
 
@@ -34,8 +34,8 @@ const Home: React.FC<IProps> = () => {
 	useEffect(() => {
 		if ('IntersectionObserver' in window) {
 			const observer = new IntersectionObserver(
-				(entries, observer) => {
-					entries.forEach((entry) => {
+				entries => {
+					entries.forEach(entry => {
 						const { isIntersecting } = entry;
 						dispatch({
 							type: TogglesActions.SET_SHOW_SUB_HEADER,
@@ -61,12 +61,12 @@ const Home: React.FC<IProps> = () => {
 						<S.Container>
 							<TotalCases ref={totalCasesRef} />
 							<S.ChartsContainer>
-								<DailyDiffChart />
-								<ActiveRecoveredDeceasedChart />
-								<TestsAmountChart />
-								<TreatmentCards />
-								<TreatmentTypeChart />
+								<VaccinationsChart />
 								<CasesChart />
+								<TreatmentTypeChart />
+								<TreatmentCards />
+								<TestsAmountChart />
+								<DailyDiffChart />
 							</S.ChartsContainer>
 						</S.Container>
 					</PaddingContainer>
