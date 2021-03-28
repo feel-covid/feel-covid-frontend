@@ -4,21 +4,21 @@ import styled, { useTheme } from 'styled-components/macro';
 import { ComposedChart, LabelList, YAxis } from 'recharts';
 import { useCountryDataContext } from '../../../../providers/CountryDataProvider/hooks/useCountryDataContext';
 import { ITestAmountItem } from '../../../../providers/CountryDataProvider/interfaces';
-import { CustomTestAmountLabel } from './CustomTestAmountLabel';
 import { CustomizedTestAmountTooltip } from './CustomizedTestAmountTooltip';
 import {
+	Bar,
 	ChartContainer,
 	Gradients,
 	Legend,
 	Line,
-	Bar,
 	Tooltip,
 	XAxis
 } from '../../../../shared/chart';
+import { PointLabel } from '../../../../shared/chart/customized/PointLabel';
 
 interface IProps {}
 
-export const TestsAmountChart: React.FC<IProps> = (props) => {
+export const TestsAmountChart: React.FC<IProps> = props => {
 	let {
 		// eslint-disable-next-line prefer-const
 		testsData: { data, total }
@@ -106,7 +106,14 @@ export const TestsAmountChart: React.FC<IProps> = (props) => {
 						strokeWidth={1}
 						name={t('charts.testsAmountChart.today') as string}
 					>
-						<LabelList dataKey='original' content={<CustomTestAmountLabel />} />
+						<LabelList
+							dataKey='original.amount'
+							content={
+								<PointLabel
+									shouldDisplay={index => [2, 5, 0, 7].includes(index)}
+								/>
+							}
+						/>
 					</Bar>
 
 					<Line

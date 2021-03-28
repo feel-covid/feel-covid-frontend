@@ -33,7 +33,7 @@ export const CountryDataProvider: React.FC<IProps> = ({ children }) => {
 
 	if (loading) return null;
 
-	const { dailyIRD, dailyTestAmount, hourlyUpdates } = data;
+	const { dailyIRD, dailyTestAmount, hourlyUpdates, dailyVaccinations } = data;
 
 	const normalizedData = hourlyUpdates.map(normalizeCountryData);
 
@@ -63,6 +63,7 @@ export const CountryDataProvider: React.FC<IProps> = ({ children }) => {
 				normalizedData,
 				normalizedChartData: normalizeChartData(normalizedData),
 				dailyIRD,
+				dailyVaccinations,
 				weekAgoIndexOnNormalizedData,
 				testsData: dailyTestAmount,
 				chartSliceIndex: -8

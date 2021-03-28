@@ -1,5 +1,9 @@
 import React from 'react';
-import { INormalizedCountryData, ITestAmountData } from './interfaces';
+import {
+	IDailyVaccination,
+	INormalizedCountryData,
+	ITestAmountData
+} from './interfaces';
 
 export interface ICountryDataContext {
 	loading: boolean;
@@ -12,6 +16,7 @@ export interface ICountryDataContext {
 	testsData: ITestAmountData;
 	normalizedData: Array<INormalizedCountryData>;
 	normalizedChartData: Array<INormalizedCountryData>;
+	dailyVaccinations: Array<IDailyVaccination>;
 	weekAgoIndexOnNormalizedData: number;
 	chartSliceIndex: number;
 }
@@ -26,6 +31,7 @@ export const CountryDataContext = React.createContext<ICountryDataContext>({
 	dailyIRD: [],
 	normalizedData: [],
 	normalizedChartData: [],
+	dailyVaccinations: [],
 	weekAgoIndexOnNormalizedData: 0,
 	chartSliceIndex: 0
 });

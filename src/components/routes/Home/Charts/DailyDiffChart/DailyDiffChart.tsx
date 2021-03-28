@@ -1,34 +1,27 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled, { useTheme } from 'styled-components/macro';
-import { CustomizedDailyDiffTooltip } from './CustomizedDailyDiffTooltip';
 import { useCountryDataContext } from '../../../../providers/CountryDataProvider/hooks/useCountryDataContext';
-import { CustomDailyDiffBarLabel } from './CustomDailyDiffBarLabel';
 import {
+	Bar,
 	ChartContainer,
 	Gradients,
 	Legend,
-	Line,
 	Tooltip,
-	XAxis,
-	Bar
+	XAxis
 } from '../../../../shared/chart';
 import { ComposedChart, LabelList, YAxis } from 'recharts';
+import { CustomizedDailyDiffTooltip } from './CustomizedDailyDiffTooltip';
+import { PointLabel } from '../../../../shared/chart/customized/PointLabel';
 
 interface IProps {}
 
-export const DailyDiffChart: React.FC<IProps> = (props) => {
+export const DailyDiffChart: React.FC<IProps> = props => {
 	const { t } = useTranslation();
 	const { dailyIRD, chartSliceIndex } = useCountryDataContext();
 	const theme = useTheme();
 	const gradientsId = 'DailyDiff-';
-
 	const weekData = dailyIRD.slice(chartSliceIndex);
-
-	const maxDailyInfected = useMemo(
-		() => Math.max(...weekData.map(({ infected }) => infected)),
-		[dailyIRD]
-	);
 
 	const bars = [
 		{
@@ -41,10 +34,15 @@ export const DailyDiffChart: React.FC<IProps> = (props) => {
 		{
 			dataKey: 'infected',
 			fill: `url(#${gradientsId}blue2)`,
-			name: t('charts.dailyDiffChart.total'),
+			name: t('charts.dailyDiffChart.infected'),
 			stroke: theme.colors.blue2,
 			children: (
-				<LabelList dataKey='infected' content={<CustomDailyDiffBarLabel />} />
+				<LabelList
+					dataKey='infected'
+					content={
+						<PointLabel shouldDisplay={() => true} horizontalOffset={-1} />
+					}
+				/>
 			)
 		},
 		{
@@ -57,12 +55,7 @@ export const DailyDiffChart: React.FC<IProps> = (props) => {
 
 	return (
 		<S.ChartContainer title={t('charts.dailyDiffChart.title')}>
-			<ComposedChart
-				data={weekData.map((day) => ({
-					...day,
-					infectedBuffer: maxDailyInfected * 1.1
-				}))}
-			>
+			<ComposedChart data={weekData}>
 				<Legend
 					payload={[
 						{
@@ -95,15 +88,7 @@ export const DailyDiffChart: React.FC<IProps> = (props) => {
 					/>
 				</defs>
 
-				<Line
-					type='monotone'
-					dataKey='infectedBuffer'
-					strokeWidth={0}
-					cursor={false as any}
-					dot={false}
-				/>
-
-				{bars.map((bar) => (
+				{bars.map(bar => (
 					<Bar key={bar.dataKey} {...bar} />
 				))}
 

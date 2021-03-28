@@ -20,24 +20,19 @@ interface IProps {
 	}>;
 }
 
-export const CustomizedDailyDiffTooltip: React.FC<IProps> = (props) => {
+export const CustomizedDailyDiffTooltip: React.FC<IProps> = props => {
 	if (!props.active) return null;
 
 	const uniqueValues = props
 		.payload!.sort((a, b) => b.value - a.value)
 		.reduce((acc, currentPayload) => {
-			const { dataKey, value } = currentPayload;
-			let { color } = currentPayload;
+			const { dataKey, value, color } = currentPayload;
 			const dashIndex = color.indexOf('-');
 
-			color = color.slice(dashIndex + 1, color.length - 1);
-
-			if (dataKey !== 'infectedBuffer') {
-				acc[dataKey] = {
-					color: dataKey === 'infected' ? 'blue2' : color,
-					value
-				};
-			}
+			acc[dataKey] = {
+				color: color.slice(dashIndex + 1, color.length - 1),
+				value
+			};
 
 			return acc;
 		}, {} as DynamicObject<{ color: string; value: number }>);
