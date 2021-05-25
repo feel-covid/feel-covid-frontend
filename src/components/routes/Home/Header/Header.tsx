@@ -10,7 +10,7 @@ import { SubHeader } from './SubHeader';
 
 interface IProps {}
 
-export const Header: React.FC<IProps> = (props) => {
+export const Header: React.FC<IProps> = props => {
 	const { t } = useTranslation();
 	const { dispatch } = useTogglesContext();
 
@@ -19,7 +19,7 @@ export const Header: React.FC<IProps> = (props) => {
 			<S.Container>
 				<S.MainHeader>
 					<S.TitleContainer>
-						<S.Title text={t('header.title')!} />
+						<S.Title text={t('header.title')! as string} />
 					</S.TitleContainer>
 
 					<S.Filter />

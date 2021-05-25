@@ -4,8 +4,7 @@ import { togglesContextInitialState, togglesContextReducer } from './reducer';
 
 interface IProps {}
 
-export const TogglesProvider: React.FC<IProps> = (props) => {
-	// @ts-expect-error
+export const TogglesProvider: React.FC<IProps> = props => {
 	const [state, dispatch] = useReducer(
 		togglesContextReducer,
 		togglesContextInitialState
