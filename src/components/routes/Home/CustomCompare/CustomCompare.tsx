@@ -31,13 +31,12 @@ interface ISelectionItem {
 	color: string;
 }
 
-const CustomCompare: React.FC<IProps> = (props) => {
+const CustomCompare: React.FC<IProps> = props => {
 	const { t } = useTranslation();
 	const theme = useTheme();
 	const { state, dispatch } = useTogglesContext();
 	const [selectedItems, setSelectedItems] = useState<DynamicObject<boolean>>({
-		total: true,
-		recovered: true
+		active: true
 	});
 
 	const { normalizedChartData, chartSliceIndex } = useCountryDataContext();
@@ -45,7 +44,7 @@ const CustomCompare: React.FC<IProps> = (props) => {
 	const contentContainer = useRef<HTMLDivElement>(null);
 
 	const handleCheck = useCallback((key: string) => {
-		setSelectedItems((prevState) => deleteOrAddKey(key, prevState));
+		setSelectedItems(prevState => deleteOrAddKey(key, prevState));
 	}, []);
 
 	useStrictEffect(() => {
@@ -127,7 +126,7 @@ const CustomCompare: React.FC<IProps> = (props) => {
 					<S.ContentContainer ref={contentContainer}>
 						<S.ChartContainer title=''>
 							<LineChart data={normalizedChartData.slice(statsBackCount)}>
-								{Object.keys(selectedItems).map((key) => {
+								{Object.keys(selectedItems).map(key => {
 									const { path, title, color } = get(selectOptions, key);
 									return (
 										<Line

@@ -19,19 +19,19 @@ if (process.env.NODE_ENV === 'development') {
 	document.title = 'DEV - Feel';
 }
 
-// ReactDOM.render(
-// 	<I18nextProvider i18n={i18n}>
-// 		<ThemeProvider theme={defaultTheme}>
-// 			<ErrorBoundary>
-// 				<CountryDataProvider>
-// 					<HourlyUpdatesCompareProvider>
-// 						<TogglesProvider>
-// 							<App />
-// 						</TogglesProvider>
-// 					</HourlyUpdatesCompareProvider>
-// 				</CountryDataProvider>
-// 			</ErrorBoundary>
-// 		</ThemeProvider>
-// 	</I18nextProvider>,
-// 	document.getElementById('appMountPoint')
-// );
+ReactDOM.render(
+	<I18nextProvider i18n={i18n}>
+		<ThemeProvider theme={defaultTheme}>
+			<ErrorBoundary>
+				<CountryDataProvider>
+					<HourlyUpdatesCompareProvider>
+						<TogglesProvider>
+							<App />
+						</TogglesProvider>
+					</HourlyUpdatesCompareProvider>
+				</CountryDataProvider>
+			</ErrorBoundary>
+		</ThemeProvider>
+	</I18nextProvider>,
+	document.getElementById('appMountPoint')
+);

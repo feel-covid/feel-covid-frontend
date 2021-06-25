@@ -12,7 +12,7 @@ interface IProps {
 	setStatsBackCount: StateUpdaterFunction<number>;
 }
 
-export const CustomCompareHeader: React.FC<IProps> = (props) => {
+export const CustomCompareHeader: React.FC<IProps> = props => {
 	const { t } = useTranslation();
 	const { chartSliceIndex } = useCountryDataContext();
 
@@ -20,14 +20,14 @@ export const CustomCompareHeader: React.FC<IProps> = (props) => {
 		<S.Container>
 			<CustomText text={t('customCompare.header.title') as string} />
 			<S.SelectAndCloseContainer>
-				<S.Select
-					onChange={(e: ChangeEvent<HTMLSelectElement>) => {
-						props.setStatsBackCount(Number(e.target.value));
-					}}
-				>
-					<option value={chartSliceIndex}>מהשבוע האחרון</option>
-					<option value='0'>מהחודש האחרון</option>
-				</S.Select>
+				{/*<S.Select*/}
+				{/*	onChange={(e: ChangeEvent<HTMLSelectElement>) => {*/}
+				{/*		props.setStatsBackCount(Number(e.target.value));*/}
+				{/*	}}*/}
+				{/*>*/}
+				{/*	<option value={chartSliceIndex}>מהשבוע האחרון</option>*/}
+				{/*	<option value='0'>מהחודש האחרון</option>*/}
+				{/*</S.Select>*/}
 
 				<S.CloseIconContainer id='custom-compare-close-icon'>
 					<S.CloseIcon type={IconsEnum.Close} />
