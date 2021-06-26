@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled, { useTheme } from 'styled-components/macro';
 import { useCountryDataContext } from '../../../../providers/CountryDataProvider/hooks/useCountryDataContext';
@@ -8,6 +8,7 @@ import {
 	Gradients,
 	Legend,
 	Tooltip,
+	Line,
 	XAxis
 } from '../../../../shared/chart';
 import { ComposedChart, LabelList, YAxis } from 'recharts';
@@ -22,6 +23,10 @@ export const DailyDiffChart: React.FC<IProps> = props => {
 	const theme = useTheme();
 	const gradientsId = 'DailyDiff-';
 	const weekData = dailyIRD.slice(chartSliceIndex);
+	const maxDailyInfected = useMemo(
+		() => Math.max(...weekData.map(({ infected }) => infected)),
+		[dailyIRD]
+	);
 
 	const bars = [
 		{
@@ -55,7 +60,12 @@ export const DailyDiffChart: React.FC<IProps> = props => {
 
 	return (
 		<S.ChartContainer title={t('charts.dailyDiffChart.title')}>
-			<ComposedChart data={weekData}>
+			<ComposedChart
+				data={weekData.map(day => ({
+					...day,
+					infectedBuffer: maxDailyInfected * 1.1
+				}))}
+			>
 				<Legend
 					payload={[
 						{
@@ -88,13 +98,20 @@ export const DailyDiffChart: React.FC<IProps> = props => {
 					/>
 				</defs>
 
+				<Line
+					type='monotone'
+					dataKey='infectedBuffer'
+					strokeWidth={0}
+					cursor={false as any}
+					dot={false}
+				/>
+
 				{bars.map(bar => (
 					<Bar key={bar.dataKey} {...bar} />
 				))}
 
 				<Tooltip content={<CustomizedDailyDiffTooltip />} />
 
-				<YAxis domain={['dataMin', 'dataMax']} hide />
 				<XAxis />
 			</ComposedChart>
 		</S.ChartContainer>
