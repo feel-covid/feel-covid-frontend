@@ -49,12 +49,12 @@ export interface INormalizedCountryData {
 
 export interface IDailyVaccination {
 	date: string;
-	firstDoseAmount: number;
-	firstDosePercentage: number;
-	firstDoseCumulative: number;
 	secondDoseAmount: number;
 	secondDosePercentage: number;
 	secondDoseCumulative: number;
+	thirdDoseAmount: number;
+	thirdDosePercentage: number;
+	thirdDoseCumulative: number;
 }
 
 export interface INormalized24HoursDiff {

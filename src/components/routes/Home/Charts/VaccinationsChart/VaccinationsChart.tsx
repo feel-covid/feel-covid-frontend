@@ -24,31 +24,31 @@ export const VaccinationsChart: React.FC<IProps> = props => {
 	const theme = useTheme();
 	const gradientsId = 'Vaccinations';
 	const { chartSliceIndex } = useCountryDataContext();
-	const { secondDoseCumulative } = dailyVaccinations.slice(-1)[0];
+	const { thirdDoseCumulative } = dailyVaccinations.slice(-1)[0];
 
 	const chartData = useMemo(() => {
 		const data = dailyVaccinations.slice(chartSliceIndex);
 
-		const distinctSecondDoseAmount = data.map(
-			({ secondDoseAmount }) => secondDoseAmount
+		const distinctThirdDoseAmount = data.map(
+			({ thirdDoseAmount }) => thirdDoseAmount
 		);
-		const secondDoseAmountRatio =
-			Math.max(...distinctSecondDoseAmount) / secondDoseCumulative;
+		const thirdDoseAmountRatio =
+			Math.max(...distinctThirdDoseAmount) / thirdDoseCumulative;
 
-		const distinctSecondDosePercentage = data.map(
-			({ secondDosePercentage }) => secondDosePercentage
+		const distinctThirdDosePercentage = data.map(
+			({ thirdDosePercentage }) => thirdDosePercentage
 		);
-		const secondDostPercentageRatio =
-			Math.max(...distinctSecondDosePercentage) / secondDoseCumulative;
+		const thirdDostPercentageRatio =
+			Math.max(...distinctThirdDosePercentage) / thirdDoseCumulative;
 
 		return data.map(vaccinationData => {
 			return {
 				original: vaccinationData,
 				...vaccinationData,
-				secondDoseAmount:
-					(vaccinationData.secondDoseAmount / secondDoseAmountRatio) * 0.83,
-				secondDosePercentage:
-					vaccinationData.secondDosePercentage / secondDostPercentageRatio
+				thirdDoseAmount:
+					(vaccinationData.thirdDoseAmount / thirdDoseAmountRatio) * 0.83,
+				thirdDosePercentage:
+					vaccinationData.thirdDosePercentage / thirdDostPercentageRatio
 			};
 		});
 	}, [dailyVaccinations]);
@@ -60,14 +60,14 @@ export const VaccinationsChart: React.FC<IProps> = props => {
 					<Legend
 						payload={[
 							{
-								id: 'secondDoseCumulative',
-								value: t('charts.vaccinationsChart.secondDoseCumulative'),
+								id: 'thirdDoseCumulative',
+								value: t('charts.vaccinationsChart.cumulative'),
 								color: theme.colors.turquoise1,
 								type: 'square'
 							},
 							{
-								id: 'secondDoseAmount',
-								value: t('charts.vaccinationsChart.secondDoseAmount'),
+								id: 'thirdDoseAmount',
+								value: t('charts.vaccinationsChart.vaccinatedToday'),
 								color: theme.colors.blue2,
 								type: 'square'
 							}
@@ -84,20 +84,20 @@ export const VaccinationsChart: React.FC<IProps> = props => {
 					</defs>
 
 					<Line
-						dataKey='secondDoseCumulative'
+						dataKey='thirdDoseCumulative'
 						stroke={theme.colors.turquoise1}
-						name={t('charts.vaccinationsChart.secondDoseCumulative') as string}
+						name={t('charts.vaccinationsChart.cumulative') as string}
 					/>
 
 					<Bar
-						dataKey='secondDoseAmount'
+						dataKey='thirdDoseAmount'
 						fill={`url(#${gradientsId}blue2)`}
 						stroke={theme.colors.blue2}
 						strokeWidth={1}
-						name={t('charts.vaccinationsChart.secondDoseAmount') as string}
+						name={t('charts.vaccinationsChart.vaccinatedToday') as string}
 					>
 						<LabelList
-							dataKey='original.secondDoseAmount'
+							dataKey='original.thirdDoseAmount'
 							content={
 								<PointLabel
 									shouldDisplay={index => [2, 5, 0, 7].includes(index)}
@@ -110,7 +110,7 @@ export const VaccinationsChart: React.FC<IProps> = props => {
 
 					<YAxis
 						type='number'
-						domain={[0, `dataMax + ${secondDoseCumulative * 0.1}`]}
+						domain={[0, `dataMax + ${thirdDoseCumulative * 0.1}`]}
 						hide
 					/>
 					<XAxis />
