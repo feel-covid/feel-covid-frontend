@@ -59,10 +59,10 @@
 				"positive": "אחוז חיוביים"
 			},
 			"vaccinationsChart": {
-				"title": "מגמת מתחסנים (מנה שנייה)",
-				"secondDoseCumulative": "סך המתחסנים",
-				"secondDoseAmount": "חוסנו היום",
-				"secondDosePercentage": "אחוז מהאוכלוסיה"
+				"title": "מגמת מתחסנים (מנה שלישית)",
+				"cumulative": "סך המתחסנים",
+				"vaccinatedToday": "חוסנו היום",
+				"percentage": "אחוז מהאוכלוסיה"
 			}
 		},
 		"footer": {

@@ -60,12 +60,7 @@ export const DailyDiffChart: React.FC<IProps> = props => {
 
 	return (
 		<S.ChartContainer title={t('charts.dailyDiffChart.title')}>
-			<ComposedChart
-				data={weekData.map(day => ({
-					...day,
-					infectedBuffer: maxDailyInfected * 1.1
-				}))}
-			>
+			<ComposedChart data={weekData}>
 				<Legend
 					payload={[
 						{
@@ -98,17 +93,15 @@ export const DailyDiffChart: React.FC<IProps> = props => {
 					/>
 				</defs>
 
-				<Line
-					type='monotone'
-					dataKey='infectedBuffer'
-					strokeWidth={0}
-					cursor={false as any}
-					dot={false}
-				/>
-
 				{bars.map(bar => (
 					<Bar key={bar.dataKey} {...bar} />
 				))}
+
+				<YAxis
+					type='number'
+					domain={[0, `dataMax + ${maxDailyInfected * 0.1}`]}
+					hide
+				/>
 
 				<Tooltip content={<CustomizedDailyDiffTooltip />} />
 

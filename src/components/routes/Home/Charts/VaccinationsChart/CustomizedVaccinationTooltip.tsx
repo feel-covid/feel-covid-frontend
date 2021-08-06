@@ -33,8 +33,8 @@ export const CustomizedVaccinationTooltip: React.FC<IProps> = props => {
 			dataKey as keyof IDailyVaccination
 		] as string).toLocaleString();
 
-		if (dataKey === 'secondDoseCumulative') {
-			value += ` (${payload.original.secondDosePercentage}%)`;
+		if (dataKey === 'thirdDoseCumulative') {
+			value += ` (${payload.original.thirdDosePercentage}%)`;
 		}
 
 		return {
